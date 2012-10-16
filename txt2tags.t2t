@@ -1,0 +1,25 @@
+Txt2tags
+使用笔记 
+
+
+%!includeconf: config.t2t
+%!include: ''menu.html''
+%%TOC 
+
+
+= 笔记 =[tut]
+
+[Txt2tags用户指南摘录 doc/txt2tags/t2t_guide_note/t2t-guide-note.html]
+
+
+= 做beamer幻灯片 =[beamer]
+
+txt2tags v2.3的一个patch，支持输出文档格式为beamer的tex档，见：http://pst.libre.lu/toolz/t2t/
+
+测试：t2t->tex->pdf
++ [t2t源文档 doc/txt2tags/t2t_beamer/test-ltb.t2t]
++ [tex中间文档 doc/txt2tags/t2t_beamer/test-ltb.tex]
++ [pdf最终幻灯片 doc/txt2tags/t2t_beamer/test-ltb.pdf]
+
+
+%!include: footer.t2t

@@ -1,0 +1,281 @@
+Arch Linux
+安装笔记 
+
+
+%!includeconf: config.t2t
+%!include: ''menu.html''
+%%TOC 
+
+
+=基础系统(光盘安装)=[base-iso]
+- 到http://www.archlinux.org下iso，刻盘。
+- 参考：[个人的Arch Linux 安装笔记和步骤简述 http://www.linuxsir.org/bbs/thread317982.html]
+
+
+==设置arch源==[source]
+- 编辑/etc/pacman.conf
+```
+[archlinuxfr]
+Server = http://repo.archlinux.fr/$arch
+```
+- 编辑/etc/pacman.d/mirrorlist
+```
+Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+```
+
+
+=基础系统(U盘安装)=[base-usb]
+- 下载archlinux最新光盘：http://www.archlinux.org/download/
+- 下载LinuxLive USB Creator：http://www.linuxliveusb.com/
+- 用LinuxLive USB Creator制作可启动的USB盘
+- 修改BIOS，从USB启动，进入archlinux
+
+
+==硬盘分区==[fdisk]
+- 假设系统硬盘为/dev/sda，这边是SSD
+- 执行fdisk /dev/sda进行分区，假设新建的系统分区为/dev/sda1
+- mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
+
+
+==安装系统==[intall-init]
+- 执行wifi-menu，连接合适的无线网络
+- 编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
+```
+mount /dev/sda1 /mnt
+pacstrap /mnt base base-devel
+pacstrap /mnt grub2-bios
+genfstab -p /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+```
+- 设置arch源，见上节
+```
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+mkinitcpio -p linux
+grub-install --no-floppy /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+pacman -S net-tools wireless_tools wpa_supplicant netcfg ifplugd dialog
+exit
+reboot
+```
+- 重启之后，执行wifi-menu连接到无线网络
+
+
+=软件安装=[main-install]
+
+==系统更新==[update]
+- pacman -Syu
+- pacman -S yaourt
+
+
+==图形界面==[x] 
+- 安装X：yaourt -S xorg xorg-xinit consolekit
+- 安装XFCE: yaourt -S xfce4 xfce4-notifyd
+- 进入X的配置，不然关机键老是灰的：编辑~/.xinitrc
+```
+exec ck-launch-session dbus-launch startxfce4
+```
+
+
+==声卡==[audio]
+- 安装：yaourt -S gstreamer0.10 gstreamer0.10-base-plugins
+- 配置：[ArchWiki:设置ALSA https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29]
+
+
+==常用软件==[software]
+- 输入法： yaourt -S ibus ibus-table-zhengma ibus-pinyin im-switch zenity
+- 浏览器：yaourt -S firefox
+- 编辑：yaourt -S vim txt2tags
+- 下载：yaourt -S rsync curl openssh lftp
+- 字体：yaourt -S wqy-bitmapfont wqy-zenhei monaco-linux-font 
+- 视频：yaourt -S smplayer flashplugin
+- 办公：yaourt -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc
+- mysql: yaourt -S mydumper mysql 
+- github : yaourt -S git
+- perl : yaourt -S cpanminus
+- MSN ：yaourt -S emesene
+- cpan模块：
+```
+cpanm File::Find::Rule
+cpanm Mouse
+cpanm Parallel::ForkManager
+cpanm Term::Menus
+cpanm Encode::Detect::CJK
+cpanm Text::Xslate
+cpanm File::Slurp
+cpanm HTML::TableExtract
+cpanm HTML::TreeBuilder
+cpanm HTML::ElementTable
+cpanm Web::Scraper
+```
+
+
+=中文环境=[chinese]
+- vim /etc/locale.gen，指定zh_CN.UTF-8
+- vim /etc/local.conf
+```
+LANG=zh_CN.UTF-8
+LC_MESSAGES=zh_CN.UTF-8
+```
+- 执行locale-gen
+- vim /etc/rc.conf
+```
+LOCALE=zh_CN.UTF-8
+```
+
+
+=时间=[ntp]
+- yaourt -S ntp
+- ntpdate asia.pool.ntp.org
+
+
+=热插拔=[hotplug]
+- yaourt -S ntfs-3g mount-tray
+- 配置 /etc/fstab
+```
+/dev/sdb1 /mnt/usb ntfs-3g auto,users,permissions 0 0
+```
+- 设置mount-tray随X启动即可
+
+
+=网络=[network]
+==根据MAC地址固定网卡名称==[card]
+编辑文件/etc/udev/rules.d/10-network.rules
+```
+SUBSYSTEM=="net", ATTR{address}=="00:26:2d:f6:ad:43", NAME="eth0"
+SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
+```
+
+
+==无线(NetworkManager)==[wireless-networkmanager]
+- 安装: yaourt -S networkmanager xfce4-notifyd network-manager-applet nm-applet 
+- 配置: 进入xfce4后，有图形界面配置
+- 开机启动：编辑/etc/rc.conf
+```
+DAEMONS=(dbus syslog-ng !network crond alsa ifplugd networkmanager)
+```
+
+
+==无线(wpa_supplicant)==[wireless-wpa_supplicant]
+- 安装: yaourt -S net-tools wireless_tools wpa_supplicant
+- 配置:
+假设配置ESSID为mywireless，密码为mypasswd的无线
+```
+wpa_passphrase mywireless mypasswd >> /etc/wpa_supplicant.conf
+```
+手动修改/etc/wpa_supplicant.conf
+```
+update_config=1
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
+ap_scan=1
+fast_reauth=1
+
+network={
+	ssid="mywireless"
+
+	#proto=WPA
+	proto=RSN
+	key_mgmt=WPA-PSK
+	pairwise=CCMP TKIP
+	group=CCMP TKIP
+
+	#psk="mypasswd"
+	psk=09896d6dc939e1d6b279c10ee3d4d1c8c75970ce345c6552b7ee47d892f0740e
+}
+```
+- 手动连接：假设无线网卡为wlan0
+```
+WLAN=wlan0
+ESSID=mywireless
+
+rm /run/dhcpcd-$WLAN.pid
+rm /var/run/wpa_supplicant/$WLAN
+
+ifconfig $WLAN up
+
+wpa_supplicant -dd -B -Dwext -i $WLAN -c /etc/wpa_supplicant.conf
+
+ifconfig $WLAN up
+iwconfig $WLAN essid $ESSID
+dhcpcd $WLAN
+```
+
+
+==无线(netcfg)==[wireless-netcfg]
+- 用netcfg有时会抽风，网一会断一会连，不知为啥
+- 安装: yaourt -S net-tools wireless_tools wpa_supplicant netcfg
+- 配置:
+参考/etc/network.d/examples/下的配置，例如新建一个athome配置
+```
+cp /etc/network.d/examples/wpa-config /etc/network.d/athome
+```
+- 编辑athome文件，指定ssid和key
+- 启动：/etc/rc.d/net-profiles start
+- 开机启动：编辑/etc/rc.conf
+```
+NETWORKS=(athome)
+DAEMONS=(dbus syslog-ng !network crond alsa @net-auto-wireless)
+```
+
+
+==vpn==[vpn]
+- 参考：[archlinux pptp(vpn)拨号连接 http://blog.vkill.net/read.php?97]
+- 没看到arch下有/etc/ppp/ip-up.d目录，用以下脚本来启动vpn，我没有把它加为开机启动项，嗯。
+```
+#!/bin/zsh
+
+#取网关地址
+gateway=`route|grep default|grep eth0|awk '{print $2;}'`
+vpn_gateway="192.168.6.253"
+
+echo "拨号..."
+sudo poff -a
+sleep 2
+sudo pon lab
+sleep 3
+
+echo "修改路由..."
+#科大的地址不从vpn走
+sudo route add -net 202.38.0.0/16 gw $gateway eth0
+sudo route add -net 210.45.0.0/16 gw $gateway eth0
+sudo route add -net 211.86.0.0/16 gw $gateway eth0
+
+#默认从vpn走
+sudo route del default
+sudo route add default gw $vpn_gateway dev ppp0
+
+#看路由
+sudo route -n
+```
+
+
+=NGINX+PHP=[lamp]
+- yaourt -S nginx spawn-fcgi php-cgi
+- 以http(用户):http(组)启动fastcgi : spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi
+- 配置/etc/nginx/conf/nginx.conf
+```
+location / {
+    root   /var/www;
+    index  index.php index.html index.htm;
+}
+
+location ~ \.php$ {
+    root           /var/www;
+    fastcgi_pass   127.0.0.1:9000;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+}
+```
+- 启动nginx: /etc/rc.d/nginx start
+
+
+=KERNEL PANIC 恢复=[kernelpanic]
+- 系统升级失败，重启提示kernel panic，switch_root : fail to ...
+- 从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之
+```
+mount /dev/sda1 /mnt
+yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
+```
+
+
+%!include: footer.t2t
