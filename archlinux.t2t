@@ -106,6 +106,7 @@ cpanm HTML::TableExtract
 cpanm HTML::TreeBuilder
 cpanm HTML::ElementTable
 cpanm Web::Scraper
+cpanm Archive::Zip
 ```
 
 
