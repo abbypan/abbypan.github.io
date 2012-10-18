@@ -85,14 +85,16 @@ exec ck-launch-session dbus-launch startxfce4
 - 输入法： yaourt -S ibus ibus-table-zhengma ibus-pinyin im-switch zenity
 - 浏览器：yaourt -S firefox
 - 编辑：yaourt -S vim txt2tags
-- 下载：yaourt -S rsync curl openssh lftp
+- 下载：yaourt -S rsync curl openssh lftp wget
 - 字体：yaourt -S wqy-bitmapfont wqy-zenhei monaco-linux-font 
 - 视频：yaourt -S smplayer flashplugin
-- 办公：yaourt -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc
+- 办公：yaourt -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc unzip
 - 网络：yaourt -S dnsutils traceroute wireshark-gtk ostinato
+- 云服务：yaourt -S dotcloud-cli
 - mysql: yaourt -S mydumper mysql 
 - github : yaourt -S git
 - perl : yaourt -S cpanminus
+- ruby : yaourt -S ruby
 - MSN ：yaourt -S emesene
 - cpan模块：
 ```
