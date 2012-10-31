@@ -100,7 +100,7 @@ TMTOWTDI
  | List::AllUtils | 常见数组处理函数，uniq/sum/first/last等等
  | List::Compare | 求集合的交集、差集等等
  | Log::Dispatch | 打日志，相对轻量级
- | Log4Perl | 打日志，功能强大
+ | Log::Any::App | 非常好用！
  | Math::Combinatorics | 求阶乘factorial，排列permute，组合combine
  | Math::VecStat | 数组求和，均值，最大/最小元素
  | Mo | 轻量级面向对象 
