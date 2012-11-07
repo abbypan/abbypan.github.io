@@ -150,12 +150,12 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 ```
 
 
-==无线(NetworkManager)==[wireless-networkmanager]
-- 安装: yaourt -S networkmanager xfce4-notifyd network-manager-applet nm-applet 
+==无线(wicd)==[wireless-wicd]
+- 安装: yaourt -S xfce4-notifyd wicd
 - 配置: 进入xfce4后，有图形界面配置
 - 开机启动：编辑/etc/rc.conf
 ```
-DAEMONS=(dbus syslog-ng !network crond alsa ifplugd networkmanager)
+DAEMONS=(dbus syslog-ng !network crond alsa ifplugd wicd)
 ```
 
 
