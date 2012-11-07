@@ -72,20 +72,20 @@ TMTOWTDI
  || 模块 | 用途 |
  | Acme::ProgressBar | 进度条
  | AnyEvent::HTTP | 简单的HTTP客户端，非阻塞型
- | App::cpanminus | 非常好用的模块安装工具cpanm
+ | App::cpanminus | 模块安装工具cpanm，非常好用
  | App::Rolling | 滚动记录日志
  | Benchmark::Timer | 测执行时间
  | [BerkeleyDB http://perlchina.github.com/advent.perlchina.org/2011/BerkeleyDB.html] | 本地数据库
- | Capture::Tiny | 抓STDOUT、STDERR消息的
+ | Capture::Tiny | 抓STDOUT、STDERR消息，非常好用
  | [Carp::Always http://perladvent.org/2011/2011-12-04.html] | debug用的，可以打trace 
- | Chart Director | 非常好用的画图模块
+ | Chart Director | 画图模块，非常好用
  | CHI | 缓存接口
  | Data::Dump | 打印变量，比Data::Dumper简洁
  | Data::MessagePack | pack数据，类似json
  | Date::Manip | 时间格式转换
  | [Date::Time http://www.houseabsolute.com/presentations/dates-times-perl-and-you/#1] | 时间处理，很全
  | Devel::NYTProf | Profile性能分析
- | Devel::Peek | 查看变量内部构造
+ | Devel::Peek | 查看变量内部构造，非常好用
  | Devel::Size | 变量占用空间
  | Encode::Locale | 识别本地编码
  | File::Copy | 文件复制&移动
@@ -96,29 +96,31 @@ TMTOWTDI
  | HTML::TreeBuilder::XPath | 支持网页的XPath解析
  | IO::All | 很多文件的常用io操作，例如按行读文件到数组之类，参考
  | IO::Scalar | 标量字符串的读写
- | JSON | JSON数据编解码
+ | JSON | JSON数据编解码，非常好用
  | List::AllUtils | 常见数组处理函数，uniq/sum/first/last等等
  | List::Compare | 求集合的交集、差集等等
  | Log::Dispatch | 打日志，相对轻量级
- | Log::Any::App | 非常好用！
+ | Log::Any::App | 打日志，非常好用！
  | Math::Combinatorics | 求阶乘factorial，排列permute，组合combine
  | Math::VecStat | 数组求和，均值，最大/最小元素
- | Mo | 轻量级面向对象 
+ | Moo | 轻量级面向对象 
  | Module::Starter | 新建CPAN模块
  | Mojo::Client | 并行请求http页面，有时突然挂掉
  | Net::OpenSSH | 远程登录
- | Parallel::ForkManger | 多进程处理，很不错
+ | Parallel::ForkManger | 多进程处理，非常好用
  | Path::Class::Rule | 遍历目录，也可以用File::Find::Rule、File::Find
- | Perl::Tidy | 整理代码
+ | Perl::Tidy | 整理代码，非常好用
  | [Set::CrossProduct http://perladvent.org/2011/2011-12-06.html] | 集合叉乘
- | snaked | 支持秒级的crontab，支持日志滚动，非常非常好用
+ | snaked | 支持秒级的crontab，支持日志滚动，非常好用
  | Sort::ByExample | 排序，可以指定特定的值排在前面
  | Sort::Maker | 定制化排序函数，较快
  | Teng | 数据库操作，轻量级
+ | Term::ProgressBar | 进度条
  | Text::Diff | 文本比较
  | Tie::IxHash | hash元素的顺序存取
  | Tie::Watch | 观察变量
  | Time::Format | 时间格式转换
+ | Web::Scraper | 抓取网页，非常好用
  | WWW::Mechanize::Firefox | 模拟firefox操作，支持javascript
  | XML::Simple | 解析XML
  | YAPE::Regex::Explain | 解释正则式每部分的行为
