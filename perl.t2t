@@ -108,6 +108,7 @@ TMTOWTDI
  | Mojo::Client | 并行请求http页面，有时突然挂掉
  | Net::OpenSSH | 远程登录
  | Parallel::ForkManger | 多进程处理，非常好用
+ | Parse::RecDescent | 自定义解析模块，非常好用
  | Path::Class::Rule | 遍历目录，也可以用File::Find::Rule、File::Find
  | Perl::Tidy | 整理代码，非常好用
  | [Set::CrossProduct http://perladvent.org/2011/2011-12-06.html] | 集合叉乘
