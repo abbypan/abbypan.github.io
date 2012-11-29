@@ -36,7 +36,7 @@
   <LI><A HREF="#site">站点</A>
   <LI><A HREF="#importantbook">重要书籍</A>
   <LI><A HREF="#otherbook">其他书籍</A>
-  <LI><A HREF="#module">模块笔记</A>
+  <LI><A HREF="#module">常用模块</A>
   </UL>
 
 </DIV>
@@ -280,7 +280,7 @@
 </TABLE>
 
 <A NAME="module"></A>
-<H1>模块笔记</H1>
+<H1>常用模块</H1>
 
 <TABLE ALIGN="center" BORDER="1">
 <TR>
@@ -288,152 +288,40 @@
 <TH>用途</TH>
 </TR>
 <TR>
-<TD>Acme::ProgressBar</TD>
-<TD>进度条</TD>
-</TR>
-<TR>
-<TD>AnyEvent::HTTP</TD>
-<TD>简单的HTTP客户端，非阻塞型</TD>
-</TR>
-<TR>
 <TD>App::cpanminus</TD>
 <TD>模块安装工具cpanm，非常好用</TD>
-</TR>
-<TR>
-<TD>App::Rolling</TD>
-<TD>滚动记录日志</TD>
-</TR>
-<TR>
-<TD>Benchmark::Timer</TD>
-<TD>测执行时间</TD>
-</TR>
-<TR>
-<TD><A HREF="http://perlchina.github.com/advent.perlchina.org/2011/BerkeleyDB.html">BerkeleyDB</A></TD>
-<TD>本地数据库</TD>
 </TR>
 <TR>
 <TD>Capture::Tiny</TD>
 <TD>抓STDOUT、STDERR消息，非常好用</TD>
 </TR>
 <TR>
-<TD><A HREF="http://perladvent.org/2011/2011-12-04.html">Carp::Always</A></TD>
-<TD>debug用的，可以打trace</TD>
-</TR>
-<TR>
 <TD>Chart Director</TD>
 <TD>画图模块，非常好用</TD>
 </TR>
 <TR>
-<TD>CHI</TD>
-<TD>缓存接口</TD>
+<TD>Dancer</TD>
+<TD>Web 框架</TD>
 </TR>
 <TR>
 <TD>Data::Dump</TD>
 <TD>打印变量，比Data::Dumper简洁</TD>
 </TR>
 <TR>
-<TD>Data::MessagePack</TD>
-<TD>pack数据，类似json</TD>
-</TR>
-<TR>
-<TD>Date::Manip</TD>
-<TD>时间格式转换</TD>
-</TR>
-<TR>
-<TD><A HREF="http://www.houseabsolute.com/presentations/dates-times-perl-and-you/#1">Date::Time</A></TD>
-<TD>时间处理，很全</TD>
-</TR>
-<TR>
-<TD>Devel::NYTProf</TD>
-<TD>Profile性能分析</TD>
-</TR>
-<TR>
 <TD>Devel::Peek</TD>
 <TD>查看变量内部构造，非常好用</TD>
-</TR>
-<TR>
-<TD>Devel::Size</TD>
-<TD>变量占用空间</TD>
-</TR>
-<TR>
-<TD>Encode::Locale</TD>
-<TD>识别本地编码</TD>
-</TR>
-<TR>
-<TD>File::Copy</TD>
-<TD>文件复制&amp;移动</TD>
-</TR>
-<TR>
-<TD>File::Random</TD>
-<TD>随机选取文件，也可以在文件内随机选择行</TD>
-</TR>
-<TR>
-<TD>File::Stat</TD>
-<TD>文件修改时间</TD>
-</TR>
-<TR>
-<TD>Getopt::Complete</TD>
-<TD>命令行，支持补全</TD>
-</TR>
-<TR>
-<TD>HTML::LinkExtor</TD>
-<TD>解析网页中包含的URL</TD>
-</TR>
-<TR>
-<TD>HTML::TreeBuilder::XPath</TD>
-<TD>支持网页的XPath解析</TD>
-</TR>
-<TR>
-<TD>IO::All</TD>
-<TD>很多文件的常用io操作，例如按行读文件到数组之类，参考</TD>
-</TR>
-<TR>
-<TD>IO::Scalar</TD>
-<TD>标量字符串的读写</TD>
 </TR>
 <TR>
 <TD>JSON</TD>
 <TD>JSON数据编解码，非常好用</TD>
 </TR>
 <TR>
-<TD>List::AllUtils</TD>
-<TD>常见数组处理函数，uniq/sum/first/last等等</TD>
-</TR>
-<TR>
-<TD>List::Compare</TD>
-<TD>求集合的交集、差集等等</TD>
-</TR>
-<TR>
-<TD>Log::Dispatch</TD>
-<TD>打日志，相对轻量级</TD>
-</TR>
-<TR>
 <TD>Log::Any::App</TD>
 <TD>打日志，非常好用！</TD>
 </TR>
 <TR>
-<TD>Math::Combinatorics</TD>
-<TD>求阶乘factorial，排列permute，组合combine</TD>
-</TR>
-<TR>
-<TD>Math::VecStat</TD>
-<TD>数组求和，均值，最大/最小元素</TD>
-</TR>
-<TR>
 <TD>Moo</TD>
 <TD>轻量级面向对象</TD>
-</TR>
-<TR>
-<TD>Module::Starter</TD>
-<TD>新建CPAN模块</TD>
-</TR>
-<TR>
-<TD>Mojo::Client</TD>
-<TD>并行请求http页面，有时突然挂掉</TD>
-</TR>
-<TR>
-<TD>Net::OpenSSH</TD>
-<TD>远程登录</TD>
 </TR>
 <TR>
 <TD>Parallel::ForkManger</TD>
@@ -444,28 +332,12 @@
 <TD>自定义解析模块，非常好用</TD>
 </TR>
 <TR>
-<TD>Path::Class::Rule</TD>
-<TD>遍历目录，也可以用File::Find::Rule、File::Find</TD>
-</TR>
-<TR>
 <TD>Perl::Tidy</TD>
 <TD>整理代码，非常好用</TD>
 </TR>
 <TR>
-<TD><A HREF="http://perladvent.org/2011/2011-12-06.html">Set::CrossProduct</A></TD>
-<TD>集合叉乘</TD>
-</TR>
-<TR>
 <TD>snaked</TD>
 <TD>支持秒级的crontab，支持日志滚动，非常好用</TD>
-</TR>
-<TR>
-<TD>Sort::ByExample</TD>
-<TD>排序，可以指定特定的值排在前面</TD>
-</TR>
-<TR>
-<TD>Sort::Maker</TD>
-<TD>定制化排序函数，较快</TD>
 </TR>
 <TR>
 <TD>Teng</TD>
@@ -473,43 +345,15 @@
 </TR>
 <TR>
 <TD>Term::ProgressBar</TD>
-<TD>进度条</TD>
-</TR>
-<TR>
-<TD>Text::Diff</TD>
-<TD>文本比较</TD>
-</TR>
-<TR>
-<TD>Tie::IxHash</TD>
-<TD>hash元素的顺序存取</TD>
-</TR>
-<TR>
-<TD>Tie::Watch</TD>
-<TD>观察变量</TD>
-</TR>
-<TR>
-<TD>Time::Format</TD>
-<TD>时间格式转换</TD>
+<TD>文本进度条</TD>
 </TR>
 <TR>
 <TD>Web::Scraper</TD>
 <TD>抓取网页，非常好用</TD>
 </TR>
 <TR>
-<TD>WWW::Mechanize::Firefox</TD>
-<TD>模拟firefox操作，支持javascript</TD>
-</TR>
-<TR>
-<TD>XML::Simple</TD>
-<TD>解析XML</TD>
-</TR>
-<TR>
-<TD>YAPE::Regex::Explain</TD>
-<TD>解释正则式每部分的行为</TD>
-</TR>
-<TR>
-<TD>Yandex::Tools</TD>
-<TD>常见的记log、写文件、数组去重 等函数</TD>
+<TD>更多</TD>
+<TD><A HREF="http://blog-abbypan.dotcloud.com/tech/?p=29">Perl 模块笔记</A></TD>
 </TR>
 </TABLE>
 
@@ -517,7 +361,7 @@
 </div><div id="footer">
 <A HREF="http://txt2tags.sourceforge.net"><img SRC="./img/t2tpowered.png" title="O>OOOO"></A>
 <A HREF="http://vim.sourceforge.net"><img SRC="./img/vim.png"></A>
-作者：abbypan，上次修改时间： 2012-11-28 19:03 Wednesday，源文件：<A HREF="perl.t2t">perl.t2t</A>
+作者：abbypan，上次修改时间： 2012-11-29 08:26 Thursday，源文件：<A HREF="perl.t2t">perl.t2t</A>
 </P>
 </DIV>
 
