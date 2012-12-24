@@ -70,22 +70,23 @@ TMTOWTDI
 
 =常用模块=[module]
  || 模块 | 用途 |
- | App::cpanminus | 模块安装工具cpanm，非常好用
- | Capture::Tiny | 抓STDOUT、STDERR消息，非常好用
- | Chart Director | 画图模块，非常好用
+ | App::cpanminus | 模块安装工具cpanm
+ | Capture::Tiny | 抓STDOUT、STDERR消息
+ | Chart Director | 画图模块
  | Dancer | Web 框架
  | Data::Dump | 打印变量，比Data::Dumper简洁
- | Devel::Peek | 查看变量内部构造，非常好用
- | JSON | JSON数据编解码，非常好用
- | Log::Any::App | 打日志，非常好用！
+ | Devel::Peek | 查看变量内部构造
+ | [Dist::Zilla http://perl-users.jp/articles/advent-calendar/2012/casual/9] | CPAN模块打包
+ | JSON | JSON数据编解码
+ | Log::Any::App | 打日志！
  | Moo | 轻量级面向对象
- | Parallel::ForkManger | 多进程处理，非常好用
- | Parse::RecDescent | 自定义解析模块，非常好用
- | Perl::Tidy | 整理代码，非常好用
- | snaked | 支持秒级的crontab，支持日志滚动，非常好用
+ | Parallel::ForkManger | 多进程处理
+ | Parse::RecDescent | 自定义解析模块
+ | Perl::Tidy | 整理代码
+ | snaked | 支持秒级的crontab，支持日志滚动
  | Teng | 数据库操作，轻量级
  | Term::ProgressBar | 文本进度条
- | Web::Scraper | 抓取网页，非常好用
+ | Web::Scraper | 抓取网页
  | 更多 | [Perl 模块笔记 http://blog-abbypan.dotcloud.com/tech/?p=29]
 
 
