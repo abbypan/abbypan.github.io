@@ -87,7 +87,7 @@ TMTOWTDI
  | Teng | 数据库操作，轻量级
  | Term::ProgressBar | 文本进度条
  | Web::Scraper | 抓取网页
- | 更多 | [Perl 模块笔记 http://blog-abbypan.dotcloud.com/tech/?p=29]
+ | 更多 | [Perl模块笔记 http://abbypan.blogspot.com/2011/01/perl.html]
 
 
 %!include: footer.t2t
