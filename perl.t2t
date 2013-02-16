@@ -23,7 +23,7 @@ TMTOWTDI
 =站点=[site]
 
  || 站点 | 简介 |
- | [CPAN http://cpan.uwinnipeg.ca/]，[AnnoCPAN http://www.annocpan.org/] | 模块查找
+ | [CPAN http://cpan.uwinnipeg.ca/]，[MetaCPAN http://metacpan.org] | 模块查找
  | [PerlMonks http://www.perlmonks.org/]，[PerlMongers http://www.pm.org/] | 问题讨论
  | [comp.lang.perl.misc https://groups.google.com/group/comp.lang.perl.misc/topics?hl=en] | 新闻组
  | [Perl-ChinaUnix http://bbs.chinaunix.net/forum-25-1.html]，[PerlChina http://www.perlchina.org/] | 中文社区
