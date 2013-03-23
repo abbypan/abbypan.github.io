@@ -1,0 +1,21 @@
+Lisp
+列表处理语言
+
+%!includeconf: config.t2t
+%!include: ''menu.html''
+%%TOC 
+
+=简单入门=[beginning]
+
+ || 资料 | 简介 |
+ | [The Nature of Lisp http://www.csdn.net/article/2012-11-22/2812113-The-Nature-Of-Lisp] | 讲lisp的好处
+
+
+=书籍=[book]
+
+ || 时间 | 书籍  | 读后感 |
+ | 1995 | [ANSI Common LISP http://acl.readthedocs.org/en/latest/zhCN/index.html]
+ | 2009.10 | land of lisp | 入门书，作者比较话唠，适合花3、4天快速过一遍
+
+
+%!include: footer.t2t
