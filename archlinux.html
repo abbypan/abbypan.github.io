@@ -55,7 +55,6 @@
     <UL>
     <LI><A HREF="#card">根据MAC地址固定网卡名称</A>
     <LI><A HREF="#wireless-netcfg">无线(netcfg)</A>
-    <LI><A HREF="#wireless-wicd">无线(wicd)</A>
     <LI><A HREF="#wireless-wpa_supplicant">无线(wpa_supplicant)</A>
     <LI><A HREF="#vpn">vpn</A>
     </UL>
@@ -242,6 +241,7 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 <UL>
 <LI>安装: yaourt -S net-tools wireless_tools wpa_supplicant netcfg
 <LI>配置: 参考/etc/network.d/examples/
+<P></P>
 新建一个/etc/network.d/athome配置(wpa)
 <PRE>
 CONNECTION='wireless'
@@ -253,6 +253,7 @@ IP='dhcp'
 KEY=athomepasswd
 </PRE>
 
+<P></P>
 新建一个/etc/network.d/atwork配置(wep)
 <PRE>
 CONNECTION='wireless'
@@ -280,19 +281,6 @@ AUTO_PROFILES=("athome" "atwork")
 <PRE>
 NETWORKS=(athome)
 DAEMONS=(dbus syslog-ng !network crond alsa net-profiles)
-</PRE>
-
-</UL>
-
-<A NAME="wireless-wicd"></A>
-<H2>无线(wicd)</H2>
-
-<UL>
-<LI>安装: yaourt -S xfce4-notifyd wicd
-<LI>配置: 进入xfce4后，有图形界面配置
-<LI>开机启动：编辑/etc/rc.conf
-<PRE>
-DAEMONS=(dbus syslog-ng !network crond alsa ifplugd wicd)
 </PRE>
 
 </UL>
@@ -426,7 +414,7 @@ yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 </div><div id="footer">
 <A HREF="http://txt2tags.sourceforge.net"><img SRC="./img/t2tpowered.png" title="O>OOOO"></A>
 <A HREF="http://vim.sourceforge.net"><img SRC="./img/vim.png"></A>
-作者：abbypan，上次修改时间： 2013-04-19 14:34 Friday，源文件：<A HREF="archlinux.t2t">archlinux.t2t</A>
+作者：abbypan，上次修改时间： 2013-04-19 14:36 Friday，源文件：<A HREF="archlinux.t2t">archlinux.t2t</A>
 </P>
 </DIV>
 

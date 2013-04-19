@@ -130,6 +130,7 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 ==无线(netcfg)==[wireless-netcfg]
 - 安装: yaourt -S net-tools wireless_tools wpa_supplicant netcfg
 - 配置: 参考/etc/network.d/examples/
+
 新建一个/etc/network.d/athome配置(wpa)
 ```
 CONNECTION='wireless'
@@ -140,6 +141,7 @@ ESSID=athome
 IP='dhcp'
 KEY=athomepasswd
 ```
+
 新建一个/etc/network.d/atwork配置(wep)
 ```
 CONNECTION='wireless'
@@ -165,15 +167,6 @@ AUTO_PROFILES=("athome" "atwork")
 ```
 NETWORKS=(athome)
 DAEMONS=(dbus syslog-ng !network crond alsa net-profiles)
-```
-
-
-==无线(wicd)==[wireless-wicd]
-- 安装: yaourt -S xfce4-notifyd wicd
-- 配置: 进入xfce4后，有图形界面配置
-- 开机启动：编辑/etc/rc.conf
-```
-DAEMONS=(dbus syslog-ng !network crond alsa ifplugd wicd)
 ```
 
 
