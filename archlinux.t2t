@@ -127,6 +127,47 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 ```
 
 
+==无线(netcfg)==[wireless-netcfg]
+- 安装: yaourt -S net-tools wireless_tools wpa_supplicant netcfg
+- 配置: 参考/etc/network.d/examples/
+新建一个/etc/network.d/athome配置(wpa)
+```
+CONNECTION='wireless'
+DESCRIPTION='athome'
+INTERFACE='wlan0'
+SECURITY='wpa'
+ESSID=athome
+IP='dhcp'
+KEY=athomepasswd
+```
+新建一个/etc/network.d/atwork配置(wep)
+```
+CONNECTION='wireless'
+DESCRIPTION='atwork'
+INTERFACE='wlan0'
+SECURITY='wep'
+ESSID=atwork
+IP='dhcp'
+KEY="s:myatworkpasswd"
+```
+- /etc/conf.d/netcfg
+```
+NETWORKS=(last)
+
+WIRED_INTERFACE="eth0"
+
+WIRELESS_INTERFACE="wlan0"
+
+AUTO_PROFILES=("athome" "atwork")
+
+```
+- 开机启动：编辑/etc/rc.conf
+```
+NETWORKS=(athome)
+DAEMONS=(dbus syslog-ng !network crond alsa net-profiles)
+```
+
+
 ==无线(wicd)==[wireless-wicd]
 - 安装: yaourt -S xfce4-notifyd wicd
 - 配置: 进入xfce4后，有图形界面配置
@@ -167,6 +208,7 @@ network={
 ```
 WLAN=wlan0
 ESSID=mywireless
+PASSWD=mypasswd
 
 rm /run/dhcpcd-$WLAN.pid
 rm /var/run/wpa_supplicant/$WLAN
@@ -176,25 +218,8 @@ ifconfig $WLAN up
 wpa_supplicant -dd -B -Dwext -i $WLAN -c /etc/wpa_supplicant.conf
 
 ifconfig $WLAN up
-iwconfig $WLAN essid $ESSID
+iwconfig $WLAN essid $ESSID key "s:$PASSWD"
 dhcpcd $WLAN
-```
-
-
-==无线(netcfg)==[wireless-netcfg]
-- 用netcfg有时会抽风，网一会断一会连，不知为啥
-- 安装: yaourt -S net-tools wireless_tools wpa_supplicant netcfg
-- 配置:
-参考/etc/network.d/examples/下的配置，例如新建一个athome配置
-```
-cp /etc/network.d/examples/wpa-config /etc/network.d/athome
-```
-- 编辑athome文件，指定ssid和key
-- 启动：/etc/rc.d/net-profiles start
-- 开机启动：编辑/etc/rc.conf
-```
-NETWORKS=(athome)
-DAEMONS=(dbus syslog-ng !network crond alsa @net-auto-wireless)
 ```
 
 

@@ -20,8 +20,8 @@ Domain Name System
  | [IntoDNS http://www.intodns.com/] | 检查权威DNS配置
 
 
-=笔记=[note]
-- NS
+=节点=[node]
+- NS记录
 - IP库
 - 前端LocalDNS
 - 后端LocalDNS
@@ -58,20 +58,20 @@ Domain Name System
 
 =RFC=[rfc]
  || 时间 | RFC编号 | 简介 |
- | 1987 | RFC 1034 / RFC 1035 | DNS介绍，基础必看
- | 1997 | RFC 2181 | DNS介绍，基础必看
- | 1998 | RFC 2308 | 否定缓存，写的挺好，值得一读
- | 2004 | RFC 3833 | 威胁分析，关键资料
- | 2006 | RFC 4592 | 泛域名，感觉不错，值得一读
- | 2005 | RFC 4033 / RFC 4034 / RFC 4035 | 讲DNSSEC， 这几份读的很烦躁
- | 2003 | RFC 3596 / RFC 3152 / RFC 1886 | DNS的IPv6支持，AAAA方案
- | 2002 | RFC 3364 | DNS的IPv6支持讨论，AAAA和A6的优缺点PK，看看不错
- | 1997 | RFC 2136 | 动态更新支持，UPDATE
- | 1996 | RFC 1995 | 域配置的增量更新IXFR
- | 1996 | RFC 1996 | 域更新的通知机制NOTIFY
  | 2010 | RFC 5966 | 用TCP做DNS查询的相关事项，过一遍
  | 2008 | RFC 5358 | DNS反射攻击的预防，比较口水话，随便看看
+ | 2006 | RFC 4592 | 泛域名，感觉不错，值得一读
+ | 2005 | RFC 4033 / RFC 4034 / RFC 4035 | 讲DNSSEC， 这几份读的很烦躁
+ | 2004 | RFC 3833 | 威胁分析，关键资料
+ | 2003 | RFC 3596 / RFC 3152 / RFC 1886 | DNS的IPv6支持，AAAA方案
+ | 2002 | RFC 3364 | DNS的IPv6支持讨论，AAAA和A6的优缺点PK，看看不错
+ | 1998 | RFC 2308 | 否定缓存，写的挺好，值得一读
+ | 1997 | RFC 2181 | DNS介绍，基础必看
+ | 1997 | RFC 2136 | 动态更新支持，UPDATE
+ | 1996 | RFC 1996 | 域更新的通知机制NOTIFY
+ | 1996 | RFC 1995 | 域配置的增量更新IXFR
  | 1989 | RFC 1101 | 域名规范，大概看下
+ | 1987 | RFC 1034 / RFC 1035 | DNS介绍，基础必看
 
 
 %!include: footer.t2t
