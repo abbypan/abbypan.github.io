@@ -18,6 +18,8 @@ Domain Name System
  | [DiG HOWTO  http://www.madboa.com/geek/dig/] | 解析工具
  | [WhoisMind https://addons.mozilla.org/zh-CN/firefox/addon/whois-mind/?src=userprofile] | 看域名whois信息的firefox扩展
  | [IntoDNS http://www.intodns.com/] | 检查权威DNS配置
+ | [dns-tools http://www.bind10.net/dns-tools] | dns 工具箱
+ | [Comparison_of_DNS_server_software http://en.wikipedia.org/wiki/Comparison_of_DNS_server_software] | dns 软件对比
 
 
 =节点=[node]

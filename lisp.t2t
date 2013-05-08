@@ -24,6 +24,7 @@ Lisp
  || 库 | 说明 |
  | [quicklisp http://www.quicklisp.org/] | lisp的库管理，类似于perl的cpan
  | [alexandria http://common-lisp.net/project/alexandria/] | 一些常用基础函数集合
+ | [cl-ppcre http://weitz.de/cl-ppcre/] | pcre正则匹配
 
 
 %!include: footer.t2t
