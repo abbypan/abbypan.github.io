@@ -20,6 +20,8 @@ Domain Name System
  | [IntoDNS http://www.intodns.com/] | 检查权威DNS配置
  | [dns-tools http://www.bind10.net/dns-tools] | dns 工具箱
  | [Comparison_of_DNS_server_software http://en.wikipedia.org/wiki/Comparison_of_DNS_server_software] | dns 软件对比
+ | [just dns lookup http://just-dnslookup.com/index.php] | 从全球各地探测指定域名
+ | [chinaz站长dns工具 http://tool.chinaz.com/dns/] | 从国内各地探测指定域名，也可指定dns
 
 
 =节点=[node]
