@@ -9,41 +9,52 @@ Windows
 =常用软件=
 
     || 软件 | 用途 | 同类备用软件 |
-    | ccleaner | 清理系统 |
+    | 7zip | 压缩解压 |
+    | abc amber chm converter | chm 转 pdf |
+    | apploc | 游戏乱码 |
+    | baidu player 百度影音 | 播放器 | vlc
+    | ccleaner | 清理系统 | wise care 365
     | clisp | lisp 开发 |
+    | dosbox | dos环境模拟器 |
     | dropbox | 网盘 | baidu云网盘
+    | easeus partition manager | 硬盘分区 |
+    | foxmail | 邮件管理 | outlook
     | freecommander | 文件管理器 |
     | fscapture | 截图、屏幕录像 | 
+    | gear 变速齿轮 | 调整游戏时画面速度 | 
     | github for windows | 代码管理 |
     | gvim | 编辑器 | emeditor
+    | jidian 极点郑码 | 形码输入法 |
     | kitty | ssh 远程连接 | securecrt
+    | linuxLive USB Creator | U盘linux系统
+    | live project free viewer | 微软 mpp 文件查看 |
+    | medieval cue splitter | 根据cue分割音乐文件 |
+    | mipony | mediafire、megaupload等网盘文件下载 |
+    | monaco ttf | 编程字体 |
+    | mp3tag | mp3 文件信息编辑 |
+    | ms office | 办公 | openoffice
+    | mydrivers 驱动精灵 | 硬件驱动 |
+    | navicat for mysql | mysql管理 | heidisql
+    | oneKey Ghost | ghost 重装系统 |
     | osfmount | 虚拟光驱 |
+    | pathsync | 同步文件夹 | super flexible file synchronizer
+    | pdf xchange view | pdf阅读器 | adobe pdf reader
+    | pdfsam | pdf 文件分割合并 |
+    | phpnow | apache + php + mysql 环境 |
     | qq国际版 | 聊天 |
     | rapidee | 修改环境变量
     | skype | 聊天、视频 |
+    | speq | 计算器 |
     | strawberry perl | perl 开发 |
     | thunder 迅雷精简版 | 下载 |
-    | waterfox | 浏览器 |
-    | dosbox | dos环境模拟器 |
-    | winscp | sftp / ftp 客户端 |
-    | phpnow | apache + php + mysql 环境 |
-    | wireless key view | 查看已保存的无线密码 |
-    | 7zip | 压缩解压 |
-    | jidian 极点郑码 | 形码输入法 |
-    | wireshark | 网络抓包 |
     | txt2tags | 生成简单网页 |
-    | navicat for mysql | mysql管理 | heidisql
-    | easeus partition manager | 硬盘分区 |
-    | foxmail | 邮件管理 | outlook
-    | LinuxLive USB Creator | U盘linux系统
-    | pdf xchange view | pdf阅读器 | adobe pdf reader
     | virtual box | 虚拟机 | vmware
-    | mydrivers 驱动精灵 | 硬件驱动 |
-    | monaco ttf | 编程字体 |
-    | OneKey Ghost | ghost 重装系统 |
+    | waterfox | 浏览器 |
     | winpe 老毛桃u盘工具 | 重装系统 |
-    | apploc | 游戏乱码 |
-    | gear 变速齿轮 | 调整游戏时画面速度 | 
+    | winscp | sftp / ftp 客户端 | ftprush
+    | wireless key view | 查看已保存的无线密码 |
+    | wireshark | 网络抓包 |
+    | xlight ftp server | ftp 服务器 |
 
 
 %!include: footer.t2t
