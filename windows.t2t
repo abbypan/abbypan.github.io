@@ -47,6 +47,7 @@ Windows
     | speq | 计算器 |
     | strawberry perl | perl 开发 |
     | thunder 迅雷精简版 | 下载 |
+    | ttplayer 千千静听 | 音乐播放 | qq音乐
     | txt2tags | 生成简单网页 |
     | virtual box | 虚拟机 | vmware
     | waterfox | 浏览器 |
@@ -54,8 +55,8 @@ Windows
     | winscp | sftp / ftp 客户端 | ftprush
     | wireless key view | 查看已保存的无线密码 |
     | wireshark | 网络抓包 |
-    | xlight ftp server | ftp 服务器 |
     | wordpress WXR File Splitter (RSS XML) | wordpress备份的xml文件分割 |
+    | xlight ftp server | ftp 服务器 |
 
 
 %!include: footer.t2t
