@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
-<META NAME="generator" CONTENT="http://txt2tags.org">
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
 <LINK REL="stylesheet" TYPE="text/css" HREF="./site.css">
 <TITLE>Arch Linux</TITLE>
@@ -24,14 +24,14 @@
   <li id="perl"><a href="./perl.html">Perl</a></li>
   <li id="r"><a href="./r.html">R</a></li>
   <li id="txt2tags"><a href="./txt2tags.html">Txt2tags</a></li>
+  <li id="windows"><a href="./windows.html">Windows</a></li>
   <li id="gm"><a href="./gm.html">顾漫</a></li>
   <li id="gym"><a href="./gym.html">体操</a></li>
   <li id="tzh"><a href="./tzh.html">天之痕</a></li>
   <li id="yttlj"><a href="./yttlj.html">倚天屠龙记</a></li>
   </ul>
 </div>
-<DIV CLASS="toc">
-
+<DIV CLASS="toc" ID="toc">
   <UL>
   <LI><A HREF="#base-iso">基础系统(光盘安装)</A>
     <UL>
@@ -64,10 +64,9 @@
   </UL>
 
 </DIV>
-
+<P></P>
 <A NAME="base-iso"></A>
 <H1>基础系统(光盘安装)</H1>
-
 <UL>
 <LI>到<A HREF="http://www.archlinux.org">http://www.archlinux.org</A>下iso，刻盘。
 <LI>参考：<A HREF="http://www.linuxsir.org/bbs/thread317982.html">个人的Arch Linux 安装笔记和步骤简述</A>
@@ -75,24 +74,20 @@
 
 <A NAME="source"></A>
 <H2>设置arch源</H2>
-
 <UL>
 <LI>编辑/etc/pacman.conf
 <PRE>
 [archlinuxfr]
 Server = http://repo.archlinux.fr/$arch
 </PRE>
-
 <LI>编辑/etc/pacman.d/mirrorlist
 <PRE>
 Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 </PRE>
-
 </UL>
 
 <A NAME="base-usb"></A>
 <H1>基础系统(U盘安装)</H1>
-
 <UL>
 <LI>下载archlinux最新光盘：<A HREF="http://www.archlinux.org/download/">http://www.archlinux.org/download/</A>
 <LI>下载LinuxLive USB Creator：<A HREF="http://www.linuxliveusb.com/">http://www.linuxliveusb.com/</A>
@@ -102,7 +97,6 @@ Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 
 <A NAME="fdisk"></A>
 <H2>硬盘分区</H2>
-
 <UL>
 <LI>假设系统硬盘为/dev/sda，这边是SSD
 <LI>执行fdisk /dev/sda进行分区，假设新建的系统分区为/dev/sda1
@@ -111,7 +105,6 @@ Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 
 <A NAME="intall-init"></A>
 <H2>安装系统</H2>
-
 <UL>
 <LI>执行wifi-menu，连接合适的无线网络
 <LI>编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
@@ -122,7 +115,6 @@ pacstrap /mnt grub2-bios
 genfstab -p /mnt &gt;&gt; /mnt/etc/fstab
 arch-chroot /mnt
 </PRE>
-
 <LI>设置arch源，见上节
 <PRE>
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -133,16 +125,13 @@ pacman -S net-tools wireless_tools wpa_supplicant netcfg ifplugd dialog
 exit
 reboot
 </PRE>
-
 <LI>重启之后，执行wifi-menu连接到无线网络
 </UL>
 
 <A NAME="main-install"></A>
 <H1>软件安装</H1>
-
 <A NAME="update"></A>
 <H2>系统更新</H2>
-
 <UL>
 <LI>pacman -Syu
 <LI>pacman -S yaourt
@@ -150,7 +139,6 @@ reboot
 
 <A NAME="x"></A>
 <H2>图形界面</H2>
-
 <UL>
 <LI>安装X：yaourt -S xorg xorg-xinit consolekit
 <LI>安装XFCE: yaourt -S xfce4 xfce4-notifyd
@@ -158,12 +146,10 @@ reboot
 <PRE>
 exec ck-launch-session dbus-launch startxfce4
 </PRE>
-
 </UL>
 
 <A NAME="audio"></A>
 <H2>声卡</H2>
-
 <UL>
 <LI>安装：yaourt -S gstreamer0.10 gstreamer0.10-base-plugins
 <LI>配置：<A HREF="https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">ArchWiki:设置ALSA</A>
@@ -171,7 +157,6 @@ exec ck-launch-session dbus-launch startxfce4
 
 <A NAME="software"></A>
 <H2>常用软件</H2>
-
 <UL>
 <LI>输入法： yaourt -S ibus ibus-table-zhengma ibus-pinyin im-switch zenity
 <LI>下载：yaourt -S rsync curl openssh lftp wget axel
@@ -183,7 +168,6 @@ exec ck-launch-session dbus-launch startxfce4
 
 <A NAME="chinese"></A>
 <H1>中文环境</H1>
-
 <UL>
 <LI>vim /etc/locale.gen，指定zh_CN.UTF-8
 <LI>vim /etc/local.conf
@@ -191,18 +175,15 @@ exec ck-launch-session dbus-launch startxfce4
 LANG=zh_CN.UTF-8
 LC_MESSAGES=zh_CN.UTF-8
 </PRE>
-
 <LI>执行locale-gen
 <LI>vim /etc/rc.conf
 <PRE>
 LOCALE=zh_CN.UTF-8
 </PRE>
-
 </UL>
 
 <A NAME="ntp"></A>
 <H1>时间</H1>
-
 <UL>
 <LI>yaourt -S ntp
 <LI>ntpdate asia.pool.ntp.org
@@ -210,35 +191,29 @@ LOCALE=zh_CN.UTF-8
 
 <A NAME="hotplug"></A>
 <H1>热插拔</H1>
-
 <UL>
 <LI>yaourt -S ntfs-3g mount-tray
 <LI>配置 /etc/fstab
 <PRE>
 /dev/sdb1 /mnt/usb ntfs-3g auto,users,permissions 0 0
 </PRE>
-
 <LI>设置mount-tray随X启动即可
 </UL>
 
 <A NAME="network"></A>
 <H1>网络</H1>
-
 <A NAME="card"></A>
 <H2>根据MAC地址固定网卡名称</H2>
-
 <P>
 编辑文件/etc/udev/rules.d/10-network.rules
 </P>
-
 <PRE>
 SUBSYSTEM=="net", ATTR{address}=="00:26:2d:f6:ad:43", NAME="eth0"
 SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 </PRE>
-
+<P></P>
 <A NAME="wireless-netcfg"></A>
 <H2>无线(netcfg)</H2>
-
 <UL>
 <LI>安装: yaourt -S net-tools wireless_tools wpa_supplicant netcfg
 <LI>配置: 参考/etc/network.d/examples/
@@ -253,7 +228,6 @@ ESSID=athome
 IP='dhcp'
 KEY=athomepasswd
 </PRE>
-
 <P></P>
 新建一个/etc/network.d/atwork配置(wep)
 <PRE>
@@ -265,7 +239,6 @@ ESSID=atwork
 IP='dhcp'
 KEY="s:myatworkpasswd"
 </PRE>
-
 <LI>/etc/conf.d/netcfg
 <PRE>
 NETWORKS=(last)
@@ -277,18 +250,15 @@ WIRELESS_INTERFACE="wlan0"
 AUTO_PROFILES=("athome" "atwork")
 
 </PRE>
-
 <LI>开机启动：编辑/etc/rc.conf
 <PRE>
 NETWORKS=(athome)
 DAEMONS=(dbus syslog-ng !network crond alsa net-profiles)
 </PRE>
-
 </UL>
 
 <A NAME="wireless-wpa_supplicant"></A>
 <H2>无线(wpa_supplicant)</H2>
-
 <UL>
 <LI>安装: yaourt -S net-tools wireless_tools wpa_supplicant
 <LI>配置:
@@ -296,7 +266,6 @@ DAEMONS=(dbus syslog-ng !network crond alsa net-profiles)
 <PRE>
 wpa_passphrase mywireless mypasswd &gt;&gt; /etc/wpa_supplicant.conf
 </PRE>
-
 手动修改/etc/wpa_supplicant.conf
 <PRE>
 update_config=1
@@ -317,7 +286,6 @@ network={
 	psk=09896d6dc939e1d6b279c10ee3d4d1c8c75970ce345c6552b7ee47d892f0740e
 }
 </PRE>
-
 <LI>手动连接：假设无线网卡为wlan0
 <PRE>
 WLAN=wlan0
@@ -335,12 +303,10 @@ ifconfig $WLAN up
 iwconfig $WLAN essid $ESSID key "s:$PASSWD"
 dhcpcd $WLAN
 </PRE>
-
 </UL>
 
 <A NAME="vpn"></A>
 <H2>vpn</H2>
-
 <UL>
 <LI>参考：<A HREF="http://blog.vkill.net/read.php?97">archlinux pptp(vpn)拨号连接</A>
 <LI>没看到arch下有/etc/ppp/ip-up.d目录，用以下脚本来启动vpn，我没有把它加为开机启动项，嗯。
@@ -370,12 +336,10 @@ sudo route add default gw $vpn_gateway dev ppp0
 #看路由
 sudo route -n
 </PRE>
-
 </UL>
 
 <A NAME="lamp"></A>
 <H1>NGINX+PHP</H1>
-
 <UL>
 <LI>yaourt -S nginx spawn-fcgi php-cgi
 <LI>以http(用户):http(组)启动fastcgi : spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi
@@ -394,13 +358,11 @@ location ~ \.php$ {
     include        fastcgi_params;
 }
 </PRE>
-
 <LI>启动nginx: /etc/rc.d/nginx start
 </UL>
 
 <A NAME="kernelpanic"></A>
 <H1>KERNEL PANIC 恢复</H1>
-
 <UL>
 <LI>系统升级失败，重启提示kernel panic，switch_root : fail to ...
 <LI>从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之
@@ -408,17 +370,16 @@ location ~ \.php$ {
 mount /dev/sda1 /mnt
 yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 </PRE>
-
 </UL>
 
 <P>
 </div><div id="footer">
 <A HREF="http://txt2tags.sourceforge.net"><img SRC="./img/t2tpowered.png" title="O>OOOO"></A>
 <A HREF="http://vim.sourceforge.net"><img SRC="./img/vim.png"></A>
-作者：abbypan，上次修改时间： 2013-04-19 14:36 Friday，源文件：<A HREF="archlinux.t2t">archlinux.t2t</A>
+作者：abbypan，上次修改时间： 2013-05-03 00:47 Friday，源文件：<A HREF="archlinux.t2t">archlinux.t2t</A>
 </P>
 </DIV>
 
-<!-- html code generated by txt2tags 2.6 (http://txt2tags.org) -->
-<!-- cmdline: txt2tags -t html ./archlinux.t2t -->
+<!-- html code generated by txt2tags 2.3 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -t html D:\dropbox\github\abbypan.github.com\archlinux.t2t -->
 </BODY></HTML>
