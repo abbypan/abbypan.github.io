@@ -8,42 +8,42 @@ Windows
 
 =常用软件=
 
-|| 软件 | 用途 | 同类备用软件 |
-| ccleaner | 清理系统 |
-| clisp | lisp 开发 |
-| dropbox | 网盘 | baidu云网盘
-| freecommander | 文件管理器 |
-| fscapture | 截图、屏幕录像 | 
-| github for windows | 代码管理 |
-| gvim | 编辑器 | emeditor
-| kitty | ssh 远程连接 | securecrt
-| osfmount | 虚拟光驱 |
-| qq国际版 | 聊天 |
-| rapidee | 修改环境变量
-| skype | 聊天、视频 |
-| strawberry perl | perl 开发 |
-| thunder 迅雷精简版 | 下载 |
-| waterfox | 浏览器 |
-| dosbox | dos环境模拟器 |
-| winscp | sftp / ftp 客户端 |
-| phpnow | apache + php + mysql 环境 |
-| wireless key view | 查看已保存的无线密码 |
-| 7zip | 压缩解压 |
-| jidian 极点郑码 | 形码输入法 |
-| wireshark | 网络抓包 |
-| txt2tags | 生成简单网页 |
-| navicat for mysql | mysql管理 | heidisql
-| easeus partition manager | 硬盘分区 |
-| foxmail | 邮件管理 | outlook
-| LinuxLive USB Creator | U盘linux系统
-| pdf xchange view | pdf阅读器 | adobe pdf reader
-| virtual box | 虚拟机 | vmware
-| mydrivers 驱动精灵 | 硬件驱动 |
-| monaco ttf | 编程字体 |
-| OneKey Ghost | ghost 重装系统 |
-| winpe 老毛桃u盘工具 | 重装系统 |
-| apploc | 游戏乱码 |
-| gear 变速齿轮 | 调整游戏时画面速度 | 
+    || 软件 | 用途 | 同类备用软件 |
+    | ccleaner | 清理系统 |
+    | clisp | lisp 开发 |
+    | dropbox | 网盘 | baidu云网盘
+    | freecommander | 文件管理器 |
+    | fscapture | 截图、屏幕录像 | 
+    | github for windows | 代码管理 |
+    | gvim | 编辑器 | emeditor
+    | kitty | ssh 远程连接 | securecrt
+    | osfmount | 虚拟光驱 |
+    | qq国际版 | 聊天 |
+    | rapidee | 修改环境变量
+    | skype | 聊天、视频 |
+    | strawberry perl | perl 开发 |
+    | thunder 迅雷精简版 | 下载 |
+    | waterfox | 浏览器 |
+    | dosbox | dos环境模拟器 |
+    | winscp | sftp / ftp 客户端 |
+    | phpnow | apache + php + mysql 环境 |
+    | wireless key view | 查看已保存的无线密码 |
+    | 7zip | 压缩解压 |
+    | jidian 极点郑码 | 形码输入法 |
+    | wireshark | 网络抓包 |
+    | txt2tags | 生成简单网页 |
+    | navicat for mysql | mysql管理 | heidisql
+    | easeus partition manager | 硬盘分区 |
+    | foxmail | 邮件管理 | outlook
+    | LinuxLive USB Creator | U盘linux系统
+    | pdf xchange view | pdf阅读器 | adobe pdf reader
+    | virtual box | 虚拟机 | vmware
+    | mydrivers 驱动精灵 | 硬件驱动 |
+    | monaco ttf | 编程字体 |
+    | OneKey Ghost | ghost 重装系统 |
+    | winpe 老毛桃u盘工具 | 重装系统 |
+    | apploc | 游戏乱码 |
+    | gear 变速齿轮 | 调整游戏时画面速度 | 
 
 
 %!include: footer.t2t
