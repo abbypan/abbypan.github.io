@@ -55,6 +55,7 @@ Windows
     | wireless key view | 查看已保存的无线密码 |
     | wireshark | 网络抓包 |
     | xlight ftp server | ftp 服务器 |
+    | wordpress WXR File Splitter (RSS XML) | wordpress备份的xml文件分割 |
 
 
 %!include: footer.t2t
