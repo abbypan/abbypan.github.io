@@ -57,6 +57,7 @@ Windows
     | wireshark | 网络抓包 |
     | wordpress WXR File Splitter (RSS XML) | wordpress备份的xml文件分割 |
     | xlight ftp server | ftp 服务器 |
+    | [regjump http://technet.microsoft.com/zh-cn/sysinternals/bb963880] | 跳转到指定注册表位置 | 
 
 
 %!include: footer.t2t
