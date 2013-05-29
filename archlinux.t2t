@@ -7,9 +7,15 @@ Arch Linux
 %%TOC 
 
 
-=基础系统(光盘安装)=[base-iso]
-- 到http://www.archlinux.org下iso，刻盘。
-- 参考：[个人的Arch Linux 安装笔记和步骤简述 http://www.linuxsir.org/bbs/thread317982.html]
+=基础系统=[base-iso]
+- 下载archlinux最新iso文件：http://www.archlinux.org/download/
+- 可以制作成光盘，或U盘启动
+
+
+==U盘启动==[base-usb]
+- 下载LinuxLive USB Creator：http://www.linuxliveusb.com/
+- 用LinuxLive USB Creator制作可启动的USB盘
+- 修改BIOS，从USB启动，进入archlinux
 
 
 ==设置arch源==[source]
@@ -22,13 +28,6 @@ Server = http://repo.archlinux.fr/$arch
 ```
 Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 ```
-
-
-=基础系统(U盘安装)=[base-usb]
-- 下载archlinux最新光盘：http://www.archlinux.org/download/
-- 下载LinuxLive USB Creator：http://www.linuxliveusb.com/
-- 用LinuxLive USB Creator制作可启动的USB盘
-- 修改BIOS，从USB启动，进入archlinux
 
 
 ==硬盘分区==[fdisk]
@@ -63,13 +62,20 @@ reboot
 =软件安装=[main-install]
 
 ==系统更新==[update]
-- pacman -Syu
-- pacman -S yaourt
+```
+pacman -Syu
+pacman -S yaourt
+```
 
 
 ==图形界面==[x] 
-- 安装X：yaourt -S xorg xorg-xinit consolekit
-- 安装XFCE: yaourt -S xfce4 xfce4-notifyd
+- 安装图形界面
+```
+#安装X
+yaourt -S xorg xorg-xinit consolekit
+#安装XFCE
+yaourt -S xfce4 xfce4-notifyd
+```
 - 进入X的配置，不然关机键老是灰的：编辑~/.xinitrc
 ```
 exec ck-launch-session dbus-launch startxfce4
@@ -82,12 +88,14 @@ exec ck-launch-session dbus-launch startxfce4
 
 
 ==常用软件==[software]
-- 输入法： yaourt -S ibus ibus-table-zhengma ibus-pinyin im-switch zenity
-- 下载：yaourt -S rsync curl openssh lftp wget axel
-- 字体：yaourt -S wqy-bitmapfont wqy-zenhei monaco-linux-font
-- 视频：yaourt -S smplayer flashplugin
-- 办公：yaourt -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc unzip
-- 网络：yaourt -S dnsutils traceroute wireshark-gtk
+    || 类型 | 软件 |
+    | 输入法 | ibus ibus-table-zhengma ibus-pinyin im-switch |
+    | 下载 | rsync curl lftp wget axel
+    | 字体 | wqy-bitmapfont wqy-zenhei monaco-linux-font
+    | 视频 | smplayer flashplugin
+    | 办公 | libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
+    | 解压 | unzip
+    | 网络 | dnsutils traceroute wireshark-gtk
 
 
 =中文环境=[chinese]
