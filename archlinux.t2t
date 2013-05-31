@@ -22,6 +22,7 @@ Arch Linux
 - 编辑/etc/pacman.conf
 ```
 [archlinuxfr]
+SigLevel = Optional TrustAll
 Server = http://repo.archlinux.fr/$arch
 ```
 - 编辑/etc/pacman.d/mirrorlist
@@ -52,20 +53,21 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 mkinitcpio -p linux
 grub-install --no-floppy /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-pacman -S net-tools wireless_tools wpa_supplicant netcfg ifplugd dialog
+pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
 exit
 reboot
 ```
 - 重启之后，执行wifi-menu连接到无线网络
 
 
-=软件安装=[main-install]
-
 ==系统更新==[update]
 ```
 pacman -Syu
 pacman -S yaourt
 ```
+
+
+=系统配置=[main-config]
 
 
 ==图形界面==[x] 
@@ -87,18 +89,12 @@ exec ck-launch-session dbus-launch startxfce4
 - 配置：[ArchWiki:设置ALSA https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29]
 
 
-==常用软件==[software]
-    || 类型 | 软件 |
-    | 输入法 | ibus ibus-table-zhengma ibus-pinyin im-switch |
-    | 下载 | rsync curl lftp wget axel
-    | 字体 | wqy-bitmapfont wqy-zenhei monaco-linux-font
-    | 视频 | smplayer flashplugin
-    | 办公 | libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
-    | 解压 | unzip
-    | 网络 | dnsutils traceroute wireshark-gtk
+==输入法==[input]
+- 安装：yaourt -S ibus ibus-table-zhengma ibus-pinyin
+- 配置：[IBus https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29]
 
 
-=中文环境=[chinese]
+==中文环境==[chinese]
 - vim /etc/locale.gen，指定zh_CN.UTF-8
 - vim /etc/local.conf
 ```
@@ -112,18 +108,28 @@ LOCALE=zh_CN.UTF-8
 ```
 
 
-=时间=[ntp]
+==时间==[ntp]
 - yaourt -S ntp
 - ntpdate asia.pool.ntp.org
 
 
-=热插拔=[hotplug]
+==热插拔==[hotplug]
 - yaourt -S ntfs-3g mount-tray
 - 配置 /etc/fstab
 ```
 /dev/sdb1 /mnt/usb ntfs-3g auto,users,permissions 0 0
 ```
 - 设置mount-tray随X启动即可
+
+
+==常用软件==[software]
+    || 类型 | 软件 |
+    | 下载 | rsync curl lftp wget axel
+    | 字体 | wqy-bitmapfont wqy-zenhei ttf-monaco
+    | 视频 | smplayer flashplugin ffmpeg flashplayer
+    | 办公 | libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
+    | 解压 | unzip
+    | 网络 | dnsutils traceroute wireshark-gtk
 
 
 =网络=[network]
@@ -135,11 +141,11 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 ```
 
 
-==无线(netcfg)==[wireless-netcfg]
-- 安装: yaourt -S net-tools wireless_tools wpa_supplicant netcfg
-- 配置: 参考/etc/network.d/examples/
+==无线(netctl)==[wireless-netctl]
+- 安装: yaourt -S net-tools wireless_tools wpa_supplicant netctl
+- 配置: 参考/etc/netctl/examples/
 
-新建一个/etc/network.d/athome配置(wpa)
+新建一个/etc/netctl/athome配置(wpa)
 ```
 CONNECTION='wireless'
 DESCRIPTION='athome'
@@ -150,7 +156,7 @@ IP='dhcp'
 KEY=athomepasswd
 ```
 
-新建一个/etc/network.d/atwork配置(wep)
+新建一个/etc/netctl/atwork配置(wep)
 ```
 CONNECTION='wireless'
 DESCRIPTION='atwork'
@@ -160,21 +166,14 @@ ESSID=atwork
 IP='dhcp'
 KEY="s:myatworkpasswd"
 ```
-- /etc/conf.d/netcfg
+- 开机启动
 ```
-NETWORKS=(last)
-
-WIRED_INTERFACE="eth0"
-
-WIRELESS_INTERFACE="wlan0"
-
-AUTO_PROFILES=("athome" "atwork")
-
+netctl enable athome
 ```
-- 开机启动：编辑/etc/rc.conf
+
+- 手工启动
 ```
-NETWORKS=(athome)
-DAEMONS=(dbus syslog-ng !network crond alsa net-profiles)
+netctl start athome
 ```
 
 
@@ -255,7 +254,8 @@ sudo route -n
 ```
 
 
-=NGINX+PHP=[lamp]
+=其它=[other]
+==NGINX+PHP==[lamp]
 - yaourt -S nginx spawn-fcgi php-cgi
 - 以http(用户):http(组)启动fastcgi : spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi
 - 配置/etc/nginx/conf/nginx.conf
@@ -276,7 +276,7 @@ location ~ \.php$ {
 - 启动nginx: /etc/rc.d/nginx start
 
 
-=KERNEL PANIC 恢复=[kernelpanic]
+==KERNEL PANIC 恢复==[kernelpanic]
 - 系统升级失败，重启提示kernel panic，switch_root : fail to ...
 - 从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之
 ```

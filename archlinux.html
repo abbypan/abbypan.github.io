@@ -39,26 +39,30 @@
     <LI><A HREF="#source">设置arch源</A>
     <LI><A HREF="#fdisk">硬盘分区</A>
     <LI><A HREF="#intall-init">安装系统</A>
-    </UL>
-  <LI><A HREF="#main-install">软件安装</A>
-    <UL>
     <LI><A HREF="#update">系统更新</A>
+    </UL>
+  <LI><A HREF="#main-config">系统配置</A>
+    <UL>
     <LI><A HREF="#x">图形界面</A>
     <LI><A HREF="#audio">声卡</A>
+    <LI><A HREF="#input">输入法</A>
+    <LI><A HREF="#chinese">中文环境</A>
+    <LI><A HREF="#ntp">时间</A>
+    <LI><A HREF="#hotplug">热插拔</A>
     <LI><A HREF="#software">常用软件</A>
     </UL>
-  <LI><A HREF="#chinese">中文环境</A>
-  <LI><A HREF="#ntp">时间</A>
-  <LI><A HREF="#hotplug">热插拔</A>
   <LI><A HREF="#network">网络</A>
     <UL>
     <LI><A HREF="#card">根据MAC地址固定网卡名称</A>
-    <LI><A HREF="#wireless-netcfg">无线(netcfg)</A>
+    <LI><A HREF="#wireless-netctl">无线(netctl)</A>
     <LI><A HREF="#wireless-wpa_supplicant">无线(wpa_supplicant)</A>
     <LI><A HREF="#vpn">vpn</A>
     </UL>
-  <LI><A HREF="#lamp">NGINX+PHP</A>
-  <LI><A HREF="#kernelpanic">KERNEL PANIC 恢复</A>
+  <LI><A HREF="#other">其它</A>
+    <UL>
+    <LI><A HREF="#lamp">NGINX+PHP</A>
+    <LI><A HREF="#kernelpanic">KERNEL PANIC 恢复</A>
+    </UL>
   </UL>
 
 </DIV>
@@ -84,6 +88,7 @@
 <LI>编辑/etc/pacman.conf
 <PRE>
 [archlinuxfr]
+SigLevel = Optional TrustAll
 Server = http://repo.archlinux.fr/$arch
 </PRE>
 <LI>编辑/etc/pacman.d/mirrorlist
@@ -118,15 +123,13 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 mkinitcpio -p linux
 grub-install --no-floppy /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-pacman -S net-tools wireless_tools wpa_supplicant netcfg ifplugd dialog
+pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
 exit
 reboot
 </PRE>
 <LI>重启之后，执行wifi-menu连接到无线网络
 </UL>
 
-<A NAME="main-install"></A>
-<H1>软件安装</H1>
 <A NAME="update"></A>
 <H2>系统更新</H2>
 <PRE>
@@ -134,6 +137,8 @@ pacman -Syu
 pacman -S yaourt
 </PRE>
 <P></P>
+<A NAME="main-config"></A>
+<H1>系统配置</H1>
 <A NAME="x"></A>
 <H2>图形界面</H2>
 <UL>
@@ -157,6 +162,47 @@ exec ck-launch-session dbus-launch startxfce4
 <LI>配置：<A HREF="https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">ArchWiki:设置ALSA</A>
 </UL>
 
+<A NAME="input"></A>
+<H2>输入法</H2>
+<UL>
+<LI>安装：yaourt -S ibus ibus-table-zhengma ibus-pinyin
+<LI>配置：<A HREF="https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">IBus</A>
+</UL>
+
+<A NAME="chinese"></A>
+<H2>中文环境</H2>
+<UL>
+<LI>vim /etc/locale.gen，指定zh_CN.UTF-8
+<LI>vim /etc/local.conf
+<PRE>
+LANG=zh_CN.UTF-8
+LC_MESSAGES=zh_CN.UTF-8
+</PRE>
+<LI>执行locale-gen
+<LI>vim /etc/rc.conf
+<PRE>
+LOCALE=zh_CN.UTF-8
+</PRE>
+</UL>
+
+<A NAME="ntp"></A>
+<H2>时间</H2>
+<UL>
+<LI>yaourt -S ntp
+<LI>ntpdate asia.pool.ntp.org
+</UL>
+
+<A NAME="hotplug"></A>
+<H2>热插拔</H2>
+<UL>
+<LI>yaourt -S ntfs-3g mount-tray
+<LI>配置 /etc/fstab
+<PRE>
+/dev/sdb1 /mnt/usb ntfs-3g auto,users,permissions 0 0
+</PRE>
+<LI>设置mount-tray随X启动即可
+</UL>
+
 <A NAME="software"></A>
 <H2>常用软件</H2>
 <TABLE ALIGN="center" BORDER="1">
@@ -165,20 +211,16 @@ exec ck-launch-session dbus-launch startxfce4
 <TH>软件</TH>
 </TR>
 <TR>
-<TD>输入法</TD>
-<TD>ibus ibus-table-zhengma ibus-pinyin im-switch</TD>
-</TR>
-<TR>
 <TD>下载</TD>
 <TD>rsync curl lftp wget axel</TD>
 </TR>
 <TR>
 <TD>字体</TD>
-<TD>wqy-bitmapfont wqy-zenhei monaco-linux-font</TD>
+<TD>wqy-bitmapfont wqy-zenhei ttf-monaco</TD>
 </TR>
 <TR>
 <TD>视频</TD>
-<TD>smplayer flashplugin</TD>
+<TD>smplayer flashplugin ffmpeg flashplayer</TD>
 </TR>
 <TR>
 <TD>办公</TD>
@@ -195,40 +237,6 @@ exec ck-launch-session dbus-launch startxfce4
 </TABLE>
 
 <P></P>
-<A NAME="chinese"></A>
-<H1>中文环境</H1>
-<UL>
-<LI>vim /etc/locale.gen，指定zh_CN.UTF-8
-<LI>vim /etc/local.conf
-<PRE>
-LANG=zh_CN.UTF-8
-LC_MESSAGES=zh_CN.UTF-8
-</PRE>
-<LI>执行locale-gen
-<LI>vim /etc/rc.conf
-<PRE>
-LOCALE=zh_CN.UTF-8
-</PRE>
-</UL>
-
-<A NAME="ntp"></A>
-<H1>时间</H1>
-<UL>
-<LI>yaourt -S ntp
-<LI>ntpdate asia.pool.ntp.org
-</UL>
-
-<A NAME="hotplug"></A>
-<H1>热插拔</H1>
-<UL>
-<LI>yaourt -S ntfs-3g mount-tray
-<LI>配置 /etc/fstab
-<PRE>
-/dev/sdb1 /mnt/usb ntfs-3g auto,users,permissions 0 0
-</PRE>
-<LI>设置mount-tray随X启动即可
-</UL>
-
 <A NAME="network"></A>
 <H1>网络</H1>
 <A NAME="card"></A>
@@ -241,13 +249,13 @@ SUBSYSTEM=="net", ATTR{address}=="00:26:2d:f6:ad:43", NAME="eth0"
 SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 </PRE>
 <P></P>
-<A NAME="wireless-netcfg"></A>
-<H2>无线(netcfg)</H2>
+<A NAME="wireless-netctl"></A>
+<H2>无线(netctl)</H2>
 <UL>
-<LI>安装: yaourt -S net-tools wireless_tools wpa_supplicant netcfg
-<LI>配置: 参考/etc/network.d/examples/
+<LI>安装: yaourt -S net-tools wireless_tools wpa_supplicant netctl
+<LI>配置: 参考/etc/netctl/examples/
 <P></P>
-新建一个/etc/network.d/athome配置(wpa)
+新建一个/etc/netctl/athome配置(wpa)
 <PRE>
 CONNECTION='wireless'
 DESCRIPTION='athome'
@@ -258,7 +266,7 @@ IP='dhcp'
 KEY=athomepasswd
 </PRE>
 <P></P>
-新建一个/etc/network.d/atwork配置(wep)
+新建一个/etc/netctl/atwork配置(wep)
 <PRE>
 CONNECTION='wireless'
 DESCRIPTION='atwork'
@@ -268,21 +276,14 @@ ESSID=atwork
 IP='dhcp'
 KEY="s:myatworkpasswd"
 </PRE>
-<LI>/etc/conf.d/netcfg
+<LI>开机启动
 <PRE>
-NETWORKS=(last)
-
-WIRED_INTERFACE="eth0"
-
-WIRELESS_INTERFACE="wlan0"
-
-AUTO_PROFILES=("athome" "atwork")
-
+netctl enable athome
 </PRE>
-<LI>开机启动：编辑/etc/rc.conf
+<P></P>
+<LI>手工启动
 <PRE>
-NETWORKS=(athome)
-DAEMONS=(dbus syslog-ng !network crond alsa net-profiles)
+netctl start athome
 </PRE>
 </UL>
 
@@ -367,8 +368,10 @@ sudo route -n
 </PRE>
 </UL>
 
+<A NAME="other"></A>
+<H1>其它</H1>
 <A NAME="lamp"></A>
-<H1>NGINX+PHP</H1>
+<H2>NGINX+PHP</H2>
 <UL>
 <LI>yaourt -S nginx spawn-fcgi php-cgi
 <LI>以http(用户):http(组)启动fastcgi : spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi
@@ -391,7 +394,7 @@ location ~ \.php$ {
 </UL>
 
 <A NAME="kernelpanic"></A>
-<H1>KERNEL PANIC 恢复</H1>
+<H2>KERNEL PANIC 恢复</H2>
 <UL>
 <LI>系统升级失败，重启提示kernel panic，switch_root : fail to ...
 <LI>从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之
@@ -405,7 +408,7 @@ yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 </div><div id="footer">
 <A HREF="http://txt2tags.sourceforge.net"><img SRC="./img/t2tpowered.png" title="O>OOOO"></A>
 <A HREF="http://vim.sourceforge.net"><img SRC="./img/vim.png"></A>
-作者：abbypan，上次修改时间： 2013-05-29 15:45 Wednesday，源文件：<A HREF="archlinux.t2t">archlinux.t2t</A>
+作者：abbypan，上次修改时间： 2013-06-01 00:08 Saturday，源文件：<A HREF="archlinux.t2t">archlinux.t2t</A>
 </P>
 </DIV>
 
