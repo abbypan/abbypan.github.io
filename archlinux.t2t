@@ -113,13 +113,12 @@ LOCALE=zh_CN.UTF-8
 - ntpdate asia.pool.ntp.org
 
 
-==热插拔==[hotplug]
-- yaourt -S ntfs-3g mount-tray
-- 配置 /etc/fstab
+==热插拔(xfce4)==[hotplug]
+- yaourt -S ntfs-3g thunar-volman gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp udisks
+- 配置 /etc/fstab，手动挂载磁盘
 ```
-/dev/sdb1 /mnt/usb ntfs-3g auto,users,permissions 0 0
+/dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
 ```
-- 设置mount-tray随X启动即可
 
 
 ==常用软件==[software]
@@ -129,6 +128,7 @@ LOCALE=zh_CN.UTF-8
     | 视频 | smplayer flashplugin ffmpeg flashplayer
     | 办公 | libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
     | 解压 | unzip
+    | 浏览器 | firefox firefox-i18n-zh-cn
     | 网络 | dnsutils traceroute wireshark-gtk
 
 
