@@ -89,9 +89,13 @@ exec ck-launch-session dbus-launch startxfce4
 - 配置：[ArchWiki:设置ALSA https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29]
 
 
-==输入法==[input]
+==输入法(scim)==[input]
 - 安装：yaourt -S ibus ibus-table-zhengma ibus-pinyin
 - 配置：[IBus https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29]
+
+
+==输入法(scim)==[input-fcitx]
+- 安装：yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra
 
 
 ==中文环境==[chinese]

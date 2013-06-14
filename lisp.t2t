@@ -9,15 +9,21 @@ Lisp
 
  || 资料 | 简介 |
  | [The Nature of Lisp http://www.csdn.net/article/2012-11-22/2812113-The-Nature-Of-Lisp] | 讲lisp的好处
+ | [clisp 菜鸟指南 http://reverland.org/lisp/2012/06/26/common-lisp/] | 入门介绍
+ | [9 of the Best Free Lisp Books http://www.linuxlinks.com/article/20130125201424560/9oftheBestFreeLispBooks-Part1.html] | 书籍推荐
+ | [Common LISP Hints http://www.n-a-n-o.com/lisp/cmucl-tutorials/LISP-tutorial.html] | 简单语法介绍，很不错
  | [Common Lisp Quick Reference http://clqr.boundp.org/index.html] | 手册
  | [Common Lisp HyperSpec http://www.lispworks.com/documentation/HyperSpec/Front/index.htm] | 函数手册
  | [lisp goodies http://jff.googlecode.com/svn/trunk/Lisp/lisp-goodies.txt] | 常用库集合
+ | [Lisp Books by Subject http://www.ai.sri.com/~delacaze/alu-site/alu/table/books.htm] | lisp书籍介绍
 
 
 =书籍=[book]
 
  || 时间 | 书籍  | 读后感 |
  | 1989 | Common Lisp the Language, 2nd Edition |  N页的详情说明，够读个半年的
+ | 1992 | COMMON LISP: An Interactive Approach | 很不错的一本入门书，有习题有答案，业界良心
+ | 1992 | Paradigms of Artificial Intelligence Programming: Case Studies in Common Lisp | 
  | 1995 | [ANSI Common LISP http://acl.readthedocs.org/en/latest/zhCN/index.html] | 读着比较涩，不过有中文翻译
  | 2001 | [Successful lisp http://psg.com/~dlamkins/sl/contents.html] | 
  | 2005 | pratical common lisp | 很不错的一本入门书，适合初学
