@@ -1,0 +1,27 @@
+江天一色
+求福不回，求用不匮
+
+%!includeconf: config.t2t
+%!options : --no-toc
+%!preproc: {url-css}        http://txt2tags.sourceforge.net/site.css 
+%!preproc: {doc-viki}		SITEPATH/doc/viki/index.html
+%!preproc: {img-mail}		SITEPATH/img/abbypan-gmail.png
+%!preproc: {mail}		mailto:abbypan@gmail.com
+%!include: ''menu.html''
+
+莫莫葛藟，肆於條枝，愷悌君子，求福不回。
+
+神降之嘉生，民以物享，禍災不至，求用不匱。
+
+旧的主页：[deplate+viki {doc-viki}]
+
+[[{img-mail}] {mail}]
+--------------------
+|| 科大 | 个人 |
+| [瀚海星云 http://bbs.ustc.edu.cn] | [无聊记事 http://panlanlan.blogspot.com]
+| [科大影视 http://video.ustc.edu.cn] | [技术笔记 http://abbypan.blogspot.com]
+| [科大音乐 http://music.ustc.edu.cn] | [Github代码 https://github.com/abbypan]
+| [实验室 http://if.ustc.edu.cn] | [新浪微博 http://weibo.com/pllng]
+
+
+%!include: footer.t2t

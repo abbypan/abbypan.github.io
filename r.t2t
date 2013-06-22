@@ -1,0 +1,48 @@
+R
+统计
+
+%!includeconf: config.t2t
+%!include: ''menu.html''
+%%TOC 
+
+=简单入门=[beginning]
+
+ || 资料 | 简介 |
+ | R intro (R导论) | 基本介绍
+ | [Cookbook for R http://wiki.stdout.org/rcookbook/] | 基础示例，写的很好
+
+
+=站点=[site]
+
+ || 站点 | 简介 |
+ | [统计之都 http://cos.name/cn/#post-] | 中文社区
+
+
+=书籍=[book]
+
+ || 时间 | 书籍  | 读后感 |
+ | 2010 | R in a  Nutshell | 手册书，值得细看 
+ | 2009.10 | R in action | 比较简短的入门书，值得一读 
+ | 2009.09 | The Art of R Programming | x
+ | 2007 | The R book | x
+ | 2010 | Data Mining with Rattle and R | x
+ | 2006 | 统计建模与R软件 | x
+ | 2002 | Simple R | x
+ | -- | --
+ | 2011.08 | R语言初学者指南者 | 比较薄，但还是晕，个人感觉小白入门还是换一本吧
+ | 2011.07 | R语言数据操作(Data Manipulation with R) | 比较薄，当数据处理手册可以
+ | 2011.03 | R Cookbook | 手册书，还不错，用到的时候记得翻
+ | 2011.02 | 25 Recipes for Getting Started with R | R Cookbook 缩减版，随便翻翻
+ | 2008 | 153分钟学会R | 很不错的入门FAQ
+ | 2006 | r for beginners | 比较简短，方便做语法入门手册
+
+
+=模块笔记=[module]
+ || 模块 | 用途 |
+ | plyr | 数据处理，统计，变换等，超级好用
+ | ggplot2 | 画图，N多参数可选，示例参考[Graphs http://wiki.stdout.org/rcookbook/Graphs/]
+ | lubridate | 日期、时间计算
+ | rattle | 数据分析
+
+
+%!include: footer.t2t
