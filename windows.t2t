@@ -14,7 +14,10 @@ Windows
     | apploc | 游戏乱码 |
     | quod libet  | 音乐播放 | ttplayer 千千静听, qq音乐
     | ccleaner | 清理系统 | wise care 365
+<<<<<<< HEAD
     | chart director | 画图库函数
+=======
+>>>>>>> 81234727af7c19d483e56d821fff4b593255006e
     | clisp | lisp 开发 |
     | dosbox | dos环境模拟器 |
     | dropbox | 网盘 | skydrive, baidu云网盘
@@ -25,7 +28,10 @@ Windows
     | gear 变速齿轮 | 调整游戏时画面速度 | 
     | github for windows | 代码管理 |
     | gvim | 编辑器 | emeditor
+<<<<<<< HEAD
     | imagemagick | 图片处理
+=======
+>>>>>>> 81234727af7c19d483e56d821fff4b593255006e
     | jidian 极点郑码 | 形码输入法 |
     | kitty | ssh 远程连接 | securecrt
     | linuxLive USB Creator | U盘linux系统
@@ -52,7 +58,10 @@ Windows
     | strawberry perl | perl 开发 |
     | thunder 迅雷精简版 | 下载 |
     | txt2tags | 生成简单网页 |
+<<<<<<< HEAD
     | unlocker | 文件解锁，删除
+=======
+>>>>>>> 81234727af7c19d483e56d821fff4b593255006e
     | virtual box | 虚拟机 | vmware
     | vlc | 播放器 | baidu player 百度影音
     | waterfox | 浏览器 |
