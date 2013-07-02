@@ -84,6 +84,7 @@ TMTOWTDI
  | Parse::RecDescent | 自定义解析模块
  | Perl::Tidy | 整理代码
  | snaked | 支持秒级的crontab，支持日志滚动
+ | Statistics::Basic | 基础统计函数，均值、中位数、方差、标准差等等
  | Teng | 数据库操作，轻量级
  | Term::ProgressBar | 文本进度条
  | Web::Scraper | 抓取网页
