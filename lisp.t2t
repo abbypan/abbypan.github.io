@@ -22,11 +22,12 @@ Lisp
 
  || 时间 | 书籍  | 读后感 |
  | 1989 | Common Lisp the Language, 2nd Edition | N页的详情说明，够读个半年的
+ | 1990 | Common Lisp：A Gentle Introduction to Symbolic Computation | 清晰易懂，有习题有答案，非常适合做为第一本学习的入门书
  | 1992 | COMMON LISP: An Interactive Approach | 很不错的一本入门书，有习题有答案，业界良心
  | 1992 | Paradigms of Artificial Intelligence Programming: Case Studies in Common Lisp | 
  | 1995 | [ANSI Common LISP http://acl.readthedocs.org/en/latest/zhCN/index.html] | 主要讲基础语法，行文比较涩
  | 2001 | [Successful lisp http://psg.com/~dlamkins/sl/contents.html] | 入门介绍，章节较短，要点直白，整体不错
- | 2005 | pratical common lisp | 很不错的一本入门书，适合初学
+ | 2005 | pratical common lisp | 很不错的一本入门书，适合初学，介绍了一些应用实例
  | 2007 | on lisp | 一些高级用法，适合手熟之后读，行文比较涩
  | 2009.10 | land of lisp | 入门书，作者比较话唠，可以快速翻一遍
 

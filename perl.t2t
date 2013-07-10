@@ -83,6 +83,7 @@ TMTOWTDI
  | Parallel::ForkManger | 多进程处理
  | Parse::RecDescent | 自定义解析模块
  | Perl::Tidy | 整理代码
+ | re::engine::RE2 | 采用google的RE2正则引擎
  | snaked | 支持秒级的crontab，支持日志滚动
  | Statistics::Basic | 基础统计函数，均值、中位数、方差、标准差等等
  | Teng | 数据库操作，轻量级
