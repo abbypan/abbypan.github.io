@@ -1,2 +1,2 @@
 
-Get-ChildItem -Filter '*.t2t'| Foreach-Object {  txt2tags -t html $_.fullname  }
+Get-ChildItem -Filter '*.t2t'| Foreach-Object {  t2t -t html $_.fullname  }

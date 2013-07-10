@@ -19,38 +19,6 @@ Debian
    - ``deb ftp://202.38.73.198/debian sid foo``
 
 
-== 安装字体 ==[font]
-- ftp://210.45.121.187/pub/Linux/Latex/CJK/fonts/
-- ftp://202.38.68.227/pub/GNU-Linux/tools/fonts/
-- 把字体拷到~/.fonts下，参考xiaoyazi@linuxsir的回帖：[这里 http://www.linuxsir.org/bbs/showthread.php?t=195534&page=2]
-- __echo 'xset +fp ~/.fonts' >> ~/.xinitrc__
-- __cd ~/.fonts__
-- __fc-cache -fv__
-- __mkfontscale && mkfontdir__
-- 退出X，__/etc/init.d/xfs restart__
-- __xfontsel__，找出正常显示中英文的encoding，写入~/.gtkrc.zh_CN
-
-
-== ~/.gtkrc.zh_CN ==[gtk1]
-```
-style "default-text" {
-fontset="-*-simsun-medium-r-normal--14-120-*-*-*-*-*-0"
-}class "GtkWidget" style "default-text"
-```
-
-
-== ~/.gtkrc-2.0 ==[gtk2]
-```
-style "user-font"{
-font_name="Vera Sans YuanTi 14"
-}widget_class "*" style "user-font"
-```
-
-
-== ~/.fonts.conf ==[fonts]
-- [.fonts.conf by amalgam@ustc http://bbs.ustc.edu.cn/cgi/bbsanc?path=/groups/GROUP_4/Freedesktop/DB5D23515/M.1126008876.A]
-
-
 == /etc/environment ==[environment]
 ```
 LANG="zh_CN.UTF-8"

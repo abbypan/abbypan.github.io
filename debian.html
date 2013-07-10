@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
-<META NAME="generator" CONTENT="http://txt2tags.org">
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
 <LINK REL="stylesheet" TYPE="text/css" HREF="./site.css">
 <TITLE>Debian</TITLE>
@@ -25,22 +25,18 @@
   <li id="r"><a href="./r.html">R</a></li>
   <li id="txt2tags"><a href="./txt2tags.html">Txt2tags</a></li>
   <li id="windows"><a href="./windows.html">Windows</a></li>
+  <li id="book"><a href="./book.html">喜欢的书</a></li>
   <li id="gm"><a href="./gm.html">顾漫</a></li>
   <li id="gym"><a href="./gym.html">体操</a></li>
   <li id="tzh"><a href="./tzh.html">天之痕</a></li>
   <li id="yttlj"><a href="./yttlj.html">倚天屠龙记</a></li>
   </ul>
 </div>
-<DIV CLASS="toc">
-
+<DIV CLASS="toc" ID="toc">
   <UL>
   <LI><A HREF="#install">安装</A>
     <UL>
     <LI><A HREF="#source">设置apt源</A>
-    <LI><A HREF="#font">安装字体</A>
-    <LI><A HREF="#gtk1">~/.gtkrc.zh_CN</A>
-    <LI><A HREF="#gtk2">~/.gtkrc-2.0</A>
-    <LI><A HREF="#fonts">~/.fonts.conf</A>
     <LI><A HREF="#environment">/etc/environment</A>
     <LI><A HREF="#fstab">/etc/fstab</A>
     </UL>
@@ -66,13 +62,11 @@
   </UL>
 
 </DIV>
-
+<P></P>
 <A NAME="install"></A>
 <H1>安装</H1>
-
 <A NAME="source"></A>
 <H2>设置apt源</H2>
-
 <UL>
 <LI>BIOS里选网络启动，重启，选debian网络安装； 
 <LI>网络启动介绍见<A HREF="http://pxe.ustc.edu.cn">PXE.USTC 基本文档</A>
@@ -85,67 +79,23 @@
    </UL>
 </UL>
 
-<A NAME="font"></A>
-<H2>安装字体</H2>
-
-<UL>
-<LI><A HREF="ftp://210.45.121.187/pub/Linux/Latex/CJK/fonts/">ftp://210.45.121.187/pub/Linux/Latex/CJK/fonts/</A>
-<LI><A HREF="ftp://202.38.68.227/pub/GNU-Linux/tools/fonts/">ftp://202.38.68.227/pub/GNU-Linux/tools/fonts/</A>
-<LI>把字体拷到~/.fonts下，参考xiaoyazi@linuxsir的回帖：<A HREF="http://www.linuxsir.org/bbs/showthread.php?t=195534&amp;page=2">这里</A>
-<LI><U>echo 'xset +fp ~/.fonts' &gt;&gt; ~/.xinitrc</U>
-<LI><U>cd ~/.fonts</U>
-<LI><U>fc-cache -fv</U>
-<LI><U>mkfontscale &amp;&amp; mkfontdir</U>
-<LI>退出X，<U>/etc/init.d/xfs restart</U>
-<LI><U>xfontsel</U>，找出正常显示中英文的encoding，写入~/.gtkrc.zh_CN
-</UL>
-
-<A NAME="gtk1"></A>
-<H2>~/.gtkrc.zh_CN</H2>
-
-<PRE>
-style "default-text" {
-fontset="-*-simsun-medium-r-normal--14-120-*-*-*-*-*-0"
-}class "GtkWidget" style "default-text"
-</PRE>
-
-<A NAME="gtk2"></A>
-<H2>~/.gtkrc-2.0</H2>
-
-<PRE>
-style "user-font"{
-font_name="Vera Sans YuanTi 14"
-}widget_class "*" style "user-font"
-</PRE>
-
-<A NAME="fonts"></A>
-<H2>~/.fonts.conf</H2>
-
-<UL>
-<LI><A HREF="http://bbs.ustc.edu.cn/cgi/bbsanc?path=/groups/GROUP_4/Freedesktop/DB5D23515/M.1126008876.A">.fonts.conf by amalgam@ustc</A>
-</UL>
-
 <A NAME="environment"></A>
 <H2>/etc/environment</H2>
-
 <PRE>
 LANG="zh_CN.UTF-8"
 LANGUAGE="zh_CN:zh"
 </PRE>
-
+<P></P>
 <A NAME="fstab"></A>
 <H2>/etc/fstab</H2>
-
 <PRE>
 /dev/sda1 /mnt/usb vfat user,rw,noauto,utf8=1,fmask=113,dmask=022,umask=022 0 0
 </PRE>
-
+<P></P>
 <A NAME="network"></A>
 <H1>网络</H1>
-
 <A NAME="adsl"></A>
 <H2>adsl</H2>
-
 <UL>
 <LI>主要参考这两个贴子：<A HREF="http://linux.hiweed.com/node/2467">adsl by Fly1945@Hiweed</A>，<A HREF="http://ryang.68ab.com/debian.html#sec8">adsl配置 by ryang</A>
 <LI>apt-get install pppoe
@@ -168,20 +118,17 @@ plugin rp-pppoe.so eth0
 #下边的xxx是adsl拨号时使用的用户名
 user "xxx"
 </PRE>
-
 <LI>/etc/ppp/pap-secrets
 <PRE>
 #下边的xxx是adsl拨号时使用的用户名，yyy是密码
 "xxx" dsl-provider "yyy" *
 </PRE>
-
 <LI>pon dsl-provider
 <LI>查错：plog
 </UL>
 
 <A NAME="vpn"></A>
 <H2>vpn</H2>
-
 <UL>
 <LI>主要参考这几个贴子
   <UL>
@@ -202,7 +149,6 @@ nopcomp
 noaccomp
 noproxyarp
 </PRE>
-
 <LI>/etc/ppp/peers/$tunnel
 <PRE>
 pty "pptp $vpn_ip --nolaunchpppd"
@@ -215,12 +161,10 @@ persist
 linkname $tunnel
 nodefaultroute
 </PRE>
-
 <LI>/etc/ppp/chap-secrets
 <PRE>
 $user $tunnel	$password *
 </PRE>
-
 <LI>pon $tunnel debug dump logfd 2 nodetach
 <LI>ifconfig查看ppp0的网关的ip为$vpn_gateway，之前的默认网关ip设为$gateway，如果网关经常变就在下面的脚本中搞成动态获取
 <LI>/etc/ppp/ip-up.d/$tunnel
@@ -239,12 +183,10 @@ route add -net 202.38.0.0/16 gw $gateway dev eth0
 route add -net 210.45.0.0/16 gw $gateway dev eth0
 route add -net 211.86.0.0/16 gw $gateway dev eth0
 </PRE>
-
 </UL>
 
 <A NAME="wireless"></A>
 <H2>无线</H2>
-
 <UL>
 <LI>资料：
     <UL>
@@ -298,6 +240,7 @@ route add -net 211.86.0.0/16 gw $gateway dev eth0
 </TR>
 </TABLE>
 
+<P></P>
 <UL>
 <LI>装驱动
  <UL>
@@ -311,7 +254,6 @@ route add -net 211.86.0.0/16 gw $gateway dev eth0
 # PCI device 0x8086:0x1043 (ipw2100)
 SUBSYSTEM=="net", DRIVERS=="?*", ATTR{address}=="xx:xx:xx:xx:xx:xx", NAME="eth1"
 </PRE>
-
 <P></P>
 <LI>找接入的ap：
    <UL>
@@ -341,7 +283,6 @@ pairwise=TKIP
 group=TKIP
 }
 </PRE>
-
 <P></P>
 <LI>测试一下：
 <CODE>wpa_supplicant -w -i eth1 -D wext -c /etc/wpa_supplicant/lab.conf</CODE>
@@ -356,7 +297,6 @@ wpa-roam /etc/wpa_supplicant/lab.conf
 ### 无线接入实验室
 wpa-ssid "MyLab"
 </PRE>
-
 <P></P>
 <LI>启动无线：
 <CODE>ifup eth1</CODE>
@@ -364,10 +304,8 @@ wpa-ssid "MyLab"
 
 <A NAME="grub"></A>
 <H1>grub</H1>
-
 <A NAME="menu"></A>
 <H2>/boot/grub/menu.lst</H2>
-
 <PRE>
 title		Debian GNU/Linux, kernel 2.6.18-4-686
 root		(hd0,0)
@@ -375,7 +313,6 @@ kernel		/boot/vmlinuz-2.6.18-4-686 root=/dev/hda1 ro
 initrd		/boot/initrd.img-2.6.18-4-686
 savedefault
 </PRE>
-
 <PRE>
 title		Microsoft Windows XP Professional
 root		(hd0,2)
@@ -383,10 +320,9 @@ savedefault
 makeactive
 chainloader	+1
 </PRE>
-
+<P></P>
 <A NAME="grldr"></A>
 <H2>重装windows后修复linux</H2>
-
 <UL>
 <LI>作者是msygod@linuxsir，原帖在<A HREF="http://www.linuxsir.org/bbs/showthread.php?t=180376&amp;highlight=windows">这里</A>
 <LI>下载<B>grub for dos</B>，将其中的grldr拷到c:\
@@ -397,25 +333,21 @@ grub&gt;root (hd0,X)
 grub&gt;setup (hd0)
 grub&gt;reboot
 </PRE>
-
 </UL>
 
 <A NAME="fixwin"></A>
 <H2>无法进入windows，停在grub&gt;处</H2>
-
 <P>
 Y是windows下C盘所在分区的序号
 </P>
-
 <PRE>
 grub&gt;rootnoverify (hd0,Y)
 grub&gt;chainloader +1
 grub&gt;boot
 </PRE>
-
+<P></P>
 <A NAME="fixboot"></A>
 <H2>无法进入windows，连grub&gt;都看不到</H2>
-
 <UL>
 <LI>作者是linzi222@linuxsir，原帖在<A HREF="http://www.linuxsir.org/bbs/archive/index.php/database/t-260082.html">这里</A>
 <LI>用windows安装盘启动，加载驱动后，按"R"键进入故障修复控制台
@@ -426,10 +358,8 @@ grub&gt;boot
 
 <A NAME="other"></A>
 <H1>其他</H1>
-
 <A NAME="x11"></A>
 <H2>无法进入X</H2>
-
 <UL>
 <LI>重启，startx；
 <LI>dpkg-reconfigure xserver-xorg，startx
@@ -438,12 +368,9 @@ grub&gt;boot
 
 <A NAME="framebuffer"></A>
 <H2>关于framebuffer</H2>
-
 modconf-&gt;kernel-&gt;drivers-&gt;vedio-&gt;vga16fb
-
 <A NAME="alsa"></A>
 <H2>声卡驱动</H2>
-
 <UL>
 <LI>apt-get install alsa-utils alsa-oss
 <LI>alsaconf
@@ -453,10 +380,10 @@ modconf-&gt;kernel-&gt;drivers-&gt;vedio-&gt;vga16fb
 </div><div id="footer">
 <A HREF="http://txt2tags.sourceforge.net"><img SRC="./img/t2tpowered.png" title="O>OOOO"></A>
 <A HREF="http://vim.sourceforge.net"><img SRC="./img/vim.png"></A>
-作者：abbypan，上次修改时间： 2013-06-15 16:26 Saturday，源文件：<A HREF="debian.t2t">debian.t2t</A>
+作者：abbypan，上次修改时间： 2013-07-10 15:57 Wednesday，源文件：<A HREF="debian.t2t">debian.t2t</A>
 </P>
 </DIV>
 
-<!-- html code generated by txt2tags 2.6 (http://txt2tags.org) -->
-<!-- cmdline: txt2tags -t html ./debian.t2t -->
+<!-- html code generated by txt2tags 2.3 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -t html D:\dropbox\github\abbypan.github.com\debian.t2t -->
 </BODY></HTML>
