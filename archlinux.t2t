@@ -94,7 +94,7 @@ exec ck-launch-session dbus-launch startxfce4
 - 配置：[IBus https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29]
 
 
-==输入法(scim)==[input-fcitx]
+==输入法(fcitx)==[input-fcitx]
 - 安装：yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra
 
 
