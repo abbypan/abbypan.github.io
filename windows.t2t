@@ -27,7 +27,7 @@ Windows
     | gvim | 编辑器 | emeditor
     | imagemagick | 图片处理
     | jidian 极点郑码 | 形码输入法 |
-    | kitty | ssh 远程连接 | securecrt
+    | kitty | ssh 远程连接 | tunnelier，securecrt
     | linuxLive USB Creator | U盘linux系统
     | listary | 快速定位文件
     | live project free viewer | 微软 mpp 文件查看 |
