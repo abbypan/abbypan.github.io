@@ -39,6 +39,9 @@ Lisp
  | [quicklisp http://www.quicklisp.org/] | lisp的库管理，类似于perl的cpan
  | [alexandria http://common-lisp.net/project/alexandria/] | 一些常用基础函数集合
  | [cl-ppcre http://weitz.de/cl-ppcre/] | pcre正则匹配
+ | [iolib https://deneb.cddr.org/files/ilc2012-iolib.pdf] | 一个系统函数库，系统调用 / socket / dns查询 / 进程处理 啥的都有
+ | [iterate http://common-lisp.net/project/iterate/doc/index.html#Top] | 比loop功能更灵活的遍历接口
+ | [arnesi http://common-lisp.net/project/bese/docs/arnesi/html/index.html] | 一些基础操作的函数集合,make-reducer、curry、rcurry之类的目测不错
 
 
 %!include: footer.t2t
