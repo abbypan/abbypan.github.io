@@ -15,12 +15,14 @@ Domain Name System
 
 =工具=[tool]
  || 工具 | 简介 |
+ | [viewdns http://viewdns.info/] | 探测工具
  | [DiG HOWTO  http://www.madboa.com/geek/dig/] | 解析工具
  | [WhoisMind https://addons.mozilla.org/zh-CN/firefox/addon/whois-mind/?src=userprofile] | 看域名whois信息的firefox扩展
  | [IntoDNS http://www.intodns.com/] | 检查权威DNS配置
  | [dns-tools http://www.bind10.net/dns-tools] | dns 工具箱
  | [Comparison_of_DNS_server_software http://en.wikipedia.org/wiki/Comparison_of_DNS_server_software] | dns 软件对比
  | [just dns lookup http://just-dnslookup.com/index.php] | 从全球各地探测指定域名
+ | [massivedns http://massivedns.com/] | 探测
  | [chinaz站长dns工具 http://tool.chinaz.com/dns/] | 从国内各地探测指定域名，也可指定dns
 
 
@@ -48,6 +50,10 @@ Domain Name System
 
 =厂商=[industry]
  || 厂商 | 简介 |
+ | [icann http://www.icann.org/] | 政策
+ | [iana http://www.iana.org/] |  	DNS相关事件
+ | [dns-oarc https://www.dns-oarc.net/] |  	DNS相关技术、漏洞及报告
+ | [caida http://www.caida.org/] | 数据分析
  | [Nominum http://www.nominum.com/] | 牛X厂商，权威、递归都有
 
 =书=[book]

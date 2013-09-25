@@ -40,7 +40,7 @@ R
 
 =模块笔记=[module]
  || 模块 | 用途 |
- | reshape2 | 数据处理，变换格式
+ | [reshape2 http://cran.r-project.org/web/packages/reshape2/reshape2.pdf] | 数据处理，变换格式
  | plyr | 数据统计，变换
  | ggplot2 | 画图，参考[Graphs http://wiki.stdout.org/rcookbook/Graphs/]
  | lubridate | 时间计算
