@@ -2,8 +2,10 @@ Txt2tags用户指南 摘录
 原著：Aurelio Marinho Jargas <verde@aurelio.net> 
 摘录：Abby Pan <abbypan@mail.ustc.edu.cn>
 
-%!preproc: IMGPATH .
+%!target: html
+%!encoding: utf-8
 %!options: --toc
+%!preproc: IMGPATH .
 %!preproc: MARKPROP	**属性**
 %!preproc: MARKCONT	**包含**
 %!preproc: MARKDESC	**描述**
@@ -1096,3 +1098,5 @@ th       { background-color:yellow  ;}
 
 ========================================================================
 最后更新时间：%%mtime(%Y-%m-%d %H:%M)
+
+
