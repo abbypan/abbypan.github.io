@@ -9,11 +9,11 @@ Windows
 =常用软件=
 
     || 软件 | 用途 | 同类备用软件 |
-    | 7zip | 压缩解压 |
+    | [7zip http://sparanoid.com/lab/7z/] | 压缩解压 |
     | abc amber chm converter | chm 转 pdf |
     | apploc | 游戏乱码 |
     | quod libet  | 音乐播放 | ttplayer 千千静听, qq音乐
-    | ccleaner | 清理系统 | wise care 365, 魔方
+    | [ccleaner https://www.piriform.com/ccleaner] | 清理系统 | wise care 365, 魔方
     | chart director | 画图库函数
     | clisp | lisp 开发 |
     | dosbox | dos环境模拟器 |
@@ -56,7 +56,7 @@ Windows
     | unlocker | 文件解锁，删除
     | virtual box | 虚拟机 | vmware
     | vlc | 播放器 | baidu player 百度影音
-    | waterfox | 浏览器 |
+    | [waterfox http://www.waterfoxproject.org/] | 浏览器 |
     | winpe 老毛桃u盘工具 | 重装系统 |
     | winscp | sftp / ftp 客户端 | ftprush
     | wireless key view | 查看已保存的无线密码 |

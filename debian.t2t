@@ -273,6 +273,8 @@ grub>boot
 - apt-get install mysql-server
 - apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
 - apt-get install php5-mysql
+- apt-get install php5-gd
+- apt-get install imagemagick php5-imagick
 
 
 %!include: footer.t2t
