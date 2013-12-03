@@ -1,5 +1,5 @@
-R
-统计
+VIM
+编辑器
 
 %!includeconf: config.t2t
 %!include: ''menu.html''
@@ -8,50 +8,38 @@ R
 =简单入门=[beginning]
 
  || 资料 | 简介 |
- | R intro (R导论) | 基本介绍
- | [Cookbook for R http://wiki.stdout.org/rcookbook/] | 基础示例，写的很好
+ | 七个有效的文本编辑习惯 ｜ 经典 
+ | [最佳vim技巧 http://bbs.byr.cn/wForum/elite.php?file=/groups/sci.faq/Linux/linuxSoftUsage/VI/M.1116044565.s0] | 经典
+ | [不是打vi的广告 http://greenisland.csie.nctu.edu.tw/wp/category/comuter/vim/] | 实例
+ | vim hacks | PPT
 
 
 =站点=[site]
 
  || 站点 | 简介 |
- | [统计之都 http://cos.name/cn/#post-] | 中文社区
+ | [vi Complete Key Binding List http://hea-www.harvard.edu/%7Efine/Tech/vi.html] | 不错的手册页
+ | [Efficient Editing With vim http://robertames.com/files/vim-editing.html] | 不错，可以看
+ | [Colors Sampler Packer http://www.vim.org/scripts/script.php?script_id=625] | 一堆color scheme配色
+ | [vim tips wiki http://vim.wikia.com/] | wiki
+ | [vim参考手册 http://vimcdoc.sourceforge.net/doc/] | 碰到问题再查
+ | [vim http://www.vim.org] | 官网
 
 
 =书籍=[book]
 
  || 时间 | 书籍  | 读后感 |
- | 2013 | R和Ruby数据分析之旅 | 当小品文看就行了，2-3个小时左右
- | 2012.02 | [R inferno http://www.burns-stat.com/pages/Tutor/R_inferno.pdf] | 
- | 2011.08 | R语言初学者指南者 | 比较薄，但还是晕，个人感觉小白入门还是换一本吧
- | 2011.07 | R语言数据操作(Data Manipulation with R) | 比较薄，当数据处理手册可以
- | 2011.03 | R Cookbook | 手册书，还不错，用到的时候记得翻
- | 2011.02 | 25 Recipes for Getting Started with R | R Cookbook 缩减版，随便翻翻
- | 2010 | R in a  Nutshell | 手册书，值得细看
- | 2010 | Data Mining with Rattle and R | 
- | 2009.10 | R in action (R语言实战) | 比较简短的入门书，值得一读
- | 2009.09 | The Art of R Programming (R语言编程艺术) | 很不错，简单清楚，适合入门
- | 2008 | 153分钟学会R | 很不错的入门FAQ
- | 2007 | The R book | 
- | 2006 | 统计建模与R软件 | 
- | 2006 | r for beginners | 比较简短，方便做语法入门手册
- | 2002 | Simple R | 
+ | 2001 | Vi IMproved | 很赞，命令有截图。附录Quick Reference超赞。就是书太厚了
+ | 2010 | hacking vim | 中规中矩的工具书
+ | 2008 | Vi(1) Tips | vi基础操作介绍，还行吧
 
-
-=模块笔记=[module]
- || 模块 | 用途 |
- | [reshape2 http://cran.r-project.org/web/packages/reshape2/reshape2.pdf] | 数据处理，变换格式
- | plyr | 数据统计，变换
- | ggplot2 | 画图，参考[Graphs http://wiki.stdout.org/rcookbook/Graphs/]
- | lubridate | 时间计算
- | stringr |
- | [rCharts http://ramnathv.github.io/rCharts/] | 可视化
- | sqldf |
- | rattle | 数据挖掘、数据分析
- | forecast |
- | RMYSQL | 
- | qcc |
- | radomForest |
+=插件=[plugin]
+ || 插件 | 用途 |
+ | [LargeFile http://www.vim.org/scripts/script.php?script_id=1506] | 打开大文件不会卡住
+ | [perl-support http://www.vim.org/script.php?script_id=556] | perl开发
+ | [NERD Commenter http://www.vim.org/scripts/script.php?script_id=1218] | 代码注释
+ | [honza / vim-snippets https://github.com/honza/vim-snippets] | 代码补全
+ | [neocomplcache http://www.vim.org/scripts/script.php?script_id=2620] | 函数补全
+ | [surround.vim http://www.vim.org/scripts/script.php?script_id=1697] | word两边加引号标签
 
 
 %!include: footer.t2t
