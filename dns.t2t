@@ -15,6 +15,8 @@ Domain Name System
 
 =工具=[tool]
  || 工具 | 简介 |
+ | [statdns http://www.statdns.com] | 每月发布全球com/net/org等域名的统计，上面还有dns相关工具的整理、RFC的列表，非常不错
+ | [DNS Looking Glass http://www.dns-lg.com/] | 可指定节点查询给定域名的RR，支持正向、反向解析，以WEB API形式提供服务，也是statdns的
  | [viewdns http://viewdns.info/] | 探测工具
  | [DiG HOWTO  http://www.madboa.com/geek/dig/] | 解析工具
  | [WhoisMind https://addons.mozilla.org/zh-CN/firefox/addon/whois-mind/?src=userprofile] | 看域名whois信息的firefox扩展
