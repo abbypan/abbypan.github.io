@@ -10,7 +10,7 @@ Lisp
  || 资料 | 简介 |
  | [The Nature of Lisp http://www.csdn.net/article/2012-11-22/2812113-The-Nature-Of-Lisp] | 讲lisp的好处
  | [clisp 菜鸟指南 http://reverland.org/lisp/2012/06/26/common-lisp/] | 入门介绍
- | [Common LISP Hints http://www.n-a-n-o.com/lisp/cmucl-tutorials/LISP-tutorial.html] | 简单语法介绍，很不错
+ | [Common LISP Hints http://www.n-a-n-o.com/lisp/cmucl-tutorials/LISP-tutorial.html] | 简单语法介绍，很不错，中文翻译：[Lisp入门教程 http://wenku.baidu.com/view/67f4c5d8ce2f0066f53322f3.html]
  | [Common Lisp Quick Reference http://clqr.boundp.org/index.html] | 速查手册
  | [lisp goodies http://jff.googlecode.com/svn/trunk/Lisp/lisp-goodies.txt] | 常用库集合
  | [9 of the Best Free Lisp Books http://www.linuxlinks.com/article/20130125201424560/9oftheBestFreeLispBooks-Part1.html] | 书籍推荐
@@ -42,6 +42,8 @@ Lisp
  | [iolib https://deneb.cddr.org/files/ilc2012-iolib.pdf] | 一个系统函数库，系统调用 / socket / dns查询 / 进程处理 啥的都有
  | [iterate http://common-lisp.net/project/iterate/doc/index.html#Top] | 比loop功能更灵活的遍历接口
  | [arnesi http://common-lisp.net/project/bese/docs/arnesi/html/index.html] | 一些基础操作的函数集合,make-reducer、curry、rcurry之类的目测不错
+ | cl-sockets | 网络
+ | usocket | 网络
 
 
 %!include: footer.t2t
