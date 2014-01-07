@@ -5,16 +5,16 @@ Windows
 
 | 软件 | 用途 | 同类备用软件 |
 | ---- | ---- | ------------ |
-| [FossHub http://www.fosshub.com/] | 自由软件推荐 | |
-| [7zip http://sparanoid.com/lab/7z/] | 压缩解压
-| [ccleaner https://www.piriform.com/ccleaner] | 清理系统 | wise care 365, 魔方
-| [console2 http://sourceforge.net/projects/console/] | 命令行 | 参考 [What's a good alternative Windows console http://stackoverflow.com/questions/440269/whats-a-good-alternative-windows-console]
-| [easeus partition manager http://www.partition-tool.com] | 硬盘分区 |
-| [freecommander http://www.freecommander.com/] | 文件管理器 |
-| [kitty http://www.9bis.net/kitty/] | ssh 远程连接 | tunnelier，securecrt
-| [mipony http://www.mipony.net/] | mediafire、megaupload等网盘文件下载 |
-| [mp3tag http://www.mp3tag.de/en/download.html] | mp3 文件信息编辑 |
-| [waterfox http://www.waterfoxproject.org/] | 浏览器 |
+| [FossHub](http://www.fosshub.com/) | 自由软件推荐 | |
+| [7zip](http://sparanoid.com/lab/7z/) | 压缩解压 | |
+| [ccleaner](https://www.piriform.com/ccleaner) | 清理系统 | wise care 365, 魔方 |
+| [console2](http://sourceforge.net/projects/console/) | 命令行 | 参考 [What's a good alternative Windows console](http://stackoverflow.com/questions/440269/whats-a-good-alternative-windows-console)
+| [easeus](partition manager http://www.partition-tool.com) | 硬盘分区 |
+| [freecommander](http://www.freecommander.com/) | 文件管理器 |
+| [kitty](http://www.9bis.net/kitty/) | ssh 远程连接 | tunnelier，securecrt
+| [mipony](http://www.mipony.net/) | mediafire、megaupload等网盘文件下载 |
+| [mp3tag](http://www.mp3tag.de/en/download.html) | mp3 文件信息编辑 |
+| [waterfox](http://www.waterfoxproject.org/) | 浏览器 |
 | abc amber chm converter | chm 转 pdf |
 | apploc | 游戏乱码 |
 | chart director | 画图库函数
@@ -46,7 +46,7 @@ Windows
 | qq国际版 | 聊天 |
 | quod libet  | 音乐播放 | ttplayer 千千静听, qq音乐
 | rapidee | 修改环境变量
-| regjump [主页 http://technet.microsoft.com/zh-cn/sysinternals/bb963880] | 跳转到指定注册表位置 | 
+| [regjump](http://technet.microsoft.com/zh-cn/sysinternals/bb963880) | 跳转到指定注册表位置 | 
 | skype | 聊天、视频 |
 | speq | 计算器 |
 | strawberry perl | perl 开发 |
