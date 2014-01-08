@@ -115,6 +115,10 @@
   
     
       
+    
+  
+    
+      
       	
       	<li><a href="/pages.html">Pages</a></li>
       	
@@ -139,7 +143,7 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <h2 id='id20'>基础系统</h2>
+    <h2 id='id24'>基础系统</h2>
 
 <ul>
 <li>下载archlinux最新iso文件：http://www.archlinux.org/download/</li>
@@ -175,7 +179,7 @@
 </li>
 </ul>
 
-<h3 id='id21'>硬盘分区</h3>
+<h3 id='id25'>硬盘分区</h3>
 
 <ul>
 <li>假设系统硬盘为/dev/sda，这边是SSD</li>
@@ -185,7 +189,7 @@
 <li>mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1</li>
 </ul>
 
-<h3 id='id22'>安装系统</h3>
+<h3 id='id26'>安装系统</h3>
 
 <ul>
 <li>执行wifi-menu，连接合适的无线网络</li>
@@ -209,15 +213,15 @@
 <li>重启之后，执行wifi-menu连接到无线网络</li>
 </ul>
 
-<h3 id='id23'>系统更新</h3>
+<h3 id='id27'>系统更新</h3>
 
 <blockquote>
 <p>pacman -Syu pacman -S yaourt</p>
 </blockquote>
 
-<h2 id='id24'>系统配置</h2>
+<h2 id='id28'>系统配置</h2>
 
-<h3 id='id25'>图形界面</h3>
+<h3 id='id29'>图形界面</h3>
 
 <p>安装X</p>
 
@@ -235,7 +239,7 @@
 </li>
 </ul>
 
-<h3 id='id26'>声卡</h3>
+<h3 id='id30'>声卡</h3>
 
 <ul>
 <li>安装：yaourt -S gstreamer0.10 gstreamer0.10-base-plugins</li>
@@ -257,7 +261,7 @@
 <li>安装：yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra</li>
 </ul>
 
-<h3 id='id27'>中文环境</h3>
+<h3 id='id31'>中文环境</h3>
 
 <ul>
 <li>vim /etc/locale.gen，指定zh_CN.UTF-8</li>
@@ -279,7 +283,7 @@
 <p>LOCALE=zh_CN.UTF-8</p>
 </blockquote>
 
-<h3 id='id28'>时间</h3>
+<h3 id='id32'>时间</h3>
 
 <ul>
 <li>yaourt -S ntp</li>
@@ -299,7 +303,7 @@
 <p>/dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0</p>
 </blockquote>
 
-<h3 id='id29'>常用软件</h3>
+<h3 id='id33'>常用软件</h3>
 <table><thead><tr><th>类型</th><th>软件</th></tr></thead><tbody><tr><td style='text-align: left;'>下载</td><td style='text-align: left;'>rsync curl lftp wget axel</td>
 </tr><tr><td style='text-align: left;'>字体</td><td style='text-align: left;'>wqy-bitmapfont wqy-zenhei ttf-monaco</td>
 </tr><tr><td style='text-align: left;'>视频</td><td style='text-align: left;'>smplayer flashplugin ffmpeg flashplayer</td>
@@ -308,7 +312,7 @@
 </tr><tr><td style='text-align: left;'>浏览器</td><td style='text-align: left;'>firefox firefox-i18n-zh-cn</td>
 </tr><tr><td style='text-align: left;'>网络</td><td style='text-align: left;'>dnsutils traceroute wireshark-gtk</td>
 </tr></tbody></table>
-<h2 id='id30'>网络</h2>
+<h2 id='id34'>网络</h2>
 
 <h3 id='mac'>根据MAC地址固定网卡名称</h3>
 
@@ -405,7 +409,7 @@
 <blockquote>
 <h1 id='binzsh'>!/bin/zsh</h1>
 
-<h1 id='id31'>取网关地址</h1>
+<h1 id='id35'>取网关地址</h1>
 
 <p>gateway=<code>route|grep default|grep eth0|awk &#39;{print $2;}&#39;</code> vpn_gateway=&#8221;192.168.6.253&#8221;</p>
 
@@ -421,12 +425,12 @@
 
 <p>sudo route del default sudo route add default gw $vpn_gateway dev ppp0</p>
 
-<h1 id='id32'>看路由</h1>
+<h1 id='id36'>看路由</h1>
 
 <p>sudo route -n</p>
 </blockquote>
 
-<h2 id='id33'>其它</h2>
+<h2 id='id37'>其它</h2>
 
 <h3 id='nginxphp'>NGINX+PHP</h3>
 

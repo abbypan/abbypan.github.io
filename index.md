@@ -18,6 +18,7 @@ tagline:
 - [DNS](dns.html)
 - [Lisp](lisp.html)
 - [Perl](perl.html)
+- [R](r.html)
 - [Windows软件](windows.html)
 
 ## 生活

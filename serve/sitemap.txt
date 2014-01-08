@@ -5,6 +5,7 @@ http://abbypan.github.io/windows.html
 http://abbypan.github.io/tags.html
 http://abbypan.github.io/perl.html
 http://abbypan.github.io/archive.html
+http://abbypan.github.io/r.html
 http://abbypan.github.io/atom.xml
 http://abbypan.github.io/lisp.html
 http://abbypan.github.io/book.html
