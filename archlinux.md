@@ -19,13 +19,13 @@ description: ""
 ### 设置arch源
 - 编辑/etc/pacman.conf
 
->  \[archlinuxfr\]
->  SigLevel = Optional TrustAll
->  Server = http://repo.archlinux.fr/$arch
+       [archlinuxfr]
+       SigLevel = Optional TrustAll
+       Server = http://repo.archlinux.fr/$arch
 
 - 编辑/etc/pacman.d/mirrorlist
 
-    Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+        Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 
 ### 硬盘分区
 - 假设系统硬盘为/dev/sda，这边是SSD
@@ -37,29 +37,29 @@ description: ""
 - 执行wifi-menu，连接合适的无线网络
 - 编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
 
-> mount /dev/sda1 /mnt
-> pacstrap /mnt base base-devel
-> pacstrap /mnt grub2-bios
-> genfstab -p /mnt >> /mnt/etc/fstab
-> arch-chroot /mnt
+      mount /dev/sda1 /mnt
+      pacstrap /mnt base base-devel
+      pacstrap /mnt grub2-bios
+      genfstab -p /mnt >> /mnt/etc/fstab
+      arch-chroot /mnt
 
 - 设置arch源，见上节
 
-> ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-> mkinitcpio -p linux
-> grub-install --no-floppy /dev/sda
-> grub-mkconfig -o /boot/grub/grub.cfg
-> pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
-> exit
-> reboot
+      ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+      mkinitcpio -p linux
+      grub-install --no-floppy /dev/sda
+      grub-mkconfig -o /boot/grub/grub.cfg
+      pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
+      exit
+      reboot
 
 - 重启之后，执行wifi-menu连接到无线网络
 
 
 ### 系统更新
 
-> pacman -Syu
-> pacman -S yaourt
+      pacman -Syu
+      pacman -S yaourt
 
 
 ## 系统配置
@@ -98,13 +98,13 @@ yaourt -S xfce4 xfce4-notifyd
 - vim /etc/locale.gen，指定zh_CN.UTF-8
 - vim /etc/local.conf
 
-> LANG=zh_CN.UTF-8
-> LC_MESSAGES=zh_CN.UTF-8
+      LANG=zh_CN.UTF-8
+      LC_MESSAGES=zh_CN.UTF-8
 
 - 执行locale-gen
 - vim /etc/rc.conf
 
-> LOCALE=zh_CN.UTF-8
+      LOCALE=zh_CN.UTF-8
 
 
 ### 时间
@@ -116,7 +116,7 @@ yaourt -S xfce4 xfce4-notifyd
 - yaourt -S ntfs-3g thunar-volman gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp udisks
 - 配置 /etc/fstab，手动挂载磁盘
 
-> /dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
+      /dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
 
 
 ### 常用软件
@@ -138,8 +138,8 @@ yaourt -S xfce4 xfce4-notifyd
 
 编辑文件/etc/udev/rules.d/10-network.rules
 
-> SUBSYSTEM=="net", ATTR{address}=="00:26:2d:f6:ad:43", NAME="eth0"
-SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
+      SUBSYSTEM=="net", ATTR{address}=="00:26:2d:f6:ad:43", NAME="eth0"
+      SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 
 ### 无线(netctl)
 - 安装: yaourt -S net-tools wireless_tools wpa_supplicant netctl
@@ -147,33 +147,33 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 
 新建一个/etc/netctl/athome配置(wpa)
 
-> CONNECTION='wireless'
-> DESCRIPTION='athome'
-> INTERFACE='wlan0'
-> SECURITY='wpa'
-> ESSID=athome
-> IP='dhcp'
-> KEY=athomepasswd
+      CONNECTION='wireless'
+      DESCRIPTION='athome'
+      INTERFACE='wlan0'
+      SECURITY='wpa'
+      ESSID=athome
+      IP='dhcp'
+      KEY=athomepasswd
 
 
 新建一个/etc/netctl/atwork配置(wep)
 
-> CONNECTION='wireless'
-> DESCRIPTION='atwork'
-> INTERFACE='wlan0'
-> SECURITY='wep'
-> ESSID=atwork
-> IP='dhcp'
-> KEY="s:myatworkpasswd"
+      CONNECTION='wireless'
+      DESCRIPTION='atwork'
+      INTERFACE='wlan0'
+      SECURITY='wep'
+      ESSID=atwork
+      IP='dhcp'
+      KEY="s:myatworkpasswd"
 
 - 开机启动
 
-> netctl enable athome
+      netctl enable athome
 
 
 - 手工启动
 
-> netctl start athome
+      netctl start athome
 
 
 
@@ -182,74 +182,74 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 - 配置:
 假设配置ESSID为mywireless，密码为mypasswd的无线
 
-> wpa_passphrase mywireless mypasswd >> /etc/wpa_supplicant.conf
+      wpa_passphrase mywireless mypasswd >> /etc/wpa_supplicant.conf
 
 手动修改/etc/wpa_supplicant.conf
 
-> update_config=1
-> ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
-> ap_scan=1
-> fast_reauth=1
-> 
-> network={
-> ssid="mywireless"
-> 
-> #proto=WPA
-> proto=RSN
-> key_mgmt=WPA-PSK
-> pairwise=CCMP TKIP
-> group=CCMP TKIP
-> 
-> #psk="mypasswd"
-> psk=09896d6dc939e1d6b279c10ee3d4d1c8c75970ce345c6552b7ee47d892f0740e
-> }
+      update_config=1
+      ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
+      ap_scan=1
+      fast_reauth=1
+      
+      network={
+      ssid="mywireless"
+      
+      #proto=WPA
+      proto=RSN
+      key_mgmt=WPA-PSK
+      pairwise=CCMP TKIP
+      group=CCMP TKIP
+      
+      #psk="mypasswd"
+      psk=09896d6dc939e1d6b279c10ee3d4d1c8c75970ce345c6552b7ee47d892f0740e
+      }
 
 - 手动连接：假设无线网卡为wlan0
 
-> WLAN=wlan0
-> ESSID=mywireless
-> PASSWD=mypasswd
-> 
-> rm /run/dhcpcd-$WLAN.pid
-> rm /var/run/wpa_supplicant/$WLAN
-> 
-> ifconfig $WLAN up
-> 
-> wpa_supplicant -dd -B -Dwext -i $WLAN -c /etc/wpa_supplicant.conf
-> 
-> ifconfig $WLAN up
-> iwconfig $WLAN essid $ESSID key "s:$PASSWD"
-> dhcpcd $WLAN
+      WLAN=wlan0
+      ESSID=mywireless
+      PASSWD=mypasswd
+      
+      rm /run/dhcpcd-$WLAN.pid
+      rm /var/run/wpa_supplicant/$WLAN
+      
+      ifconfig $WLAN up
+      
+      wpa_supplicant -dd -B -Dwext -i $WLAN -c /etc/wpa_supplicant.conf
+      
+      ifconfig $WLAN up
+      iwconfig $WLAN essid $ESSID key "s:$PASSWD"
+      dhcpcd $WLAN
 
 
 ### vpn
 - 参考：[archlinux pptp vpn拨号连接](http://blog.vkill.net/read.php?97)
 - 没看到arch下有/etc/ppp/ip-up.d目录，用以下脚本来启动vpn，我没有把它加为开机启动项，嗯。
 
-> #!/bin/zsh
-> 
-> #取网关地址
-> gateway=`route|grep default|grep eth0|awk '{print $2;}'`
-> vpn_gateway="192.168.6.253"
-> 
-> echo "拨号..."
-> sudo poff -a
-> sleep 2
-> sudo pon lab
-> sleep 3
-> 
-> echo "修改路由..."
-> #科大的地址不从vpn走
-> sudo route add -net 202.38.0.0/16 gw $gateway eth0
-> sudo route add -net 210.45.0.0/16 gw $gateway eth0
-> sudo route add -net 211.86.0.0/16 gw $gateway eth0
-> 
-> #默认从vpn走
-> sudo route del default
-> sudo route add default gw $vpn_gateway dev ppp0
-> 
-> #看路由
-> sudo route -n
+      #!/bin/zsh
+      
+      #取网关地址
+      gateway=`route|grep default|grep eth0|awk '{print $2;}'`
+      vpn_gateway="192.168.6.253"
+      
+      echo "拨号..."
+      sudo poff -a
+      sleep 2
+      sudo pon lab
+      sleep 3
+      
+      echo "修改路由..."
+      #科大的地址不从vpn走
+      sudo route add -net 202.38.0.0/16 gw $gateway eth0
+      sudo route add -net 210.45.0.0/16 gw $gateway eth0
+      sudo route add -net 211.86.0.0/16 gw $gateway eth0
+      
+      #默认从vpn走
+      sudo route del default
+      sudo route add default gw $vpn_gateway dev ppp0
+      
+      #看路由
+      sudo route -n
 
 
 ## 其它
@@ -258,18 +258,18 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 - 以http(用户):http(组)启动fastcgi : spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi
 - 配置/etc/nginx/conf/nginx.conf
 
-> location / {
-> root   /var/www;
-> index  index.php index.html index.htm;
-> }
-> 
-> location ~ \.php$ {
-> root           /var/www;
-> fastcgi_pass   127.0.0.1:9000;
-> fastcgi_index  index.php;
-> fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-> include        fastcgi_params;
-> }
+      location / {
+      root   /var/www;
+      index  index.php index.html index.htm;
+      }
+      
+      location ~ \.php$ {
+      root           /var/www;
+      fastcgi_pass   127.0.0.1:9000;
+      fastcgi_index  index.php;
+      fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+      include        fastcgi_params;
+      }
 
 - 启动nginx: /etc/rc.d/nginx start
 
@@ -279,6 +279,6 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 - 系统升级失败，重启提示kernel panic，switch_root : fail to ...
 - 从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之
 
-> mount /dev/sda1 /mnt
-> yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
+      mount /dev/sda1 /mnt
+      yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 

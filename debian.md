@@ -22,15 +22,14 @@ description: ""
     LANG="zh_CN.UTF-8"
     LANGUAGE="zh_CN:zh"
 
-
-
 ###  /etc/fstab 
 
-    /dev/sda1 /mnt/usb vfat user,rw,noauto,utf8=1,fmask=113,dmask=022,umask=022 0 0
+``/dev/sda1 /mnt/usb vfat user,rw,noauto,utf8=1,fmask=113,dmask=022,umask=022 0 0``
 
 
 ###  基础包 
-- apt-get install build-essential
+
+``apt-get install build-essential``
 
 
 ## 网络
@@ -42,26 +41,26 @@ description: ""
 - 将/etc/network/interfaces中的相关内容注释掉
 - /etc/ppp/peers/dsl-provider
 
-> noipdefault
-> usepeerdns
-> defaultroute
-> hide-password
-> lcp-echo-interval 20
-> lcp-echo-failure 3
-> connect /bin/true
-> noauth
-> persist
-> mtu 1492
-> noaccomp
-> default-asyncmap
-> plugin rp-pppoe.so eth0
-> #下边的xxx是adsl拨号时使用的用户名
-> user "xxx"
+        noipdefault
+        usepeerdns
+        defaultroute
+        hide-password
+        lcp-echo-interval 20
+        lcp-echo-failure 3
+        connect /bin/true
+        noauth
+        persist
+        mtu 1492
+        noaccomp
+        default-asyncmap
+        plugin rp-pppoe.so eth0
+        #下边的xxx是adsl拨号时使用的用户名
+        user "xxx"
 
 - /etc/ppp/pap-secrets
 
-> #下边的xxx是adsl拨号时使用的用户名，yyy是密码
-"xxx" dsl-provider "yyy" \*
+        #下边的xxx是adsl拨号时使用的用户名，yyy是密码
+        "xxx" dsl-provider "yyy" *
 
 - pon dsl-provider
 - 查错：plog
@@ -78,47 +77,47 @@ description: ""
 - 设vpn连接名为$tunnel，连接的目标主机地址为$vpn_ip，用户名为$user，密码为$password
 - /etc/ppp/options.pptp
 
-> lock
-> noauth
-> nobsdcomp
-> nodeflate
-> nopcomp
-> noaccomp
-> noproxyarp
+        lock
+        noauth
+        nobsdcomp
+        nodeflate
+        nopcomp
+        noaccomp
+        noproxyarp
 
 - /etc/ppp/peers/$tunnel
 
-> pty "pptp $vpn_ip --nolaunchpppd"
-> name $user
-> remotename $tunnel
-> file /etc/ppp/options.pptp
-> ipparam $tunnel
-> noauth
-> persist
-> linkname $tunnel
-> nodefaultroute
+        pty "pptp $vpn_ip --nolaunchpppd"
+        name $user
+        remotename $tunnel
+        file /etc/ppp/options.pptp
+        ipparam $tunnel
+        noauth
+        persist
+        linkname $tunnel
+        nodefaultroute
 
 - /etc/ppp/chap-secrets
 
-   ``$user $tunnel $password *``
+       $user $tunnel $password *
 
-- pon $tunnel debug dump logfd 2 nodetach
+- ``pon $tunnel debug dump logfd 2 nodetach``
 - ifconfig查看ppp0的网关的ip为$vpn_gateway，之前的默认网关ip设为$gateway，如果网关经常变就在下面的脚本中搞成动态获取
 - /etc/ppp/ip-up.d/$tunnel
 
-> #!/bin/bash
-> 
-> ##动态获取原来网关的ip
-> gateway=`route|grep default|awk '{print $2;}'`
-> 
-> #默认从vpn走
-> route del default
-> route add default gw $vpn_gateway dev ppp0
-> 
-> #科大的地址不从vpn走
-> route add -net 202.38.0.0/16 gw $gateway dev eth0
-> route add -net 210.45.0.0/16 gw $gateway dev eth0
-> route add -net 211.86.0.0/16 gw $gateway dev eth0
+        #!/bin/bash
+        
+        #动态获取原来网关的ip
+        gateway=`route|grep default|awk '{print $2;}'`
+        
+        #默认从vpn走
+        route del default
+        route add default gw $vpn_gateway dev ppp0
+        
+        #科大的地址不从vpn走
+        route add -net 202.38.0.0/16 gw $gateway dev eth0
+        route add -net 210.45.0.0/16 gw $gateway dev eth0
+        route add -net 211.86.0.0/16 gw $gateway dev eth0
 
 
 ### 无线
@@ -148,8 +147,8 @@ description: ""
 
 - 查看/etc/udev/rules.d，找到ipw2100对应的eth1
 
-> # PCI device 0x8086:0x1043 (ipw2100)
-> SUBSYSTEM=="net", DRIVERS=="?\*", ATTR{address}=="xx:xx:xx:xx:xx:xx", NAME="eth1"
+        # PCI device 0x8086:0x1043 (ipw2100)
+        SUBSYSTEM=="net", DRIVERS=="?\*", ATTR{address}=="xx:xx:xx:xx:xx:xx", NAME="eth1"
 
 
 - 找接入的ap：
@@ -158,25 +157,26 @@ description: ""
 
 - 编辑/etc/wpa_supplicant/lab.conf
 
-> ctrl_interface=/var/run/wpa_supplicant
-> eapol_version=1
-> ap_scan=1
-> fast_reauth=1
-> network={ssid="MyLab"
-> id_str="wlab"
-> scan_ssid=1
-> key_mgmt=WPA-EAP
-> eap=PEAP
-> identity="MyName"
-> password="MyPasswd"
-> auth_alg=OPEN
-> phase1="peaplabel=0"
-> phase2="auth=MSCHAPV2"
-> priority=10
-> proto=WPA
-> pairwise=TKIP
-> group=TKIP
-> }
+        ctrl_interface=/var/run/wpa_supplicant
+        eapol_version=1
+        ap_scan=1
+        fast_reauth=1
+        network={
+        ssid="MyLab"
+        id_str="wlab"
+        scan_ssid=1
+        key_mgmt=WPA-EAP
+        eap=PEAP
+        identity="MyName"
+        password="MyPasswd"
+        auth_alg=OPEN
+        phase1="peaplabel=0"
+        phase2="auth=MSCHAPV2"
+        priority=10
+        proto=WPA
+        pairwise=TKIP
+        group=TKIP
+        }
 
 
 - 测试一下：
@@ -184,13 +184,13 @@ description: ""
 
 - 编辑/etc/network/interfaces：
 
-> # 无线网卡
-> allow-hotplug eth1
-> iface eth1 inet dhcp
-> wpa-driver wext
-> wpa-roam /etc/wpa_supplicant/lab.conf
-> ### 无线接入实验室
-> wpa-ssid "MyLab"
+        # 无线网卡
+        allow-hotplug eth1
+        iface eth1 inet dhcp
+        wpa-driver wext
+        wpa-roam /etc/wpa_supplicant/lab.conf
+        ### 无线接入实验室
+        wpa-ssid "MyLab"
 
 - 启动无线：
 ``ifup eth1``
@@ -200,18 +200,18 @@ description: ""
 
 ###  /boot/grub/menu.lst 
 
-> title		Debian GNU/Linux, kernel 2.6.18-4-686
-> root		(hd0,0)
-> kernel		/boot/vmlinuz-2.6.18-4-686 root=/dev/hda1 ro
-> initrd		/boot/initrd.img-2.6.18-4-686
-> savedefault
-> 
-> 
-> title		Microsoft Windows XP Professional
-> root		(hd0,2)
-> savedefault
-> makeactive
-> chainloader	+1
+    title		Debian GNU/Linux, kernel 2.6.18-4-686
+    root		(hd0,0)
+    kernel		/boot/vmlinuz-2.6.18-4-686 root=/dev/hda1 ro
+    initrd		/boot/initrd.img-2.6.18-4-686
+    savedefault
+    
+    
+    title		Microsoft Windows XP Professional
+    root		(hd0,2)
+    savedefault
+    makeactive
+    chainloader	+1
 
 ###  重装windows后修复linux 
 - 作者是msygod@linuxsir，原帖在[这里](http://www.linuxsir.org/bbs/showthread.php?t=180376&highlight=windows)
@@ -219,22 +219,22 @@ description: ""
 - __notepad c:\boot.ini__，添加后面一行，``c:\grldr="grub"``
 - 重启，菜单里面选grub，按"c"键，依次打下面的命令(支持tab补全)，X为linux的根分区序号
 
-> grub>root (hd0,X)
-> grub>setup (hd0)
-> grub>reboot
+     grub>root (hd0,X)
+     grub>setup (hd0)
+     grub>reboot
 
 ###  无法进入windows，停在grub>处 
 Y是windows下C盘所在分区的序号
 
-> grub>rootnoverify (hd0,Y)
-> grub>chainloader +1
-> grub>boot
+     grub>rootnoverify (hd0,Y)
+     grub>chainloader +1
+     grub>boot
 
 
 ###  无法进入windows，连grub>都看不到 
 - 作者是linzi222@linuxsir，原帖在[这里](http://www.linuxsir.org/bbs/archive/index.php/database/t-260082.html)
 - 用windows安装盘启动，加载驱动后，按"R"键进入故障修复控制台
-- 输入命令__fixboot c:__
+- 输入命令``fixboot c:``
 - 重启
 - 还不行就试试 __fixmbr__
 
@@ -250,16 +250,15 @@ Y是windows下C盘所在分区的序号
 
 ### 关于framebuffer
 
-modconf->kernel->drivers->vedio->vga16fb
-
+    modconf->kernel->drivers->vedio->vga16fb
 
 ### 声卡驱动
-- apt-get install alsa-utils alsa-oss
-- alsaconf
 
+    apt-get install alsa-utils alsa-oss
+    alsaconf
 
 ### dig
-- apt-get install dnsutils
+    apt-get install dnsutils
 
 
 ### apache + mysql + php 
@@ -267,11 +266,10 @@ modconf->kernel->drivers->vedio->vga16fb
 - [lamp配置](https://wiki.debian.org/zh_CN/LAMP)
 - [Debian 6 下 Apache+MySQL+MySQL的LAMP服务器的配置](http://www.duyaofei.com/2012/03/29/vps-%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B11%EF%BC%9Adebian-6-%E4%B8%8B-apachemysqlmysql%E7%9A%84lamp%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/)
 
-
-> apt-get install apache2
-> apt-get install mysql-server
-> apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
-> apt-get install php5-mysql
-> apt-get install php5-gd
-> apt-get install imagemagick php5-imagick
+      apt-get install apache2
+      apt-get install mysql-server
+      apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
+      apt-get install php5-mysql
+      apt-get install php5-gd
+      apt-get install imagemagick php5-imagick
 
