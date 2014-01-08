@@ -8,26 +8,26 @@ description: "Domain Name System "
 ## 基础
 | 资料 | 说明 |
 | ---- | ---- |
-| [DNS, Domain Name System http://www.networksorcery.com/enp/protocol/dns.htm] | 爆全的DNS资料索引，世上还是好人多，感动 |
-| [SWITCHlan Services: DNS References  http://www.switch.ch/network/services/dns/references.html] | DNS RFC 索引，也很全 |
-| [Domain Name Service DNS http://www.freesoft.org/CIE/Topics/75.htm] | 很清晰的DNS基础介绍 |
-| [Understanding the DNS Protocol http://www.windowsnetworking.com/articles_tutorials/understanding-dns-protocol-part1.html] | DNS协议介绍 |
+| [DNS, Domain Name System](http://www.networksorcery.com/enp/protocol/dns.htm) | 爆全的DNS资料索引，世上还是好人多，感动 |
+| [SWITCHlan Services: DNS References ](http://www.switch.ch/network/services/dns/references.html) | DNS RFC 索引，也很全 |
+| [Domain Name Service DNS](http://www.freesoft.org/CIE/Topics/75.htm) | 很清晰的DNS基础介绍 |
+| [Understanding the DNS Protocol](http://www.windowsnetworking.com/articles_tutorials/understanding-dns-protocol-part1.html) | DNS协议介绍 |
 
 
 ## 工具
 | 工具 | 简介 |
 | ---- | ---- |
-| [statdns http://www.statdns.com] | 每月发布全球com/net/org等域名的统计，上面还有dns相关工具的整理、RFC的列表，非常不错
-| [DNS Looking Glass http://www.dns-lg.com/] | 可指定节点查询给定域名的RR，支持正向、反向解析，以WEB API形式提供服务，也是statdns的
-| [viewdns http://viewdns.info/] | 探测工具
-| [DiG HOWTO  http://www.madboa.com/geek/dig/] | 解析工具
-| [WhoisMind https://addons.mozilla.org/zh-CN/firefox/addon/whois-mind/?src=userprofile] | 看域名whois信息的firefox扩展
-| [IntoDNS http://www.intodns.com/] | 检查权威DNS配置
-| [dns-tools http://www.bind10.net/dns-tools] | dns 工具箱
-| [Comparison_of_DNS_server_software http://en.wikipedia.org/wiki/Comparison_of_DNS_server_software] | dns 软件对比
-| [just dns lookup http://just-dnslookup.com/index.php] | 从全球各地探测指定域名
-| [massivedns http://massivedns.com/] | 探测
-| [chinaz站长dns工具 http://tool.chinaz.com/dns/] | 从国内各地探测指定域名，也可指定dns
+| [statdns](http://www.statdns.com) | 每月发布全球com/net/org等域名的统计，上面还有dns相关工具的整理、RFC的列表，非常不错
+| [DNS Looking Glass](http://www.dns-lg.com/) | 可指定节点查询给定域名的RR，支持正向、反向解析，以WEB API形式提供服务，也是statdns的
+| [viewdns](http://viewdns.info/) | 探测工具
+| [DiG HOWTO ](http://www.madboa.com/geek/dig/) | 解析工具
+| [WhoisMind](https://addons.mozilla.org/zh-CN/firefox/addon/whois-mind/?src=userprofile) | 看域名whois信息的firefox扩展
+| [IntoDNS](http://www.intodns.com/) | 检查权威DNS配置
+| [dns-tools](http://www.bind10.net/dns-tools) | dns 工具箱
+| [Comparison_of_DNS_server_software](http://en.wikipedia.org/wiki/Comparison_of_DNS_server_software) | dns 软件对比
+| [just dns lookup](http://just-dnslookup.com/index.php) | 从全球各地探测指定域名
+| [massivedns](http://massivedns.com/) | 探测
+| [chinaz站长dns工具](http://tool.chinaz.com/dns/) | 从国内各地探测指定域名，也可指定dns
 
 
 ## 节点
@@ -47,22 +47,22 @@ description: "Domain Name System "
 
 | 资料 | 说明 |
 | ---- | ---- |
-| [Attacking the DNS Protocol  http://www.net-security.org/article.php?id=600] | DNS攻击
-| [An analysis of the DNS cache poisoning attack https://labs.nic.cz/files/labs/DNS-cache-poisoning-attack-analysis.pdf] | DNS缓存中毒分析
-| [BIND 9 DNS Cache Poisoning http://landing2.trusteer.com/list-context/publications/bind-9-dns-cache-poisoning] | Bind9 缓存中毒资料
-| [BIND 8 DNS Cache Poisoning http://landing2.trusteer.com/list-context/publications/bind-8-dns-cache-poisoning] | Bind8 缓存中毒资料
-| [关于DNSCURVE http://abbypan.blogspot.com/2011/11/dnscurve.html] | DNSCurve笔记，关于加密DNS解析请求
+| [Attacking the DNS Protocol](http://www.net-security.org/article.php?id=600) | DNS攻击
+| [An analysis of the DNS cache poisoning attack](https://labs.nic.cz/files/labs/DNS-cache-poisoning-attack-analysis.pdf) | DNS缓存中毒分析
+| [BIND 9 DNS Cache Poisoning](http://landing2.trusteer.com/list-context/publications/bind-9-dns-cache-poisoning) | Bind9 缓存中毒资料
+| [BIND 8 DNS Cache Poisoning](http://landing2.trusteer.com/list-context/publications/bind-8-dns-cache-poisoning) | Bind8 缓存中毒资料
+| [关于DNSCURVE](http://abbypan.blogspot.com/2011/11/dnscurve.html) | DNSCurve笔记，关于加密DNS解析请求
 
 
 ## 厂商
 
 | 厂商 | 简介 |
 | ---- | ---- |
-| [icann http://www.icann.org/] | 政策
-| [iana http://www.iana.org/] |  	DNS相关事件
-| [dns-oarc https://www.dns-oarc.net/] |  	DNS相关技术、漏洞及报告
-| [caida http://www.caida.org/] | 数据分析
-| [Nominum http://www.nominum.com/] | 牛X厂商，权威、递归都有
+| [icann](http://www.icann.org/) | 政策
+| [iana](http://www.iana.org/) |  	DNS相关事件
+| [dns-oarc](https://www.dns-oarc.net/) |  	DNS相关技术、漏洞及报告
+| [caida](http://www.caida.org/) | 数据分析
+| [Nominum](http://www.nominum.com/) | 牛X厂商，权威、递归都有
 
 ## 书
 
