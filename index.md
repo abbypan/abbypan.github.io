@@ -1,7 +1,7 @@
 ---
 layout: page
-title: 个人主页
-tagline: 求福不回，求用不匮
+title: 求福不回，求用不匮
+tagline: 
 ---
 {% include JB/setup %}
 
