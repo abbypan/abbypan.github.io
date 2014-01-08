@@ -51,6 +51,10 @@
   
     
       
+    
+  
+    
+      
       	
       	<li><a href="/categories.html">Categories</a></li>
       	
@@ -75,9 +79,21 @@
   
     
       
+    
+  
+    
+      
       	
       	<li><a href="/archive.html">Archive</a></li>
       	
+      
+    
+  
+    
+      
+    
+  
+    
       
     
   
@@ -143,7 +159,7 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <h2 id='id38'>安装</h2>
+    <h2 id='id46'>安装</h2>
 
 <h3 id='apt'>设置apt源</h3>
 
@@ -184,13 +200,13 @@ LANGUAGE=&quot;zh_CN:zh&quot;</code></pre>
 
 <pre><code>/dev/sda1 /mnt/usb vfat user,rw,noauto,utf8=1,fmask=113,dmask=022,umask=022 0 0</code></pre>
 
-<h3 id='id39'>基础包</h3>
+<h3 id='id47'>基础包</h3>
 
 <ul>
 <li>apt-get install build-essential</li>
 </ul>
 
-<h2 id='id40'>网络</h2>
+<h2 id='id48'>网络</h2>
 
 <h3 id='adsl'>adsl</h3>
 
@@ -288,7 +304,7 @@ LANGUAGE=&quot;zh_CN:zh&quot;</code></pre>
 <p>route add -net 202.38.0.0/16 gw $gateway dev eth0 route add -net 210.45.0.0/16 gw $gateway dev eth0 route add -net 211.86.0.0/16 gw $gateway dev eth0</p>
 </blockquote>
 
-<h3 id='id41'>无线</h3>
+<h3 id='id49'>无线</h3>
 
 <p>- 资料： - <a href='http://moto.debian.org.tw/viewtopic.php?t=7633&amp;amp;start=0&amp;amp;postdays=0&amp;amp;postorder=asc&amp;amp;highlight=&amp;amp;sid=f3a3f4c96593f3a93781d49bcbca4a59'>CentrinoDriver輕鬆編譯</a> - <a href='http://ccl422.blogspot.com/2007/11/wireless.html'>Wireless</a> - <a href='http://www.freebsd.org/cgi/man.cgi?query=wpa_supplicant.conf&amp;amp;sektion=5'>WPA_SUPPLICANT.CONF5</a></p>
 
@@ -356,11 +372,11 @@ LANGUAGE=&quot;zh_CN:zh&quot;</code></pre>
 </ul>
 
 <blockquote>
-<h1 id='id42'>无线网卡</h1>
+<h1 id='id50'>无线网卡</h1>
 
 <p>allow-hotplug eth1 iface eth1 inet dhcp wpa-driver wext wpa-roam /etc/wpa_supplicant/lab.conf</p>
 
-<h3 id='id43'>无线接入实验室</h3>
+<h3 id='id51'>无线接入实验室</h3>
 
 <p>wpa-ssid &#8220;MyLab&#8221;</p>
 </blockquote>
@@ -413,7 +429,7 @@ LANGUAGE=&quot;zh_CN:zh&quot;</code></pre>
 <li>还不行就试试 <strong>fixmbr</strong></li>
 </ul>
 
-<h2 id='id44'>其他</h2>
+<h2 id='id52'>其他</h2>
 
 <h3 id='x'>无法进入X</h3>
 
@@ -429,7 +445,7 @@ LANGUAGE=&quot;zh_CN:zh&quot;</code></pre>
 
 <p>modconf-&gt;kernel-&gt;drivers-&gt;vedio-&gt;vga16fb</p>
 
-<h3 id='id45'>声卡驱动</h3>
+<h3 id='id53'>声卡驱动</h3>
 
 <ul>
 <li>apt-get install alsa-utils alsa-oss</li>

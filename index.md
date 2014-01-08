@@ -19,8 +19,10 @@ tagline:
 - [Lisp](lisp.html)
 - [Perl](perl.html)
 - [R](r.html)
+- [VIM](vim.html)
 - [Windows软件](windows.html)
 
 ## 生活
 
+- [喜欢的歌](music.html)
 - [喜欢的书](book.html)
