@@ -12,7 +12,7 @@ tagline:
 谁将归去？守望一生。
 
 ## 技术
-
+- [ArchLinux](archlinux.html)
 - [Windows软件](windows.html)
 
 ## 生活
