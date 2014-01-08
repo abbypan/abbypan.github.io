@@ -26,3 +26,6 @@ tagline:
 
 - [喜欢的歌](music.html)
 - [喜欢的书](book.html)
+- [天之痕](swd3e.html)
+- [93倚天](93yitian.html)
+- [体操](gym.html)
