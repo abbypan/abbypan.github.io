@@ -5,6 +5,7 @@ http://abbypan.github.io/rss.xml
 http://abbypan.github.io/pages.html
 http://abbypan.github.io/index.html
 http://abbypan.github.io/categories.html
+http://abbypan.github.io/book.html
 http://abbypan.github.io/atom.xml
 http://abbypan.github.io/archive.html
 
