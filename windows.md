@@ -1,0 +1,66 @@
+---
+layout: page
+title: "Windows常用软件"
+description: ""
+---
+{% include JB/setup %}
+
+
+| 软件 | 用途 | 同类备用软件 |
+| ---- | ---- | ------------ |
+| [FossHub](http://www.fosshub.com/) | 自由软件推荐 | |
+| [7zip](http://sparanoid.com/lab/7z/) | 压缩解压 | |
+| [ccleaner](https://www.piriform.com/ccleaner) | 清理系统 | wise care 365, 魔方 |
+| [console2](http://sourceforge.net/projects/console/) | 命令行 | 参考 [What's a good alternative Windows console](http://stackoverflow.com/questions/440269/whats-a-good-alternative-windows-console)
+| [easeus](partition manager http://www.partition-tool.com) | 硬盘分区 |
+| [freecommander](http://www.freecommander.com/) | 文件管理器 |
+| [kitty](http://www.9bis.net/kitty/) | ssh 远程连接 | tunnelier，securecrt
+| [mipony](http://www.mipony.net/) | mediafire、megaupload等网盘文件下载 |
+| [mp3tag](http://www.mp3tag.de/en/download.html) | mp3 文件信息编辑 |
+| [waterfox](http://www.waterfoxproject.org/) | 浏览器 |
+| abc amber chm converter | chm 转 pdf |
+| apploc | 游戏乱码 |
+| chart director | 画图库函数
+| clisp | lisp 开发 |
+| dosbox | dos环境模拟器 |
+| dropbox | 网盘 | skydrive, baidu云网盘
+| foxmail | 邮件管理 | outlook
+| fscapture | 截图、屏幕录像 | 
+| gear 变速齿轮 | 调整游戏时画面速度 | 
+| github for windows | 代码管理 |
+| gvim | 编辑器 | emeditor
+| imagemagick | 图片处理
+| jidian 极点郑码 | 形码输入法 |
+| linuxLive USB Creator | U盘linux系统
+| listary | 快速定位文件
+| live project free viewer | 微软 mpp 文件查看 |
+| medieval cue splitter | 根据cue分割音乐文件 |
+| monaco ttf | 编程字体 |
+| ms office | 办公 | openoffice
+| mydrivers 驱动精灵 | 硬件驱动 |
+| navicat for mysql | mysql管理 | heidisql
+| oneKey Ghost | ghost 重装系统 |
+| osfmount | 虚拟光驱 |
+| pathsync | 同步文件夹 | super flexible file synchronizer
+| pdf xchange view | pdf阅读器 | adobe pdf reader
+| pdfsam | pdf 文件分割合并 |
+| phpnow | apache + php + mysql 环境 |
+| qgifer | 从视频文件(mp4等)中提取gif |
+| qq国际版 | 聊天 |
+| quod libet  | 音乐播放 | ttplayer 千千静听, qq音乐
+| rapidee | 修改环境变量
+| [regjump](http://technet.microsoft.com/zh-cn/sysinternals/bb963880) | 跳转到指定注册表位置 | 
+| skype | 聊天、视频 |
+| speq | 计算器 |
+| strawberry perl | perl 开发 |
+| thunder 迅雷精简版 | 下载 |
+| txt2tags | 生成简单网页 |
+| unlocker | 文件解锁，删除
+| virtual box | 虚拟机 | vmware
+| vlc | 播放器 | baidu player 百度影音
+| winpe 老毛桃u盘工具 | 重装系统 |
+| winscp | sftp / ftp 客户端 | ftprush
+| wireless key view | 查看已保存的无线密码 |
+| wireshark | 网络抓包 |
+| wordpress WXR File Splitter (RSS XML) | wordpress备份的xml文件分割 |
+| xlight ftp server | ftp 服务器 |
