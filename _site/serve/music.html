@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>喜欢的音乐</title>
+    <script src="audiojs/jquery.js"></script>
+    <script src="audiojs/audio.min.js"></script>
+    <link rel="stylesheet" href="audiojs/index.css" media="screen">
+    <script>
+      $(function() { 
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+          trackEnded: function() {
+            var next = $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.addClass('playing').siblings().removeClass('playing');
+            audio.load($('a', next).attr('data-src'));
+            audio.play();
+          }
+        });
+        
+        // Load in the first track
+        var audio = a[0];
+            first = $('ol a').attr('data-src');
+        $('ol li').first().addClass('playing');
+        audio.load(first);
+
+        // Load in a track on click
+        $('ol li').click(function(e) {
+          e.preventDefault();
+          $(this).addClass('playing').siblings().removeClass('playing');
+          audio.load($('a', this).attr('data-src'));
+          audio.play();
+        });
+        // Keyboard shortcuts
+        $(document).keydown(function(e) {
+          var unicode = e.charCode ? e.charCode : e.keyCode;
+             // right arrow
+          if (unicode == 39) {
+            var next = $('li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.click();
+            // back arrow
+          } else if (unicode == 37) {
+            var prev = $('li.playing').prev();
+            if (!prev.length) prev = $('ol li').last();
+            prev.click();
+            // spacebar
+          } else if (unicode == 32) {
+            audio.playPause();
+          }
+        })
+      });
+    </script>
+  </head>
+  <body>
+  <div id="wrapper">
+      <h1><em>喜欢的音乐</em></h1>
+          <p>键盘快捷键：
+          <em>&rarr;</em> 下一首 ,
+          <em>&larr;</em> 上一首 ,
+          <em>Space</em>  暂停
+          </p>
+
+          <p>PC在线播放 需预先配置下列站点：</p>
+          <ul>
+              <li>zhangmenshiting.baidu.com</li>
+              <li>file.qianqian.com</li>
+          </ul>
+          <p>
+          的referer为http://music.baidu.com
+      </p>
+      <audio preload></audio>
+      <ol>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1809373/1809373.mp3?xcode=566418df8cc95b036c1a0a187b8bdeb9d77a898749278da2">任贤齐-一个人,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/64008799/64008799.mp3?xcode=566418df8cc95b031ef059d019612862c03afd82bb6a71a2">林俊杰-一千年以后,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35418744/35418744.mp3?xcode=566418df8cc95b0386ba18b155e123e6739ee5f32f6d6f60">王杰-一场游戏一场梦,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/31453834/31453834.mp3?xcode=566418df8cc95b036575da7682d4a509cccaad56e7aff4c1">胡歌-阿兰-一念执着,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/50996352/50996352.mp3?xcode=566418df8cc95b03d3d53c0162206305467962d4178a16e3">阿桑-一直很安静,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/51807936/51807936.mp3?xcode=566418df8cc95b03bcbb794681997be3b2c3d0a60ec499bc">周华健-一起吃苦的幸福,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/9815900/9815900.mp3?xcode=566418df8cc95b03b9f2e521fce83c03d5ca639d6956f177">关正杰-万水千山纵横,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/23319143/23319143.mp3?xcode=566418df8cc95b032c9d640ba52cf8b13f6b777873214b8d">吴欣睿-三个人的时光,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/32240362/32240362.mp3?xcode=566418df8cc95b03d757f3ef7fb59cc3808784dea2eabb6c">Tank-三国恋,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/31930941/31930941.mp3?xcode=566418df8cc95b03bff309ef2a4f07724968b8fd1695c6a4">严艺丹-三寸天堂,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1965744/1965744.mp3?xcode=566418df8cc95b03be9a67853df583084df6d7bfcbd5b421">周华健-上上签,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23791140/23791140.mp3?xcode=566418df8cc95b03b9270ea15b337b24284e91facc88a081">周华健-下午的一出戏,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2492804/2492804.mp3?xcode=566418df8cc95b0339215c48aa8ff229de848634f0713e27">小虎队-不要让眼泪流在心里面,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/40137799/40137799.mp3?xcode=566418df8cc95b0319955991b69949130e64a933647b926e">黄安-东南西北风,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/44832136/44832136.mp3?xcode=566418df8cc95b034b29b92c0a19a48f77135cacec4e9d76">周华健-两种,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/33900791/33900791.mp3?xcode=566418df8cc95b03f1c8721f97b568aa2a78c73f4c3f483c">周华健-为什么我要走,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/36920565/36920565.mp3?xcode=566418df8cc95b03443d991eb9981a524c14586c1cd983c4">周华健-为爱情受伤,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/53832702/53832702.mp3?xcode=5d2a43894e90b0767d5b13423e5eae38262d0d172dcbd9f1">Finale-九州缥缈录·乱世歌行,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/53835445/53835445.mp3?xcode=5d2a43894e90b0767d5b13423e5eae380ea2b024457cd4e2">Finale-云荒·只如初见,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1804418/1804418.mp3?xcode=5d2a43894e90b07643666b33f6fe02dc147d0dd18a38977b">周华健-亲亲我的宝贝,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/36918414/36918414.mp3?xcode=5d2a43894e90b0765b067c4e7dd039e2d69355c000d71266">任贤齐-任逍遥,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1952810/1952810.mp3?xcode=5d2a43894e90b0763cb7cebf3a6c0a19c505bc028249b981">任贤齐-伤心太平洋,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/27842472/27842472.mp3?xcode=5d2a43894e90b076f097cb451d097c44ff97160f845bd4d8">梅艳芳-似是故人来,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/2297339/2297339.mp3?xcode=5d2a43894e90b0765600e90856ff7c5f32e3de3bfc00e963">黄安-你好坏,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1962520/1962520.mp3?xcode=5d2a43894e90b07691aee3b64af5d641eb86027a60db37eb">成龙-你给我一片天,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/13758629/13758629.mp3?xcode=5d2a43894e90b0764c5587df9f74f70e50f0bf0b162a7949">群星-你给我一片天,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/13758633/13758633.mp3?xcode=5d2a43894e90b0761bc26e2d4613cad642fff0e5fd5185a4">群星-俩俩相忘,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1055417/1055417.mp3?xcode=5d2a43894e90b076d5aa7eeb0e1cd5d226a9142dae913e83">辛晓琪-俩俩相忘,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/64361176/64361176.mp3?xcode=5d2a43894e90b0762a8d2daa8331b648c2782ee5b1aaa6c8">五月天-倔强,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/34314640/34314640.mp3?xcode=5d2a43894e90b076e6942acfc9d786670e01b6652581c51e">赵季平-倚天屠龙风波生(演奏曲),320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/40137965/40137965.mp3?xcode=5d2a43894e90b0761e76669c34ba85e25db6a773f4df771d">河图-倾尽天下,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/52558449/52558449.mp3?xcode=5d2a43894e90b076150a6b09d4fa7c48964a9ae3a61d9eb4">周华健-像我这样的男人,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23735156/23735156.mp3?xcode=5d2a43894e90b076b235d7d79b729be6e9af8d71a7e0937d">刘德华-陈奕迅-兄弟,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/107184785/107184785.mp3?xcode=5d2a43894e90b076c9f24456e2b591822740d12537606673">罗大佑-光阴的故事,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/13927764/13927764.mp3?xcode=5d2a43894e90b076efa3f47df004c55b45bda9d444342999">周华健-其实不想走,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2352828/2352828.mp3?xcode=5d2a43894e90b076e54b2113284f98b94f206fafbdbc4ab4">小虎队-再见,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23721342/23721342.mp3?xcode=5d2a43894e90b076a1849aafa45695ceb644c52659464d35">李宗盛-凡人歌,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/40207192/40207192.mp3?xcode=5d2a43894e90b07684337889ca2350896b0162cc607da623">河图-凤凰劫,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35426872/35426872.mp3?xcode=5d2a43894e90b076f3489aa5ff32c3f2e1454d22acbe55ca">周华健-刀剑如梦,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35489659/35489659.mp3?xcode=5d2a43894e90b076f3489aa5ff32c3f225d84952906bc662">周华健-刀剑若梦,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1828569/1828569.mp3?xcode=5d2a43894e90b07603f9a7238d6dc9be62dc6b37d4dc0f94">周华健-任贤齐-别傻了,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1495783/1495783.mp3?xcode=5d2a43894e90b076556cfa1fad0a2ced54d48d5fd9e26d9a">邰正宵-千纸鹤,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38361919/38361919.mp3?xcode=5d2a43894e90b0762ad104205e2b6c53ed0d62dc5861abe3">春光灿烂猪八戒-卷睫盼,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/53836741/53836741.mp3?xcode=5d2a43894e90b0765e76b411456ed2019367cb713cd7f9c6">Finale-又何用,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/2297341/2297341.mp3?xcode=5d2a43894e90b07630d57c7e3ff1a9e1199473068c202604">黄安-古老的眼泪,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/27851412/27851412.mp3?xcode=5d2a43894e90b07677d29291faf7a6d7ad369c5e7d1565ff">陈小春-叱咤红人,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38372990/38372990.mp3?xcode=5d2a43894e90b076f123818d14517bd8e8527d08a3e4c202">黄安-君莫攀,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35429128/35429128.mp3?xcode=5d2a43894e90b07688009d4d5095c7d42e3db7da6ec201cf">张惠妹-听海,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/27839800/27839800.mp3?xcode=5d2a43894e90b07677d29291faf7a6d7237f4388090a03e5">李宗盛-和自己赛跑的人,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2360306/2360306.mp3?xcode=5d2a43894e90b07617a0564a8f5faac32ea72c1e8ca9056a">周华健-在云端,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/64420060/64420060.mp3?xcode=5d2a43894e90b0766a8d04e31b25b4d47c62c015f0d61854">许美静-城里的月光,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/38814405/38814405.mp3?xcode=5d2a43894e90b076be8cf38c73832c30fb3d778417b2b581">成龙-壮志在我胸,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/5741064/5741064.mp3?xcode=5d2a43894e90b076d39a58764fb838b172503b26c0572ae2">叶振棠-大内群英,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/65602267/65602267.mp3?xcode=5d2a43894e90b0760254393358fe6e696e2a7c3d02b5a2b6">齐豫-周华健-天下有情人,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/24085892/24085892.mp3?xcode=5d2a43894e90b0764c119431b057782dd1a7e4fe83290624">安琥-天使的翅膀,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/12240520/12240520.mp3?xcode=5d2a43894e90b0769f2efe3a009578e2fb9f83bdb2ee6546">小虎队-天地一沙鸥,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35474815/35474815.mp3?xcode=5d2a43894e90b0769af9b3467aef8624aa89c0465398892f">任贤齐-天涯,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/8344399/8344399.mp3?xcode=5d2a43894e90b0766bf4110a41e158699a225450a3d5e545">关正杰-天蚕变,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38349728/38349728.mp3?xcode=5d2a43894e90b0762f30003cb84f8a7a5ccbdca66e09d6ac">马浚伟-头顶一片天,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/39490688/39490688.mp3?xcode=5d2a43894e90b0765c61d967a9e57f63cd0fe3f67b64196e">河图-如花,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2493864/2493864.mp3?xcode=5d2a43894e90b07653e4f0422c8a6ce244dbb036e5289973">李宗盛-如风往事,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/39430924/39430924.mp3?xcode=5d2a43894e90b07697225e98f96011bcf570df5e01008165">张国荣-始终会行运,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2360490/2360490.mp3?xcode=5d2a43894e90b0764651f2bbc949adcdd344869632bf1280">周华健-孤枕难眠,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/31178788/31178788.mp3?xcode=5d2a43894e90b07629376b17294179837544e58675050a4a">李宗盛-寂寞难耐,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38352850/38352850.mp3?xcode=5d2a43894e90b076b3704695143ed2d2f9302f70782f9fac">河图-寒衣调,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/27839851/27839851.mp3?xcode=5d2a43894e90b076176983ae6dab34623cfb881febd9fe9e">周华健-寡妇村传奇,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1948127/1948127.mp3?xcode=5d2a43894e90b076194f2dfa7e847aafbaa87b33b67904ce">任贤齐-小雪,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23742520/23742520.mp3?xcode=5d2a43894e90b07663b79fbcb7833e709cee9fa88036a674">林忆莲-李宗盛-当爱已成往事,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/59327370/59327370.mp3?xcode=5d2a43894e90b07685ae70c334ec4a5672b61ecc57a86f37">周华健-忘忧草,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1790990/1790990.mp3?xcode=5d2a43894e90b07613d3ee0a8e1a5500bc05726956d410b3">周华健-怎么了,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/105942985/105942985.mp3?xcode=5d2a43894e90b0765db10e2c8b27f8e507cc501f917db03a">周华健-怕黑,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/790538/790538.mp3?xcode=5d2a43894e90b07628992accc0db44c9f7f20f577dc28f37">罗大佑-恋曲1990,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/100170939/100170939.mp3?xcode=5d2a43894e90b0769bd86ebc8b9d226928f30c5e0815f152">赵季平-情比石坚缔良缘,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/51477761/51477761.mp3?xcode=5d2a43894e90b076d15b42a77655eb1f1921402e411aa9bb">关正杰-情爱几多哀,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35419836/35419836.mp3?xcode=5d2a43894e90b076c67140390181d680c092682d47f8227c">张惠妹-我可以抱你吗,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35429202/35429202.mp3?xcode=5d2a43894e90b076c67140390181d680e7610c75d9640842">李宗盛-我是一只小小鸟,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2360492/2360492.mp3?xcode=5d2a43894e90b0767ad7024691cca3c1dd863da0154678c2">周华健-我是谁,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/34191139/34191139.mp3?xcode=5d2a43894e90b076e51ad568bdbc97296787294554713645">曲婉婷-我的歌声里(Demo),320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/18118465/18118465.mp3?xcode=5d2a43894e90b076cd95feee48754e6de6d5d97a4a922a8a">黄安-我的泪让铁石心肠的人都感动,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1822694/1822694.mp3?xcode=5d2a43894e90b0764f6ea7e9e713acd4ec5aca856f7c442f">周华健-我知道,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1486722/1486722.mp3?xcode=5d2a43894e90b076abb6471623e567b700338b09f48d7e27">周华健-我试着假装,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35420300/35420300.mp3?xcode=5d2a43894e90b0762c0d3e5beaca6a364e7199356b2c2611">陈升-把悲伤留给自己,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/27843991/27843991.mp3?xcode=5d2a43894e90b076e80a21b372cfffc0139f5bacedfe80ad">安琥-拂袖,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38351869/38351869.mp3?xcode=5d2a43894e90b076a30803311d0cca0db8362d79a8838074">河图-拉萨乱雪,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/32230065/32230065.mp3?xcode=5d2a43894e90b076d4b3c867f571233dc1aef07acdcc2c29">谢霆锋-容祖儿-挥着翅膀的女人,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/89569947/89569947.mp3?xcode=5d2a43894e90b0765e3e15172ed55fed95cb5c6124025224">伍佰-挪威的森林,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35488083/35488083.mp3?xcode=5d2a43894e90b076864721f66acea375dedb486e11dbe76c">周华健-摆渡人的歌,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/1037533/1037533.mp3?xcode=5d2a43894e90b0765a76cb9ae1b3ec697e6a6d579042874e">黄安-救姻缘,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/23479354/23479354.mp3?xcode=5d2a43894e90b07622a5f900664d19f7173e71d40c83771b">黄安-新鸳鸯蝴蝶梦,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1505110/1505110.mp3?xcode=5d2a43894e90b0767856b8905981d89da6881ea7317e15a0">周华健-旧伤新痕,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38381620/38381620.mp3?xcode=5d2a43894e90b0767d8685a02e6e9141f3c350a67b4ed05e">黄安-明天会吹什么风,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/13067081/13067081.mp3?xcode=5d2a43894e90b07621664fc93c806ac23b034d43f3c4ca44">黄安-明明知道相思苦,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2467097/2467097.mp3?xcode=5d2a43894e90b0763082eae1849e45dd41ca33f7548008b6">小虎队-星光依旧灿烂,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2492802/2492802.mp3?xcode=5d2a43894e90b076ca03d4079591957a11ab4325f6fbb071">小虎队-星星的约会,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/57953143/57953143.mp3?xcode=5d2a43894e90b076f05af0e44ebe15adb223cdf3c4df7385">古巨基-春天,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38349814/38349814.mp3?xcode=5d2a43894e90b076948eab2a9cae64092f75b65820342021">西游记-晴空月儿明,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/34134613/34134613.mp3?xcode=5d2a43894e90b0761650824632e5b84dd7c23b0bb0d2473a">凤凰传奇-最炫民族风,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38370807/38370807.mp3?xcode=5d2a43894e90b076aeb933c9c4f7172cd4ac62f4de4aa86d">小虎队-最爱是你,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/32226790/32226790.mp3?xcode=5d2a43894e90b0766e7f6c36dfbe4e4e07efb6c00cf3d77a">周华健-品冠-李宗盛-最近比较烦,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/41850826/41850826.mp3?xcode=5d2a43894e90b076ac3dbcc74a23e7444f620ff507f397d6">群星-最近比较烦,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/826497/826497.mp3?xcode=5d2a43894e90b0767bbf59b58d3c1af337f2cdf478804527">周华健-月满,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1017740/1017740.mp3?xcode=5d2a43894e90b07641da888799c668afff5a612c9b344ae1">周华健-有弦相聚,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/45825832/45825832.mp3?xcode=5d2a43894e90b07695bd234f5a1fee1a071d996419f2795c">周华健-有故事的人,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/45313661/45313661.mp3?xcode=5d2a43894e90b07645c8baa76d049e94110ff7f5ae58764a">周华健-有没有一首歌会让你想起我,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/1228795/1228795.mp3?xcode=5d2a43894e90b07627cc419dc981d4a46a91cc48de517cc8">仙剑奇侠传-望海潮,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38351548/38351548.mp3?xcode=5d2a43894e90b076629c9da719d1977b63263a5343555320">黄安-样样红,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1470094/1470094.mp3?xcode=5d2a43894e90b076e679194dfe4d4b0048ff5743659b857f">周华健-棋子,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/65057827/65057827.mp3?xcode=5d2a43894e90b0766d8ab60d15e0aac57d6c3f433efca187">Sweety-樱花草,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/34182156/34182156.mp3?xcode=5d2a43894e90b0760a973ba011cda8c87d2e61812361d196">青鸟飞鱼-此生不换,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35474826/35474826.mp3?xcode=5d2a43894e90b076968e6a2da47ccb94390b4033e633de50">任贤齐-死不了,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38374177/38374177.mp3?xcode=5d2a43894e90b0766b8c040f4ec5886c400750453ee72cec">小虎队-永远,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/38449309/38449309.mp3?xcode=5d2a43894e90b076bcb9cf199990e4da557219feb9f3df8e">张纪中-周华健-胡军-黄晓明-小虫-江湖笑,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/31873405/31873405.mp3?xcode=5d2a43894e90b0767eaeac03256315b92f76bfd3842f13cd">张国荣-沉默是金,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/51484033/51484033.mp3?xcode=5d2a43894e90b0767140372b034b7ccc4e1859602c6cccff">周华健-沿途有你,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/46757396/46757396.mp3?xcode=5d2a43894e90b0765cfa24abb2db23a601b1f9a6a0686d55">周华健-浓情化不开,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/39486219/39486219.mp3?xcode=5d2a43894e90b0769c3195a19479ef7dcdb4a65b483b473a">叶启田-浪子的心情,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/100171082/100171082.mp3?xcode=5d2a43894e90b0766ae706014429499515ca9078e7528570">赵季平-浪迹天涯侠客行,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/757507/757507.mp3?xcode=5d2a43894e90b076ebe847ca51b4e232b802a4cbfcfc1d6a">大合唱-海上花,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35342659/35342659.mp3?xcode=5d2a43894e90b076a43031139e6b09009982d226d7f307ba">五月天-温柔,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35428963/35428963.mp3?xcode=5d2a43894e90b0763383f8c4b43381a092e290b40a1b0123">罗大佑-陈淑桦-滚滚红尘,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23823958/23823958.mp3?xcode=5d2a43894e90b0760f3c25a7024409befd297a7b8df04dbe">叶倩文-潇洒走一回,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35491816/35491816.mp3?xcode=5d2a43894e90b0763383f8c4b43381a08fcb32ecc6d1cdbe">周华健-潮,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38363868/38363868.mp3?xcode=5d2a43894e90b0761c2b0c55c364d1c0666bf7a397ddd9a4">河图-烬,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/44782698/44782698.mp3?xcode=5d2a43894e90b0768c0b8112662ca6317c284a519a3be836">小虎队-爱,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38367275/38367275.mp3?xcode=5d2a43894e90b0761c2b0c55c364d1c0ebc6b01d2a42c98e">黄安-爱与喜欢之间,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/13955356/13955356.mp3?xcode=5d2a43894e90b07687b0b515e93584162c3d468567a56dc8">陈琳-爱了就爱了,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/51765099/51765099.mp3?xcode=5d2a43894e90b076f084efa8fce37a2e9e48f77660c6eb7e">赵季平-爱恨情仇命里去(演奏曲),320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/38266037/38266037.mp3?xcode=5d2a43894e90b0760b4145c9b3cb4fcd5987809191346cef">李丽芬-爱江山更爱美人,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23718975/23718975.mp3?xcode=5d2a43894e90b0764f17a8bec5346d1b549c0183f32fa0dd">李宗盛-爱的代价,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35424098/35424098.mp3?xcode=5d2a43894e90b076b5a2bbf62fb6b6dd93ac6a7a986686af">周华健-爱相随,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/107731909/107731909.mp3?xcode=5d2a43894e90b076683dfcafd36c5517cff85ad8e4cfe664">许茹芸-独角戏,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/31171909/31171909.mp3?xcode=5d2a43894e90b0760b383f4224d12e6e1360f2b93176015e">李宗盛-生命中的精灵,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23739328/23739328.mp3?xcode=5d2a43894e90b0764577be6f1cc96c8a676b5b31d6bc06c5">周华健-莫文蔚-痛苦过,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23730705/23730705.mp3?xcode=5d2a43894e90b0761d4480cce3a9349ea0bfdfafe5334dd3">伍佰-白鸽,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/64120142/64120142.mp3?xcode=5d2a43894e90b076aad0e722fbdf4f88adc7631cd1d19a9b">莫文蔚-盛夏的果实,256 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/39475790/39475790.mp3?xcode=5d2a43894e90b0761a15f4df0f03a4e0397ab92b04d34fa3">毛阿敏-相思,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2367734/2367734.mp3?xcode=5d2a43894e90b0767e4f4da7356730b00a5667626b412239">张学友-汤宝如-相思风雨中,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1963000/1963000.mp3?xcode=5d2a43894e90b07694d3463ef18cb9b11d4e67bf617b37ad">成龙-周华健-黄耀明-李宗盛-真心英雄,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1963000/1963000.mp3?xcode=5d2a43894e90b07694d3463ef18cb9b11d4e67bf617b37ad">成龙-周华健-黄耀明-李宗盛-真心英雄,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35419898/35419898.mp3?xcode=5d2a43894e90b076a107e8851b2424d5d6dccca7480831b0">五月天-知足,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/36917958/36917958.mp3?xcode=5d2a43894e90b076916a977cb26a0ba70d756ee5b6316df5">周华健-齐豫-神话情话,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/213109/213109.mp3?xcode=5d2a43894e90b0763b1f11bea3c5bbf717cc7f3005dc0979">罗大佑-穿过你的黑发的我的手,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/57130101/57130101.mp3?xcode=5d2a43894e90b076ade033816fc3424b2961f6baeb184d89">罗大佑-童年,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/39489579/39489579.mp3?xcode=5d2a43894e90b076ec722a8735dc5f2bcb8b1c52dccd14f8">王菲-刘欢-笑傲江湖,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23760136/23760136.mp3?xcode=5d2a43894e90b0766d063010e77ffcacbfcd41cd75a53706">周华健-等我一秒钟,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/769390/769390.mp3?xcode=5d2a43894e90b076b2e2fea8e1bcc13f4e797441af81f0d3">萧亚轩-类似爱情,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2492813/2492813.mp3?xcode=5d2a43894e90b076564575fc18ac332339559e1cc266129c">小虎队-红蜻蜓,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/18108022/18108022.mp3?xcode=5d2a43894e90b0767b075e1baa3fb16336da3b91303556b2">黄安-美人风筝,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/44067162/44067162.mp3?xcode=5d2a43894e90b076c45e707e715e4e02434136b1ab8cae4d">任贤齐-花太香,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/64548871/64548871.mp3?xcode=5d2a43894e90b076cd27a40e91ca6297c1b78633fcbcbdfa">周华健-花心,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1520870/1520870.mp3?xcode=5d2a43894e90b076bdbe3c457b72a114ada3d508e30fff00">周华健-若不是因为你,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/44926040/44926040.mp3?xcode=5d2a43894e90b076b7ca9f30a60139e88bd6c7c3ed123027">周华健-若不能拥有你,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/44781395/44781395.mp3?xcode=5d2a43894e90b07661426ae8c242ffae0cdd2a8c507bd86d">小虎队-蝴蝶飞呀,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35466277/35466277.mp3?xcode=5d2a43894e90b0765d48544d33356d1e30a471f7a69c7291">周华健-让我欢喜让我忧,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23763406/23763406.mp3?xcode=5d2a43894e90b076a4c3f63f4497a5a8b0f831fd85f44b7c">周华健-谁叫我,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1836610/1836610.mp3?xcode=08ec5c6503c5ccc07c3abf3fa72d1f61d94285b74ebcb2de">周华健-谁来晚餐,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/106120110/106120110.mp3?xcode=08ec5c6503c5ccc0de33db1714b4409820101a5d66895dba">周华健-张大春-身在梁山,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35419940/35419940.mp3?xcode=08ec5c6503c5ccc0af3a8ca803c59a8d446638a60bf4a16d">凤飞飞-追梦人,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/44064916/44064916.mp3?xcode=08ec5c6503c5ccc0c40a708acbe35ccbd7446824409e6382">孙燕姿-遇见,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/38364585/38364585.mp3?xcode=08ec5c6503c5ccc08be394dbf636b78f9bfa5d52f5d120b4">黄安-野火在轻轻的烧,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35425623/35425623.mp3?xcode=08ec5c6503c5ccc06d9920d763cac87e0140e9b5bd0af9b6">李宗盛-铿锵玫瑰,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/2360475/2360475.mp3?xcode=08ec5c6503c5ccc0ab5476ddbfe614d07d885d3773b8b338">周华健-问情剑,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/64121334/64121334.mp3?xcode=08ec5c6503c5ccc0b999adfab92cd00c126a5fecf3578745">莫文蔚-阴天,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/1230906/1230906.mp3?xcode=08ec5c6503c5ccc06ed2265dc0fc22d2894939e5ac9e1d0b">仙剑奇侠传-降妖谱,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/958872/958872.mp3?xcode=08ec5c6503c5ccc0c1d3b3774541f612bb7787d3fed8ee69">黄安-陪你到天涯,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/33073462/33073462.mp3?xcode=08ec5c6503c5ccc0d1e04c7f9af33e65eaa8fe7f96ad7d37">群星-随遇而安,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/58226082/58226082.mp3?xcode=08ec5c6503c5ccc0c67b107756b6c561e5cb1c7fea53f4a5">黄沾-随遇而安,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/33853364/33853364.mp3?xcode=08ec5c6503c5ccc05b862f33a12b2bbebae305fee6494ca3">李度-周华健-难以抗拒,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/36917598/36917598.mp3?xcode=08ec5c6503c5ccc044dab10906a4779a45e7d179c3a89b8b">周华健-难念的经,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/47994075/47994075.mp3?xcode=08ec5c6503c5ccc0527ad3d3fb9886fbdd90edc4754ab07f">周华健-雨人,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/600170/600170.mp3?xcode=08ec5c6503c5ccc08b36e58cdfed7cf0b4a9d7f080d8ba3a">周华健-雪中火,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/35420711/35420711.mp3?xcode=08ec5c6503c5ccc05160049da37d980cc89f09bfd67fb2f9">李宗盛-领悟,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/11874106/11874106.mp3?xcode=08ec5c6503c5ccc0418fc1800db20d0c9e44ae5b807ebec9">卢巧音-风吹不走笑容,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/53834141/53834141.mp3?xcode=08ec5c6503c5ccc0d749cd87bbf89632700bd208ab782842">Finale-风姿物语·李煜·青莲雪,128 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/23469957/23469957.mp3?xcode=08ec5c6503c5ccc0bc21e5ed95f256c1fd520cef464c523c">周华健-风继续吹,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1963592/1963592.mp3?xcode=08ec5c6503c5ccc092957523016134c98cd720b3e5b46316">周华健-风雨无阻,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/1559210/1559210.mp3?xcode=08ec5c6503c5ccc09641ccb1027cbbf7f6f2e7f3ee19142b">黄安-风风雨雨来时路,128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/1772279/1772279.mp3?xcode=08ec5c6503c5ccc0d540cc839a4820e1c1ba79686e3bc7ff">任贤齐-飞鸟,320 kbps</a></li>
+<li><a href="#" data-src="http://file.qianqian.com/data2/music/2492757/2492757.mp3?xcode=08ec5c6503c5ccc04c40edb063230ff4ca4a2d90cff8c68a">小虎队-骊歌(儿童合唱版),128 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/32227131/32227131.mp3?xcode=08ec5c6503c5ccc0aab007f0a8648b2d2b36fe06c6a551c7">周华健-鬼迷心窍,320 kbps</a></li>
+<li><a href="#" data-src="http://zhangmenshiting.baidu.com/data2/music/23732948/23732948.mp3?xcode=08ec5c6503c5ccc04a9213b8ddb9dec484043796d4dd6a1e">李宗盛-鬼迷心窍,320 kbps</a></li>
+      </ol>
+  </div>
+
+
+  <!--<div id="shortcuts">-->
+  <!--<div>-->
+  <!--<h1>键盘快捷键</h1>-->
+  <!--<p><em>&rarr;</em> 下一首 </p>-->
+  <!--<p><em>&larr;</em> 上一首 </p>-->
+  <!--<p><em>Space</em>  暂停 </p>-->
+  <!--<p>在线听最好设置zhangmenshiting.baidu.com/file.qianqian.com的referer为music.baidu.com</p>-->
+  <!--</div>-->
+  <!--</div>-->
+
+
+  </body>
+  </html>

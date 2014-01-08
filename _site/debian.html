@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Debian 安装笔记</title>
+    <meta name="description" content="">
+    <meta name="author" content="Pan Lanlan">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">江天一色</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Debian 安装笔记 </h1>
+</div>
+
+<div class="row-fluid">
+  <div class="span12">
+    <h2 id="">安装</h2>
+
+<h3 id="apt">设置apt源</h3>
+
+<ul>
+<li>BIOS里选网络启动，重启，选debian网络安装；</li>
+
+<li>网络启动介绍见<a href="http://pxe.ustc.edu.cn">PXE.USTC 基本文档</a></li>
+
+<li>也可以参考<a href="http://mail.ustc.edu.cn/~lixuebai/GNU/DebianInstall.html">硬盘安装说明 by lixuebai@ustc</a></li>
+
+<li>手动输入源：__debian.ustc.edu.cn__；</li>
+
+<li>/etc/apt/source.list
+<ul>
+<li>ftp://debian.ustc.edu.cn/sources.list/</li>
+
+<li><code>deb ftp://202.38.73.198/debian sid foo</code></li>
+</ul>
+</li>
+</ul>
+
+<h3 id="etcenvironment">/etc/environment</h3>
+
+<pre><code>LANG=&quot;zh_CN.UTF-8&quot;
+LANGUAGE=&quot;zh_CN:zh&quot;</code></pre>
+
+<h3 id="etcfstab">/etc/fstab</h3>
+
+<p><code>/dev/sda1 /mnt/usb vfat user,rw,noauto,utf8=1,fmask=113,dmask=022,umask=022 0 0</code></p>
+
+<h3 id="_2">基础包</h3>
+
+<p><code>apt-get install build-essential</code></p>
+
+<h2 id="_3">网络</h2>
+
+<h3 id="adsl">adsl</h3>
+
+<ul>
+<li>
+<p>主要参考这两个贴子：<a href="http://linux.hiweed.com/node/2467">adsl by Fly1945@Hiweed</a>，<a href="http://ryang.68ab.com/debian.html#sec8">adsl配置 by ryang</a></p>
+</li>
+
+<li>
+<p>apt-get install pppoe</p>
+</li>
+
+<li>
+<p>将/etc/network/interfaces中的相关内容注释掉</p>
+</li>
+
+<li>
+<p>/etc/ppp/peers/dsl-provider</p>
+
+<pre><code>  noipdefault
+  usepeerdns
+  defaultroute
+  hide-password
+  lcp-echo-interval 20
+  lcp-echo-failure 3
+  connect /bin/true
+  noauth
+  persist
+  mtu 1492
+  noaccomp
+  default-asyncmap
+  plugin rp-pppoe.so eth0
+  #下边的xxx是adsl拨号时使用的用户名
+  user &quot;xxx&quot;</code></pre>
+</li>
+
+<li>
+<p>/etc/ppp/pap-secrets</p>
+
+<pre><code>  #下边的xxx是adsl拨号时使用的用户名，yyy是密码
+  &quot;xxx&quot; dsl-provider &quot;yyy&quot; *</code></pre>
+</li>
+
+<li>
+<p>pon dsl-provider</p>
+</li>
+
+<li>
+<p>查错：plog</p>
+</li>
+</ul>
+
+<h3 id="vpn">vpn</h3>
+
+<ul>
+<li>
+<p>主要参考这几个贴子</p>
+
+<ul>
+<li><a href="http://bbs.ustc.edu.cn/cgi/bbscon?bn=Linux&fn=M3F936B98&num=2136">VPN连接校园网 by kkk@ustc</a></li>
+
+<li><a href="http://bbs.ustc.edu.cn/cgi/bbscon?bn=Linux&fn=M454D58AB&num=2351">pptp-linux拨vpn by hacker ustc</a></li>
+
+<li><a href="http://pptpclient.sourceforge.net/howto-debian.phtml">PPTP CLient by James Cameron</a></li>
+
+<li><a href="http://bbs.ustc.edu.cn/cgi/bbstcon?board=Script&file=M.1211129882.A">发一个让校内ip走vpn路由的perl脚本吧</a></li>
+</ul>
+</li>
+
+<li>
+<p>apt-get install pptp-linux</p>
+</li>
+
+<li>
+<p>设vpn连接名为$tunnel，连接的目标主机地址为$vpn_ip，用户名为$user，密码为$password</p>
+</li>
+
+<li>
+<p>/etc/ppp/options.pptp</p>
+
+<pre><code>  lock
+  noauth
+  nobsdcomp
+  nodeflate
+  nopcomp
+  noaccomp
+  noproxyarp</code></pre>
+</li>
+
+<li>
+<p>/etc/ppp/peers/$tunnel</p>
+
+<pre><code>  pty &quot;pptp $vpn_ip --nolaunchpppd&quot;
+  name $user
+  remotename $tunnel
+  file /etc/ppp/options.pptp
+  ipparam $tunnel
+  noauth
+  persist
+  linkname $tunnel
+  nodefaultroute</code></pre>
+</li>
+
+<li>
+<p>/etc/ppp/chap-secrets</p>
+
+<pre><code> $user $tunnel $password *</code></pre>
+</li>
+
+<li>
+<p><code>pon $tunnel debug dump logfd 2 nodetach</code></p>
+</li>
+
+<li>
+<p>ifconfig查看ppp0的网关的ip为$vpn_gateway，之前的默认网关ip设为$gateway，如果网关经常变就在下面的脚本中搞成动态获取</p>
+</li>
+
+<li>
+<p>/etc/ppp/ip-up.d/$tunnel</p>
+
+<pre><code>  #!/bin/bash
+  
+  #动态获取原来网关的ip
+  gateway=`route|grep default|awk &#39;{print $2;}&#39;`
+  
+  #默认从vpn走
+  route del default
+  route add default gw $vpn_gateway dev ppp0
+  
+  #科大的地址不从vpn走
+  route add -net 202.38.0.0/16 gw $gateway dev eth0
+  route add -net 210.45.0.0/16 gw $gateway dev eth0
+  route add -net 211.86.0.0/16 gw $gateway dev eth0</code></pre>
+</li>
+</ul>
+
+<h3 id="_4">无线</h3>
+
+<ul>
+<li>
+<p>资料：</p>
+
+<ul>
+<li><a href="http://moto.debian.org.tw/viewtopic.php?t=7633&amp;start=0&amp;postdays=0&amp;postorder=asc&amp;highlight=&amp;sid=f3a3f4c96593f3a93781d49bcbca4a59">CentrinoDriver輕鬆編譯</a></li>
+
+<li><a href="http://ccl422.blogspot.com/2007/11/wireless.html">Wireless</a></li>
+
+<li><a href="http://www.freebsd.org/cgi/man.cgi?query=wpa_supplicant.conf&amp;sektion=5">WPA_SUPPLICANT.CONF5</a></li>
+</ul>
+</li>
+
+<li>
+<p>环境</p>
+</li>
+</ul>
+<table><thead><tr><th>笔记本</th><th>ASUS M2000</th></tr></thead><tbody><tr><td style="text-align: left;">系统</td><td style="text-align: left;">Debian 2.6.22-3-686</td></tr>
+<tr><td style="text-align: left;">无线网卡</td><td style="text-align: left;">Intel Pro/Wireless 2100</td></tr>
+<tr><td style="text-align: left;">ESSID: MyLab</td><td style="text-align: left;">用户名</td></tr>
+<tr><td style="text-align: left;">MyName</td><td style="text-align: left;">密码</td></tr>
+<tr><td style="text-align: left;">MyPasswd</td><td style="text-align: left;">网络验证</td></tr>
+<tr><td style="text-align: left;">WPA</td><td style="text-align: left;">数据加密</td></tr>
+<tr><td style="text-align: left;">TKIP</td><td style="text-align: left;">EAP类型</td></tr>
+<tr><td style="text-align: left;">PEAP</td><td style="text-align: left;">验证方法</td></tr>
+<tr><td style="text-align: left;">EAP-MSCHAP V2</td></tr>
+</tbody></table>
+<ul>
+<li>
+<p>装驱动</p>
+</li>
+
+<li>
+<p>下载<a href="http://ipw2100.sourceforge.net/firmware.php">ipw2100-fw</a>，解压到/lib/firmware目录下</p>
+</li>
+
+<li>
+<p>rmmod ipw2100</p>
+</li>
+
+<li>
+<p>modprobe ipw2100</p>
+</li>
+
+<li>
+<p>查看/etc/udev/rules.d，找到ipw2100对应的eth1</p>
+
+<pre><code>  # PCI device 0x8086:0x1043 (ipw2100)
+  SUBSYSTEM==&quot;net&quot;, DRIVERS==&quot;?\*&quot;, ATTR{address}==&quot;xx:xx:xx:xx:xx:xx&quot;, NAME=&quot;eth1&quot;</code></pre>
+</li>
+
+<li>
+<p>找接入的ap：</p>
+
+<ul>
+<li>apt-get install wpasupplicant wireless-tools</li>
+
+<li>iwlist eth1 scan</li>
+</ul>
+</li>
+
+<li>
+<p>编辑/etc/wpa_supplicant/lab.conf</p>
+
+<pre><code>  ctrl_interface=/var/run/wpa_supplicant
+  eapol_version=1
+  ap_scan=1
+  fast_reauth=1
+  network={
+  ssid=&quot;MyLab&quot;
+  id_str=&quot;wlab&quot;
+  scan_ssid=1
+  key_mgmt=WPA-EAP
+  eap=PEAP
+  identity=&quot;MyName&quot;
+  password=&quot;MyPasswd&quot;
+  auth_alg=OPEN
+  phase1=&quot;peaplabel=0&quot;
+  phase2=&quot;auth=MSCHAPV2&quot;
+  priority=10
+  proto=WPA
+  pairwise=TKIP
+  group=TKIP
+  }</code></pre>
+</li>
+
+<li>
+<p>测试一下： <code>wpa_supplicant -w -i eth1 -D wext -c /etc/wpa_supplicant/lab.conf</code></p>
+</li>
+
+<li>
+<p>编辑/etc/network/interfaces：</p>
+
+<pre><code>  # 无线网卡
+  allow-hotplug eth1
+  iface eth1 inet dhcp
+  wpa-driver wext
+  wpa-roam /etc/wpa_supplicant/lab.conf
+  ### 无线接入实验室
+  wpa-ssid &quot;MyLab&quot;</code></pre>
+</li>
+
+<li>
+<p>启动无线： <code>ifup eth1</code></p>
+</li>
+</ul>
+
+<h2 id="grub">grub</h2>
+
+<h3 id="bootgrubmenulst">/boot/grub/menu.lst</h3>
+
+<pre><code>title		Debian GNU/Linux, kernel 2.6.18-4-686
+root		(hd0,0)
+kernel		/boot/vmlinuz-2.6.18-4-686 root=/dev/hda1 ro
+initrd		/boot/initrd.img-2.6.18-4-686
+savedefault
+
+
+title		Microsoft Windows XP Professional
+root		(hd0,2)
+savedefault
+makeactive
+chainloader	+1</code></pre>
+
+<h3 id="windowslinux">重装windows后修复linux</h3>
+
+<ul>
+<li>作者是msygod@linuxsir，原帖在<a href="http://www.linuxsir.org/bbs/showthread.php?t=180376&highlight=windows">这里</a></li>
+
+<li>下载<strong>grub for dos</strong>，将其中的grldr拷到c:\</li>
+
+<li><strong>notepad c:\boot.ini</strong>，添加后面一行，<code>c:\grldr=&quot;grub&quot;</code></li>
+
+<li>重启，菜单里面选grub，按”c”键，依次打下面的命令(支持tab补全)，X为linux的根分区序号
+<p>grub&gt;root (hd0,X) grub&gt;setup (hd0) grub&gt;reboot</p>
+</li>
+</ul>
+
+<h3 id="windowsgrub">无法进入windows，停在grub&gt;处</h3>
+
+<p>Y是windows下C盘所在分区的序号</p>
+
+<pre><code> grub&gt;rootnoverify (hd0,Y)
+ grub&gt;chainloader +1
+ grub&gt;boot</code></pre>
+
+<h3 id="windowsgrub_2">无法进入windows，连grub&gt;都看不到</h3>
+
+<ul>
+<li>作者是linzi222@linuxsir，原帖在<a href="http://www.linuxsir.org/bbs/archive/index.php/database/t-260082.html">这里</a></li>
+
+<li>用windows安装盘启动，加载驱动后，按”R”键进入故障修复控制台</li>
+
+<li>输入命令<code>fixboot c:</code></li>
+
+<li>重启</li>
+
+<li>还不行就试试 <strong>fixmbr</strong></li>
+</ul>
+
+<h2 id="_5">其他</h2>
+
+<h3 id="x">无法进入X</h3>
+
+<ul>
+<li>重启，startx；</li>
+
+<li>dpkg-reconfigure xserver-xorg，startx</li>
+
+<li>提示没权限，则dpkg-reconfigure x11-common，startx</li>
+</ul>
+
+<h3 id="framebuffer">关于framebuffer</h3>
+
+<pre><code>modconf-&gt;kernel-&gt;drivers-&gt;vedio-&gt;vga16fb</code></pre>
+
+<h3 id="_6">声卡驱动</h3>
+
+<pre><code>apt-get install alsa-utils alsa-oss
+alsaconf</code></pre>
+
+<h3 id="dig">dig</h3>
+
+<pre><code>apt-get install dnsutils</code></pre>
+
+<h3 id="apache__mysql__php">apache + mysql + php</h3>
+
+<ul>
+<li>
+<p><a href="http://wiki.ubuntu.org.cn/Apache%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E6%8C%87%E5%8D%97">apache虚拟主机</a></p>
+</li>
+
+<li>
+<p><a href="https://wiki.debian.org/zh_CN/LAMP">lamp配置</a></p>
+</li>
+
+<li>
+<p><a href="http://www.duyaofei.com/2012/03/29/vps-%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B11%EF%BC%9Adebian-6-%E4%B8%8B-apachemysqlmysql%E7%9A%84lamp%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/">Debian 6 下 Apache+MySQL+MySQL的LAMP服务器的配置</a></p>
+
+<pre><code>apt-get install apache2
+apt-get install mysql-server
+apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
+apt-get install php5-mysql
+apt-get install php5-gd
+apt-get install imagemagick php5-imagick</code></pre>
+</li>
+</ul>
+  </div>
+</div>
+
+
+      </div>
+      <hr>
+      <footer>
+        <p>&copy; 2014 Pan Lanlan
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
+
