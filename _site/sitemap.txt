@@ -20,4 +20,4 @@ http://abbypan.github.io/index.html
 http://abbypan.github.io/rss.xml
 http://abbypan.github.io/pages.html
 
-http://abbypan.github.io/jekyll-introduction
+http://abbypan.github.io/sample

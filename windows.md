@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Windows常用软件"
-description: ""
+title: "Windows"
+tagline: "常用软件"
 ---
 {% include JB/setup %}
 

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "R"
-description: ""
+tagline: ""
 ---
 {% include JB/setup %}
 

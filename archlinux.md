@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Archlinux"
-description: ""
+tagline: 安装笔记
 ---
 {% include JB/setup %}
 
@@ -30,11 +30,11 @@ description: ""
 ### 硬盘分区
 - 假设系统硬盘为/dev/sda，这边是SSD
 - 执行fdisk /dev/sda进行分区，假设新建的系统分区为/dev/sda1
-- mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
+- ``mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1``
 
 
 ### 安装系统
-- 执行wifi-menu，连接合适的无线网络
+- 执行``wifi-menu``，连接合适的无线网络
 - 编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
 
       mount /dev/sda1 /mnt
@@ -53,7 +53,7 @@ description: ""
       exit
       reboot
 
-- 重启之后，执行wifi-menu连接到无线网络
+- 重启之后，执行``wifi-menu``连接到无线网络
 
 
 ### 系统更新
@@ -67,36 +67,36 @@ description: ""
 
 ### 图形界面
 
-安装X
+安装X 
 
-yaourt -S xorg xorg-xinit consolekit
+``yaourt -S xorg xorg-xinit consolekit``
 
 安装XFCE
 
-yaourt -S xfce4 xfce4-notifyd
+``yaourt -S xfce4 xfce4-notifyd``
 
 - 进入X的配置，不然关机键老是灰的：编辑~/.xinitrc
 
-    exec ck-launch-session dbus-launch startxfce4
+        exec ck-launch-session dbus-launch startxfce4
 
 
 ### 声卡
-- 安装：yaourt -S gstreamer0.10 gstreamer0.10-base-plugins
+- 安装：``yaourt -S gstreamer0.10 gstreamer0.10-base-plugins``
 - 配置：[ArchWiki:设置ALSA](https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
 
 
 ### 输入法(scim)
-- 安装：yaourt -S ibus ibus-table-zhengma ibus-pinyin
+- 安装：``yaourt -S ibus ibus-table-zhengma ibus-pinyin``
 - 配置：[IBus](https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
 
 
 ### 输入法(fcitx)
-- 安装：yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra
+- 安装：``yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra``
 
 
 ### 中文环境
-- vim /etc/locale.gen，指定zh_CN.UTF-8
-- vim /etc/local.conf
+- ``vim /etc/locale.gen``，指定zh_CN.UTF-8
+- ``vim /etc/local.conf``
 
       LANG=zh_CN.UTF-8
       LC_MESSAGES=zh_CN.UTF-8
@@ -108,12 +108,14 @@ yaourt -S xfce4 xfce4-notifyd
 
 
 ### 时间
-- yaourt -S ntp
-- ntpdate asia.pool.ntp.org
+
+      yaourt -S ntp
+      ntpdate asia.pool.ntp.org
 
 
 ### 热插拔(xfce4)
-- yaourt -S ntfs-3g thunar-volman gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp udisks
+- ``yaourt -S ntfs-3g thunar-volman udisks``
+- ``yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp``
 - 配置 /etc/fstab，手动挂载磁盘
 
       /dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
@@ -142,7 +144,7 @@ yaourt -S xfce4 xfce4-notifyd
       SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 
 ### 无线(netctl)
-- 安装: yaourt -S net-tools wireless_tools wpa_supplicant netctl
+- 安装: ``yaourt -S net-tools wireless_tools wpa_supplicant netctl``
 - 配置: 参考/etc/netctl/examples/
 
 新建一个/etc/netctl/athome配置(wpa)
@@ -168,17 +170,14 @@ yaourt -S xfce4 xfce4-notifyd
 
 - 开机启动
 
-      netctl enable athome
-
+      ``netctl enable athome``
 
 - 手工启动
 
-      netctl start athome
-
-
+      ``netctl start athome``
 
 ### 无线(wpa_supplicant)
-- 安装: yaourt -S net-tools wireless_tools wpa_supplicant
+- 安装: ``yaourt -S net-tools wireless_tools wpa_supplicant``
 - 配置:
 假设配置ESSID为mywireless，密码为mypasswd的无线
 
@@ -254,8 +253,9 @@ yaourt -S xfce4 xfce4-notifyd
 
 ## 其它
 ### NGINX+PHP
-- yaourt -S nginx spawn-fcgi php-cgi
-- 以http(用户):http(组)启动fastcgi : spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi
+- ``yaourt -S nginx spawn-fcgi php-cgi``
+- 以http(用户):http(组)启动fastcgi : 
+``spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi``
 - 配置/etc/nginx/conf/nginx.conf
 
       location / {

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Perl"
-description: "TMTOWTDI"
+tagline: "TMTOWTDI"
 ---
 {% include JB/setup %}
 

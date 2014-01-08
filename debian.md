@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Debian 安装笔记"
-description: ""
+title: "Debian"
+tagline: "安装笔记"
 ---
 {% include JB/setup %}
 

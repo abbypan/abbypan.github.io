@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Vim"
-description: "编辑器"
+tagline: "编辑器"
 ---
 {% include JB/setup %}
 

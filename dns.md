@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "DNS"
-description: "Domain Name System "
+tagline: "Domain Name System "
 ---
 {% include JB/setup %}
 

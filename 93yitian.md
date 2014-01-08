@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "93倚天屠龙记"
-description: "一梦十年"
+tagline: "一梦十年"
 ---
 {% include JB/setup %}
 

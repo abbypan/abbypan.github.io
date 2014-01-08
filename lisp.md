@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Lisp"
-description: "列表处理语言"
+tagline: "列表处理语言"
 ---
 {% include JB/setup %}
 

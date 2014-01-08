@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "天之痕"
-description: "轩辕剑三外传"
+tagline: "轩辕剑三外传"
 ---
 {% include JB/setup %}
 

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "体操"
-description: ""
+tagline: ""
 ---
 {% include JB/setup %}
 
