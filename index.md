@@ -17,6 +17,7 @@ tagline:
 - [Debian](debian.html)
 - [DNS](dns.html)
 - [Lisp](lisp.html)
+- [Perl](perl.html)
 - [Windows软件](windows.html)
 
 ## 生活

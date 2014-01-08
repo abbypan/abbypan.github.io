@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Archlinux</title>
+    <meta name="description" content="">
+    <meta name="author" content="Pan Lanlan">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">江天一色</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Archlinux </h1>
+</div>
+
+<div class="row-fluid">
+  <div class="span12">
+    <h2 id='id20'>基础系统</h2>
+
+<ul>
+<li>下载archlinux最新iso文件：http://www.archlinux.org/download/</li>
+
+<li>可以制作成光盘，或U盘启动</li>
+</ul>
+
+<h3 id='u'>U盘启动</h3>
+
+<ul>
+<li>下载LinuxLive USB Creator：http://www.linuxliveusb.com/</li>
+
+<li>用LinuxLive USB Creator制作可启动的USB盘</li>
+
+<li>修改BIOS，从USB启动，进入archlinux</li>
+</ul>
+
+<h3 id='arch'>设置arch源</h3>
+
+<ul>
+<li>编辑/etc/pacman.conf</li>
+</ul>
+
+<blockquote>
+<p>[archlinuxfr] SigLevel = Optional TrustAll Server = http://repo.archlinux.fr/$arch</p>
+</blockquote>
+
+<ul>
+<li>
+<p>编辑/etc/pacman.d/mirrorlist</p>
+
+<p>Server = http://mirrors.163.com/archlinux/$repo/os/$arch</p>
+</li>
+</ul>
+
+<h3 id='id21'>硬盘分区</h3>
+
+<ul>
+<li>假设系统硬盘为/dev/sda，这边是SSD</li>
+
+<li>执行fdisk /dev/sda进行分区，假设新建的系统分区为/dev/sda1</li>
+
+<li>mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1</li>
+</ul>
+
+<h3 id='id22'>安装系统</h3>
+
+<ul>
+<li>执行wifi-menu，连接合适的无线网络</li>
+
+<li>编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快</li>
+</ul>
+
+<blockquote>
+<p>mount /dev/sda1 /mnt pacstrap /mnt base base-devel pacstrap /mnt grub2-bios genfstab -p /mnt&#160;&#187; /mnt/etc/fstab arch-chroot /mnt</p>
+</blockquote>
+
+<ul>
+<li>设置arch源，见上节</li>
+</ul>
+
+<blockquote>
+<p>ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime mkinitcpio -p linux grub-install &#8211;no-floppy /dev/sda grub-mkconfig -o /boot/grub/grub.cfg pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog exit reboot</p>
+</blockquote>
+
+<ul>
+<li>重启之后，执行wifi-menu连接到无线网络</li>
+</ul>
+
+<h3 id='id23'>系统更新</h3>
+
+<blockquote>
+<p>pacman -Syu pacman -S yaourt</p>
+</blockquote>
+
+<h2 id='id24'>系统配置</h2>
+
+<h3 id='id25'>图形界面</h3>
+
+<p>安装X</p>
+
+<p>yaourt -S xorg xorg-xinit consolekit</p>
+
+<p>安装XFCE</p>
+
+<p>yaourt -S xfce4 xfce4-notifyd</p>
+
+<ul>
+<li>
+<p>进入X的配置，不然关机键老是灰的：编辑~/.xinitrc</p>
+
+<p>exec ck-launch-session dbus-launch startxfce4</p>
+</li>
+</ul>
+
+<h3 id='id26'>声卡</h3>
+
+<ul>
+<li>安装：yaourt -S gstreamer0.10 gstreamer0.10-base-plugins</li>
+
+<li>配置：<a href='https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29'>ArchWiki:设置ALSA</a></li>
+</ul>
+
+<h3 id='scim'>输入法(scim)</h3>
+
+<ul>
+<li>安装：yaourt -S ibus ibus-table-zhengma ibus-pinyin</li>
+
+<li>配置：<a href='https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29'>IBus</a></li>
+</ul>
+
+<h3 id='fcitx'>输入法(fcitx)</h3>
+
+<ul>
+<li>安装：yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra</li>
+</ul>
+
+<h3 id='id27'>中文环境</h3>
+
+<ul>
+<li>vim /etc/locale.gen，指定zh_CN.UTF-8</li>
+
+<li>vim /etc/local.conf</li>
+</ul>
+
+<blockquote>
+<p>LANG=zh_CN.UTF-8 LC_MESSAGES=zh_CN.UTF-8</p>
+</blockquote>
+
+<ul>
+<li>执行locale-gen</li>
+
+<li>vim /etc/rc.conf</li>
+</ul>
+
+<blockquote>
+<p>LOCALE=zh_CN.UTF-8</p>
+</blockquote>
+
+<h3 id='id28'>时间</h3>
+
+<ul>
+<li>yaourt -S ntp</li>
+
+<li>ntpdate asia.pool.ntp.org</li>
+</ul>
+
+<h3 id='xfce4'>热插拔(xfce4)</h3>
+
+<ul>
+<li>yaourt -S ntfs-3g thunar-volman gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp udisks</li>
+
+<li>配置 /etc/fstab，手动挂载磁盘</li>
+</ul>
+
+<blockquote>
+<p>/dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0</p>
+</blockquote>
+
+<h3 id='id29'>常用软件</h3>
+<table><thead><tr><th>类型</th><th>软件</th></tr></thead><tbody><tr><td style='text-align: left;'>下载</td><td style='text-align: left;'>rsync curl lftp wget axel</td>
+</tr><tr><td style='text-align: left;'>字体</td><td style='text-align: left;'>wqy-bitmapfont wqy-zenhei ttf-monaco</td>
+</tr><tr><td style='text-align: left;'>视频</td><td style='text-align: left;'>smplayer flashplugin ffmpeg flashplayer</td>
+</tr><tr><td style='text-align: left;'>办公</td><td style='text-align: left;'>libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc</td>
+</tr><tr><td style='text-align: left;'>解压</td><td style='text-align: left;'>unzip</td>
+</tr><tr><td style='text-align: left;'>浏览器</td><td style='text-align: left;'>firefox firefox-i18n-zh-cn</td>
+</tr><tr><td style='text-align: left;'>网络</td><td style='text-align: left;'>dnsutils traceroute wireshark-gtk</td>
+</tr></tbody></table>
+<h2 id='id30'>网络</h2>
+
+<h3 id='mac'>根据MAC地址固定网卡名称</h3>
+
+<p>编辑文件/etc/udev/rules.d/10-network.rules</p>
+
+<blockquote>
+<p>SUBSYSTEM==&#8221;net&#8221;, ATTR{address}==&#8221;00:26:2d:f6:ad:43&#8221;, NAME=&#8221;eth0&#8221;</p>
+</blockquote>
+
+<p>SUBSYSTEM==&#8221;net&#8221;, ATTR{address}==&#8221;70:f1:a1:28:5a:ad&#8221;, NAME=&#8221;wlan0&#8221;</p>
+
+<h3 id='netctl'>无线(netctl)</h3>
+
+<ul>
+<li>安装: yaourt -S net-tools wireless_tools wpa_supplicant netctl</li>
+
+<li>配置: 参考/etc/netctl/examples/</li>
+</ul>
+
+<p>新建一个/etc/netctl/athome配置(wpa)</p>
+
+<blockquote>
+<p>CONNECTION=&#8217;wireless&#8217; DESCRIPTION=&#8217;athome&#8217; INTERFACE=&#8217;wlan0&#8217; SECURITY=&#8217;wpa&#8217; ESSID=athome IP=&#8217;dhcp&#8217; KEY=athomepasswd</p>
+</blockquote>
+
+<p>新建一个/etc/netctl/atwork配置(wep)</p>
+
+<blockquote>
+<p>CONNECTION=&#8217;wireless&#8217; DESCRIPTION=&#8217;atwork&#8217; INTERFACE=&#8217;wlan0&#8217; SECURITY=&#8217;wep&#8217; ESSID=atwork IP=&#8217;dhcp&#8217; KEY=&#8221;s:myatworkpasswd&#8221;</p>
+</blockquote>
+
+<p>- 开机启动</p>
+
+<blockquote>
+<p>netctl enable athome</p>
+</blockquote>
+
+<p>- 手工启动</p>
+
+<blockquote>
+<p>netctl start athome</p>
+</blockquote>
+
+<h3 id='wpa_supplicant'>无线(wpa_supplicant)</h3>
+
+<ul>
+<li>安装: yaourt -S net-tools wireless_tools wpa_supplicant - 配置: 假设配置ESSID为mywireless，密码为mypasswd的无线</li>
+</ul>
+
+<blockquote>
+<p>wpa_passphrase mywireless mypasswd&#160;&#187; /etc/wpa_supplicant.conf</p>
+</blockquote>
+
+<p>手动修改/etc/wpa_supplicant.conf</p>
+
+<blockquote>
+<p>update_config=1 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel ap_scan=1 fast_reauth=1</p>
+
+<p>network={ ssid=&#8221;mywireless&#8221;</p>
+
+<h1 id='protowpa'>proto=WPA</h1>
+
+<p>proto=RSN key_mgmt=WPA-PSK pairwise=CCMP TKIP group=CCMP TKIP</p>
+
+<h1 id='pskmypasswd'>psk=&#8221;mypasswd&#8221;</h1>
+
+<p>psk=09896d6dc939e1d6b279c10ee3d4d1c8c75970ce345c6552b7ee47d892f0740e }</p>
+</blockquote>
+
+<ul>
+<li>手动连接：假设无线网卡为wlan0</li>
+</ul>
+
+<blockquote>
+<p>WLAN=wlan0 ESSID=mywireless PASSWD=mypasswd</p>
+
+<p>rm /run/dhcpcd-$WLAN.pid rm /var/run/wpa_supplicant/$WLAN</p>
+
+<p>ifconfig $WLAN up</p>
+
+<p>wpa_supplicant -dd -B -Dwext -i $WLAN -c /etc/wpa_supplicant.conf</p>
+
+<p>ifconfig $WLAN up iwconfig $WLAN essid $ESSID key &#8220;s:$PASSWD&#8221; dhcpcd $WLAN</p>
+</blockquote>
+
+<h3 id='vpn'>vpn</h3>
+
+<ul>
+<li>参考：<a href='http://blog.vkill.net/read.php?97'>archlinux pptp vpn拨号连接</a></li>
+
+<li>没看到arch下有/etc/ppp/ip-up.d目录，用以下脚本来启动vpn，我没有把它加为开机启动项，嗯。</li>
+</ul>
+
+<blockquote>
+<h1 id='binzsh'>!/bin/zsh</h1>
+
+<h1 id='id31'>取网关地址</h1>
+
+<p>gateway=<code>route|grep default|grep eth0|awk &#39;{print $2;}&#39;</code> vpn_gateway=&#8221;192.168.6.253&#8221;</p>
+
+<p>echo &#8220;拨号&#8230;&#8221; sudo poff -a sleep 2 sudo pon lab sleep 3</p>
+
+<p>echo &#8220;修改路由&#8230;&#8221;</p>
+
+<h1 id='vpn'>科大的地址不从vpn走</h1>
+
+<p>sudo route add -net 202.38.0.0/16 gw $gateway eth0 sudo route add -net 210.45.0.0/16 gw $gateway eth0 sudo route add -net 211.86.0.0/16 gw $gateway eth0</p>
+
+<h1 id='vpn'>默认从vpn走</h1>
+
+<p>sudo route del default sudo route add default gw $vpn_gateway dev ppp0</p>
+
+<h1 id='id32'>看路由</h1>
+
+<p>sudo route -n</p>
+</blockquote>
+
+<h2 id='id33'>其它</h2>
+
+<h3 id='nginxphp'>NGINX+PHP</h3>
+
+<ul>
+<li>yaourt -S nginx spawn-fcgi php-cgi</li>
+
+<li>以http(用户):http(组)启动fastcgi : spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi</li>
+
+<li>配置/etc/nginx/conf/nginx.conf</li>
+</ul>
+
+<blockquote>
+<p>location / { root /var/www; index index.php index.html index.htm; }</p>
+
+<p>location ~ .php$ { root /var/www; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; include fastcgi_params; }</p>
+</blockquote>
+
+<ul>
+<li>启动nginx: /etc/rc.d/nginx start</li>
+</ul>
+
+<h3 id='kernel_panic_'>KERNEL PANIC 恢复</h3>
+
+<ul>
+<li>系统升级失败，重启提示kernel panic，switch_root : fail to &#8230;</li>
+
+<li>从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之</li>
+</ul>
+
+<blockquote>
+<p>mount /dev/sda1 /mnt yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt</p>
+</blockquote>
+  </div>
+</div>
+
+
+      </div>
+      <hr>
+      <footer>
+        <p>&copy; 2014 Pan Lanlan
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
+
