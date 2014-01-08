@@ -291,5 +291,3 @@ mount /dev/sda1 /mnt
 yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 ```
 
-
-%!include: footer.t2t

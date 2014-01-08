@@ -13,6 +13,7 @@ tagline:
 
 ## 技术
 - [ArchLinux](archlinux.html)
+- [DNS](dns.html)
 - [Windows软件](windows.html)
 
 ## 生活
