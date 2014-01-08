@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: 个人主页
+tagline: 求福不回，求用不匮
 ---
 {% include JB/setup %}
 
