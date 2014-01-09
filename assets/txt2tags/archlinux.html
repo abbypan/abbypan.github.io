@@ -1,0 +1,428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK REL="stylesheet" TYPE="text/css" HREF="./site.css">
+<TITLE>Arch Linux</TITLE>
+</HEAD>
+<BODY>
+
+<DIV CLASS="header" ID="header">
+<H1>Arch Linux</H1>
+<H2>安装笔记 </H2>
+</DIV>
+
+<DIV CLASS="body" ID="body">
+<div id="sidebar">
+  <ul>
+  <li id="home"><a href="./index.html">主页</a></li>
+  <li id="archlinux"><a href="./archlinux.html">ArchLinux</a></li>
+  <li id="debian"><a href="./debian.html">Debian</a></li>
+  <li id="dns"><a href="./dns.html">DNS</a></li>
+  <li id="lisp"><a href="./lisp.html">Lisp</a></li>
+  <li id="perl"><a href="./perl.html">Perl</a></li>
+  <li id="r"><a href="./r.html">R</a></li>
+  <li id="txt2tags"><a href="./txt2tags.html">Txt2tags</a></li>
+  <li id="vim"><a href="./vim.html">Vim</a></li>
+  <li id="windows"><a href="./windows.html">Windows</a></li>
+  <li id="book"><a href="./book.html">喜欢的书</a></li>
+  <li id="gym"><a href="./gym.html">体操</a></li>
+  <li id="tzh"><a href="./tzh.html">天之痕</a></li>
+  <li id="yttlj"><a href="./yttlj.html">倚天屠龙记</a></li>
+  </ul>
+</div>
+<DIV CLASS="toc" ID="toc">
+  <UL>
+  <LI><A HREF="#base-iso">基础系统</A>
+    <UL>
+    <LI><A HREF="#base-usb">U盘启动</A>
+    <LI><A HREF="#source">设置arch源</A>
+    <LI><A HREF="#fdisk">硬盘分区</A>
+    <LI><A HREF="#intall-init">安装系统</A>
+    <LI><A HREF="#update">系统更新</A>
+    </UL>
+  <LI><A HREF="#main-config">系统配置</A>
+    <UL>
+    <LI><A HREF="#x">图形界面</A>
+    <LI><A HREF="#audio">声卡</A>
+    <LI><A HREF="#input">输入法(scim)</A>
+    <LI><A HREF="#input-fcitx">输入法(fcitx)</A>
+    <LI><A HREF="#chinese">中文环境</A>
+    <LI><A HREF="#ntp">时间</A>
+    <LI><A HREF="#hotplug">热插拔(xfce4)</A>
+    <LI><A HREF="#software">常用软件</A>
+    </UL>
+  <LI><A HREF="#network">网络</A>
+    <UL>
+    <LI><A HREF="#card">根据MAC地址固定网卡名称</A>
+    <LI><A HREF="#wireless-netctl">无线(netctl)</A>
+    <LI><A HREF="#wireless-wpa_supplicant">无线(wpa_supplicant)</A>
+    <LI><A HREF="#vpn">vpn</A>
+    </UL>
+  <LI><A HREF="#other">其它</A>
+    <UL>
+    <LI><A HREF="#lamp">NGINX+PHP</A>
+    <LI><A HREF="#kernelpanic">KERNEL PANIC 恢复</A>
+    </UL>
+  </UL>
+
+</DIV>
+<P></P>
+<A NAME="base-iso"></A>
+<H1>基础系统</H1>
+<UL>
+<LI>下载archlinux最新iso文件：<A HREF="http://www.archlinux.org/download/">http://www.archlinux.org/download/</A>
+<LI>可以制作成光盘，或U盘启动
+</UL>
+
+<A NAME="base-usb"></A>
+<H2>U盘启动</H2>
+<UL>
+<LI>下载LinuxLive USB Creator：<A HREF="http://www.linuxliveusb.com/">http://www.linuxliveusb.com/</A>
+<LI>用LinuxLive USB Creator制作可启动的USB盘
+<LI>修改BIOS，从USB启动，进入archlinux
+</UL>
+
+<A NAME="source"></A>
+<H2>设置arch源</H2>
+<UL>
+<LI>编辑/etc/pacman.conf
+<PRE>
+[archlinuxfr]
+SigLevel = Optional TrustAll
+Server = http://repo.archlinux.fr/$arch
+</PRE>
+<LI>编辑/etc/pacman.d/mirrorlist
+<PRE>
+Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+</PRE>
+</UL>
+
+<A NAME="fdisk"></A>
+<H2>硬盘分区</H2>
+<UL>
+<LI>假设系统硬盘为/dev/sda，这边是SSD
+<LI>执行fdisk /dev/sda进行分区，假设新建的系统分区为/dev/sda1
+<LI>mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
+</UL>
+
+<A NAME="intall-init"></A>
+<H2>安装系统</H2>
+<UL>
+<LI>执行wifi-menu，连接合适的无线网络
+<LI>编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
+<PRE>
+mount /dev/sda1 /mnt
+pacstrap /mnt base base-devel
+pacstrap /mnt grub2-bios
+genfstab -p /mnt &gt;&gt; /mnt/etc/fstab
+arch-chroot /mnt
+</PRE>
+<LI>设置arch源，见上节
+<PRE>
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+mkinitcpio -p linux
+grub-install --no-floppy /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
+exit
+reboot
+</PRE>
+<LI>重启之后，执行wifi-menu连接到无线网络
+</UL>
+
+<A NAME="update"></A>
+<H2>系统更新</H2>
+<PRE>
+pacman -Syu
+pacman -S yaourt
+</PRE>
+<P></P>
+<A NAME="main-config"></A>
+<H1>系统配置</H1>
+<A NAME="x"></A>
+<H2>图形界面</H2>
+<UL>
+<LI>安装图形界面
+<PRE>
+#安装X
+yaourt -S xorg xorg-xinit consolekit
+#安装XFCE
+yaourt -S xfce4 xfce4-notifyd
+</PRE>
+<LI>进入X的配置，不然关机键老是灰的：编辑~/.xinitrc
+<PRE>
+exec ck-launch-session dbus-launch startxfce4
+</PRE>
+</UL>
+
+<A NAME="audio"></A>
+<H2>声卡</H2>
+<UL>
+<LI>安装：yaourt -S gstreamer0.10 gstreamer0.10-base-plugins
+<LI>配置：<A HREF="https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">ArchWiki:设置ALSA</A>
+</UL>
+
+<A NAME="input"></A>
+<H2>输入法(scim)</H2>
+<UL>
+<LI>安装：yaourt -S ibus ibus-table-zhengma ibus-pinyin
+<LI>配置：<A HREF="https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">IBus</A>
+</UL>
+
+<A NAME="input-fcitx"></A>
+<H2>输入法(fcitx)</H2>
+<UL>
+<LI>安装：yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra
+</UL>
+
+<A NAME="chinese"></A>
+<H2>中文环境</H2>
+<UL>
+<LI>vim /etc/locale.gen，指定zh_CN.UTF-8
+<LI>vim /etc/local.conf
+<PRE>
+LANG=zh_CN.UTF-8
+LC_MESSAGES=zh_CN.UTF-8
+</PRE>
+<LI>执行locale-gen
+<LI>vim /etc/rc.conf
+<PRE>
+LOCALE=zh_CN.UTF-8
+</PRE>
+</UL>
+
+<A NAME="ntp"></A>
+<H2>时间</H2>
+<UL>
+<LI>yaourt -S ntp
+<LI>ntpdate asia.pool.ntp.org
+</UL>
+
+<A NAME="hotplug"></A>
+<H2>热插拔(xfce4)</H2>
+<UL>
+<LI>yaourt -S ntfs-3g thunar-volman gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp udisks
+<LI>配置 /etc/fstab，手动挂载磁盘
+<PRE>
+/dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
+</PRE>
+</UL>
+
+<A NAME="software"></A>
+<H2>常用软件</H2>
+<TABLE ALIGN="center" BORDER="1">
+<TR>
+<TH>类型</TH>
+<TH>软件</TH>
+</TR>
+<TR>
+<TD>下载</TD>
+<TD>rsync curl lftp wget axel</TD>
+</TR>
+<TR>
+<TD>字体</TD>
+<TD>wqy-bitmapfont wqy-zenhei ttf-monaco</TD>
+</TR>
+<TR>
+<TD>视频</TD>
+<TD>smplayer flashplugin ffmpeg flashplayer</TD>
+</TR>
+<TR>
+<TD>办公</TD>
+<TD>libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc</TD>
+</TR>
+<TR>
+<TD>解压</TD>
+<TD>unzip</TD>
+</TR>
+<TR>
+<TD>浏览器</TD>
+<TD>firefox firefox-i18n-zh-cn</TD>
+</TR>
+<TR>
+<TD>网络</TD>
+<TD>dnsutils traceroute wireshark-gtk</TD>
+</TR>
+</TABLE>
+
+<P></P>
+<A NAME="network"></A>
+<H1>网络</H1>
+<A NAME="card"></A>
+<H2>根据MAC地址固定网卡名称</H2>
+<P>
+编辑文件/etc/udev/rules.d/10-network.rules
+</P>
+<PRE>
+SUBSYSTEM=="net", ATTR{address}=="00:26:2d:f6:ad:43", NAME="eth0"
+SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
+</PRE>
+<P></P>
+<A NAME="wireless-netctl"></A>
+<H2>无线(netctl)</H2>
+<UL>
+<LI>安装: yaourt -S net-tools wireless_tools wpa_supplicant netctl
+<LI>配置: 参考/etc/netctl/examples/
+<P></P>
+新建一个/etc/netctl/athome配置(wpa)
+<PRE>
+CONNECTION='wireless'
+DESCRIPTION='athome'
+INTERFACE='wlan0'
+SECURITY='wpa'
+ESSID=athome
+IP='dhcp'
+KEY=athomepasswd
+</PRE>
+<P></P>
+新建一个/etc/netctl/atwork配置(wep)
+<PRE>
+CONNECTION='wireless'
+DESCRIPTION='atwork'
+INTERFACE='wlan0'
+SECURITY='wep'
+ESSID=atwork
+IP='dhcp'
+KEY="s:myatworkpasswd"
+</PRE>
+<LI>开机启动
+<PRE>
+netctl enable athome
+</PRE>
+<P></P>
+<LI>手工启动
+<PRE>
+netctl start athome
+</PRE>
+</UL>
+
+<A NAME="wireless-wpa_supplicant"></A>
+<H2>无线(wpa_supplicant)</H2>
+<UL>
+<LI>安装: yaourt -S net-tools wireless_tools wpa_supplicant
+<LI>配置:
+假设配置ESSID为mywireless，密码为mypasswd的无线
+<PRE>
+wpa_passphrase mywireless mypasswd &gt;&gt; /etc/wpa_supplicant.conf
+</PRE>
+手动修改/etc/wpa_supplicant.conf
+<PRE>
+update_config=1
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
+ap_scan=1
+fast_reauth=1
+
+network={
+	ssid="mywireless"
+
+	#proto=WPA
+	proto=RSN
+	key_mgmt=WPA-PSK
+	pairwise=CCMP TKIP
+	group=CCMP TKIP
+
+	#psk="mypasswd"
+	psk=09896d6dc939e1d6b279c10ee3d4d1c8c75970ce345c6552b7ee47d892f0740e
+}
+</PRE>
+<LI>手动连接：假设无线网卡为wlan0
+<PRE>
+WLAN=wlan0
+ESSID=mywireless
+PASSWD=mypasswd
+
+rm /run/dhcpcd-$WLAN.pid
+rm /var/run/wpa_supplicant/$WLAN
+
+ifconfig $WLAN up
+
+wpa_supplicant -dd -B -Dwext -i $WLAN -c /etc/wpa_supplicant.conf
+
+ifconfig $WLAN up
+iwconfig $WLAN essid $ESSID key "s:$PASSWD"
+dhcpcd $WLAN
+</PRE>
+</UL>
+
+<A NAME="vpn"></A>
+<H2>vpn</H2>
+<UL>
+<LI>参考：<A HREF="http://blog.vkill.net/read.php?97">archlinux pptp(vpn)拨号连接</A>
+<LI>没看到arch下有/etc/ppp/ip-up.d目录，用以下脚本来启动vpn，我没有把它加为开机启动项，嗯。
+<PRE>
+#!/bin/zsh
+
+#取网关地址
+gateway=`route|grep default|grep eth0|awk '{print $2;}'`
+vpn_gateway="192.168.6.253"
+
+echo "拨号..."
+sudo poff -a
+sleep 2
+sudo pon lab
+sleep 3
+
+echo "修改路由..."
+#科大的地址不从vpn走
+sudo route add -net 202.38.0.0/16 gw $gateway eth0
+sudo route add -net 210.45.0.0/16 gw $gateway eth0
+sudo route add -net 211.86.0.0/16 gw $gateway eth0
+
+#默认从vpn走
+sudo route del default
+sudo route add default gw $vpn_gateway dev ppp0
+
+#看路由
+sudo route -n
+</PRE>
+</UL>
+
+<A NAME="other"></A>
+<H1>其它</H1>
+<A NAME="lamp"></A>
+<H2>NGINX+PHP</H2>
+<UL>
+<LI>yaourt -S nginx spawn-fcgi php-cgi
+<LI>以http(用户):http(组)启动fastcgi : spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi
+<LI>配置/etc/nginx/conf/nginx.conf
+<PRE>
+location / {
+    root   /var/www;
+    index  index.php index.html index.htm;
+}
+
+location ~ \.php$ {
+    root           /var/www;
+    fastcgi_pass   127.0.0.1:9000;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+}
+</PRE>
+<LI>启动nginx: /etc/rc.d/nginx start
+</UL>
+
+<A NAME="kernelpanic"></A>
+<H2>KERNEL PANIC 恢复</H2>
+<UL>
+<LI>系统升级失败，重启提示kernel panic，switch_root : fail to ...
+<LI>从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之
+<PRE>
+mount /dev/sda1 /mnt
+yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
+</PRE>
+</UL>
+
+<P>
+</div><div id="footer">
+<A HREF="http://txt2tags.sourceforge.net"><img SRC="./img/t2tpowered.png" title="O>OOOO"></A>
+<A HREF="http://vim.sourceforge.net"><img SRC="./img/vim.png"></A>
+作者：abbypan，上次修改时间： 2013-12-31 17:27 Tuesday，源文件：<A HREF="archlinux.t2t">archlinux.t2t</A>
+</P>
+</DIV>
+
+<!-- html code generated by txt2tags 2.3 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -t html D:\temp\abbypan.github.com-5e40d8d49fe3bf01da1c9a6858bc01e24e0b30e7\archlinux.t2t -->
+</BODY></HTML>

@@ -1,0 +1,419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK REL="stylesheet" TYPE="text/css" HREF="./site.css">
+<TITLE>Debian</TITLE>
+</HEAD>
+<BODY>
+
+<DIV CLASS="header" ID="header">
+<H1>Debian</H1>
+<H2>安装笔记 </H2>
+</DIV>
+
+<DIV CLASS="body" ID="body">
+<div id="sidebar">
+  <ul>
+  <li id="home"><a href="./index.html">主页</a></li>
+  <li id="archlinux"><a href="./archlinux.html">ArchLinux</a></li>
+  <li id="debian"><a href="./debian.html">Debian</a></li>
+  <li id="dns"><a href="./dns.html">DNS</a></li>
+  <li id="lisp"><a href="./lisp.html">Lisp</a></li>
+  <li id="perl"><a href="./perl.html">Perl</a></li>
+  <li id="r"><a href="./r.html">R</a></li>
+  <li id="txt2tags"><a href="./txt2tags.html">Txt2tags</a></li>
+  <li id="vim"><a href="./vim.html">Vim</a></li>
+  <li id="windows"><a href="./windows.html">Windows</a></li>
+  <li id="book"><a href="./book.html">喜欢的书</a></li>
+  <li id="gym"><a href="./gym.html">体操</a></li>
+  <li id="tzh"><a href="./tzh.html">天之痕</a></li>
+  <li id="yttlj"><a href="./yttlj.html">倚天屠龙记</a></li>
+  </ul>
+</div>
+<DIV CLASS="toc" ID="toc">
+  <UL>
+  <LI><A HREF="#install">安装</A>
+    <UL>
+    <LI><A HREF="#source">设置apt源</A>
+    <LI><A HREF="#environment">/etc/environment</A>
+    <LI><A HREF="#fstab">/etc/fstab</A>
+    <LI><A HREF="#base">基础包</A>
+    </UL>
+  <LI><A HREF="#network">网络</A>
+    <UL>
+    <LI><A HREF="#adsl">adsl</A>
+    <LI><A HREF="#vpn">vpn</A>
+    <LI><A HREF="#wireless">无线</A>
+    </UL>
+  <LI><A HREF="#grub">grub</A>
+    <UL>
+    <LI><A HREF="#menu">/boot/grub/menu.lst</A>
+    <LI><A HREF="#grldr">重装windows后修复linux</A>
+    <LI><A HREF="#fixwin">无法进入windows，停在grub&gt;处</A>
+    <LI><A HREF="#fixboot">无法进入windows，连grub&gt;都看不到</A>
+    </UL>
+  <LI><A HREF="#other">其他</A>
+    <UL>
+    <LI><A HREF="#x11">无法进入X</A>
+    <LI><A HREF="#framebuffer">关于framebuffer</A>
+    <LI><A HREF="#alsa">声卡驱动</A>
+    <LI><A HREF="#dns">dig</A>
+    <LI><A HREF="#lamp">apache + mysql + php</A>
+    </UL>
+  </UL>
+
+</DIV>
+<P></P>
+<A NAME="install"></A>
+<H1>安装</H1>
+<A NAME="source"></A>
+<H2>设置apt源</H2>
+<UL>
+<LI>BIOS里选网络启动，重启，选debian网络安装； 
+<LI>网络启动介绍见<A HREF="http://pxe.ustc.edu.cn">PXE.USTC 基本文档</A>
+<LI>也可以参考<A HREF="http://mail.ustc.edu.cn/~lixuebai/GNU/DebianInstall.html">硬盘安装说明 by lixuebai@ustc</A>
+<LI>手动输入源：<U>debian.ustc.edu.cn</U>；
+<LI>/etc/apt/source.list
+   <UL>
+   <LI><A HREF="ftp://debian.ustc.edu.cn/sources.list/">ftp://debian.ustc.edu.cn/sources.list/</A>
+   <LI><CODE>deb ftp://202.38.73.198/debian sid foo</CODE>
+   </UL>
+</UL>
+
+<A NAME="environment"></A>
+<H2>/etc/environment</H2>
+<PRE>
+LANG="zh_CN.UTF-8"
+LANGUAGE="zh_CN:zh"
+</PRE>
+<P></P>
+<A NAME="fstab"></A>
+<H2>/etc/fstab</H2>
+<PRE>
+/dev/sda1 /mnt/usb vfat user,rw,noauto,utf8=1,fmask=113,dmask=022,umask=022 0 0
+</PRE>
+<P></P>
+<A NAME="base"></A>
+<H2>基础包</H2>
+<UL>
+<LI>apt-get install build-essential
+</UL>
+
+<A NAME="network"></A>
+<H1>网络</H1>
+<A NAME="adsl"></A>
+<H2>adsl</H2>
+<UL>
+<LI>主要参考这两个贴子：<A HREF="http://linux.hiweed.com/node/2467">adsl by Fly1945@Hiweed</A>，<A HREF="http://ryang.68ab.com/debian.html#sec8">adsl配置 by ryang</A>
+<LI>apt-get install pppoe
+<LI>将/etc/network/interfaces中的相关内容注释掉
+<LI>/etc/ppp/peers/dsl-provider
+<PRE>
+noipdefault
+usepeerdns
+defaultroute
+hide-password
+lcp-echo-interval 20
+lcp-echo-failure 3
+connect /bin/true
+noauth
+persist
+mtu 1492
+noaccomp
+default-asyncmap
+plugin rp-pppoe.so eth0
+#下边的xxx是adsl拨号时使用的用户名
+user "xxx"
+</PRE>
+<LI>/etc/ppp/pap-secrets
+<PRE>
+#下边的xxx是adsl拨号时使用的用户名，yyy是密码
+"xxx" dsl-provider "yyy" *
+</PRE>
+<LI>pon dsl-provider
+<LI>查错：plog
+</UL>
+
+<A NAME="vpn"></A>
+<H2>vpn</H2>
+<UL>
+<LI>主要参考这几个贴子
+  <UL>
+  <LI><A HREF="http://bbs.ustc.edu.cn/cgi/bbscon?bn=Linux&amp;fn=M3F936B98&amp;num=2136">VPN连接校园网 by kkk@ustc</A>
+  <LI><A HREF="http://bbs.ustc.edu.cn/cgi/bbscon?bn=Linux&amp;fn=M454D58AB&amp;num=2351">pptp-linux拨vpn by xhacker@ustc</A>
+  <LI><A HREF="http://pptpclient.sourceforge.net/howto-debian.phtml">PPTP CLient by James Cameron</A>
+  <LI><A HREF="http://bbs.ustc.edu.cn/cgi/bbstcon?board=Script&amp;file=M.1211129882.A">发一个让校内ip走vpn路由的perl脚本吧</A>
+  </UL>
+<LI>apt-get install pptp-linux
+<LI>设vpn连接名为$tunnel，连接的目标主机地址为$vpn_ip，用户名为$user，密码为$password
+<LI>/etc/ppp/options.pptp
+<PRE>
+lock
+noauth
+nobsdcomp
+nodeflate
+nopcomp
+noaccomp
+noproxyarp
+</PRE>
+<LI>/etc/ppp/peers/$tunnel
+<PRE>
+pty "pptp $vpn_ip --nolaunchpppd"
+name $user
+remotename $tunnel
+file /etc/ppp/options.pptp
+ipparam $tunnel
+noauth
+persist
+linkname $tunnel
+nodefaultroute
+</PRE>
+<LI>/etc/ppp/chap-secrets
+<PRE>
+$user $tunnel	$password *
+</PRE>
+<LI>pon $tunnel debug dump logfd 2 nodetach
+<LI>ifconfig查看ppp0的网关的ip为$vpn_gateway，之前的默认网关ip设为$gateway，如果网关经常变就在下面的脚本中搞成动态获取
+<LI>/etc/ppp/ip-up.d/$tunnel
+<PRE>
+#!/bin/bash
+
+##动态获取原来网关的ip
+gateway=`route|grep default|awk '{print $2;}'`
+
+#默认从vpn走
+route del default
+route add default gw $vpn_gateway dev ppp0
+
+#科大的地址不从vpn走
+route add -net 202.38.0.0/16 gw $gateway dev eth0
+route add -net 210.45.0.0/16 gw $gateway dev eth0
+route add -net 211.86.0.0/16 gw $gateway dev eth0
+</PRE>
+</UL>
+
+<A NAME="wireless"></A>
+<H2>无线</H2>
+<UL>
+<LI>资料：
+    <UL>
+    <LI><A HREF="http://moto.debian.org.tw/viewtopic.php?t=7633&amp;amp;start=0&amp;amp;postdays=0&amp;amp;postorder=asc&amp;amp;highlight=&amp;amp;sid=f3a3f4c96593f3a93781d49bcbca4a59">CentrinoDriver輕鬆編譯</A>
+    <LI><A HREF="http://ccl422.blogspot.com/2007/11/wireless.html">Wireless</A>
+    <LI><A HREF="http://www.freebsd.org/cgi/man.cgi?query=wpa_supplicant.conf&amp;amp;sektion=5">WPA_SUPPLICANT.CONF(5)</A>
+    <P></P>
+    </UL>
+<LI>环境
+</UL>
+
+<TABLE ALIGN="center" BORDER="1">
+<TR>
+<TD>笔记本</TD>
+<TD>ASUS M2000</TD>
+</TR>
+<TR>
+<TD>系统</TD>
+<TD>Debian 2.6.22-3-686</TD>
+</TR>
+<TR>
+<TD>无线网卡</TD>
+<TD ALIGN="center">Intel Pro/Wireless 2100</TD>
+</TR>
+<TR>
+<TD>ESSID: MyLab</TD>
+</TR>
+<TR>
+<TD>用户名</TD>
+<TD>MyName</TD>
+</TR>
+<TR>
+<TD>密码</TD>
+<TD>MyPasswd</TD>
+</TR>
+<TR>
+<TD>网络验证</TD>
+<TD>WPA</TD>
+</TR>
+<TR>
+<TD>数据加密</TD>
+<TD>TKIP</TD>
+</TR>
+<TR>
+<TD>EAP类型</TD>
+<TD>PEAP</TD>
+</TR>
+<TR>
+<TD>验证方法</TD>
+<TD>EAP-MSCHAP V2</TD>
+</TR>
+</TABLE>
+
+<P></P>
+<UL>
+<LI>装驱动
+ <UL>
+ <LI>下载<A HREF="http://ipw2100.sourceforge.net/firmware.php">ipw2100-fw</A>，解压到/lib/firmware目录下。
+ <LI>rmmod ipw2100
+ <LI>modprobe ipw2100
+ <P></P>
+ </UL>
+<LI>查看/etc/udev/rules.d，找到ipw2100对应的eth1
+<PRE>
+# PCI device 0x8086:0x1043 (ipw2100)
+SUBSYSTEM=="net", DRIVERS=="?*", ATTR{address}=="xx:xx:xx:xx:xx:xx", NAME="eth1"
+</PRE>
+<P></P>
+<LI>找接入的ap：
+   <UL>
+   <LI>apt-get install wpasupplicant wireless-tools
+   <LI>iwlist eth1 scan
+   <P></P>
+   </UL>
+<LI>编辑/etc/wpa_supplicant/lab.conf
+<PRE>
+ctrl_interface=/var/run/wpa_supplicant
+eapol_version=1
+ap_scan=1
+fast_reauth=1
+network={ssid="MyLab"
+id_str="wlab"
+scan_ssid=1
+key_mgmt=WPA-EAP
+eap=PEAP
+identity="MyName"
+password="MyPasswd"
+auth_alg=OPEN
+phase1="peaplabel=0"
+phase2="auth=MSCHAPV2"
+priority=10
+proto=WPA
+pairwise=TKIP
+group=TKIP
+}
+</PRE>
+<P></P>
+<LI>测试一下：
+<CODE>wpa_supplicant -w -i eth1 -D wext -c /etc/wpa_supplicant/lab.conf</CODE>
+<P></P>
+<LI>编辑/etc/network/interfaces：
+<PRE>
+# 无线网卡
+allow-hotplug eth1
+iface eth1 inet dhcp
+wpa-driver wext
+wpa-roam /etc/wpa_supplicant/lab.conf
+### 无线接入实验室
+wpa-ssid "MyLab"
+</PRE>
+<P></P>
+<LI>启动无线：
+<CODE>ifup eth1</CODE>
+</UL>
+
+<A NAME="grub"></A>
+<H1>grub</H1>
+<A NAME="menu"></A>
+<H2>/boot/grub/menu.lst</H2>
+<PRE>
+title		Debian GNU/Linux, kernel 2.6.18-4-686
+root		(hd0,0)
+kernel		/boot/vmlinuz-2.6.18-4-686 root=/dev/hda1 ro
+initrd		/boot/initrd.img-2.6.18-4-686
+savedefault
+</PRE>
+<PRE>
+title		Microsoft Windows XP Professional
+root		(hd0,2)
+savedefault
+makeactive
+chainloader	+1
+</PRE>
+<P></P>
+<A NAME="grldr"></A>
+<H2>重装windows后修复linux</H2>
+<UL>
+<LI>作者是msygod@linuxsir，原帖在<A HREF="http://www.linuxsir.org/bbs/showthread.php?t=180376&amp;highlight=windows">这里</A>
+<LI>下载<B>grub for dos</B>，将其中的grldr拷到c:\
+<LI><U>notepad c:\boot.ini</U>，添加后面一行，<CODE>c:\grldr="grub"</CODE>
+<LI>重启，菜单里面选grub，按"c"键，依次打下面的命令(支持tab补全)，X为linux的根分区序号
+<PRE>
+grub&gt;root (hd0,X)
+grub&gt;setup (hd0)
+grub&gt;reboot
+</PRE>
+</UL>
+
+<A NAME="fixwin"></A>
+<H2>无法进入windows，停在grub&gt;处</H2>
+<P>
+Y是windows下C盘所在分区的序号
+</P>
+<PRE>
+grub&gt;rootnoverify (hd0,Y)
+grub&gt;chainloader +1
+grub&gt;boot
+</PRE>
+<P></P>
+<A NAME="fixboot"></A>
+<H2>无法进入windows，连grub&gt;都看不到</H2>
+<UL>
+<LI>作者是linzi222@linuxsir，原帖在<A HREF="http://www.linuxsir.org/bbs/archive/index.php/database/t-260082.html">这里</A>
+<LI>用windows安装盘启动，加载驱动后，按"R"键进入故障修复控制台
+<LI>输入命令<U>fixboot c:</U>
+<LI>重启
+<LI>还不行就试试 <U>fixmbr</U>
+</UL>
+
+<A NAME="other"></A>
+<H1>其他</H1>
+<A NAME="x11"></A>
+<H2>无法进入X</H2>
+<UL>
+<LI>重启，startx；
+<LI>dpkg-reconfigure xserver-xorg，startx
+<LI>提示没权限，则dpkg-reconfigure x11-common，startx
+</UL>
+
+<A NAME="framebuffer"></A>
+<H2>关于framebuffer</H2>
+modconf-&gt;kernel-&gt;drivers-&gt;vedio-&gt;vga16fb
+<A NAME="alsa"></A>
+<H2>声卡驱动</H2>
+<UL>
+<LI>apt-get install alsa-utils alsa-oss
+<LI>alsaconf
+</UL>
+
+<A NAME="dns"></A>
+<H2>dig</H2>
+<UL>
+<LI>apt-get install dnsutils
+</UL>
+
+<A NAME="lamp"></A>
+<H2>apache + mysql + php</H2>
+<UL>
+<LI><A HREF="http://wiki.ubuntu.org.cn/Apache%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E6%8C%87%E5%8D%97">apache虚拟主机</A>
+<LI><A HREF="https://wiki.debian.org/zh_CN/LAMP">lamp配置</A>
+<LI><A HREF="http://www.duyaofei.com/2012/03/29/vps-%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B11%EF%BC%9Adebian-6-%E4%B8%8B-apachemysqlmysql%E7%9A%84lamp%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/">Debian 6 下 Apache+MySQL+MySQL的LAMP服务器的配置</A>
+<P></P>
+<LI>apt-get install apache2
+<LI>apt-get install mysql-server
+<LI>apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
+<LI>apt-get install php5-mysql
+<LI>apt-get install php5-gd
+<LI>apt-get install imagemagick php5-imagick
+</UL>
+
+<P>
+</div><div id="footer">
+<A HREF="http://txt2tags.sourceforge.net"><img SRC="./img/t2tpowered.png" title="O>OOOO"></A>
+<A HREF="http://vim.sourceforge.net"><img SRC="./img/vim.png"></A>
+作者：abbypan，上次修改时间： 2013-12-31 17:27 Tuesday，源文件：<A HREF="debian.t2t">debian.t2t</A>
+</P>
+</DIV>
+
+<!-- html code generated by txt2tags 2.3 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -t html D:\temp\abbypan.github.com-5e40d8d49fe3bf01da1c9a6858bc01e24e0b30e7\debian.t2t -->
+</BODY></HTML>

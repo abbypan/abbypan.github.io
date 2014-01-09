@@ -1,0 +1,24 @@
+江天一色
+求福不回，求用不匮
+
+%!includeconf: config.t2t
+%!options : --no-toc
+%!preproc: {url-css}        http://txt2tags.sourceforge.net/site.css 
+%!preproc: {doc-viki}		SITEPATH/doc/viki/index.html
+%!preproc: {img-mail}		SITEPATH/img/abbypan-gmail.png
+%!preproc: {mail}		mailto:abbypan@gmail.com
+%!include: ''menu.html''
+
+莫莫葛藟，肆於條枝，愷悌君子，求福不回。
+
+神降之嘉生，民以物享，禍災不至，求用不匱。
+
+谁将归去？守望一生。
+
+[[{img-mail}] {mail}]
+
+我的blogspot：[江天一色 http://abbypan.blogspot.com]
+
+旧的主页：[deplate+viki {doc-viki}]
+
+%!include: footer.t2t

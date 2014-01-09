@@ -11,6 +11,15 @@ title: "求福不回，求用不匮"
 
         谁将归去？守望一生。
 
+## 生活
+
+| 类型 | 杂感 |
+| ---- | ---- |
+| 读书听歌 | [喜欢的歌](music.html)，[喜欢的书](book.html)
+| 视频游戏 | [天之痕](swd3e.html)，[93倚天](93yitian.html)
+| 粉丝 | 周华健，[体操](gym.html)
+| 其他 | [我的豆瓣](http://www.douban.com/people/swd3e/)
+
 ## 技术
 
 | 类型 | 笔记 |
@@ -21,11 +30,9 @@ title: "求福不回，求用不匮"
 | 工具 | [VIM](vim.html)，[Windows](windows.html)
 | 笔记 | [我的github](https://github.com/abbypan)，[我的blogspot](https://abbypan.blogspot.com)，[我的twitter](https://twitter.com/abbypan)
 
-## 生活
+## 旧的回忆
 
-| 类型 | 杂感 |
+| 类型 | 笔记 |
 | ---- | ---- |
-| 读书听歌 | [喜欢的歌](music.html)，[喜欢的书](book.html)
-| 视频游戏 | [天之痕](swd3e.html)，[93倚天](93yitian.html)
-| 粉丝 |  [体操](gym.html)
-| 其他 | [我的豆瓣](http://www.douban.com/people/swd3e/)
+| 旧的主页 | [viki deplate](assets/viki_deplate)，[txt2tags](assets/txt2tags)
+| USTC | [瀚海星云](http://bbs.ustc.edu.cn)
