@@ -28,4 +28,4 @@ title: "求福不回，求用不匮"
 | 读书听歌 | [喜欢的歌](music.html)，[喜欢的书](book.html)
 | 视频游戏 | [天之痕](swd3e.html)，[93倚天](93yitian.html)
 | 粉丝 |  [体操](gym.html)
-| 其他 | [我的豆瓣](http://www.douban.com/people/47306459/)
+| 其他 | [我的豆瓣](http://www.douban.com/people/swd3e/)
