@@ -15,7 +15,7 @@ tagline: ""
 
    - [眭禄](http://baike.baidu.com/view/2276355.htm) : 2011年东京世锦赛平衡木冠军，2012年奥运会平衡木亚军
 
-   - [吴柳芳](http://baike.baidu.com/view/2870870.htm) : 。。。
+   - [吴柳芳](http://baike.baidu.com/view/2870870.htm) : 小美女呀。。。
 
 
 ## 伪粉
