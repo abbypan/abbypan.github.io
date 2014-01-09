@@ -11,6 +11,8 @@ title: "求福不回，求用不匮"
 
         谁将归去？守望一生。
 
+![我的邮箱](assets/img/mail.png)
+
 ## 生活
 
 | 类型 | 杂感 |
@@ -36,3 +38,5 @@ title: "求福不回，求用不匮"
 | ---- | ---- |
 | 旧的主页 | [viki deplate](assets/viki_deplate)，[txt2tags](assets/txt2tags)
 | USTC | [瀚海星云](http://bbs.ustc.edu.cn)
+
+![create with vim](assets/img/vim.png)
