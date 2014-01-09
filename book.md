@@ -11,6 +11,7 @@ tagline:
 | ---- | ----- | ------ |
 | 2012 | Learning Perl(Perl语言入门) | 写的极好的一本perl入门书 |
 | 2009 | 软件随想录 | 关于软件行业，关于技术生涯 |
+| 2008 | 算法概论(Sanjoy Dasgupta / Christos Papadimitriou / Umesh Vazirani) | 知其然，且知其所以然
 | 2007 | Mastering Regular Expressions(精通正则表达式) | 就是用了之后不知道以前咋过过来的感觉  |
 
 
