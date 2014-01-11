@@ -42,6 +42,7 @@ tagline: "TMTOWTDI"
 | 2012.02 | Programming Perl | 经典，必看，大骆驼书。东西很多，多看几遍很有好处。
 | 2011.07 | Learning Perl | 经典的Perl入门书籍，小骆驼书。写的超好！！！
 | 2010.04 | Effective Perl Programming | 这本书挺不错的，包含很多常用的技巧，每一条都有实例说明，总体很不错。
+| 2007 | Mastering Regular Expressions(精通正则表达式) | 就是用了之后不知道以前咋过过来的感觉  |
 | 2006.03 | Intermediate Perl | 主要讲面向对象跟模块开发，写得比较清楚，整体读起来很顺。 基本上Randal L. Schwartz大侠写的书都是比较照顾我等小白的，不拽文。
 | 2005.07 | Perl Best Practices (Perl最佳实践) | 大有助于提高编码质量，翻起来也很快。注意下面的内容： 第三章 命名惯例、第九章 子程序、第十三章 错误处理、第十七章 模块、第十八章 测试和调试，还有几个附录也都很有用。
 | 2004.03 | Perl Medic : Transforming Legacy Code | 讲如何对已有的代码管理、优化，挺不错的，花1-2天可以K完。 
