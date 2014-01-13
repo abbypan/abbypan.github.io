@@ -13,11 +13,16 @@ tagline: "Domain Name System "
 | [Domain Name Service DNS](http://www.freesoft.org/CIE/Topics/75.htm) | 很清晰的DNS基础介绍 |
 | [Understanding the DNS Protocol](http://www.windowsnetworking.com/articles_tutorials/understanding-dns-protocol-part1.html) | DNS协议介绍 |
 
+## 数据
+
+| 数据 | 简介 |
+| ---- | ---- |
+| [statdns](http://www.statdns.com) | 每月发布全球com/net/org等域名的统计，上面还有dns相关工具的整理、RFC的列表，非常不错
+| [iana 的root zone 数据](http://www.iana.org/domains/root/db) | 根域登记
 
 ## 工具
 | 工具 | 简介 |
 | ---- | ---- |
-| [statdns](http://www.statdns.com) | 每月发布全球com/net/org等域名的统计，上面还有dns相关工具的整理、RFC的列表，非常不错
 | [DNS Looking Glass](http://www.dns-lg.com/) | 可指定节点查询给定域名的RR，支持正向、反向解析，以WEB API形式提供服务，也是statdns的
 | [viewdns](http://viewdns.info/) | 探测工具
 | [DiG HOWTO ](http://www.madboa.com/geek/dig/) | 解析工具
