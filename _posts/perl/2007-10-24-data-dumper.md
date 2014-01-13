@@ -12,6 +12,7 @@ tags : ["perl", "cpan", "unicode" ]
 见：[Data::Dumper and UTF-8 by jl_post@hotmail.com](http://groups.google.com/group/comp.lang.perl.misc/browse_thread/thread/6fbd3733c9c56186?hl=en)
 
 用eval执行Dumper，再进行print。
+
 {% highlight perl %}
 #!/usr/bin/perl
 #此文件是utf8编码
