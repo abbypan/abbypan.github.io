@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "Text::CSV_XS"
 tagline: "解析文本"
-tags : ["perl", "cpan", "csv" ] 
+tags : ["perl", "cpan" ] 
 ---
 {% include JB/setup %}
 
