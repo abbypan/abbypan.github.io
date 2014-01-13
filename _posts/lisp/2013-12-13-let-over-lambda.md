@@ -93,9 +93,9 @@ T
 
 而在lisp中，是用一个symbol来标记一个指定的单位，检查symbol是否相同的速度是很快di
 
-函数调用 (sleep-units% '.5 'h)
+函数调用``(sleep-units% '.5 'h)``
 
-宏调用 (sleep-units .5 h)
+宏调用``(sleep-units .5 h)``
 
 sleep-units的调用在编译期就确定了参数取值，因此速度会比sleep-units%快；但同时，sleep-units也就没法在运行期动态确定unit类型
 
@@ -112,19 +112,19 @@ sleep-units的调用在编译期就确定了参数取值，因此速度会比sle
              ,@body))
      (,n ,@(mapcar #'cadr letargs))))
 
-    * (macroexpand
-            '(nlet fact ((n n))
-                (if (zerop n)
-                 1
-                 (* n (fact (- n 1))))))
+* (macroexpand
+    '(nlet fact ((n n))
+        (if (zerop n)
+         1
+         (* n (fact (- n 1))))))
 
-    (LABELS ((FACT (N)
-              (IF (ZEROP N)
-               1
-               (* N (FACT (- N 1))))))
-     (FACT N))
+(LABELS ((FACT (N)
+          (IF (ZEROP N)
+           1
+           (* N (FACT (- N 1))))))
+ (FACT N))
 
-    T
+T
 {% endhighlight %}
 
 
@@ -232,9 +232,9 @@ dynamic variable的取值决定于该表达式什么时候执行，而非它在�
      (COIN-FLIP TAILS))
 {% endhighlight %}
 
-Backquote ` 不是lisp必须的，但是宏重度使用此符号，虽然一堆人抱怨这个很晕
+Backquote \` 不是lisp必须的，但是宏重度使用此符号，虽然一堆人抱怨这个很晕
 
-` 负责停止evaluate一个form，而 , 可以暂停此效果临时evaluate（称为 unquote)
+\` 负责停止evaluate一个form，而 , 可以暂停此效果临时evaluate（称为 unquote)
 
 {% highlight lisp %}
     ; 1) regular unquote
@@ -288,7 +288,7 @@ TO-SPLICE
 
 {% endhighlight %}
 
-defun |#"-reader| 比较简单，就是读stream，直到碰上 "# 就停止
+``defun |#"-reader|``比较简单，就是读stream，直到碰上 "# 就停止
 
 ``(set-dispatch-macro-character #\# #\" #'|#"-reader|)``
 
@@ -322,9 +322,9 @@ CL-PPCRE 是lisp的正则库，跟perl的pcre有些不同：
       ,(cadr ,g!args))))
 {% endhighlight %}
 
-注意，上面的宏都以两个反引号``开始，生成的是一个列表list，而不是待evaluate的expression
+注意，上面的宏都以两个反引号\`\`开始，生成的是一个列表list，而不是待evaluate的expression
 
-后面接着 defun |#~-reader| 山寨perl的 =~m//, =~s//，用到了上面两个宏
+后面接着``defun |#~-reader|``山寨perl的 =~m//, =~s//，用到了上面两个宏
 搞好之后就能这么替换字符串了：
 
 ``(funcall #~s/abc/def/ "Testing abc testing abc")``
@@ -338,7 +338,6 @@ CL-PPCRE 是lisp的正则库，跟perl的pcre有些不同：
 
 #1=(HELLO . #1#)
     NIL
-
 {% endhighlight %}
 
 lisp的read macro示例是v587的，lisp-reader 、lisp-printer
@@ -355,9 +354,9 @@ lisp的read macro示例是v587的，lisp-reader 、lisp-printer
 
 lisp不是函数式语言，人家想咋改就咋改，可以比命令式还命令式，也可以比函数式还函数式，blablabla。。。
 
-defmacro! defunits% ，有两层反引号 `
+``defmacro! defunits%``，有两层反引号\`
 
-` 与 , 结合，调整代码在运行期的执行先后顺序
+\`与 , 结合，调整代码在运行期的执行先后顺序
 
 defun defunits-chaining% 递归调用
 
@@ -365,7 +364,7 @@ defmacro! defunits%%  单位转换
 
 defmacro! defunits 加上一些安全检查
 
-defun tree-leaves%% 和 defmacro tree-leaves，两者对比，tree-leaves的用法比较简洁。（与perl的 匿名函数sub {} 加 默认变量 $_ 组合有点类似，lisp版的写法更简短一点）
+``defun tree-leaves%%``和 defmacro tree-leaves，两者对比，tree-leaves的用法比较简洁。（与perl的 匿名函数sub {} 加 默认变量 $_ 组合有点类似，lisp版的写法更简短一点）
 
 注意 tree-leaves里的x，没声明直接往上写，嵌入了一个implicit lexical variable bound，所谓violate lexical transparency
 
@@ -442,7 +441,7 @@ On Lisp中的 alambda 是一个anaphoric宏，capture的变量是其中的self
 
 {% endhighlight %}
 
-defun |#`-reader| 的用法举例，注意可能隐含了a1、a2、a3等参数定义
+``defun |#`-reader|``的用法举例，注意可能隐含了a1、a2、a3等参数定义
 
 alet% 宏调整了let body里某些语句的执行顺序，注意看this前后 
 
@@ -508,12 +507,12 @@ demacro!预处理了g!开头的参数，the G-bang symbols are sub-lexically bou
 
 sublet是搞sub-lexical binding的指令，在看sublet之前得研究let-binding-transform先，不过这个transform比较简单
 
-sublet还用到了tree-leaves。可以看到它的宏展开不保留原来的符号a，而是生成了一个新的标记，连 'a 都自动转过去了。
+sublet还用到了tree-leaves。可以看到它的宏展开不保留原来的符号a，而是生成了一个新的标记，连'a 都自动转过去了。
 
 sublet* 把 body 先做了一次 macroexpand-1，这样body里的宏引用的变量名就可以预先展开了。这个称为supre sub-lexical scope。
 sublet* 解决了上面的 injector-for-a 问题。不过只能展开一层，嵌套还是不行。原因是“nested macros in the expression are not expanded by macroexpand-1”
 
-sublet*这类宏，可以调整宏展开时，可见的变量，form展开的方式。对宏编程的宏。（确实工巧）
+``sublet*``这类宏，可以调整宏展开时，可见的变量，form展开的方式。对宏编程的宏。（确实工巧）
 
 另一本书 Lisp in Small Pieces 
 
