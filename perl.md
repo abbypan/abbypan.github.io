@@ -93,7 +93,7 @@ tagline: "TMTOWTDI"
 | JSON | JSON数据编解码
 | Log::Any::App | 打日志！
 | Moo | 轻量级面向对象
-| Parallel::ForkManger | 多进程处理
+| Parallel::ForkManger | 多进程处理，[例子](http://perltalks.celogeek.com/slides/2012/01/parallel-forkmanager-slide.html)
 | Parse::RecDescent | 自定义解析模块
 | Perl::Tidy | 整理代码
 | Progress::Any | 进度条
