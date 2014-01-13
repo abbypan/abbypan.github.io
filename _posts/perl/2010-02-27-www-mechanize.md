@@ -58,4 +58,21 @@ close $fh;
 ## GET 请求失败(403等等)时自动exit
 
 初始化时，禁掉autocheck就好了：
-``my $http = WWW::Mechanize->new(autocheck=>0);``
+``my $mech = WWW::Mechanize->new(autocheck=>0);``
+
+## 显示下载进度
+
+{% highlight perl %}
+#!/usr/bin/perl
+use strict;
+use warnings;
+  
+use WWW::Mechanize;
+my $browser = WWW::Mechanize->new();
+$browser->show_progress(1);
+$browser->get('http://www.ustc.edu.cn');
+{% endhighlight %}
+
+显示的进度样式如下： ** GET http://www.ustc.edu.cn ==> 200 OK (3s)
+
+LWP::UserAgent 也是一样，``show_progress``
