@@ -83,7 +83,7 @@ tagline: "TMTOWTDI"
 ## 常用模块
 | 模块 | 用途 |
 | ---- | ---- |
-| App::cpanminus | 模块安装工具cpanm
+| App::cpanminus | 模块安装工具cpanm，替代cpan
 | Capture::Tiny | 抓STDOUT、STDERR消息
 | Chart Director | 画图模块
 | Dancer | Web 框架
@@ -106,5 +106,90 @@ tagline: "TMTOWTDI"
 | Test::Output | 测试stdout, stderr的输出内容
 | Web::Scraper | 抓取网页
 | YAML::XS | 读入或输出YAML数据，只认unicode
-| 更多 | [Perl模块笔记](http://abbypan.blogspot.com/2011/01/perl.html)
 
+## 更多模块
+| 模块 | 备注 |
+| ---- | ---- |
+| Perl Advent Calendar Archivers | http://perladvent.pm.org/archives-Yd.html
+| Great Perl Modules | http://jff.googlecode.com/svn-history/r866/trunk/Perl/great-perl-modules.txt
+| pm.org的Advent | http://perladvent.pm.org
+| Colonizing the Lacuna Expanse with Perl | http://www.perl.com/pub/2010/10/colonizing-the-lacuna-expanse-with-perl.html
+| MVC | Perl的MVC框架介绍：[What is the Perl Web Framework du jour?](http://www.perlmonks.org/?node_id=753411)
+| Algorithm::Accounting |
+| App::Ack |
+| Array::PrintCols |
+| Benchmark::Timer  | 程序运行时间
+| Clone 复制数据结构 | 传入的参数必须为引用
+| Config::Auto |
+| Config::Context |
+| Config::Scoped |
+| Config::YAML |
+| DBM::Deep |
+| EV::ADNS |
+| Email::MIME::Creator |
+| Email::Sender |
+| Email::Simple |
+| Email::Simple::Creator |
+| Email::Stuff 简单的邮件发送模块 |
+| File::Tail |
+| File::Temp | 注意这个读文件的时候是binary mode，实际处理时可能要自己设binmode
+| Filesys::Df | 查看剩余空间
+| File::Stream | 读入文件时，如果指定$/，则$/必须是字符串；如果要用正则式分隔，就用File::Stream。
+| IO::Socket |
+| Log4Perl |
+| Log::Dispatch |
+| Log::Statistics |
+| Logfile |
+| Logfile::Rotate |
+| Mail::Mailer |
+| Mail::Sender |
+| Mail::Sendmail |
+| Moose |
+| Net::ADNS |
+| Net::Pcap |
+| Net::Pcap::Easy |
+| Net::PcapUtils |
+| Net::Whois |
+| Net::Whois::Raw |
+| NetPacket::IP |
+| NetPacket::TCP |
+| Nmap::Scanner |
+| Parse::Syslog |
+| Path::Class |
+| Path::Tiny | 路径处理
+| Params::Validate | 检查函数参数
+| Perl6::Form |
+| Pod::Browser |  本地查看pod
+| Proc::ProcessTable |
+| Regexp::Log::Common |
+| Regexp::Log::DateRange |
+| SSH::Batch  | 远程SSH批量操作
+| Set::Array  | 数组操作模块
+| Sinffer::HTTP |
+| Sub::Exporter | 生成多个闭包函数
+| Template::Toolkit |
+| Text::Template |
+| Term::Prompt |
+| Term::Prompt |
+| Test::Harness |
+| Test::Output | 测试stdout、stderr输出的内容
+| Text::Autoformat |
+| Text::BarGraph |
+| Text::Beautify |
+| Text::Match::FastAlternatives |
+| Text::More |
+| Text::Wrap |
+| Text::Xslate  | 类似Text::Template的模块 ，速度很快
+| TextFormatTAble |
+| Win32::TieRegistry | 用Win32::TieRegistry读出windows已安装软件的列表
+| User::pwent |
+| XLSperl | 命令行操作xls文件
+| XML::Compile |
+| XML::LibXML | 很快
+| XML::Rules |
+| XML::SAX | 适用于体积较大的XML
+| XML::Simple | 很简单
+| XML::Twig | 适用于大容量数据的一个小子集
+| XML::Struct | 接口比较简单
+| XML::Rabbit | 见[thanks-to-xmlrabbit](http://www.modernperlbooks.com/mt/2012/10/i-stopped-parsing-xml-thanks-to-xmlrabbit.html)
+| YAML |
