@@ -1,6 +1,6 @@
 ---
 layout: post
-category : perl
+category : tech
 title:  "Parse::RecDescent"
 tagline: "文本解析"
 tags : ["perl", "cpan", "parse" ] 

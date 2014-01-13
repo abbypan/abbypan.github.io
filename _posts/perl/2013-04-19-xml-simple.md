@@ -1,6 +1,6 @@
 ---
 layout: post
-category : perl
+category : tech
 title:  "XML::Simple"
 tagline: "解析文本"
 tags : ["perl", "cpan", "xml" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : perl
+category : tech
 title:  "Data::Dumper"
 tagline: "笔记"
 tags : ["perl", "cpan", "unicode" ] 

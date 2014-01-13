@@ -1,6 +1,6 @@
 ---
 layout: post
-category : perl
+category : tech
 title:  "Text::CSV_XS"
 tagline: "解析文本"
 tags : ["perl", "cpan", "csv" ] 

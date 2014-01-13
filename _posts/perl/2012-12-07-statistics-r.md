@@ -1,6 +1,6 @@
 ---
 layout: post
-categories : [ "perl", "R" ]
+category : tech
 title:  "Statistics::R"
 tagline: "在perl中调用R进行统计"
 tags : ["perl", "cpan", "r", "rjson", "json" ] 
