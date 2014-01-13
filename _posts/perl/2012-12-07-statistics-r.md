@@ -1,9 +1,9 @@
 ---
 layout: post
-category : [ "perl", "R" ]
+categories : [ "perl", "R" ]
 title:  "Statistics::R"
 tagline: "在perl中调用R进行统计"
-tags : ["perl", "cpan", "r", "rjson" ] 
+tags : ["perl", "cpan", "r", "rjson", "json" ] 
 ---
 {% include JB/setup %}
 
