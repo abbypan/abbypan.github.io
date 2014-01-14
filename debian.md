@@ -11,7 +11,7 @@ tagline: "安装笔记"
 - BIOS里选网络启动，重启，选debian网络安装； 
 - 网络启动介绍见[PXE.USTC 基本文档](http://pxe.ustc.edu.cn)
 - 也可以参考[硬盘安装说明 by lixuebai@ustc](http://mail.ustc.edu.cn/~lixuebai/GNU/DebianInstall.html)
-- 手动输入源：__debian.ustc.edu.cn__；
+- 手动输入源：``debian.ustc.edu.cn``；
 - /etc/apt/source.list
    - ftp://debian.ustc.edu.cn/sources.list/
    - ``deb ftp://202.38.73.198/debian sid foo``
@@ -105,20 +105,21 @@ tagline: "安装笔记"
 - ifconfig查看ppp0的网关的ip为$vpn_gateway，之前的默认网关ip设为$gateway，如果网关经常变就在下面的脚本中搞成动态获取
 - /etc/ppp/ip-up.d/$tunnel
 
-        #!/bin/bash
-        
-        #动态获取原来网关的ip
-        gateway=`route|grep default|awk '{print $2;}'`
-        
-        #默认从vpn走
-        route del default
-        route add default gw $vpn_gateway dev ppp0
-        
-        #科大的地址不从vpn走
-        route add -net 202.38.0.0/16 gw $gateway dev eth0
-        route add -net 210.45.0.0/16 gw $gateway dev eth0
-        route add -net 211.86.0.0/16 gw $gateway dev eth0
+{% highlight bash %}
+#!/bin/bash
 
+#动态获取原来网关的ip
+gateway=`route|grep default|awk '{print $2;}'`
+
+#默认从vpn走
+route del default
+route add default gw $vpn_gateway dev ppp0
+
+#科大的地址不从vpn走
+route add -net 202.38.0.0/16 gw $gateway dev eth0
+route add -net 210.45.0.0/16 gw $gateway dev eth0
+route add -net 211.86.0.0/16 gw $gateway dev eth0
+{% endhighlight %}
 
 ### 无线
 - 资料：
@@ -254,11 +255,13 @@ Y是windows下C盘所在分区的序号
 
 ### 声卡驱动
 
+{% highlight bash %}
     apt-get install alsa-utils alsa-oss
     alsaconf
+{% endhighlight %}
 
 ### dig
-    apt-get install dnsutils
+    ``apt-get install dnsutils``
 
 
 ### apache + mysql + php 
@@ -266,10 +269,11 @@ Y是windows下C盘所在分区的序号
 - [lamp配置](https://wiki.debian.org/zh_CN/LAMP)
 - [Debian 6 下 Apache+MySQL+MySQL的LAMP服务器的配置](http://www.duyaofei.com/2012/03/29/vps-%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B11%EF%BC%9Adebian-6-%E4%B8%8B-apachemysqlmysql%E7%9A%84lamp%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/)
 
-      apt-get install apache2
-      apt-get install mysql-server
-      apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
-      apt-get install php5-mysql
-      apt-get install php5-gd
-      apt-get install imagemagick php5-imagick
-
+{% highlight bash %}
+apt-get install apache2
+apt-get install mysql-server
+apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
+apt-get install php5-mysql
+apt-get install php5-gd
+apt-get install imagemagick php5-imagick
+{% endhighlight %}

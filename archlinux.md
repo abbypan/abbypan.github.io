@@ -37,30 +37,33 @@ tagline: 安装笔记
 - 执行``wifi-menu``，连接合适的无线网络
 - 编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
 
-      mount /dev/sda1 /mnt
-      pacstrap /mnt base base-devel
-      pacstrap /mnt grub2-bios
-      genfstab -p /mnt >> /mnt/etc/fstab
-      arch-chroot /mnt
+{% highlight bash %}
+mount /dev/sda1 /mnt
+pacstrap /mnt base base-devel
+pacstrap /mnt grub2-bios
+genfstab -p /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+{% endhighlight %}
 
 - 设置arch源，见上节
-
-      ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-      mkinitcpio -p linux
-      grub-install --no-floppy /dev/sda
-      grub-mkconfig -o /boot/grub/grub.cfg
-      pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
-      exit
-      reboot
+{% highlight bash %}
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+mkinitcpio -p linux
+grub-install --no-floppy /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
+exit
+reboot
+{% endhighlight %}
 
 - 重启之后，执行``wifi-menu``连接到无线网络
 
 
 ### 系统更新
-
+{% highlight bash %}
       pacman -Syu
       pacman -S yaourt
-
+{% endhighlight %}
 
 ## 系统配置
 
@@ -108,10 +111,10 @@ tagline: 安装笔记
 
 
 ### 时间
-
+{% highlight bash %}
       yaourt -S ntp
       ntpdate asia.pool.ntp.org
-
+{% endhighlight %}
 
 ### 热插拔(xfce4)
 - ``yaourt -S ntfs-3g thunar-volman udisks``
@@ -205,50 +208,54 @@ tagline: 安装笔记
 
 - 手动连接：假设无线网卡为wlan0
 
-      WLAN=wlan0
-      ESSID=mywireless
-      PASSWD=mypasswd
-      
-      rm /run/dhcpcd-$WLAN.pid
-      rm /var/run/wpa_supplicant/$WLAN
-      
-      ifconfig $WLAN up
-      
-      wpa_supplicant -dd -B -Dwext -i $WLAN -c /etc/wpa_supplicant.conf
-      
-      ifconfig $WLAN up
-      iwconfig $WLAN essid $ESSID key "s:$PASSWD"
-      dhcpcd $WLAN
+{% highlight bash %}
+WLAN=wlan0
+ESSID=mywireless
+PASSWD=mypasswd
+
+rm /run/dhcpcd-$WLAN.pid
+rm /var/run/wpa_supplicant/$WLAN
+
+ifconfig $WLAN up
+
+wpa_supplicant -dd -B -Dwext -i $WLAN -c /etc/wpa_supplicant.conf
+
+ifconfig $WLAN up
+iwconfig $WLAN essid $ESSID key "s:$PASSWD"
+dhcpcd $WLAN
+{% endhighlight %}
 
 
 ### vpn
 - 参考：[archlinux pptp vpn拨号连接](http://blog.vkill.net/read.php?97)
 - 没看到arch下有/etc/ppp/ip-up.d目录，用以下脚本来启动vpn，我没有把它加为开机启动项，嗯。
 
-      #!/bin/zsh
-      
-      #取网关地址
-      gateway=`route|grep default|grep eth0|awk '{print $2;}'`
-      vpn_gateway="192.168.6.253"
-      
-      echo "拨号..."
-      sudo poff -a
-      sleep 2
-      sudo pon lab
-      sleep 3
-      
-      echo "修改路由..."
-      #科大的地址不从vpn走
-      sudo route add -net 202.38.0.0/16 gw $gateway eth0
-      sudo route add -net 210.45.0.0/16 gw $gateway eth0
-      sudo route add -net 211.86.0.0/16 gw $gateway eth0
-      
-      #默认从vpn走
-      sudo route del default
-      sudo route add default gw $vpn_gateway dev ppp0
-      
-      #看路由
-      sudo route -n
+{% highlight bash %}
+#!/bin/zsh
+
+#取网关地址
+gateway=`route|grep default|grep eth0|awk '{print $2;}'`
+vpn_gateway="192.168.6.253"
+
+echo "拨号..."
+sudo poff -a
+sleep 2
+sudo pon lab
+sleep 3
+
+echo "修改路由..."
+#科大的地址不从vpn走
+sudo route add -net 202.38.0.0/16 gw $gateway eth0
+sudo route add -net 210.45.0.0/16 gw $gateway eth0
+sudo route add -net 211.86.0.0/16 gw $gateway eth0
+
+#默认从vpn走
+sudo route del default
+sudo route add default gw $vpn_gateway dev ppp0
+
+#看路由
+sudo route -n
+{% endhighlight %}
 
 
 ## 其它
@@ -279,6 +286,7 @@ tagline: 安装笔记
 - 系统升级失败，重启提示kernel panic，switch_root : fail to ...
 - 从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之
 
-      mount /dev/sda1 /mnt
-      yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
-
+{% highlight bash %}
+mount /dev/sda1 /mnt
+yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
+{% endhighlight %}
