@@ -17,10 +17,14 @@ tags : ["firefox", "greasemonkey", "javascript", "jjwxc", "ljj" ]
 方便一眼看出这篇文章是否成坑……是否将要成坑……是否曾经是坑……
 
 简易版坑品查看器。。。
+
+![kengpin_1](/assets/posts/ljj_kengpin_1.png)
+
+![kengpin_2](/assets/posts/ljj_kengpin_2.png)
  
 做法：根据目录页的更新信息统计出更新时间间隔，利用JScharts画柱状图(因为它画出来比较好看)，利用Google Chart API画饼图(因为它支持中文)。
 
-饼图分类来源：快乐催文我催我催我催催催　作者：kuandeng（狂等）
+饼图分类来源：[快乐催文我催我催我催催催　作者：kuandeng（狂等）](http://www.jjwxc.net/comment.php?novelid=370832&commentid=36364&page=1)
 
 分类方式：
 
