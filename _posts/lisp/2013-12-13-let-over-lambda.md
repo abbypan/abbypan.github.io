@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "Let over Lambda"
+title:  "Let Over Lambda"
 tagline: "笔记"
 tags : ["lisp" ] 
 ---
@@ -507,10 +507,10 @@ demacro!预处理了g!开头的参数，the G-bang symbols are sub-lexically bou
 
 sublet是搞sub-lexical binding的指令，在看sublet之前得研究let-binding-transform先，不过这个transform比较简单
 
-sublet还用到了tree-leaves。可以看到它的宏展开不保留原来的符号a，而是生成了一个新的标记，连'a 都自动转过去了。
+sublet还用到了tree-leaves。可以看到它的宏展开不保留原来的符号a，而是生成了一个新的标记，连``'a``都自动转过去了。
 
-sublet* 把 body 先做了一次 macroexpand-1，这样body里的宏引用的变量名就可以预先展开了。这个称为supre sub-lexical scope。
-sublet* 解决了上面的 injector-for-a 问题。不过只能展开一层，嵌套还是不行。原因是“nested macros in the expression are not expanded by macroexpand-1”
+``sublet*``把 body 先做了一次 macroexpand-1，这样body里的宏引用的变量名就可以预先展开了。这个称为supre sub-lexical scope。
+``sublet*``解决了上面的 injector-for-a 问题。不过只能展开一层，嵌套还是不行。原因是“nested macros in the expression are not expanded by macroexpand-1”
 
 ``sublet*``这类宏，可以调整宏展开时，可见的变量，form展开的方式。对宏编程的宏。（确实工巧）
 
@@ -518,4 +518,48 @@ sublet* 解决了上面的 injector-for-a 问题。不过只能展开一层，�
 
 pandoriclet 宏，支持根据key进行 变量取值、赋值、执行指定代码，注意这边也用到了this。有些还没定义也可以先写上要用。
 
+What we have done is created an inter-closure protocol, or message passing system, for communicating between closures.
+
 扯了一通generalised variable
+
+Defsetf 宏  implicitly binds gensyms around provided forms
+
+with-pandoric uses symbol-macrolet to install these generalised variables as seemingly new lexical variables with the same names as the closed-over variables. 这些变量由 pandoriclet定义，但lexical contexts分离
+
+跟 Hotpatching Closures 的差别在于，这回的pandoric更精巧，Hotpatching 整个共享lexical binding
+
+Macros are not for inlining, compilers are for inlining
+
+plambda 宏
+
+plambda creates another anaphor—self. While the anaphor this refers to the actual closure that is to be invoked, self refers to the indirection environment that calls this closure.
+
+plambda 和 with-pandoric 可以重写lexical scope。
+
+eval对form求值时，是在一个null lexical环境下的，所以下面这个会出错：
+{% highlight lisp %}
+* (let ((x 1))
+    (eval
+      '(+ x 1)))
+
+Error: The variable X is unbound.
+{% endhighlight %}
+
+eval 比较慢，而且经常出错，还有限制。所以，想用eval的时候，先想想能不能用宏。
+
+pandoric-eval 先用plambda把变量搞成闭包，传到eval，变成dynamic环境变量生效
+{% highlight lisp %}
+* (let ((x 1))
+    (pandoric-eval (x)
+      '(+ 1 x)))
+
+2
+{% endhighlight %}
+
+这几段比较晕
+
+## More Efficiency Topics
+
+lisp 就是比较快，blablabla...
+
+看 Edi Weitz 的 CL-PPCRE，blablabla...
