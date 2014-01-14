@@ -565,3 +565,21 @@ pandoric-eval 先用plambda把变量搞成闭包，传到eval，变成dynamic环
 lisp 就是比较快，blablabla...
 
 看 Edi Weitz 的 CL-PPCRE，blablabla...
+
+一堆举例，point就是人家也可以很快的，注意得这么用，blablabla...
+
+## Lisp Moving Forth Moving Lisp
+
+又一种语言：Forth
+
+这章我没看
+
+## 附录
+
+除了lisp，作者推荐学一下C、Perl、Forth、smalltalk、haskell。
+
+为毛要perl呢，作者给出的原因：if lisp is the result of taking syntax away, perl is the result of taking syntax all the way.
+
+哈哈！
+
+CMUCL / SBCL 等等
