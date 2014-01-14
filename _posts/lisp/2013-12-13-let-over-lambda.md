@@ -7,6 +7,8 @@ tags : ["lisp" ]
 ---
 {% include JB/setup %}
 
+见：[Let Over Lambda](http://letoverlambda.com/index.cl/toc)
+
 ## Introduction
 
 程序的关键在于合适的抽象，这样才不会有一堆重复的代码，增加更多复杂度
