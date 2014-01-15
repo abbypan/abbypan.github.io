@@ -3,7 +3,7 @@ layout: post
 category: tech
 title: "C sharp 执行shell命令，并输出执行结果"
 tagline: "C sharp call shell"
-tags: ["csharp" , "shell" "stdout" ] 
+tags: ["csharp" , "shell","stdout" ] 
 ---
 {% include JB/setup %}
 
