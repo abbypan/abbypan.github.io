@@ -1,9 +1,9 @@
 ---
 layout: post
-category : tech
-title:  "C# 执行shell命令，并输出执行结果"
-tagline: "C# call shell"
-tags : ["csharp" , "shell" "stdout" ] 
+category: tech
+title: "C sharp 执行shell命令，并输出执行结果"
+tagline: "C sharp call shell"
+tags: ["csharp" , "shell" "stdout" ] 
 ---
 {% include JB/setup %}
 
