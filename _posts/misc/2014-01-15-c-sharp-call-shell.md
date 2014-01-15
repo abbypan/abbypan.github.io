@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "C# 执行shell命令，并输出执行结果"
 tagline: "C# call shell"
-tags : ["c#" , "shell" "stdout" ] 
+tags : ["csharp" , "shell" "stdout" ] 
 ---
 {% include JB/setup %}
 
@@ -44,6 +44,7 @@ class TestShell
 
 
 ## 编译并使用
+
 {% highlight bat %}
 > csc /target:exe testshell.cs
 > .\testshell.exe "perl" "-v"
