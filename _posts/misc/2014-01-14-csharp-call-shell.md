@@ -17,31 +17,47 @@ using System;
 using System.IO;
 using System.Diagnostics;
 
-class TestShell
-{
+class TestShell {
     public static void Main()
     {
 
         string[] args = Environment.GetCommandLineArgs();
-        string shell_path = args[1];
-        string shell_var = args[2];
+        string exe = args[1];
+        string param = args[2];
+        TestShellData x = new TestShellData();
+        string data = x.ShellData(exe, param);
+        Console.WriteLine(data);
+    }
+}
+
+class TestShellData
+{
+
+    public string ShellData(string exe, string param){
+        string some_cmd = '"' + exe + '"' +
+                              ' ' +  '"' + param + '"'; 
 
         Process robot = new Process();
-
         robot.StartInfo.FileName = "cmd";
-        robot.StartInfo.Arguments = "/C \"" + 
-            shell_path + "\" " + shell_var ;
-
+        robot.StartInfo.Arguments = "/C \"" + some_cmd + '"';
         robot.StartInfo.UseShellExecute = false;
         robot.StartInfo.RedirectStandardOutput = true;
         robot.Start();    
-
-        Console.WriteLine(robot.StandardOutput.ReadToEnd());
+        
+        string data = robot.StandardOutput.ReadToEnd();
         robot.WaitForExit();
+        return data;
     }
 }
 {% endhighlight %}
 
+## 安装c#编译环境
+
+安装[Microsoft Windows SDK for Windows 7 and .NET Framework 4](http://www.microsoft.com/en-us/download/confirmation.aspx?id=8279)
+
+假设安装目录为: ``C:\Windows\Microsoft.NET\Framework64\v4.0.30319``
+
+把该目录加入PATH环境变量后，``csc.exe``可以在命令行直接调用
 
 ## 编译并使用
 

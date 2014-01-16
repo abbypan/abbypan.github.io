@@ -181,6 +181,7 @@ tagline: "TMTOWTDI"
 | Text::Wrap |
 | Text::Xslate  | 类似Text::Template的模块 ，速度很快
 | TextFormatTAble |
+| [Time::Piece](http://perltricks.com/article/59/2014/1/10/Solve-almost-any-datetime-need-with-Time-Piece) | 时间处理
 | Win32::TieRegistry | 用Win32::TieRegistry读出windows已安装软件的列表
 | User::pwent |
 | XLSperl | 命令行操作xls文件
