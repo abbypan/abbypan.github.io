@@ -5,8 +5,6 @@ tagline: "编辑器"
 ---
 {% include JB/setup %}
 
-
-
 ## 简单入门
 
 | 资料 | 简介 |
@@ -15,7 +13,6 @@ tagline: "编辑器"
 | [最佳vim技巧](http://bbs.byr.cn/wForum/elite.php?file=/groups/sci.faq/Linux/linuxSoftUsage/VI/M.1116044565.s0) | 经典
 | [不是打vi的广告](http://greenisland.csie.nctu.edu.tw/wp/category/comuter/vim/) | 实例
 | vim hacks | PPT
-
 
 ## 站点
 
@@ -48,3 +45,60 @@ tagline: "编辑器"
 | [neocomplcache](http://www.vim.org/scripts/script.php?script_id=2620) | 函数补全
 | [surround.vim](http://www.vim.org/scripts/script.php?script_id=1697) | word两边加引号标签
 
+## 配置
+
+### 打开当前文件所在路径下的其他文件
+
+见：[Tip #2: easy edit of files in the same directory](http://www.vim.org/tips/tip.php?tip_id=2)
+
+{% highlight vim %}
+if has("unix") 
+map ,e :e <C-R>=expand("%:p:h") . "/"<CR> 
+else 
+map ,e :e <C-R>=expand("%:p:h") . "\"<CR> 
+endif 
+{% endhighlight %}
+
+### Perl-Support 设置
+
+#### 快捷键
+
+先在``~/.vimrc``设置： ``let g:Perl_MapLeader  = ','``
+
+| 按键 | 作用 |
+| ---- | ---- |
+| ,cfr | 块状说明 |
+| ,cfu | 函数说明 |
+| ,isu | 函数说明 |
+| ,ii | 读文件（Ctrl-j跳转到下一个输入点） |
+| ,io | 写文件 |
+| ,ip | print "\n"; |
+| ,pb | [:blank:] |
+| ,rr | 运行脚本 |
+| ,rs | 检查语法 |
+| .ra | 指定脚本运行的参数 |
+| ,rd | 开始debug (也可以按F9) |
+| ,rp | 阅读perldoc |
+| ,ry | 运行perltidy整理代码 |
+| ,hp | perl-support的帮助信息 |
+
+#### 时间格式
+
+{% highlight vim %}
+let g:Perl_TimestampFormat= '%Y-%m-%d %H:%M:%S'
+let g:Perl_FormatDate            = '%Y-%m-%d'
+let g:Perl_FormatTime            = '%H:%M:%S'
+let g:Perl_FormatYear            = 'Year %Y'   
+{% endhighlight %}
+
+###  Windows下的相关编码设置
+
+参考：[vim、gvim在windows下中文乱码的终极解决方案](http://blog.csdn.net/rehung/archive/2007/09/21/1794293.aspx)
+{% highlight vim %}
+language mes zh_CN.GBK
+set langmenu=zh_CN.UTF-8
+set fileencodings=utf-8,cp936,big5,euc-jp,utf-bom,iso8859-1
+set encoding=cp936
+set termencoding=cp936
+set fileencoding=utf-8
+{% endhighlight %}
