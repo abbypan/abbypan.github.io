@@ -15,7 +15,7 @@ DNS域名压缩资料： DNS报文域名压缩规则 ,细节参考 RFC1035 中 4
 
 当DNS应答包结尾域名包含指针，在结尾处误加了``\0``时：
 
-![wireshark_dns_parse](assets/posts/wireshark_dns_parse.png)
+![wireshark_dns_parse](/assets/posts/wireshark_dns_parse.png)
 
 三个工具测试结果：
 - dig：提示DNS应答包格式出错
