@@ -46,7 +46,7 @@ tagline: "常用软件"
 | pdfsam | pdf 文件分割合并 |
 | phpnow | apache + php + mysql 环境 |
 | qgifer | 从视频文件(mp4等)中提取gif |
-| qq国际版 | 聊天 |
+| 腾讯TM | 聊天 |
 | quod libet  | 音乐播放 | ttplayer 千千静听, qq音乐
 | rapidee | 修改环境变量
 | [regjump](http://technet.microsoft.com/zh-cn/sysinternals/bb963880) | 跳转到指定注册表位置 | 

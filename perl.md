@@ -117,6 +117,7 @@ tagline: "TMTOWTDI"
 | MVC | Perl的MVC框架介绍：[What is the Perl Web Framework du jour?](http://www.perlmonks.org/?node_id=753411)
 | Algorithm::Accounting |
 | App::Ack |
+| [App::FatPacker](https://metacpan.org/pod/App::FatPacker) | 把perl程序打包成独立的执行文件，只要有perl就能用
 | Array::PrintCols |
 | Benchmark::Timer  | 程序运行时间
 | Clone 复制数据结构 | 传入的参数必须为引用

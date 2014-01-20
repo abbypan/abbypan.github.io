@@ -30,7 +30,7 @@ title: "求福不回，求用不匮"
 | 系统 | [ArchLinux](archlinux.html)，[Debian](debian.html)
 | 网络 | [DNS](dns.html)
 | 程序 | [Lisp](lisp.html)，[Perl](perl.html)，[Rebol](rebol.html)
-| 工具 | [VIM](vim.html)，[Windows](windows.html)
+| 工具 | [Vim](vim.html)，[Windows](windows.html)
 | 笔记 | [我的github](https://github.com/abbypan)，[我的blogspot](https://abbypan.blogspot.com)，[我的twitter](https://twitter.com/abbypan)
 
 ## 旧的回忆

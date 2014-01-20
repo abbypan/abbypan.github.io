@@ -26,6 +26,7 @@ tags : ["perl", "regex", "bnf", "rebol", "rpn", "parse" ]
 见：
 - [REBOL 3 Concepts: Parsing: Parsing Blocks and Dialects](http://www.rebol.com/r3/docs/concepts/parsing-dialects.html)
 - [REBOL 3 Concepts: Parsing: Evaluation](http://www.rebol.com/r3/docs/concepts/parsing-evaluation.html)
+- [REBOL 3 Concepts: Parsing: Summary of Parse Operations](http://www.rebol.com/r3/docs/concepts/parsing-summary.html)
 
 ### 在parse的block里可以用``()``执行代码
 
@@ -181,7 +182,3 @@ parse page [thru <title> copy text to </title>]
 print text
 REBOL Technologies
 {% endhighlight %}
-
-### 总结
-
-见：[REBOL 3 Concepts: Parsing: Summary of Parse Operations](http://www.rebol.com/r3/docs/concepts/parsing-summary.html)

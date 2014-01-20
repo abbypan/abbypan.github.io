@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "Text::CSV_XS"
-tagline: "解析文本"
-tags : ["perl", "cpan" ] 
+title:  "hive"
+tagline: "笔记"
+tags : ["hive", "hadoop"] 
 ---
 {% include JB/setup %}
 
