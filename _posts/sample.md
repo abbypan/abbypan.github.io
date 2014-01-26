@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "hive"
-tagline: "笔记"
-tags : ["hive", "hadoop"] 
+title:  ""
+tagline: ""
+tags : [] 
 ---
 {% include JB/setup %}
 
