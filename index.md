@@ -13,6 +13,8 @@ title: "求福不回，求用不匮"
 
 ![我的邮箱](assets/img/mail.png)
 
+[订阅rss](/rss.xml)
+
 
 ## 生活
 
