@@ -141,3 +141,27 @@ BIND 9.5.0 之后，递归查询如果time out，会把edns的buffer长度设回
 这个只能测 递归<->oarc权威之间的链路，没法测 用户<->递归 之间的链路
 
 对于forwarder的情况，用一些不常见的RR填充数据包可能会更好一点
+
+## 域名已经删除了但仍可以在递归持续解析
+见：http://netsec.ccert.edu.cn/duanhx/archives/1656?lang=zh-hans
+
+清华的paper
+
+假设域名为 somedomain.com
+
+关键点在于，递归从com获取 somedomain.com 的 ns1.somedomain.com之后，相信ns1.somedomain.com发过来的所有消息，包括ns记录！
+
+当com已经删除了somedomain.com时，ns1.somedomain.com已经先跟递归说了还有个ns2.somedomain.com。
+
+ns1.somedomain.com可以定期发包强调当前权威可用，同时update用ttl。保证让递归一直相信下去，不去com问问。。。
+
+解决的时候，一个注意NS要从上级问，还有得按层次检查域名。
+
+## 权威错误数据传到递归后，递归如何清除缓存
+见：[hijacking-dns-error-ddos-what-happened-and-what-you-can-do](https://www.isc.org/blogs/hijacking-dns-error-ddos-what-happened-and-what-you-can-do/)
+
+与缓存中毒不同，LinkedIn的问题出在注册商，所以从TLD权威开始就错了。
+
+需要递归主动刷新CACHE，用rndc flush之类的命令，具体见：
+
+[How do I flush or delete incorrect records from my recursive server cache](https://kb.isc.org/article/AA-01002)

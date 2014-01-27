@@ -32,6 +32,7 @@ tagline: "Domain Name System "
 | [Comparison_of_DNS_server_software](http://en.wikipedia.org/wiki/Comparison_of_DNS_server_software) | dns 软件对比
 | [just dns lookup](http://just-dnslookup.com/index.php) | 从全球各地探测指定域名
 | [massivedns](http://massivedns.com/) | 探测
+| [dnstcpbench](http://blog.powerdns.com/2013/06/25/simple-tcpip-dns-benchmarking-tool/) | dns压测工具
 | [chinaz站长dns工具](http://tool.chinaz.com/dns/) | 从国内各地探测指定域名，也可指定dns
 
 
