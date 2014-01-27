@@ -65,6 +65,20 @@ reboot
       pacman -S yaourt
 {% endhighlight %}
 
+### pacman/yaourt调用axel多线程下载文件
+
+假设同时开8个连接
+
+在/etc/pacman.conf中指定
+
+``XferCommand = /usr/bin/axel -n 8 -o %o %u``
+
+在/etc/makepkg.conf中指定DLAGENTS
+
+          'http::/usr/bin/axel -n 8 -o %o %u'
+          'https::/usr/bin/axel -n 8 -o %o %u'
+          'ftp::/usr/bin/axel -n 8 -o %o %u'
+
 ## 系统配置
 
 
@@ -86,7 +100,22 @@ reboot
 ### 声卡
 - 安装：``yaourt -S gstreamer0.10 gstreamer0.10-base-plugins``
 - 配置：[ArchWiki:设置ALSA](https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
+- [archlinux音量太小的问题解决](https://bbs.archlinux.org/viewtopic.php?pid=1090109)
 
+{% highlight bash %}
+# pacman -Sy alsa-lib alsa-utils alsa-oss
+# gpasswd -a USERNAME audio
+# alsaconf
+# alsamixer
+# alsactl store
+{% endhighlight %}
+
+编辑 ``/etc/rc.conf`` 文件，添加 ``alsa`` 到DAEMONS行。
+
+编辑``/etc/modprobe.d/alsa-base``文件，添加以下两行：
+
+        options snd-usb-audio index=0
+        options snd-hda-intel index=1
 
 ### 输入法(scim)
 - 安装：``yaourt -S ibus ibus-table-zhengma ibus-pinyin``
@@ -290,3 +319,42 @@ sudo route -n
 mount /dev/sda1 /mnt
 yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 {% endhighlight %}
+
+## 硬件
+
+### 禁用 wifi 键盘灯 LED 闪烁
+
+见：[wireless led blink](https://wiki.archlinux.org/index.php/Wireless_Setup_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#.E7.A6.81.E7.94.A8_LED_.E9.97.AA.E7.83.81)
+
+{% highlight bash %}
+# echo 'options iwlwifi led_mode=1' >> /etc/modprobe.d/wlan.conf
+# modprobe -r iwlwifi && modprobe iwlwifi
+{% endhighlight %}
+或者
+{% highlight bash %}
+# echo 'w /sys/class/leds/phy0-led/trigger - - - - phy0radio' > /etc/tmpfiles.d/phy0-led.conf
+# systemd-tmpfiles --create phy0-led.conf
+{% endhighlight %}
+
+## 报错
+
+### /bin/plymouth: No such file or directory
+archlinux , thinkpad x61t，开机出错
+
+journalctl -xn显示 /bin/plymouth: No such file or directory 
+
+删掉 /etc/fstab 中不存在的介质就行了
+
+### locale-gen时找不到character map file
+
+``$sudo pacman -Syu``升级的时候出的问题
+
+执行locale-gen提示：``character map file "en_US" not found``
+
+结果locale就变成"C"
+
+``$sudo pacman -S glibc``重装一遍，还是出错，不过提示空间不足
+
+``$sudo pacman -Scc`` 清理空间
+
+``$sudo pacman -S glibc -f``
