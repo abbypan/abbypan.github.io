@@ -69,6 +69,16 @@ tagline: "常用软件"
 
 ## 软件使用
 
+###  IIS 7.5 的一些问题
+
+问题：Microsoft JET Database Engine   不能更新，数据库或对象为只读
+
+给“系统盘:WindowsServiceProfilesNetworkServiceAppDataLocalTemp”目录添加一个“Authenticated Users”的用户
+
+问题：ASP不能用 '..' 表示父目录
+
+双击ASP 打开编辑器——行为——启用父路径改为 true 
+
 ###  AntiVir(小红伞)设置允许Windows远程连接
 
 Configure AntiVir -> Expert Mode -> Firewall -> 本地连接 -> Add rule -> Allow Remote Desktop Connection 

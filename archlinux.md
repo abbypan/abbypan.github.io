@@ -286,8 +286,20 @@ sudo route add default gw $vpn_gateway dev ppp0
 sudo route -n
 {% endhighlight %}
 
+###  netctl提示wpa无线连接失败，要看 journal -xn等等
+
+``netctl start somewireless``
+
+netctl 提示wpa无线连接失败，要看journal -xn等等
+
+可以先禁用对应的网卡，再重新start，例如：
+
+``ip link set wlan0 down``
+
+``netctl start somewireless``
 
 ## 其它
+
 ### NGINX+PHP
 - ``yaourt -S nginx spawn-fcgi php-cgi``
 - 以http(用户):http(组)启动fastcgi : 
@@ -358,3 +370,4 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
 ``$sudo pacman -Scc`` 清理空间
 
 ``$sudo pacman -S glibc -f``
+

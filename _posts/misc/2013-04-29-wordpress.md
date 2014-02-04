@@ -18,3 +18,13 @@ tags : ["wordpress"]
 > chown www-data -R /var/www/wp
 > chmod 775 -R /var/www/wp 
 {% endhighlight %}
+
+##  WordPress搬家
+
+先导出xml文件
+
+超过2M的话，用divXML分割
+
+再用Import WordPress的plugin导入
+
+私人blog可以装Private Only的plugin，设置游客无法访问 
