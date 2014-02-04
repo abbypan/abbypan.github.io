@@ -23,7 +23,7 @@ tags : ["jekyll", "github", "blog"]
 
 ## 设置pygments支持语法高亮
 
-_config.yml中设置pygments为true
+``_config.yml``中设置pygments为true
 
 找一个pygments的css，例如zenburn.css，假设放到/assets/themes目录下
 
