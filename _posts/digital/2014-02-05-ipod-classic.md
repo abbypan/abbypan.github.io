@@ -19,7 +19,7 @@ menu + select 重启，出现白苹果， play + select 进入 disk 模式
 
 用easeus partition magic 检测坏道
 
-新建一个fat32分区（只能有一个），为 primary 分区，簇大小16kb，格式化
+绕过坏道，新建一个fat32分区（只能有一个），设为 primary 分区，簇大小16kb，格式化
 
 menu + select 重启
 
