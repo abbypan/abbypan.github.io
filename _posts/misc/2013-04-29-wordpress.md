@@ -28,3 +28,9 @@ tags : ["wordpress"]
 再用Import WordPress的plugin导入
 
 私人blog可以装Private Only的plugin，设置游客无法访问 
+
+##  WordPress 迁回 Blogger
+
+http://technospecs.wordpress.com/2012/07/01/wordpress-to-blogger-migration/
+
+http://wordpress2blogger.appspot.com/
