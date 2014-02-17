@@ -9,7 +9,7 @@ tagline: "编辑器"
 
 | 资料 | 简介 |
 | ---- | ---- |
-| 七个有效的文本编辑习惯 ｜ 经典 
+| 七个有效的文本编辑习惯 | 经典
 | [最佳vim技巧](http://bbs.byr.cn/wForum/elite.php?file=/groups/sci.faq/Linux/linuxSoftUsage/VI/M.1116044565.s0) | 经典
 | [不是打vi的广告](http://greenisland.csie.nctu.edu.tw/wp/category/comuter/vim/) | 实例
 | vim hacks | PPT

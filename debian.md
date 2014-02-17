@@ -133,7 +133,7 @@ route add -net 211.86.0.0/16 gw $gateway dev eth0
 | ------ | ----------- |
 | 系统 | Debian 2.6.22-3-686  |
 | 无线网卡 |  Intel Pro/Wireless 2100  |
-| ESSID: MyLab  |
+| ESSID | MyLab  |
 | 用户名 | MyName  |
 | 密码 | MyPasswd  |
 | 网络验证 | WPA  |

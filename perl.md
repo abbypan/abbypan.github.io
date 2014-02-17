@@ -61,18 +61,18 @@ tagline: "TMTOWTDI"
 | 2006.02 | Wicked Cool Perl Scripts | 看个半天就行了，给出了一些代码实例，并附解释。第1、6章注意看看，剩下随手翻一遍。总之没啥好玩的，整本书不看也行。
 | 2005.08 | Pro Perl Parsing | 讲数据分析的，感觉还可以，拿一些模块举例了。大概看个半天到一天吧，某些内容如果有用到再详细看。
 | 2005.07 | Advanced Perl Programming | 黑豹书， 也是经典，没事就看吧。不过撑到第10章之后，就有点看不下去了。
-| 2005.07 | Perl Testing |
+| 2005.07 | Perl Testing | 
 | 2005.03 | Higher-Order Perl: Transforming Programs with Programs | 内容比较深入，看完受益不小，就是看的时候容易头昏脑胀
 | 2004.01 | Perl Debugger Pocket Reference | 还行吧
 | 2003.12 | perl template toolkit | 
 | 2003.10 | Spidering Hackers | web爬虫程序参考
 | 2003.05 | Perl Regular Expression Quick Reference  | 很不错的perl正则参考
-| 2003 | Extending and Embedding Perl |
+| 2003 | Extending and Embedding Perl | 
 | 2002.07 | Perl and LWP | web爬虫程序参考
 | 2001.10 | Perl Black Book(Perl 技术内幕) | 中规中矩的Perl入门参考大全，读完整体没太深的印象，里面一些表格整理的挺全的。
 | 2001.01 | Professional Perl Programming | Perl基础资料书，东西很全，示例代码挺多的，当手册翻翻挺不错的。 
 | 2001.01 | Data Munging With Perl | 讲数据挖掘的，写得不错。代码解释的比较清楚，举例也比较实用。大概两天就能看完。
-| 2001 | Perl Debugged |
+| 2001 | Perl Debugged | 
 | 2000.12 | Network Programming With Perl | 可以看看
 | 2000.02 | Programming the Perl DBI | 手册型的书，要用的时候翻上一天就差不多了，记不住的时候再去翻来看。 书里面的播图不错，一下子就让你看明白意思，:D 
 | 2000.01 | Object Oriented Perl | 面向对象的各个要点分章节进行介绍，感觉还可以，翻得很快。
@@ -115,83 +115,83 @@ tagline: "TMTOWTDI"
 | pm.org的Advent | http://perladvent.pm.org
 | Colonizing the Lacuna Expanse with Perl | http://www.perl.com/pub/2010/10/colonizing-the-lacuna-expanse-with-perl.html
 | MVC | Perl的MVC框架介绍：[What is the Perl Web Framework du jour?](http://www.perlmonks.org/?node_id=753411)
-| Algorithm::Accounting |
-| App::Ack |
+| Algorithm::Accounting | 
+| App::Ack | 
 | [App::FatPacker](https://metacpan.org/pod/App::FatPacker) | 把perl程序打包成独立的执行文件，只要有perl就能用
-| Array::PrintCols |
+| Array::PrintCols | 
 | Benchmark::Timer  | 程序运行时间
 | Clone 复制数据结构 | 传入的参数必须为引用
-| Config::Auto |
-| Config::Context |
-| Config::Scoped |
-| Config::YAML |
-| DBM::Deep |
-| EV::ADNS |
-| Email::MIME::Creator |
-| Email::Sender |
-| Email::Simple |
-| Email::Simple::Creator |
-| Email::Stuff 简单的邮件发送模块 |
-| File::Tail |
+| Config::Auto | 
+| Config::Context | 
+| Config::Scoped | 
+| Config::YAML | 
+| DBM::Deep | 
+| EV::ADNS | 
+| Email::MIME::Creator | 
+| Email::Sender | 
+| Email::Simple | 
+| Email::Simple::Creator | 
+| Email::Stuff 简单的邮件发送模块 | 
+| File::Tail | 
 | File::Temp | 注意这个读文件的时候是binary mode，实际处理时可能要自己设binmode
 | Filesys::Df | 查看剩余空间
 | File::Stream | 读入文件时，如果指定$/，则$/必须是字符串；如果要用正则式分隔，就用File::Stream。
-| IO::Socket |
-| Log4Perl |
-| Log::Dispatch |
-| Log::Statistics |
-| Logfile |
-| Logfile::Rotate |
-| Mail::Mailer |
-| Mail::Sender |
-| Mail::Sendmail |
-| Moose |
-| Net::ADNS |
-| Net::Pcap |
-| Net::Pcap::Easy |
-| Net::PcapUtils |
-| Net::Whois |
-| Net::Whois::Raw |
-| NetPacket::IP |
-| NetPacket::TCP |
-| Nmap::Scanner |
-| Parse::Syslog |
-| Path::Class |
+| IO::Socket | 
+| Log4Perl | 
+| Log::Dispatch | 
+| Log::Statistics | 
+| Logfile | 
+| Logfile::Rotate | 
+| Mail::Mailer | 
+| Mail::Sender | 
+| Mail::Sendmail | 
+| Moose | 
+| Net::ADNS | 
+| Net::Pcap | 
+| Net::Pcap::Easy | 
+| Net::PcapUtils | 
+| Net::Whois | 
+| Net::Whois::Raw | 
+| NetPacket::IP | 
+| NetPacket::TCP | 
+| Nmap::Scanner | 
+| Parse::Syslog | 
+| Path::Class | 
 | Path::Tiny | 路径处理
 | Params::Validate | 检查函数参数
-| Perl6::Form |
+| Perl6::Form | 
 | Pod::Browser |  本地查看pod
-| Proc::ProcessTable |
-| Regexp::Log::Common |
-| Regexp::Log::DateRange |
+| Proc::ProcessTable | 
+| Regexp::Log::Common | 
+| Regexp::Log::DateRange | 
 | SSH::Batch  | 远程SSH批量操作
 | Set::Array  | 数组操作模块
-| Sinffer::HTTP |
+| Sinffer::HTTP | 
 | Sub::Exporter | 生成多个闭包函数
-| Template::Toolkit |
-| Text::Template |
-| Term::Prompt |
-| Term::Prompt |
-| Test::Harness |
+| Template::Toolkit | 
+| Text::Template | 
+| Term::Prompt | 
+| Term::Prompt | 
+| Test::Harness | 
 | Test::Output | 测试stdout、stderr输出的内容
-| Text::Autoformat |
-| Text::BarGraph |
-| Text::Beautify |
-| Text::Match::FastAlternatives |
-| Text::More |
-| Text::Wrap |
+| Text::Autoformat | 
+| Text::BarGraph | 
+| Text::Beautify | 
+| Text::Match::FastAlternatives | 
+| Text::More | 
+| Text::Wrap | 
 | Text::Xslate  | 类似Text::Template的模块 ，速度很快
-| TextFormatTAble |
+| TextFormatTAble | 
 | [Time::Piece](http://perltricks.com/article/59/2014/1/10/Solve-almost-any-datetime-need-with-Time-Piece) | 时间处理
 | Win32::TieRegistry | 用Win32::TieRegistry读出windows已安装软件的列表
-| User::pwent |
+| User::pwent | 
 | XLSperl | 命令行操作xls文件
-| XML::Compile |
+| XML::Compile | 
 | XML::LibXML | 很快
-| XML::Rules |
+| XML::Rules | 
 | XML::SAX | 适用于体积较大的XML
 | XML::Simple | 很简单
 | XML::Twig | 适用于大容量数据的一个小子集
 | XML::Struct | 接口比较简单
 | XML::Rabbit | 见[thanks-to-xmlrabbit](http://www.modernperlbooks.com/mt/2012/10/i-stopped-parsing-xml-thanks-to-xmlrabbit.html)
-| YAML |
+| YAML | 
