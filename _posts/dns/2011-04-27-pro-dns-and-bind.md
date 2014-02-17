@@ -7,7 +7,36 @@ tags : ["dns", "bind" ]
 ---
 {% include JB/setup %}
 
-## CHAPTER 1
+## Pro DNS and Bind 10
+
+### chap 3
+
+迭代查询可能有几种返回：
+- 域名的cname记录，需要标识是权威应答还是缓存应答
+- 域名或主机不存在NXDOMAIN，包括CNAME到一个不存在主机的情况
+- 出现临时错误，例如网络故障等
+- referral应答，给出一个更加靠近权威DNS的ns记录
+
+最好只有单个IP的PTR指向mail域名，否则可能会丢信。而不是单个IP的PTR指向多个域名。
+两种Dynamic DNS：
+- 允许从外部源实时更新zone RRs，而不中断服务（无法动态新增或删除一个域名/域；已存在域名的RR，除SOA之外，都可以被增/删/改）
+- 从数据库读取zone RRs做解析，数据可以动态更新（BIND-DLZ、PowerDNS、BIND10；域名/域可以动态增/删/改，但是查询性能较差）
+
+### 附录
+
+附录A：一些域名的FAQ
+
+附录B：DNS的RFC列表，很长，重点看过的几份：
+- RFC1034/1035/2181 DNS介绍，基础必看
+- RFC2308 否定缓存，写的挺好
+- RFC3833 威胁分析，关键资料
+- RFC4592 泛域名，感觉不错
+- RFC4033/4034/4035 讲DNSSEC， 这几份读的很烦躁
+
+
+## pro dns and bind 9
+
+### CHAPTER 1
 
 RFC基础定义：1034，1035
 
@@ -30,7 +59,7 @@ glue recode ：指向下一级NS的记录，一般是NS域名对应的A记录
 dns server软件：bind，nsd，。。。
 
 
-## CHAPTER 2
+### CHAPTER 2
 
 RFC 1912 推荐 ZONE FILE里 $TTL > 1day ，一般默认是2天
 
@@ -47,7 +76,7 @@ NS、MX记录的取值必须是个FQDN，也就是最后有一个点
 反垃圾邮件的SPF会用TXT记录登记信息
 
 
-## Chapter 3
+### Chapter 3
 BIND 根据 RTT 选择查询的NAME SERVER，还会参考ROUND ROBIN
 
 stub resolver 是不支持迭代查询的；也就是说，PC上配的name server要支持递归查询，不然本机的resovler碰到迭代的应答就傻掉了
@@ -72,6 +101,8 @@ DDNS(Dynamic DNS) 允许在server执行时从外界动态更新域的RR配置；
 
 DNS安全：
 
+![dns_security_overview](/assets/posts/dns_security_overview.png)
+
 zone file本身的安全
 
 动态更新：限源IP，加密&认证 TSIS SIG(0)
@@ -83,7 +114,7 @@ zone transfer：限源IP，加密&认证 TSIS SIG(0)
 本地resolver查询：缓存中毒，数据篡改，本地IP欺骗 => DNSSEC，SSL/TLS(用于resolver到local dns)
 
 
-## Chapter 4
+### Chapter 4
 
 slave server : 总是返回该server上的域的权威回答
 
@@ -96,7 +127,7 @@ cache server ： 只有从master / slave server 刚刚问过来的回答才置�
 Stealth Name Server(或DMZ name server、split name server)，不让外界看到的name server，bind的view配置可以支持这种场景，区分内网外网配置 
 
  
-## Chapter 5
+### Chapter 5
 ip地址分配:  ICANN/IANA –> RIR –> NIR –> LIR –> END USER
 
 IPV6 地址:   global routing prefix (48 bit) +  subnet id (16 bit) + interface id (64 bit)
@@ -112,13 +143,13 @@ AAAA用于正向查询，IP6.ARPA地址段用于PTR反向查IPV6地址；A6用�
 AAAA形式的反向查询链太长了
 
 
-## chapter 6   
+### chapter 6   
 bind 安装
 
-## chapter 7  
+### chapter 7  
 bind 配置
 
-## chapter 8  高级bind配置
+### chapter 8  高级bind配置
 
 example.com中切出一个子域us.example.com，则在example.com中要指定us.example.com的NS：
 
@@ -136,7 +167,7 @@ example.com中切出一个子域us.example.com，则在example.com中要指定us
 注意，泛域名配置只对授权域有效；如果有子域已经切割出去，当前域的泛域名配置不会对该子域内的任何域名生效，详见RFC 1034。
 
 
-## Chapter 9
+### Chapter 9
 nslookup、dig的用法
 
 | dns包状态 | 作用 |
@@ -153,8 +184,9 @@ nslookup、dig的用法
 | --------------------- | ---- |
 | NOERR | 正常 |
 | FORMERR | 无法识别该查询 |
-| SERVFAIL | 无法执行查询（可能是NAME SERVER本身的问题，也可能是网络问题，总之就是查询失败） |
-| NXDOMAIN | 不存在此域名 |
+| SERVFAIL | 无法执行查询（可能是NS故障或配置，也可能是网络问题，总之就是查询失败） |
+| NOTIMP | NS不支持指定的查询请求 |
+| NXDOMAIN | 只能由权威给出，不存在此域名 |
 | REFUSED | 拒绝 |
 | YXDOMAIN |  域名不该存在，但它存在了（RFC 2136） |
 | YXRRSET |   rrset不该存在，但它存在了（RFC 2136） |
@@ -162,11 +194,12 @@ nslookup、dig的用法
 | NOTAUTH |  server不是该域的权威（RFC 2136） |
 | NOTZONE | name不包含在该域内（RFC 2136） |
 
+
 rndc远程管理bind，默认 tcp 953，要求 tsig加密
 
 nsupdate 动态更新mater server的zone file
 
-## Chapter 10
+### Chapter 10
 
 DNS 安全概览，每一步都可能出问题，orz…
 
@@ -181,7 +214,7 @@ TKEY：交换对称密钥用的，支持Diffie-Hellman，gssapi(generic security
 Dynamic DNS(DDNS) ：RFC 3007, RFC 2136
 
 
-## Chapter 11
+### Chapter 11
 DNSSEC rfc 4033,4034,4035  提供认证、完整性机制
 
 DNSKEY RR 指定公钥
@@ -195,14 +228,14 @@ DNSKEY RR 指定公钥
 DNSSEC Lookaside Validation(DLV)是另一种链式认证方案，在父域zone file内可以不签名
 
 
-## Chapter 12
+### Chapter 12
  Bind 配置说明，好长……
 
-## Chapter 13
+### Chapter 13
 zone file的说明，各种类型RR的详细介绍
 
-## Chapter 14
+### Chapter 14
 bind库函数、resolver的库函数
 
-## Chapter 15
+### Chapter 15
 DNS数据包结构 
