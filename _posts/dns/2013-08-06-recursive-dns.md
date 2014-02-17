@@ -201,6 +201,15 @@ ns1.somedomain.com可以定期发包强调当前权威可用，同时update用tt
 
 [How do I flush or delete incorrect records from my recursive server cache](https://kb.isc.org/article/AA-01002)
 
+## isp ldns
+运营商一般是有少量（比如3～4个）只接收解析请求的前端LDNS、由前端LDNS向后端一堆（比如20多个）负责进行解析的LDNS转发解析请求，后端LDNS再返回该域名NS服务器解析结果给前端LDNS，前端LDNS再返回给用户。
+
+因此，靠近用户的运营商前端LDNS可能远小于靠近域名NS服务器的运营商后端LDNS。
+
+LDNS收到域名解析的一些IP（比如10个）后，在缓存失效前，不会再向域名服务器发请求。如果后端LDNS返回不对IP做轮询处理，而总是以固定的顺序返回，则可能导致该地区用户在每个缓存期总是访问该域名下的某个特定的IP，负载失衡。
+
+因此，单独通过域名解析的IP轮询做负载均衡还不够，还应该在接收服务请求时也做一些负载分担。 
+
 ## draft 笔记
 
 ### [Domain Name System (DNS) Cookies](http://tools.ietf.org/html/draft-eastlake-dnsext-cookies-03)
