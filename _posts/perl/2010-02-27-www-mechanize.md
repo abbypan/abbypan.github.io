@@ -10,14 +10,14 @@ tags : ["perl", "cpan", "web", "crawler" ]
 ## 用WWW::Mechanize取html时的乱码问题
 
 用WWW::Mechanize取html时总是有部分解出乱码，原因：
-- WWW::Mechanize的content()函数会自动调用decoded_content()解码，失败才返回原始的LWP::UserAgent::content()内容，具体见[leeym-踩到 WWW::Mechanize 的地雷](http://blog.leeym.com/2007/03/wwwmechanize.html)。
-- decoded_content()解码后的部分内容有时也是乱码。
+- WWW::Mechanize的``content()``函数会自动调用``decoded_content()``解码，失败才返回原始的``LWP::UserAgent::content()``内容，具体见[leeym-踩到 WWW::Mechanize 的地雷](http://blog.leeym.com/2007/03/wwwmechanize.html)。
+- ``decoded_content()``解码后的部分内容有时也是乱码。
 
 因此，WWW::Mechanize模块直接取content()或decoded_content()都不靠谱。
 
 一种解决方案是：
-- 指定decoded_content(charset => 'none')避免自动解码，取回原始html内容
-- 再用Encode::Detect::CJK::detect()检测其编码
+- 指定``decoded_content(charset => 'none')``避免自动解码，取回原始html内容
+- 再用``Encode::Detect::CJK::detect()``检测其编码
 - 根据测出来的编码将原始html解码成unicode处理
 
 {% highlight perl %}
@@ -73,6 +73,6 @@ $browser->show_progress(1);
 $browser->get('http://www.ustc.edu.cn');
 {% endhighlight %}
 
-显示的进度样式如下： ** GET http://www.ustc.edu.cn ==> 200 OK (3s)
+显示的进度样式如下： ``** GET http://www.ustc.edu.cn ==> 200 OK (3s)``
 
 LWP::UserAgent 也是一样，``show_progress``

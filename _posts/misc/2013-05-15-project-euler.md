@@ -1,10 +1,9 @@
-
 ---
 layout: post
 category : tech
 title:  "Project Euler 的中文翻译"
 tagline: ""
-tags : ["math", "algorithm"] 
+tags : [ "math", "algorithm" ] 
 ---
 {% include JB/setup %}
 
