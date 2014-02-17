@@ -29,8 +29,23 @@ tags : ["wordpress"]
 
 私人blog可以装Private Only的plugin，设置游客无法访问 
 
+注意参考：http://www.douban.com/note/58389625/
+
 ##  WordPress 迁回 Blogger
 
 http://technospecs.wordpress.com/2012/07/01/wordpress-to-blogger-migration/
 
 http://wordpress2blogger.appspot.com/
+
+
+## 插件
+
+WordPress Backup to Dropbox 将wordpress定期备份到dropbox
+
+cos-html-cache 页面缓存
+
+Yet Another Related Posts Plugin 相关文章
+
+Adminer  查看wordpress数据库连接信息
+
+FileBrowser 管理wordpress目录下的文件 
