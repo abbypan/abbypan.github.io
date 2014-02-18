@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "Chart ： 一些画图的库"
 tagline: ""
-tags : ["chart"] 
+tags : [ "chart" ] 
 ---
 {% include JB/setup %}
 

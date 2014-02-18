@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "WWW::Mechanize"
 tagline: "crawler"
-tags : ["perl", "cpan", "web", "crawler" ] 
+tags : [ "perl", "cpan", "web", "crawler" ] 
 ---
 {% include JB/setup %}
 
