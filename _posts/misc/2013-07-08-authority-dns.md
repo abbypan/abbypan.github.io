@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "权威 DNS 的一些安全项"
+title: "权威 DNS 的一些安全项"
 tagline: ""
-tags : [ "dns", "authority" ] 
+tags: [ "dns", "authority" ] 
 ---
 {% include JB/setup %}
 
@@ -40,7 +40,7 @@ dig testxxx.com -t ns  本地查询返回ns.old.net
 
 dig testxxx.com -t ns +trace 从根开始问到底，中间在com.处返回ns.new.net；继续问ns.new.net时，又返回ns.old.net
 
-=> 在com.和 ns.new.net返回两次testxxx.com的ns，分别是一新一旧两个记录
+在com.和 ns.new.net返回两次testxxx.com的ns，分别是一新一旧两个记录
 
 这是因为ns.new.net上配置了testxxx.com的ns记录是ns.old.net
 
@@ -56,7 +56,7 @@ dig testxxx.com -t ns +trace 从根开始问到底，中间在com.处返回ns.ne
 
     client到递归的rtt：理论上可以发非递归的查询请求（不过实际上经常没用），或者查一个已缓存的域名。
 
-    最终得到 递归dns_r到根root 的时延：T(dns_r , root) = T(c, root) - T(c,r)。
+    最终得到 递归dns_r到根root 的时延：``T(dns_r , root) = T(c, root) - T(c,r)``。
 
 
 这个方法只能得到递归dns_r到指定域（例如root）下的整体时延。
@@ -81,13 +81,13 @@ dig testxxx.com -t ns +trace 从根开始问到底，中间在com.处返回ns.ne
 利用dns测两个ip之间的RTT
 - ip_a 本地网段有个递归 dns_r
 - ip_b 本地网段有个域 somedomain.com 的权威 dns_a
-- 认为 RTT(ip_a, ip_b) 可以约等于 RTT(dns_r, dns_a)
+- 认为``RTT(ip_a, ip_b)``可以约等于``RTT(dns_r, dns_a)``
 
 
-RTT(dns_r, dns_a) 可以用以下方法计算：
-- 从节点c 向 dns_r 请求 somedomain.com 下的一个不存在的域名，RTT(dns_a, c)
-- 从节点c 向 dns_r 发ping包，或查询一个dns cache记录，RTT(dns_r, c)
-- RTT(dns_r, dns_a) = RTT(dns_a, c) - RTT(dns_r, c)
+``RTT(dns_r, dns_a)`` 可以用以下方法计算：
+- 从节点c 向 dns_r 请求 somedomain.com 下的一个不存在的域名，``RTT(dns_a, c)``
+- 从节点c 向 dns_r 发ping包，或查询一个dns cache记录，``RTT(dns_r, c)``
+- ``RTT(dns_r, dns_a) = RTT(dns_a, c) - RTT(dns_r, c)``
 
 ＝＝＝
 
