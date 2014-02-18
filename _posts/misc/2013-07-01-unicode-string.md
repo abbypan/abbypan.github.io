@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "Perl : unicode 字符串转换"
+title: "Perl : unicode 字符串转换"
 tagline: ""
-tags : [ "perl", "unicode" ] 
+tags: [ "perl", "unicode" ] 
 ---
 {% include JB/setup %}
 
