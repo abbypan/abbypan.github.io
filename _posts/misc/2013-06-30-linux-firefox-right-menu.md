@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "linux : firefox 右键菜单失灵"
 tagline: ""
-tags : ["linux", "firefox" ] 
+tags : [ "linux", "firefox" ] 
 ---
 {% include JB/setup %}
 
