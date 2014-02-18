@@ -7,7 +7,7 @@ tags: [ "perl", "unicode" ]
 ---
 {% include JB/setup %}
 
-例如把``\u4e2d\u56fd``转成``中国``
+例如把``\\u4e2d\\u56fd``转成``中国``
 
 {% highlight perl %}
 #!/usr/bin/perl
