@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "Javascript : jquery 的表格插件 jqGrid，能根据json 数据生成表格"
+title: "Javascript : jquery 的表格插件 jqGrid，能根据json 数据生成表格"
 tagline: ""
-tags : [ "js", "jquery", "json", "table" ] 
+tags: [ "js", "jquery", "json", "table" ] 
 ---
 {% include JB/setup %}
 
