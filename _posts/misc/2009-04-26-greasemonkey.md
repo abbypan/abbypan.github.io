@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "Greasemonkey 资料"
 tagline: ""
-tags : ["greasemonkey"] 
+tags : [ "greasemonkey" ] 
 ---
 {% include JB/setup %}
 
