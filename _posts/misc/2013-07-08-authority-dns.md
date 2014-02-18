@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "权威 DNS 的一些安全项"
 tagline: ""
-tags : ["dns", "authority"] 
+tags : [ "dns", "authority" ] 
 ---
 {% include JB/setup %}
 

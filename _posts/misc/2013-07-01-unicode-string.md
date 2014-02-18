@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "Perl : unicode 字符串转换，例如把\u4e2d\u56fd => 中国"
 tagline: ""
-tags : ["perl", "unicode"] 
+tags : [ "perl", "unicode" ] 
 ---
 {% include JB/setup %}
 

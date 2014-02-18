@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "WordPress"
 tagline: "笔记"
-tags : ["wordpress"] 
+tags : [ "wordpress" ] 
 ---
 {% include JB/setup %}
 

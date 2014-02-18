@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "用 wireshark / tshark 分析 adobe flash 在线视频rtmp地址，用rtmpdump下载保存为flv文件"
 tagline: "flv"
-tags : ["wireshark", "tshark", "adobe", "flash", "rtmp", "rtmpdump", "flv"] 
+tags : [ "wireshark", "tshark", "adobe", "flash", "rtmp", "rtmpdump", "flv" ] 
 ---
 {% include JB/setup %}
 

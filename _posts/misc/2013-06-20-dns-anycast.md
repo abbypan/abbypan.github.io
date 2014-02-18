@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "DNS Anycast 资料"
 tagline: ""
-tags : ["dns", "anycast"] 
+tags : [ "dns", "anycast" ] 
 ---
 {% include JB/setup %}
  

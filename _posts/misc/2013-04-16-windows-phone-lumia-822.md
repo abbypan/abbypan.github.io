@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "Windows Phone : lumia 822"
 tagline: ""
-tags : ["lumia", "wp8"] 
+tags : [ "lumia", "wp8" ] 
 ---
 {% include JB/setup %}
 

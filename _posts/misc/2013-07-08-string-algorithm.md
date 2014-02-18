@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "几个字符串比对算法KMP, Horspool , Boyer-Moore, Sunday"
 tagline: ""
-tags : ["algorithm"] 
+tags : [ "algorithm" ] 
 ---
 {% include JB/setup %}
 
