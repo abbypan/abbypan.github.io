@@ -42,7 +42,9 @@ tags : [ "mencoder", "ffmpeg", "audio", "video", "mplayer", "lame" ]
     mplayer -dumpstream "mms://58.48.156.93/hubeitiyu" -dumpfile xiantao-1.wmv 
 
 
-## mplayer / lame / ffmpeg 音频提取转换 flv -> wav -> mp3
+## mplayer / lame / ffmpeg 音频提取转换 
+
+    flv -> wav -> mp3
 
     mplayer -vc dummy -vo null -ao pcm:waveheader:file=file.wav file.flv
 
