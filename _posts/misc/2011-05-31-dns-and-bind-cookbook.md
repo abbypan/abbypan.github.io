@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "DNS and BIND Cookbook"
 tagline: ""
-tags : ["dns", "bind"] 
+tags : [ "dns", "bind" ] 
 ---
 {% include JB/setup %}
 

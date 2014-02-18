@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "互联网广告、返利扫盲"
 tagline: ""
-tags : ["ad"] 
+tags : [ "ad" ] 
 ---
 {% include JB/setup %}
 

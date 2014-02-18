@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "DNS in Action"
 tagline: "笔记"
-tags : ["dns"] 
+tags : [ "dns" ] 
 ---
 {% include JB/setup %}
 
