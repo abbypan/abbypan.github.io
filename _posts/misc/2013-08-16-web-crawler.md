@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "取网页并解析数据 ：几种 web crawler 对比"
 tagline: ""
-tags : ["curl", "wget", "lwp", "casperjs" ] 
+tags : [ "curl", "wget", "lwp", "casperjs" ] 
 ---
 {% include JB/setup %}
 

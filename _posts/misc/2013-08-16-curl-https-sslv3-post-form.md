@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "curl : 提交 post 请求 到 https 的form，以sslv3为例"
 tagline: ""
-tags : ["curl", "perl", "post", "https", "form", "sslv3"] 
+tags : [ "curl", "perl", "post", "https", "form", "sslv3" ] 
 ---
 {% include JB/setup %}
 

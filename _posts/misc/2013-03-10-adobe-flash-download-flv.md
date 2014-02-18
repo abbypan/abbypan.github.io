@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "下载在线adobe flash视频，合并成flv"
 tagline: "windows环境"
-tags : ["adobe", "flash", "f4m", "flv"] 
+tags : [ "adobe", "flash", "f4m", "flv" ] 
 ---
 {% include JB/setup %}
 
