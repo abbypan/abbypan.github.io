@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "R : lubridate 时间处理"
 tagline: ""
-tags : ["r", "lubridate", "date"] 
+tags : [ "r", "lubridate", "date" ] 
 ---
 {% include JB/setup %}
 

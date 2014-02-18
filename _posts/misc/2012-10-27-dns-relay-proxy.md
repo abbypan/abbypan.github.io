@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "DNS relay与 DNS proxy的区别"
 tagline: ""
-tags : ["dns", "relay", "proxy"] 
+tags : [ "dns", "relay", "proxy" ] 
 ---
 {% include JB/setup %}
 

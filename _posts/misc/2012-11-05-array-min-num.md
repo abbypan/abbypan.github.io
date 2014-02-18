@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "给定一个无序数组，找出不在数组中的最小正整数"
 tagline: ""
-tags : ["algorithm"] 
+tags : [ "algorithm" ] 
 ---
 {% include JB/setup %}
 
