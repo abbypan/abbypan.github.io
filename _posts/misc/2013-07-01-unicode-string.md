@@ -1,11 +1,13 @@
 ---
 layout: post
 category : tech
-title:  "Perl : unicode 字符串转换，例如把 \u4e2d\u56fd 转成 中国"
+title:  "Perl : unicode 字符串转换"
 tagline: ""
 tags : [ "perl", "unicode" ] 
 ---
 {% include JB/setup %}
+
+例如把``\u4e2d\u56fd``转成``中国``
 
 {% highlight perl %}
 #!/usr/bin/perl
