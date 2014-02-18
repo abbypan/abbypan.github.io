@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "mencoder/ffmpeg : 处理视频、音频"
+title:  "mencoder / ffmpeg 处理视频、音频"
 tagline: ""
-tags : ["mencoder", "ffmpeg", "audio", "video", "mplayer", "lame"] 
+tags : [ "mencoder", "ffmpeg", "audio", "video", "mplayer", "lame" ] 
 ---
 {% include JB/setup %}
 
@@ -15,7 +15,7 @@ tags : ["mencoder", "ffmpeg", "audio", "video", "mplayer", "lame"]
 
     ffmpeg -i file.avi -sameq -target vcd file.mpg
 
-        target可以选vcd, svcd, dvd, dv，前缀可以加pal, ntsc, film，比如 ntsc-vcd。
+    target可以选vcd, svcd, dvd, dv，前缀可以加pal, ntsc, film，比如 ntsc-vcd。
 
     ffmpeg -i file.avi file.flv
 
@@ -27,7 +27,7 @@ tags : ["mencoder", "ffmpeg", "audio", "video", "mplayer", "lame"]
 
     ffmpeg -hq -ss 00:01:00 -t 00:05:30 -i file.avi -target svcd cut.mpg
 
-        -t 表示的是截取视频的长度，而不是指停止时间
+    -t 表示的是截取视频的长度，而不是指停止时间
 
     avisplit -s 200 -i file.avi
 
