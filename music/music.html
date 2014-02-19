@@ -15,6 +15,7 @@
             if (!next.length) next = $('ol li').first();
             next.addClass('playing').siblings().removeClass('playing');
             audio.load($('a', next).attr('data-src'));
+            $('title').html(next.text());
             audio.play();
           }
         });
@@ -71,7 +72,7 @@
           的referer为http://music.baidu.com
       </p>
 
-      手机扫码听歌：<img src="/assets/img/music.png"></img>
+      手机扫码听歌：<img src="music.png"></img>
       
 
       <audio preload></audio>
