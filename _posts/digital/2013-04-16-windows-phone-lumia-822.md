@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category : digital
 title:  "Windows Phone : lumia 822"
 tagline: ""
 tags : [ "lumia", "wp8" ] 

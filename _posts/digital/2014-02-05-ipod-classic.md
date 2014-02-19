@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category : digital
 title:  "ipod classic"
 tagline: ""
 tags : ["ipod", "apple"] 
