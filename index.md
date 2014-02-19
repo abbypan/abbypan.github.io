@@ -20,19 +20,19 @@ title: "求福不回，求用不匮"
 
 | 类型 | 杂感 |
 | ---- | ---- |
-| 读书听歌 | [喜欢的歌](audiojs/music.html)，[喜欢的书](book.html)
-| 视频游戏 | [天之痕](swd3e.html)，[93倚天](93yitian.html)
-| 追星啥的 | [周华健](http://music.douban.com/musician/104913/)，[体操](gym.html)
+| 读书听歌 | [喜欢的歌](music/music.html)，[喜欢的书](page/book.html)
+| 视频游戏 | [天之痕](page/swd3e.html)，[93倚天](page/93yitian.html)
+| 追星啥的 | [周华健](http://music.douban.com/musician/104913/)，[体操](page/gym.html)
 | 其他 | [我的豆瓣](http://www.douban.com/people/swd3e/)
 
 ## 技术
 
 | 类型 | 笔记 |
 | ---- | ---- |
-| 系统 | [ArchLinux](archlinux.html)，[Debian](debian.html)
-| 网络 | [DNS](dns.html)
-| 程序 | [Lisp](lisp.html)，[Perl](perl.html)，[Rebol](rebol.html)
-| 工具 | [Vim](vim.html)，[Windows](windows.html)
+| 系统 | [ArchLinux](page/archlinux.html)，[Debian](page/debian.html)
+| 网络 | [DNS](page/dns.html)
+| 程序 | [Perl](page/perl.html)，[Rebol](page/rebol.html)
+| 工具 | [Vim](page/vim.html)，[Windows](page/windows.html)
 | 笔记 | [我的github](https://github.com/abbypan)，[我的blogspot](https://abbypan.blogspot.com)，[我的twitter](https://twitter.com/abbypan)
 
 ## 旧的回忆
