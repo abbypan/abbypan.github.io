@@ -15,7 +15,7 @@ title: "求福不回，求用不匮"
 
 [订阅rss](/rss.xml)
 
-
+<div id="search">
 <form action="http://www.google.com.hk/search" method="get">
 <input name="sitesearch" value="abbypan.github.io" type="hidden">
 <input name="ie" value="UTF8" type="hidden">
@@ -23,6 +23,7 @@ title: "求福不回，求用不匮"
 <input name="Search" value="搜索" attr="value" type="submit">
 <input name="hl" value=" zh-CN" type="hidden">
 </form>
+</div>
 
 
 ## 生活
