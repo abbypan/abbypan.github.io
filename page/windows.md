@@ -25,7 +25,7 @@ tagline: "常用软件"
 | clisp | lisp 开发 | 无 |
 | dosbox | dos环境模拟器 | 无 |
 | dropbox | 网盘 | skydrive, baidu云网盘 |
-| foxmail | 邮件管理 | outlook | 无 |
+| foxmail | 邮件管理 | outlook |
 | fscapture | 截图、屏幕录像 | 无 |
 | gear 变速齿轮 | 调整游戏时画面速度 | 无 |
 | github for windows | 代码管理 | 无 |
