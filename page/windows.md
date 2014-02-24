@@ -9,8 +9,8 @@ tagline: "常用软件"
 
 | 软件 | 用途 | 同类备用软件 | 
 | ---- | ---- | ------------ | 
-| [FossHub](http://www.fosshub.com/) | 自由软件推荐 | |
-| [7zip](http://sparanoid.com/lab/7z/) | 压缩解压 | |
+| [FossHub](http://www.fosshub.com/) | 自由软件推荐 |  |
+| [7zip](http://sparanoid.com/lab/7z/) | 压缩解压 |  |
 | [ccleaner](https://www.piriform.com/ccleaner) | 清理系统 | wise care 365, 魔方 |
 | [console2](http://sourceforge.net/projects/console/) | 命令行 | 参考 [What s a good alternative Windows console](http://stackoverflow.com/questions/440269/whats-a-good-alternative-windows-console) |
 | [easeus partition manager](http://www.partition-tool.com) | 硬盘分区 | |
