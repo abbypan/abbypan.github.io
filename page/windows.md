@@ -38,7 +38,7 @@ tagline: "常用软件"
 | medieval cue splitter | 根据cue分割音乐文件 | 无 |
 | monaco ttf | 编程字体 | 无 |
 | ms office | 办公 | openoffice |
-| mydrivers 驱动精灵 | 硬件驱动 | 无 | 
+| mydrivers 驱动精灵 | 硬件驱动 | 无 |
 | navicat for mysql | mysql管理 | heidisql |
 | oneKey Ghost | ghost 重装系统 | 无 |
 | osfmount | 虚拟光驱 | 无 |
