@@ -15,17 +15,6 @@ title: "求福不回，求用不匮"
 
 [订阅rss](/rss.xml)
 
-<div id="search">
-<form action="http://www.google.com.hk/search" method="get">
-<input name="sitesearch" value="abbypan.github.io" type="hidden">
-<input name="ie" value="UTF8" type="hidden">
-<input onfocus="if( this.value=='用 Google 搜索本站') {this.value='' };" size="25" name="q" id="query" value="用 Google 搜索本站" type="text">
-<input name="Search" value="搜索" attr="value" type="submit">
-<input name="hl" value=" zh-CN" type="hidden">
-</form>
-</div>
-
-
 ## 生活
 
 | 类型 | 杂感 |
