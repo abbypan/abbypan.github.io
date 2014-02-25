@@ -20,6 +20,8 @@ tags : ["jekyll", "github", "blog"]
 - 安装教程：[Jekyll QuickStart](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
 - 记得要配置：./_config.yml
 - 安装主题：[Using Themes](http://jekyllbootstrap.com/usage/jekyll-theming.html)
+- [在debian下安装jekyll](http://isayme.com/2012/12/install-jekyll-in-debian.html)
+- [在windows下安装jekyll](http://www.cnblogs.com/yevon/p/3308158.html)
 
 ## 设置pygments支持语法高亮
 
@@ -40,3 +42,16 @@ tags : ["jekyll", "github", "blog"]
 
 ## 新建一篇日志
 在_posts目录下新建一个文件，文件名格式为 “年-月-日-标题”，例如 2014-01-07-sample.md
+
+## ``jekyll serve``提示``invalid byte sequence in US-ASCII``
+在``_config.yml``中指定``encoding: utf-8``
+
+## 把wordpress文章导入jekyll
+
+``apt-get install libmysql++-dev``
+
+``gem install jekyll-import sequel mysql2 htmlentities``
+
+参考：http://import.jekyllrb.com/docs/wordpress/
+
+
