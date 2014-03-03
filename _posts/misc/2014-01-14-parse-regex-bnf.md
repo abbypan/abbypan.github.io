@@ -16,6 +16,8 @@ tags : ["perl", "regex", "bnf", "rebol", "rpn", "parse" ]
 
 参考：[A2 Computing](http://www.school-portal.co.uk/GroupHomepage.asp?GroupId=1010236)
 
+正则引擎的对比：[regex perf](http://sljit.sourceforge.net/regex_perf.html)
+
 吐槽正则的：
 [Regular Expressions: Now You Have Two Problems](http://www.codinghorror.com/blog/2008/06/regular-expressions-now-you-have-two-problems.html)
 

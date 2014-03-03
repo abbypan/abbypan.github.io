@@ -220,6 +220,7 @@ LDNS收到域名解析的一些IP（比如10个）后，在缓存失效前，不
 - 内部newg dom请求可能泄漏到root上
 - 内部传统dom请求如果与外部dom collision，可能泄漏到外部server上
 
+[2013 dotless](http://www.potaroo.net/ispcol/2013-10/dotless.html) 这篇文章讨论了 dotless 在 newg 下，name collision 是否真的会很严重。作者观点：1）更可能出现在上网环境变更，自动切换dns，使得内部查询请求泄漏到root；2）关键在于统一操作系统、浏览器对于dotless的处理。（说实话这问题就是以前乱用留下的债，我也觉得挺无聊）
 
 ## draft 笔记
 
