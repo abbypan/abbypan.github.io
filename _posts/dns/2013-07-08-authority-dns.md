@@ -27,6 +27,18 @@ global server load balancing (GSLB)-type DNS ：根据发起请求的用户所�
 
 tsig 对dns消息做认证：http://backreference.org/2010/01/24/dns-security-tsig/
 
+## zone 授权
+
+存在跨层授权。
+
+例如递归已知 aaa.yyy.com / xxx.aaa.yyy.com 都不存在，无法推断 zzz.aaa.yyy.com 是否存在。
+
+因为 zzz.aaa.yyy.com 理论上有可能在 yyy.com 上直接授权。
+
+![dns_authority_nxdomain](/assets/posts/dns_authority_nxdomain.png)
+
+同理，XXX.abc.com (XXX为随机数)，即使已知 abc.com 不存在，也会到 com 查一遍。
+
 ## 材料
 
 2011-02-14 BIND 9 DNS Security：http://www.nsa.gov/ia/_files/vtechrep/I733-004R-2010.pdf

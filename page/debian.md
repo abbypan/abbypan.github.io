@@ -26,6 +26,15 @@ tagline: "安装笔记"
 
 ``/dev/sda1 /mnt/usb vfat user,rw,noauto,utf8=1,fmask=113,dmask=022,umask=022 0 0``
 
+### locale
+
+``apt-get install locales``
+
+编辑 ``/etc/locale.gen`` ，例如 ``en_US.UTF-8``
+
+``locale-gen``
+
+在 ``~/.bashrc`` 中 ``export LC_ALL=en_US.UTF-8``
 
 ###  基础包 
 

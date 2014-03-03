@@ -210,6 +210,17 @@ LDNS收到域名解析的一些IP（比如10个）后，在缓存失效前，不
 
 因此，单独通过域名解析的IP轮询做负载均衡还不够，还应该在接收服务请求时也做一些负载分担。 
 
+## intranet recursive dns
+
+问题根源在于recursive内外混用
+
+线上server使用intranet recur，存在通过该server访问intranet的可能（如网页快照）
+
+切换网络环境时，从intranet recur自动切换成internet recur，访问intranet内容时
+- 内部newg dom请求可能泄漏到root上
+- 内部传统dom请求如果与外部dom collision，可能泄漏到外部server上
+
+
 ## draft 笔记
 
 ### [Domain Name System (DNS) Cookies](http://tools.ietf.org/html/draft-eastlake-dnsext-cookies-03)
