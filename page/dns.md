@@ -34,6 +34,7 @@ tagline: "Domain Name System "
 | [massivedns](http://massivedns.com/) | 探测
 | [dnstcpbench](http://blog.powerdns.com/2013/06/25/simple-tcpip-dns-benchmarking-tool/) | dns压测工具
 | [chinaz站长dns工具](http://tool.chinaz.com/dns/) | 从国内各地探测指定域名，也可指定dns
+| [networktools](http://networktools.nl/) | 老外的站长工具
 
 
 ## 节点

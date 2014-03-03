@@ -1,8 +1,8 @@
 ---
 layout: post
 category : tech
-title: "权威 DNS 的一些安全项"
-tagline: ""
+title: "权威 DNS (authority dns)"
+tagline: "笔记"
 tags: [ "dns", "authority" ] 
 ---
 {% include JB/setup %}

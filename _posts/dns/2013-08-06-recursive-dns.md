@@ -1,8 +1,8 @@
 ---
 layout: post
 category : tech
-title:  "递归DNS笔记"
-tagline: "recursive dns"
+title:  "递归DNS (recursive dns)"
+tagline: "笔记"
 tags : [ "dns", "security", "recursive", "edns0", "dnssec" ] 
 ---
 {% include JB/setup %}
