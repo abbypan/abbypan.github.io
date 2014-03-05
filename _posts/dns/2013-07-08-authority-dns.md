@@ -39,6 +39,12 @@ tsig 对dns消息做认证：http://backreference.org/2010/01/24/dns-security-ts
 
 同理，XXX.abc.com (XXX为随机数)，即使已知 abc.com 不存在，也会到 com 查一遍。
 
+## 根域分析
+
+梦里不知身是客！
+
+[dns tampering and root servers](http://www.renesys.com/wp-content/uploads/2013/05/DNS-Tampering-and-Root-Servers.pdf)
+
 ## 材料
 
 2011-02-14 BIND 9 DNS Security：http://www.nsa.gov/ia/_files/vtechrep/I733-004R-2010.pdf

@@ -7,6 +7,7 @@
     <script src="audio.min.js"></script>
     <link rel="stylesheet" href="index.css" media="screen">
     <script>
+      srand((unsigned)time(0));
       $(function() { 
         // Setup the player to autoplay the next track
         var a = audiojs.createAll({
@@ -34,11 +35,16 @@
           audio.play();
         });
         // Keyboard shortcuts
+        var song_num = $('ol li').length;
         $(document).keydown(function(e) {
           var unicode = e.charCode ? e.charCode : e.keyCode;
              // right arrow
           if (unicode == 39) {
-            var next = $('li.playing').next();
+            var next = 
+            $('#shuffle').value ? 
+            $("ol:nth-child("+ int(rand(song_num))+")")
+            :
+            $('li.playing').next();
             if (!next.length) next = $('ol li').first();
             next.click();
             // back arrow
@@ -73,7 +79,8 @@
       </p>
 
       手机扫码听歌：<img src="music.png"></img>
-      
+
+      <input id="shuffle" type="CHECKBOX" checked>随机播放</input>
 
       <audio preload></audio>
       <ol>
