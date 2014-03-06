@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "Rebol 的 Parse"
+title:  "rebol 的 parse 解析"
 tagline: "笔记"
 tags : [ "rebol", "parse", "regex" ] 
 ---
@@ -19,7 +19,7 @@ parse 支持自顶向下解析，通过rebol的dialect支持实现。可替代�
 
 ### Parse expression matching
 
-parse 表达至有两种情况：
+parse 表达式有两种情况：
 - when parsing strings, terminal symbols are characters
 - when parsing blocks, terminal symbols are Rebol values
 
