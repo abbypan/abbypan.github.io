@@ -195,3 +195,7 @@ tagline: "TMTOWTDI"
 | XML::Struct | 接口比较简单
 | XML::Rabbit | 见[thanks-to-xmlrabbit](http://www.modernperlbooks.com/mt/2012/10/i-stopped-parsing-xml-thanks-to-xmlrabbit.html)
 | YAML | 
+| GraphViz::Regex | 将正则式画成图片
+| Regexp::Common | 常用的正则式
+| Text::Balanced | 解析字符串，提取内容 
+| Date::Parse | 从字符串解析时间
