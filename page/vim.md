@@ -44,6 +44,7 @@ tagline: "编辑器"
 | [honza / vim-snippets](https://github.com/honza/vim-snippets) | 代码补全
 | [neocomplcache](http://www.vim.org/scripts/script.php?script_id=2620) | 函数补全
 | [surround.vim](http://www.vim.org/scripts/script.php?script_id=1697) | word两边加引号标签
+| [simplefold.vim](http://www.vim.org/scripts/script.php?script_id=1868) | ``<leader>f``进行折叠
 
 ## 配置
 
@@ -90,6 +91,20 @@ let g:Perl_FormatDate            = '%Y-%m-%d'
 let g:Perl_FormatTime            = '%H:%M:%S'
 let g:Perl_FormatYear            = 'Year %Y'   
 {% endhighlight %}
+
+### Nerd Commenter 代码注释
+| 按键 | 作用 |
+| ---- | ---- |
+| ``,cc`` |	把选中的行注释掉
+| ``,cn`` |	把选中的行注释掉，已注释过的行仍继续加注释符
+| ``,c<space>`` | 反注释选中的行
+| ``,c$`` | 从光标开始处注释掉当前行
+| ``,cA`` | 在当前行结尾处添加注释
+
+### 自动识别打开的中文乱码
+把[fencview.vim](http://www.vim.org/scripts/script.php?script_id=1708)扔到``~/.vim/plugin``下
+
+在``~/.vimrc``中设置``let g:fencview_autodetect=1``
 
 ###  Windows下的相关编码设置
 
