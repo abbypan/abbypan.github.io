@@ -19,6 +19,8 @@ tagline: "Domain Name System "
 | ---- | ---- |
 | [statdns](http://www.statdns.com) | 每月发布全球com/net/org等域名的统计，上面还有dns相关工具的整理、RFC的列表，非常不错
 | [iana 的root zone 数据](http://www.iana.org/domains/root/db) | 根域登记
+| [open resolver surveys](http://dns.measurement-factory.com/surveys/openresolvers.html) | open resolver asn 统计
+| [openresolverproject.org](http://openresolverproject.org) | open resolver 统计
 
 ## 工具
 | 工具 | 简介 |
