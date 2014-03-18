@@ -11,13 +11,95 @@ tags : [ "rebol", "parse", "regex" ]
 
 parse 支持自顶向下解析，通过rebol的dialect支持实现。可替代正则(regex)
 
-- [A Parse Tutorial Sort of (Open sourced Rebol)](http://www.codeconscious.com/rebol/parse-tutorial-r3.html)
 - [REBOL 3 Concepts: Parsing: Evaluation](http://www.rebol.com/r3/docs/concepts/parsing-evaluation.html)
 - [REBOL 3 Concepts: Parsing: Parsing Blocks and Dialects](http://www.rebol.com/r3/docs/concepts/parsing-dialects.html)
 - [REBOL 3 Concepts: Parsing: Summary of Parse Operations](http://www.rebol.com/r3/docs/concepts/parsing-summary.html)
 - [REBOL Programming/Language Features/Parse/Parse expressions](http://en.wikibooks.org/wiki/REBOL_Programming/Language_Features/Parse/Parse_expressions)
 
-### Parse expression matching
+## 笔记 [A Parse Tutorial Sort of (Open sourced Rebol)](http://www.codeconscious.com/rebol/parse-tutorial-r3.html)
+
+| 例子 | 说明 |
+| ---- | ---- |
+| ``help sys/*parse-url/rules`` | url解析
+| ``parse input-string [ opt "big" "bird" ]`` | opt 可选项，总是返回success
+| ``parse input-string [ "black" space "dog" ]`` | space 表示空格，此外还有newline、tab等关键字
+| ``split "brown dog" " "`` | 拆分字符串，结果为 ``[ "brown" "dog" ]``
+| ``parse/case "ZZ" [ 2 "Z" ]`` | 加case表示区分大小写，默认不区分
+| ``parse {1234567890} [ "123" 5 skip "90" end ]`` | skip跳过5个字符
+| ``parse [ 1 2 end 3 4 5 ] [ some [ integer! | 'end break ]]`` | break 终止匹配
+| ``parse "bird" [ not "big" "bird" ]`` | not 不匹配
+
+### 解析block
+
+当解析对象是一个block，不是string时，会启动datatype的parse
+
+``parse [ 12/Dec/2012 2:30pm ] [ date! time! ]``
+
+``parse [ <div> "Hello" http://rebol.com $1.00 </div> bob@test.com ] [ tag! "Hello" url! money! tag! email! ]``
+
+### 字符集 charset
+
+charset 是字符集，属于bitset，所以匹配速度较快
+
+可以针对charset做集合常见操作，例如union 并、intersection 交、exclude 差、complement 补。
+
+{% highlight rebol %}
+>> digit: charset [#"0" - #"9"]
+>> parse {2069} [4 digit]
+== true
+{% endhighlight %}
+
+### copy
+
+注意，copy最终写入第1个参数的内容，取决于第2个参数匹配的情况
+
+{% highlight rebol %}
+>> parse {123} [copy some-text skip to end]
+== true
+>> some-text
+== "1"
+{% endhighlight %}
+
+set 与 copy 用法类似
+{% highlight rebol %}
+>> parse [ $100 ] [set wallet money!]
+== true
+>> wallet
+== $100
+{% endhighlight %}
+
+### while
+
+无限循环：``parse input-string [ while [ any "dog" ] ]``
+
+while 内部的 subrule 匹配fail时，while循环停止。while自身总是返回``success``。
+
+### debug用``??``
+
+{% highlight rebol %}
+>> parse "dog" [ "d" ?? "o" ?? "g" ]
+"o": "og"
+"g": "g"
+== true
+{% endhighlight %}
+
+### 不含``|``的word
+
+word-except-bar 不含``|``的word，用``and not '| single-word``组合实现
+
+{% highlight rebol %}
+single-word: [ set item word! ]
+word-except-bar: [ and not '| single-word ]
+{% endhighlight %}
+
+### 高级例子
+
+- 产品收支的解析器：根据每条记录：解析，计算，求和
+- rebol/view的vid block 解析器
+- parse-analysis.r
+- load-parse-tree.r
+
+## Parse expression matching
 
 parse 表达式有两种情况：
 - when parsing strings, terminal symbols are characters
@@ -25,7 +107,8 @@ parse 表达式有两种情况：
 
 解析表达式写成block，如果匹配，就更新input position
 
-### NONE 空
+
+## NONE 空
 
 {% highlight rebol %}
 parse "" [#[none]]
@@ -42,7 +125,7 @@ parse "a" [#"a"]
 
 
 
-### 在parse的block里可以用``()``执行代码
+### 在parse的rule block里可以用``()``执行代码
 
 例子：打印 3 行 "great job"
 
@@ -102,9 +185,12 @@ foreach table tables [
 ; table found at index: 8268
 {% endhighlight %}
 
-### 多次匹配
+### 匹配次数
 
-none 是不匹配
+- none 是不匹配
+- some 是1到多次匹配
+- any  是0到多次匹配
+
 
 {% highlight rebol %}
 [3 "a" 2 "b"]
@@ -186,9 +272,8 @@ alphanum: union alpha digit
 
 ### 跳过某些内容
 
-- skip 跳过1个character，可指定跳过几次
-- to   一直跳到指定的字符（不包含结尾字符）
-- thru 一直跳到指定的字符（包含结尾字符）
+- to   一直跳到指定的字符串的首部
+- thru 一直跳到指定的字符串的尾部
 
 {% highlight rebol %}
 page: read http://www.rebol.com/

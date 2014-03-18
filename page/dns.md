@@ -13,18 +13,11 @@ tagline: "Domain Name System "
 | [Domain Name Service DNS](http://www.freesoft.org/CIE/Topics/75.htm) | 很清晰的DNS基础介绍 |
 | [Understanding the DNS Protocol](http://www.windowsnetworking.com/articles_tutorials/understanding-dns-protocol-part1.html) | DNS协议介绍 |
 
-## 数据
-
-| 数据 | 简介 |
-| ---- | ---- |
-| [statdns](http://www.statdns.com) | 每月发布全球com/net/org等域名的统计，上面还有dns相关工具的整理、RFC的列表，非常不错
-| [iana 的root zone 数据](http://www.iana.org/domains/root/db) | 根域登记
-| [open resolver surveys](http://dns.measurement-factory.com/surveys/openresolvers.html) | open resolver asn 统计
-| [openresolverproject.org](http://openresolverproject.org) | open resolver 统计
 
 ## 工具
 | 工具 | 简介 |
 | ---- | ---- |
+| [ultradnstools](https://www.ultratools.com/) | ultradns提供的一系列DNS检测工具
 | [DNS Looking Glass](http://www.dns-lg.com/) | 可指定节点查询给定域名的RR，支持正向、反向解析，以WEB API形式提供服务，也是statdns的
 | [viewdns](http://viewdns.info/) | 探测工具
 | [DiG HOWTO ](http://www.madboa.com/geek/dig/) | 解析工具
@@ -38,6 +31,14 @@ tagline: "Domain Name System "
 | [chinaz站长dns工具](http://tool.chinaz.com/dns/) | 从国内各地探测指定域名，也可指定dns，还可以traceroute
 | [networktools](http://networktools.nl/) | 老外的站长工具
 
+
+## 数据
+| 数据 | 简介 |
+| ---- | ---- |
+| [statdns](http://www.statdns.com) | 每月发布全球com/net/org等域名的统计，上面还有dns相关工具的整理、RFC的列表，非常不错
+| [iana 的root zone 数据](http://www.iana.org/domains/root/db) | 根域登记
+| [open resolver surveys](http://dns.measurement-factory.com/surveys/openresolvers.html) | open resolver asn 统计
+| [openresolverproject.org](http://openresolverproject.org) | open resolver 统计
 
 ## 节点
 - NS记录
