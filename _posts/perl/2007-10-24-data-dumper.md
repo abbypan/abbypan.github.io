@@ -1,15 +1,15 @@
 ---
 layout: post
-category : tech
+category: tech
 title:  "Data::Dumper"
 tagline: "笔记"
-tags : ["perl", "cpan", "unicode" ] 
+tags: [ "perl", "cpan", "unicode" ] 
 ---
 {% include JB/setup %}
 
 ## use utf8 之后 print Dumper 只会打出 unicode 字符
 
-见：[Data::Dumper and UTF-8 by jl_post@hotmail.com](http://groups.google.com/group/comp.lang.perl.misc/browse_thread/thread/6fbd3733c9c56186?hl=en)
+见：[Data::Dumper and UTF-8 by jl_post](http://groups.google.com/group/comp.lang.perl.misc/browse_thread/thread/6fbd3733c9c56186?hl=en)
 
 用eval执行Dumper，再进行print。
 
