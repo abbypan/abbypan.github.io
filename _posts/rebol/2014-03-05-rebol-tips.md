@@ -7,10 +7,29 @@ tags : [ "rebol" ]
 ---
 {% include JB/setup %}
 
-## 载入其他文件
+## 笔记 [REBOL_Programming](http://en.wikibooks.org/wiki/REBOL_Programming)
+
+### 一些函数
+
+| 函数 | 作用 |
+| ---- | ---- |
+| probe | 按原始格式显示word内容
+| source | 显示函数代码
+| what-dir | 当前目录
+| list-dir | 当前目录下的内容
+| change-dir | 切换目录
+
+### rebol to json
+
+[json.r](http://www.rebol.org/view-script.r?script=json.r)
+
+[rebol-to-json](http://rebol2.blogspot.it/2012/12/json.html)
+
+
+### 载入其他文件
 ``do %/d/myfunctions.r``
 
-## 写一个模块
+### 写一个模块
 
 见：[Example of a minimal module](http://www.rebol.net/r3blogs/0344.html)
 

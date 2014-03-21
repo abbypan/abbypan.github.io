@@ -7,14 +7,7 @@ tags : [ "rebol", "parse", "regex" ]
 ---
 {% include JB/setup %}
 
-## rebol wiki 上的 parse 介绍
-
 parse 支持自顶向下解析，通过rebol的dialect支持实现。可替代正则(regex)
-
-- [REBOL 3 Concepts: Parsing: Evaluation](http://www.rebol.com/r3/docs/concepts/parsing-evaluation.html)
-- [REBOL 3 Concepts: Parsing: Parsing Blocks and Dialects](http://www.rebol.com/r3/docs/concepts/parsing-dialects.html)
-- [REBOL 3 Concepts: Parsing: Summary of Parse Operations](http://www.rebol.com/r3/docs/concepts/parsing-summary.html)
-- [REBOL Programming/Language Features/Parse/Parse expressions](http://en.wikibooks.org/wiki/REBOL_Programming/Language_Features/Parse/Parse_expressions)
 
 ## 笔记 [A Parse Tutorial Sort of (Open sourced Rebol)](http://www.codeconscious.com/rebol/parse-tutorial-r3.html)
 
@@ -27,12 +20,6 @@ parse 支持自顶向下解析，通过rebol的dialect支持实现。可替代�
 | ``parse/case "ZZ" [ 2 "Z" ]`` | 加case表示区分大小写，默认不区分
 | ``parse {1234567890} [ "123" 5 skip "90" end ]`` | skip跳过5个字符
 | ``parse "bird" [ not "big" "bird" ]`` | not 不匹配
-
-### break 终止匹配
-
-{% highlight rebol %}
-parse [ 1 2 end 3 4 5 ] [ some [ integer! | 'end break ] ]
-{% endhighlight %}
 
 ### 解析block
 
@@ -53,6 +40,8 @@ charset 是字符集，属于bitset，所以匹配速度较快
 >> parse {2069} [4 digit]
 == true
 {% endhighlight %}
+
+还可以增加内容，例如数字集合加一个``.``：``digit-dot: insert copy digit "."``
 
 ### copy
 
@@ -79,6 +68,12 @@ set 与 copy 用法类似
 
 while 内部的 subrule 匹配fail时，while循环停止。while自身总是返回``success``。
 
+### break 终止当前block匹配
+
+{% highlight rebol %}
+parse [ 1 2 end 3 4 5 ] [ some [ integer! | 'end break ] ]
+{% endhighlight %}
+
 ### debug用``??``
 
 {% highlight rebol %}
@@ -104,44 +99,13 @@ word-except-bar: [ and not '| single-word ]
 - parse-analysis.r
 - load-parse-tree.r
 
-## Parse expression matching
+## 笔记 [REBOL 3 Concepts: Parsing](http://www.rebol.com/r3/docs/concepts/parsing.html)
 
-parse 表达式有两种情况：
-- when parsing strings, terminal symbols are characters
-- when parsing blocks, terminal symbols are Rebol values
+``parse series rules``
 
-解析表达式写成block，如果匹配，就更新input position
+当series是一个string，就按character解析
 
-
-## NONE 空
-
-{% highlight rebol %}
-parse "" [#[none]]
-; == true
-parse [] [#[none]]
-; == true
-{% endhighlight %}
-
-### Character 字符
-{% highlight rebol %}
-parse "a" [#"a"]
-; == true
-{% endhighlight %}
-
-
-
-### 在parse的rule block里可以用``()``执行代码
-
-例子：打印 3 行 "great job"
-
-{% highlight rebol %}
-rule: [
-    set count integer!
-    set str string!
-    (loop count [print str])
-]
-parse [3 "great job"] rule
-{% endhighlight %}
+当series是一个block，就按value解析
 
 ### 嵌套block解析，用into
 
@@ -159,13 +123,60 @@ print info
 {% endhighlight %}
 
 ### 匹配文本 copy text to
+
+- to   一直跳到指定的字符串的首部
+- thru 一直跳到指定的字符串的尾部
+
 {% highlight rebol %}
+page: read http://www.rebol.com/
 parse page [thru <title> copy text to </title>]
 print text
-REBOL/Core Dictionary
+REBOL Technologies
 {% endhighlight %}
 
-### 全局匹配 any 
+### 替换文本
+
+用change/part修改title字段
+
+{% highlight rebol %}
+parse page [
+    thru <title> begin: to </title> ending:
+    (change/part begin "Word Reference Guide" ending)
+]
+{% endhighlight %}
+
+用change把``?``全换成``!``
+
+{% highlight rebol %}
+str: "Where is the turkey? Have you seen the turkey?"
+parse str [some [to "?" mark: (change mark "!") skip]]
+print str
+Where is the turkey! Have you seen the turkey!
+{% endhighlight %}
+
+用 remove / insert / :mark 把 time 换成真正的时间
+
+``mark``  取出对应的变量值
+
+``mark:`` 把mark内容置为**当前的位置**
+
+``:mark`` 表示把 mark的内容 插入**当前的位置**
+
+{% highlight rebol %}
+str: "at this time, I'd like to see the time change"
+parse str [
+    some [to "time"
+        mark:
+        (remove/part mark 4  mark: insert mark now/time)
+        :mark
+    ]
+]
+print str
+at this 14:42:12, I'd like to see the 14:42:12 change
+{% endhighlight %}
+
+### 匹配的内容append到block!
+
 {% highlight rebol %}
 page: read http://www.rebol.com/index.html
 tables: make block! 20
@@ -181,14 +192,36 @@ foreach table tables [
 ; table found at index: 836
 ; table found at index: 2076
 ; table found at index: 3747
-; table found at index: 3815
-; table found at index: 4027
-; table found at index: 4415
-; table found at index: 6050
-; table found at index: 6556
-; table found at index: 7229
-; table found at index: 8268
 {% endhighlight %}
+
+### 把匹配操作封装成对象
+
+循环提取，append到数组中
+
+{% highlight rebol %}
+tag-parser: make object! [
+    tags: make block! 100
+    text: make string! 8000
+    html-code: [
+        copy tag ["<" thru ">"] (append tags tag) |
+        copy txt to "<" (append text txt)
+    ]
+    parse-tags: func [site [url!]] [
+        clear tags clear text
+        parse read site [to "<" some html-code]
+        foreach tag tags [print tag]
+        print text
+    ]
+]
+tag-parser/parse-tags http://www.rebol.com
+{% endhighlight %}
+
+### 递归匹配
+
+[REBOL 3 Concepts: Parsing: Recursive Rules](http://www.rebol.com/r3/docs/concepts/parsing-recursion.html)
+
+一个四则运算的实现，简短，清晰，漂亮！
+
 
 ### 匹配次数
 
@@ -245,9 +278,12 @@ print str
 
 ### 拆分字符串 split
 
-parse 默认自动拆分空格、制表符、换行符(space/tab/line)，parse/all 不自动拆分上述三类符号
+parse 默认自动拆分空格space、制表符tab、换行newline、逗号comma、分号semicolon，parse/all 不自动拆分上述三类符号
 
 {% highlight rebol %}
+parse "here there,everywhere; ok" none
+["here" "there" "everywhere" "ok"]
+
 parse "707-467-8000" "-"
 ["707" "467" "8000"]
 
@@ -259,6 +295,7 @@ parse "Harry, 1011 Main St., Ukiah" ","
 {% endhighlight %}
 
 ### 字符集合
+
 {% highlight rebol %}
 ;补集
 spacer: charset reduce [tab newline #" "]
@@ -270,19 +307,87 @@ alpha: charset [#"A" - #"Z" #"a" - #"z"]
 alphanum: union alpha digit
 {% endhighlight %}
 
-### 递归匹配
-见：[REBOL 3 Concepts: Parsing: Recursive Rules](http://www.rebol.com/r3/docs/concepts/parsing-recursion.html)
+### rules的元素组成
 
-简短，清晰，漂亮！
+[REBOL 3 Concepts: Parsing: Summary of Parse Operations](http://www.rebol.com/r3/docs/concepts/parsing-summary.html)
 
-### 跳过某些内容
+一堆总结列表，备查
 
-- to   一直跳到指定的字符串的首部
-- thru 一直跳到指定的字符串的尾部
+## 笔记 [REBOL Programming/Language Features/Parse/Parse expressions](http://en.wikibooks.org/wiki/REBOL_Programming/Language_Features/Parse/Parse_expressions)
+
+rebol的parse是自顶向下解析，TDPL
+
+解析表达式写成block，如果匹配，就更新input position
+
+parse 有2种情况：
+- 解析字符串，terminal symbols are characters
+- 解析block, terminal symbols are Rebol values
+
+### NONE 空
 
 {% highlight rebol %}
-page: read http://www.rebol.com/
-parse page [thru <title> copy text to </title>]
-print text
-REBOL Technologies
+parse "" [#[none]]
+; == true
+parse [] [#[none]]
+; == true
 {% endhighlight %}
+
+### Character 字符
+
+{% highlight rebol %}
+parse "a" [#"a"]
+; == true
+{% endhighlight %}
+
+### 在parse的rule block里可以用``()``执行代码
+
+例子：打印 3 行 "great job"
+
+{% highlight rebol %}
+rule: [
+    set count integer!
+    set str string!
+    (loop count [print str])
+]
+parse [3 "great job"] rule
+{% endhighlight %}
+
+### 标志后面加``:``取出当前位置到末尾的值
+
+{% highlight rebol %}
+>> parse "123" [ "1" mark: to end ]
+== true
+>> mark
+== "23"
+{% endhighlight %}
+
+### 解析block
+
+``e1 e2 | e3`` 相当于 ``[ e1 e2 ] | e3``
+
+
+### 递归匹配
+
+``anbn: [ "a" anbn "b" | "ab" ]``
+
+### 一张parse idioms表格
+
+怎么写parse expression更简洁，**重点**
+
+参考 [parseen.r](http://www.rebol.org/view-script.r?script=parseen.r)
+
+| expression | 等价写法 |
+| ---------- | -------- |
+| ``a: charset ",;"`` | ``a: [ #"," | #";" ]``
+| ``a: [m n b]`` | ``a: [(l: min m n k: n - m) l b [k [b | c: fail] | :c]]``
+
+### 用到local变量
+
+[use-rule.r](http://www.rebol.org/view-script.r?script=use-rule.r)
+
+[evaluate.r](http://www.rebol.org/view-script.r?script=evaluate.r)
+
+### 慎用 change / insert / remove
+
+因为慢
+
