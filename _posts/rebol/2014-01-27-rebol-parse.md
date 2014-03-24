@@ -85,7 +85,7 @@ parse [ 1 2 end 3 4 5 ] [ some [ integer! | 'end break ] ]
 
 ### 不含``|``的word
 
-word-except-bar 不含``|``的word，用``and not '| single-word``组合实现
+word-except-bar 不含``|``的word，用``and``组合实现
 
 {% highlight rebol %}
 single-word: [ set item word! ]
