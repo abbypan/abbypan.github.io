@@ -96,7 +96,6 @@ tagline: "TMTOWTDI"
 | Parallel::ForkManger | 多进程处理，[例子](http://perltalks.celogeek.com/slides/2012/01/parallel-forkmanager-slide.html)
 | Parse::RecDescent | 自定义解析模块
 | Perl::Tidy | 整理代码
-| Progress::Any | 进度条
 | re::engine::RE2 | 采用google的RE2正则引擎
 | Safe::Isa | 检查某个对象是否属于指定object
 | snaked | 支持秒级的crontab，支持日志滚动
@@ -117,7 +116,6 @@ tagline: "TMTOWTDI"
 | MVC | Perl的MVC框架介绍：[What is the Perl Web Framework du jour?](http://www.perlmonks.org/?node_id=753411)
 | Algorithm::Accounting | 
 | App::Ack | 
-| [App::FatPacker](https://metacpan.org/pod/App::FatPacker) | 把perl程序打包成独立的执行文件，只要有perl就能用
 | Array::PrintCols | 
 | Benchmark::Timer  | 程序运行时间
 | Clone 复制数据结构 | 传入的参数必须为引用
@@ -126,16 +124,18 @@ tagline: "TMTOWTDI"
 | Config::Scoped | 
 | Config::YAML | 
 | DBM::Deep | 
+| Date::Parse | 从字符串解析时间
 | EV::ADNS | 
 | Email::MIME::Creator | 
 | Email::Sender | 
 | Email::Simple | 
 | Email::Simple::Creator | 
 | Email::Stuff 简单的邮件发送模块 | 
+| File::Stream | 读入文件时，如果指定$/，则$/必须是字符串；如果要用正则式分隔，就用File::Stream。
 | File::Tail | 
 | File::Temp | 注意这个读文件的时候是binary mode，实际处理时可能要自己设binmode
 | Filesys::Df | 查看剩余空间
-| File::Stream | 读入文件时，如果指定$/，则$/必须是字符串；如果要用正则式分隔，就用File::Stream。
+| GraphViz::Regex | 将正则式画成图片
 | IO::Socket | 
 | Log4Perl | 
 | Log::Dispatch | 
@@ -155,13 +155,15 @@ tagline: "TMTOWTDI"
 | NetPacket::IP | 
 | NetPacket::TCP | 
 | Nmap::Scanner | 
+| Params::Validate | 检查函数参数
 | Parse::Syslog | 
 | Path::Class | 
 | Path::Tiny | 路径处理
-| Params::Validate | 检查函数参数
 | Perl6::Form | 
 | Pod::Browser |  本地查看pod
 | Proc::ProcessTable | 
+| Progress::Any | 进度条
+| Regexp::Common | 常用的正则式
 | Regexp::Log::Common | 
 | Regexp::Log::DateRange | 
 | SSH::Batch  | 远程SSH批量操作
@@ -169,33 +171,31 @@ tagline: "TMTOWTDI"
 | Sinffer::HTTP | 
 | Sub::Exporter | 生成多个闭包函数
 | Template::Toolkit | 
-| Text::Template | 
 | Term::Prompt | 
 | Term::Prompt | 
 | Test::Harness | 
 | Test::Output | 测试stdout、stderr输出的内容
 | Text::Autoformat | 
+| Text::Balanced | 解析字符串，提取内容 
 | Text::BarGraph | 
 | Text::Beautify | 
 | Text::Match::FastAlternatives | 
 | Text::More | 
+| Text::Template | 
 | Text::Wrap | 
 | Text::Xslate  | 类似Text::Template的模块 ，速度很快
 | TextFormatTAble | 
-| [Time::Piece](http://perltricks.com/article/59/2014/1/10/Solve-almost-any-datetime-need-with-Time-Piece) | 时间处理
-| Win32::TieRegistry | 用Win32::TieRegistry读出windows已安装软件的列表
 | User::pwent | 
+| Win32::TieRegistry | 用Win32::TieRegistry读出windows已安装软件的列表
 | XLSperl | 命令行操作xls文件
 | XML::Compile | 
 | XML::LibXML | 很快
+| XML::Rabbit | 见[thanks-to-xmlrabbit](http://www.modernperlbooks.com/mt/2012/10/i-stopped-parsing-xml-thanks-to-xmlrabbit.html)
 | XML::Rules | 
 | XML::SAX | 适用于体积较大的XML
 | XML::Simple | 很简单
-| XML::Twig | 适用于大容量数据的一个小子集
 | XML::Struct | 接口比较简单
-| XML::Rabbit | 见[thanks-to-xmlrabbit](http://www.modernperlbooks.com/mt/2012/10/i-stopped-parsing-xml-thanks-to-xmlrabbit.html)
+| XML::Twig | 适用于大容量数据的一个小子集
 | YAML | 
-| GraphViz::Regex | 将正则式画成图片
-| Regexp::Common | 常用的正则式
-| Text::Balanced | 解析字符串，提取内容 
-| Date::Parse | 从字符串解析时间
+| [App::FatPacker](https://metacpan.org/pod/App::FatPacker) | 把perl程序打包成独立的执行文件，只要有perl就能用
+| [Time::Piece](http://perltricks.com/article/59/2014/1/10/Solve-almost-any-datetime-need-with-Time-Piece) | 时间处理
