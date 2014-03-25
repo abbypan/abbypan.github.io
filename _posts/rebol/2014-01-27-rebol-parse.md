@@ -154,7 +154,7 @@ print str
 Where is the turkey! Have you seen the turkey!
 {% endhighlight %}
 
-用 remove / insert / :mark 把 time 换成真正的时间
+用``remove / insert / :mark``把 time 换成真正的时间
 
 ``mark``  取出对应的变量值
 
@@ -376,10 +376,13 @@ parse [3 "great job"] rule
 
 参考 [parseen.r](http://www.rebol.org/view-script.r?script=parseen.r)
 
-| expression | 等价写法 |
-| ---------- | -------- |
-| ``a: charset ",;"`` | ``a: [ #"," | #";" ]``
-| ``a: [m n b]`` | ``a: [(l: min m n k: n - m) l b [k [b | c: fail] | :c]]``
+{% highlight rebol %}
+a: charset ",;"
+a: [ #"," | #";" ]
+
+a: [m n b]
+a: [(l: min m n k: n - m) l b [k [b | c: fail] | :c]]
+{% endhighlight %}
 
 ### 用到local变量
 
