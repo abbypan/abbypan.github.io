@@ -15,12 +15,7 @@ title: "求福不回，求用不匮"
 
 [订阅rss](/rss.xml)
 
-
 {% include google_search.html %}
-<!-- my custom google search -->
-<form onsubmit="my_search_google()" >
-  <input type="text" id="my-google-search">
-</form>
 
 ## 生活
 
