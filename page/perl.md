@@ -87,6 +87,7 @@ tagline: "TMTOWTDI"
 | Capture::Tiny | 抓STDOUT、STDERR消息
 | Chart Director | 画图模块
 | Dancer | Web 框架
+| Template::Toolkit | 模板生成
 | Data::Dump | 打印变量，比Data::Dumper简洁
 | Devel::Peek | 查看变量内部构造
 | [Dist::Zilla](http://perl-users.jp/articles/advent-calendar/2012/casual/9) | CPAN模块打包
@@ -166,11 +167,11 @@ tagline: "TMTOWTDI"
 | Regexp::Common | 常用的正则式
 | Regexp::Log::Common | 
 | Regexp::Log::DateRange | 
+| Sort::ByExample | 排序时指定某些项优先
 | SSH::Batch  | 远程SSH批量操作
 | Set::Array  | 数组操作模块
 | Sinffer::HTTP | 
 | Sub::Exporter | 生成多个闭包函数
-| Template::Toolkit | 
 | Term::Prompt | 
 | Term::Prompt | 
 | Test::Harness | 

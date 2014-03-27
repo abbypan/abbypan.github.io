@@ -25,15 +25,297 @@ tags : [ "rebol" ]
 
 [rebol-to-json](http://rebol2.blogspot.it/2012/12/json.html)
 
+### 数组操作
+
+取出series_x第i个元素
+
+``pick series_x i``
+
+``series_x/:i``
+
+修改series_x第i个元素
+
+``poke series_x i 3``
+
+``series_x/:i: 1``
+
+### [Control](http://en.wikibooks.org/wiki/REBOL_Programming/Language_Features/Control)
+
+if / either / unless 
+
+case / swithch
+
+for / forall / forskip / foreach / forever
+
+loop / repeat / until / while / break
+
+forall 会给出当前的位置，foreach只是取出当前的值。所以可以在forall循环中修改数组。
+
+forskip 循环一次可以读多个元素
+
+{% highlight rebol %}
+areacodes: [
+   "Ukiah"         707
+   "San Francisco" 415
+   "Sacramento"    916
+]
+forskip areacodes 2 [
+    print [first areacodes "area code is" second areacodes]
+]
+
+my-series: [1 2 3 4]
+forall my-series [ 
+    my-series/1: my-series/1 * my-series/1
+]
+; myseries = [1 4 9 16]
+{% endhighlight %}
+
+### object
+
+{% highlight rebol %}
+shopping-basket: make object! [
+  fruits: 5
+  vegetables: 3
+  dairy-products: 7
+]
+
+shopping-basket: make object! [fruits: 5 vegetables: 3 total: self/fruits + self/vegetables]
+{% endhighlight %}
+
+### [Dialects](http://en.wikibooks.org/wiki/REBOL_Programming/Language_Features/Dialects)
+
+**重点**
+
+自定义语法，数据+代码
+
+{% highlight rebol %}
+ data: load {"Bob" 21 bob@example.com $100}
+ set [name age email payment] data
+{% endhighlight %}
+
+### 递归
+
+参考 [函数式编程与Continuation/CPS](http://www.nowamagic.net/academy/detail/1220553)
+
+## 笔记 [Bindology](http://www.rebol.net/wiki/Bindology)
+
+**有闭包的例子**
+
+{% highlight rebol %}
+;赋值
+x: "ab"
+set 'x "cd"
+
+;取值
+:x
+get 'x
+{% endhighlight %}
+
 
 ### 载入其他文件
+
 ``do %/d/myfunctions.r``
+
+``do/args %dalmations.r 101``
+
+命令行参数 ``system/options/args``，``system/script/args``
+
+## 笔记 [Learn REBOL](http://re-bol.com/rebol.html)
+
+### 编译成.exe
+["Compiling" REBOL Programs - Distributing Packaged .EXE Files](http://re-bol.com/rebol.html#section-7.3)
+
+### 面向对象
+{% highlight rebol %}
+account: make object! [
+    first-name: last-name: address: phone: email-address: none
+]
+
+user1: make account [
+    first-name: "John"
+    last-name: "Smith"
+    address: "1234 Street Place  Cityville, USA 12345"
+    email-address: "john@hisdomain.com"
+]
+{% endhighlight %}
+
+### 作为浏览器插件
+
+[REBOL as a Browser Plugin](http://re-bol.com/rebol.html#section-9.11)
 
 ### 写一个模块
 
 见：[Example of a minimal module](http://www.rebol.net/r3blogs/0344.html)
 
-## form / join / mold 等函数
+## 笔记 [REBOL 3 Concepts](http://www.rebol.com/r3/docs/concepts.html)
+
+[Series Functions](http://www.rebol.com/r3/docs/concepts/series-functions.html) : 包括 insert / change / remove / reverse 等等
+
+## copy 与 deep copy
+
+嵌套block拷一份全新的要用 copy/deep
+
+## [find 跟 replace](http://www.rebol.com/r3/docs/concepts/series-searching.html)
+
+find/tail 是正着找，find/last 是反着找
+
+find/match 返回的是匹配之后的position
+
+replace/all 是全部替换
+
+{% highlight rebol %}
+;从block里抽
+colors: [red green blue yellow blue orange gold]
+probe find/part colors 'blue
+
+;限定在text的top 15个字符
+text: "Keep things as simple as you can."
+print find/part text "as" 15
+as simple as you can.
+[blue yellow blue orange gold]
+
+;限定在start的top n个字符找，n是end的position
+text: {
+    This is line one.
+    This is line two.
+}
+
+start: find text "this"
+end: find start newline
+item: find/part start "line" end
+print item
+line one.
+
+;循环
+blk: load %script.r
+while [blk: find blk string!] [
+    print first blk
+    blk: next blk
+]
+
+;在keep之后
+str: "Keep things simple."
+probe find/match str "keep"
+" things simple."
+{% endhighlight %}
+
+### 通配符
+
+{% highlight rebol %}
+;任意字符
+str: "abcdefg"
+print find/any str "c*f"
+cdefg
+
+;任意单个字符
+print find/any str "??d"
+bcdefg
+{% endhighlight %}
+
+### find 与 select
+
+find 是返回匹配位置之后的一个series，select是返回匹配位置之后的一个item
+
+find之后，如果有remove，那么之前find找到的元素位置，有可能失效，得重新find才行
+
+{% highlight rebol %}
+email-book: [
+    "George" harrison@guru.org
+    "Paul" lefty@bass.edu
+    "Ringo" richard@starkey.dom
+    "Robert" service@yukon.dom
+]
+
+print select email-book "Paul"
+lefty@bass.edu
+{% endhighlight %}
+
+### sort 排序
+
+sort/skip 每x个元素分一组，按每组的第1个元素排序
+
+sort/compare 在data后面传入排序函数
+
+{% highlight rebol %}
+names: [
+    "Evie" "Jordan" 43 eve@jordan.dom
+    "Matt" "Harrison" 87 matt@harrison.dom
+    "Luke" "Skywader" 32 luke@skywader.dom
+    "Beth" "Landwalker" 104 beth@landwalker.dom
+    "Adam" "Beachcomber" 29 adam@bc.dom
+]
+sort/skip names 4
+foreach [first-name last-name age email] names [
+    print [first-name last-name age email]
+]
+
+ascend: func [a b] [a < b]
+data: [100 101 -20 37 42 -4]
+probe sort/compare data :ascend
+[-20 -4 37 42 100 101]
+{% endhighlight %}
+
+### 集合函数
+
+unique / intersect / union
+
+{% highlight rebol %}
+probe exclude [1 2 3 4] [1 2 3 5]
+[4]
+
+probe difference [1 2 3 4] [1 2 3 5]
+[4 5]
+{% endhighlight %}
+
+### part / only / dup
+
+{% highlight rebol %}
+str: "abcdef"
+blk: [1 2 3 4 5 6]
+
+;把头3个元素换成[1 2 3 4]
+change/part str [1 2 3 4] 3
+probe str
+1234def
+
+;在尾部插入4个字符
+insert/part tail str "-ghijkl" 4
+probe str
+1234def-ghi
+
+;删掉从"d"(包含)到"-"(不包含)的内容
+remove/part (find str "d") (find str "-")
+probe str
+1234-ghi
+
+;从2开始插入一个block替换原有item，展开替换
+>> blk: [1 2 3 4 5 6]
+== [1 2 3 4 5 6]
+
+>> change (find blk 2) [a b c]
+== [5 6]
+
+>> blk
+== [1 a b c 5 6]
+
+;把2替换成一个block，insert/only类似
+>> blk: [1 2 3 4 5 6]
+== [1 2 3 4 5 6]
+
+>> change/only (find blk 2) [a b c]
+== [3 4 5 6]
+
+>> blk
+== [1 [a b c] 3 4 5 6]
+
+;重复替换4次
+str: "abcdefghi"
+change/dup str "*" 4
+probe str
+****efghi
+{% endhighlight %}
+
+### form / join / mold 等函数
 
 参考：http://www.rebol.com/docs/words/wreform.html
 

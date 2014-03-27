@@ -7,6 +7,12 @@ tags: [ "dns", "authority" ]
 ---
 {% include JB/setup %}
 
+## oarc的 tld mon
+
+常见的重点项基本都包括了：[OARC TLDmon Service](https://www.dns-oarc.net/oarc/services/tldmon)
+
+可视化：[结果分块着色](https://tldmon.dns-oarc.net/nagios/)，[趋势](https://tldmon.dns-oarc.net/history/)
+
 ## tcpdump抓包
 
 tcpdump -s0 port 53 -w test.cap

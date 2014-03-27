@@ -31,6 +31,7 @@
           e.preventDefault();
           $(this).addClass('playing').siblings().removeClass('playing');
           audio.load($('a', this).attr('data-src'));
+          $('title').html($('a',this).text());
           audio.play();
         });
         // Keyboard shortcuts

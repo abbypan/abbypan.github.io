@@ -45,7 +45,7 @@ tagline: "常用软件"
 | pathsync | 同步文件夹 | super flexible file synchronizer |
 | pdf xchange view | pdf阅读器 | adobe pdf reader |
 | pdfsam | pdf 文件分割合并 | 无 |
-| phpnow | apache + php + mysql 环境 | 无 |
+| phpnow | apache + php + mysql 环境 | [uniform server](http://www.uniformserver.com/) |
 | [process tamer](http://www.donationcoder.com/Software/Mouser/proctamer/) | 调节进程CPU占用 | 无 |
 | qgifer | 从视频文件(mp4等)中提取gif | 无 |
 | 腾讯TM | 聊天 | 无 |

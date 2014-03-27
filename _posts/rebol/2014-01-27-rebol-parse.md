@@ -278,7 +278,9 @@ print str
 
 ### 拆分字符串 split
 
-parse 默认自动拆分空格space、制表符tab、换行newline、逗号comma、分号semicolon，parse/all 不自动拆分上述三类符号
+parse 默认自动拆分空格space、制表符tab、换行newline等等不可见字符、逗号comma、分号semicolon
+
+parse/all 不自动空格等字符，会自动拆分``;``与``,``
 
 {% highlight rebol %}
 parse "here there,everywhere; ok" none
@@ -292,6 +294,9 @@ parse/all "Harry, 1011 Main St., Ukiah" ","
 
 parse "Harry, 1011 Main St., Ukiah" ","
 ; ["Harry" "1011" "Main" "St." "Ukiah"]
+
+parse "red#blue*green" "#*"
+; == ["red" "blue" "green"]
 {% endhighlight %}
 
 ### 字符集合

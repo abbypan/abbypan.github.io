@@ -5,12 +5,25 @@ tagline: ""
 ---
 {% include JB/setup %}
 
+## 入门
+| 资料 | 说明 |
+| ---- | ---- |
+| [Rebol Programming Language_Features](http://en.wikibooks.org/wiki/REBOL_Programming/Language_Features) | 基础说明
+
+
 ## 基础
 | 资料 | 说明 |
 | ---- | ---- |
-| [rebol quick reference](http://www.rebol.com/docs/reference.html) | 速查表
 | [REBOL Core Users Guide](http://www.rebol.com/docs/core23/rebolcore.html) | rebol2的资料，可做参考
 | [rebol docs](http://www.rebol.com/docs.html) | 资料集合
 | [programming with rebol](http://www.codeconscious.com/rebol/) | 资料集合
-| [learn rebol](http://re-bol.com/rebol.html) | 入门介绍
 | [Creating Business Applications With REBOL](http://business-programming.com/business_programming.html) | 
+| [rebol quick reference](http://www.rebol.com/docs/reference.html) | 速查表
+| [learn rebol](http://re-bol.com/rebol.html) | 入门介绍，大杂烩
+
+## 工具
+| 工具 | 说明 |
+| ---- | ---- |
+| [Munge](http://www.dobeash.com/munge.html) | 解析csv / xls 等文件
+| [r3gui](http://development.saphirion.com/rebol/) | 图形界面
+| [Cross Platform App Development with Rebol 3 Saphir](http://learnrebol.com/rebol3_book.html) | 跨平台app开发，如android、ios等等
