@@ -15,8 +15,6 @@ title: "求福不回，求用不匮"
 
 [订阅rss](/rss.xml)
 
-{% include google_search.html %}
-
 ## 生活
 
 | 类型 | 杂感 |
