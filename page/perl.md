@@ -119,7 +119,7 @@ tagline: "TMTOWTDI"
 | App::Ack | 
 | Array::PrintCols | 
 | Benchmark::Timer  | 程序运行时间
-| Clone 复制数据结构 | 传入的参数必须为引用
+| Clone | 复制数据结构，传入的参数必须为引用
 | Config::Auto | 
 | Config::Context | 
 | Config::Scoped | 
@@ -131,7 +131,7 @@ tagline: "TMTOWTDI"
 | Email::Sender | 
 | Email::Simple | 
 | Email::Simple::Creator | 
-| Email::Stuff 简单的邮件发送模块 | 
+| Email::Stuff | 简单的邮件发送模块
 | File::Slurp::Tiny | 读写文件、目录
 | File::Stream | 读入文件时，如果指定$/，则$/必须是字符串；如果要用正则式分隔，就用File::Stream。
 | File::Tail | 
