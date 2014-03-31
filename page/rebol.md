@@ -9,6 +9,7 @@ tagline: ""
 | 资料 | 说明 |
 | ---- | ---- |
 | [Rebol Programming Language_Features](http://en.wikibooks.org/wiki/REBOL_Programming/Language_Features) | 基础说明
+| [REBOL 3 concepts](http://www.rebol.com/r3/docs/concepts.html) | 基础介绍
 
 
 ## 基础

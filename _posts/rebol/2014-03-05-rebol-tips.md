@@ -315,13 +315,60 @@ probe str
 ****efghi
 {% endhighlight %}
 
+### 数组 array
+
+{% highlight rebol %}
+;一维数组
+arr: array 5
+probe arr
+[none none none none none]
+
+;二维数组
+arr: array [2 3]
+probe arr
+[[none none none] [none none none]]
+
+;初始化
+arr: array/initial 5 0
+probe arr
+[0 0 0 0 0]
+{% endhighlight %}
+
+### ``()``相归于一层解引用
+
+嵌套多层时，需要添加``deep``关键字
+
+{% highlight rebol %}
+probe compose ["The time is" (now/time)]
+["The time is" 10:32:45]
+
+probe compose [a b ([c d])]
+[a b c d]
+
+probe compose [a b [c (d e)]]
+[a b [c (d e)]]
+
+probe compose/deep [a b [c (d e)]]
+[a b [c d e]]
+{% endhighlight %}
+
+### 字符串函数
+
+[string functions](http://www.rebol.com/r3/docs/concepts/strings-functions.html)
+
 ### form / join / mold 等函数
 
-参考：http://www.rebol.com/docs/words/wreform.html
+参考：[reform](http://www.rebol.com/docs/words/wreform.html)
+
+参考：[string convert](http://www.rebol.com/r3/docs/concepts/strings-convert.html)
 
 form 与 reform 的区别是，reform 会对block中的变量求值，form直接当字符串用
 
 form / reform 输出合并后的字符串（中间加空格）
+
+join / rejoin 合并后的类型与第一个参数保持一致，如果最后是字符串（中间不加空格）
+
+mold / remold 输出rebol数据格式的字符串
 
 {% highlight rebol %}
 probe reform ["the time is:" now/time]
@@ -331,6 +378,45 @@ probe form ["the time is:" now/time]
 "the time is: now/time"
 {% endhighlight %}
 
-join / rejoin 合并后的类型与第一个参数保持一致，如果最后是字符串（中间不加空格）
+### checksum
 
-mold / remold 输出rebol数据格式的字符串
+支持 hash、crc等校验和
+
+### 路径处理
+
+``to-file`` 把字符串或block转换为file name或file path
+
+``split-path`` 拆分目录、文件名
+
+``clean-path`` 把相对路径换成绝对路径
+
+### 读写内容
+
+{% highlight rebol %}
+;一次读入
+text: read %file.txt
+
+;按行读入
+lines: read/lines %file.txt
+
+;读入binary数据，例如图片、音乐等
+data: read/binary %file.bin
+
+;读入网页
+web: read http://www.rebol.com/test.txt
+
+;下载网页
+write %test.txt read http:/www.rebol.com/test.txt
+
+;添加
+write/append %file.txt "more text"
+
+;按行写入
+write/lines %file.txt lines
+
+;写入binary数据
+write/binary %file.bin data
+
+;将指定内容远程写入ftp
+write ftp://ftp.domain.com/file.txt "save this text"
+{% endhighlight %}
