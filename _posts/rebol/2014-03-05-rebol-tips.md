@@ -18,6 +18,10 @@ tags : [ "rebol" ]
 | what-dir | 当前目录
 | list-dir | 当前目录下的内容
 | change-dir | 切换目录
+| size? | 文件大小
+| modified? | 修改时间
+| info? | 文件信息
+| make-dir | 新建目录
 
 ### rebol to json
 
@@ -136,7 +140,18 @@ user1: make account [
     last-name: "Smith"
     address: "1234 Street Place  Cityville, USA 12345"
     email-address: "john@hisdomain.com"
+    print-full: func [] [
+        print first-name
+        print last-name
+    ]
 ]
+
+user1/address
+get in  user1 'address
+
+set in  user1 'address "test addr"
+
+user1/print-full
 {% endhighlight %}
 
 ### 作为浏览器插件
@@ -151,11 +166,11 @@ user1: make account [
 
 [Series Functions](http://www.rebol.com/r3/docs/concepts/series-functions.html) : 包括 insert / change / remove / reverse 等等
 
-## copy 与 deep copy
+### copy 与 deep copy
 
 嵌套block拷一份全新的要用 copy/deep
 
-## [find 跟 replace](http://www.rebol.com/r3/docs/concepts/series-searching.html)
+### [find 跟 replace](http://www.rebol.com/r3/docs/concepts/series-searching.html)
 
 find/tail 是正着找，find/last 是反着找
 
@@ -419,4 +434,125 @@ write/binary %file.bin data
 
 ;将指定内容远程写入ftp
 write ftp://ftp.domain.com/file.txt "save this text"
+
+;读取目录下文件列表
+print read %intro/
+{% endhighlight %}
+
+### 文件操作
+
+{% highlight rebol %}
+;删除多个文件
+delete [ %file1 %file2 ]
+
+;删除目录
+delete %dir/
+
+;以file开头的文件
+delete/any %file*
+
+;以secret.开头，后面加一个字符的文件
+delete/any %secret.?
+{% endhighlight %}
+
+### 函数
+
+{% highlight rebol %}
+sum: func [
+    "Return the sum of two numbers."
+    arg1 [number! tuple! money!] "first number"
+    arg2 [number! tuple! money!] "second number"
+][
+    arg1 + arg2
+]
+
+print sum 1.2.3 3.2.1
+4.4.4
+
+;反引号不对变量求值
+say: func [`var] [probe var]
+say test
+test
+
+;引号
+++: func ['word] [set word 1 + get word]
+count: 0
+++ count
+print count
+1
+
+;refinements设置
+sum: func [
+    "Return the sum of two numbers."
+    arg1 [number!] "first number"
+    arg2 [number!] "second number"
+    /times "multiply the result"
+    amount [number!] "how many times"
+][
+    either times [arg1 + arg2 * amount][arg1 + arg2]
+]
+print sum/times 123 321 10
+4440
+
+;local表示变量只在当前func中生效
+average: func [
+    block "Block of numbers"
+    /local total length
+][
+    total: 0
+    length: length? block
+    foreach num block [total: total + num]
+    either length > 0 [total / length][0]
+]
+
+;匿名函数
+sort/compare data func [a b] [a > b]
+{% endhighlight %}
+
+### 注意local变量
+
+{% highlight rebol %}
+star-name: func [name] [
+    stars: copy "**"
+    insert next stars name
+    stars
+]
+print star-name "test"
+*test*
+print star-name "this"
+*this*
+
+;注意这边"**"的local变量没有被copy
+star-name: func [name] [
+    stars: "**"
+    insert next stars name
+    stars
+]
+print star-name "test"
+*test*
+print star-name "this"
+*thistest*
+{% endhighlight %}
+
+### 计算
+
+[常见math函数](http://www.rebol.com/r3/docs/concepts/math-operators.html)
+
+
+{% highlight rebol %}
+print 20 / 10
+2
+
+print 21 // 10
+1
+
+;向量加法
+print 100x200 + 10x20
+110x220
+
+print 10.20.30 / 10
+1.2.3
+
+print 1.2.3 * 1.2.3
+1.4.9
 {% endhighlight %}
