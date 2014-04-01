@@ -485,6 +485,21 @@ print sum/times 123 321 10
 4440
 {% endhighlight %}
 
+
+{% highlight rebol %}
+;反引号不对变量求值
+say: func [`````var] [probe var]
+say test
+test
+
+;引号
+++: func [``'``word] [set word 1 + get word]
+count: 0
+++ count
+print count
+1
+{% endhighlight %}
+
 ### local变量
 
 {% highlight rebol %}
