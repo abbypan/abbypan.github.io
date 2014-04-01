@@ -493,7 +493,7 @@ say test
 test
 
 ;引号
-\++: func ['word] [set word 1 + get word]
+ ++: func ['word] [set word 1 + get word]
 count: 0
 ++ count
 print count
