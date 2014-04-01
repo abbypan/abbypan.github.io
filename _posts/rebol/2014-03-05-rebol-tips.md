@@ -469,12 +469,6 @@ sum: func [
 print sum 1.2.3 3.2.1
 4.4.4
 
-;反引号不对变量求值
-say: func [`var] [probe var]
-say test
-test
-
-
 ;refinements设置
 sum: func [
     "Return the sum of two numbers."
