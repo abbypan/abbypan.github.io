@@ -493,7 +493,11 @@ sum: func [
 ]
 print sum/times 123 321 10
 4440
+{% endhighlight %}
 
+### local变量
+
+{% highlight rebol %}
 ;local表示变量只在当前func中生效
 average: func [
     block "Block of numbers"
@@ -509,7 +513,8 @@ average: func [
 sort/compare data func [a b] [a > b]
 {% endhighlight %}
 
-### 注意local变量
+
+local变量如果是block，重复调用记得用copy
 
 {% highlight rebol %}
 star-name: func [name] [
@@ -537,7 +542,6 @@ print star-name "this"
 ### 计算
 
 [常见math函数](http://www.rebol.com/r3/docs/concepts/math-operators.html)
-
 
 {% highlight rebol %}
 print 20 / 10
