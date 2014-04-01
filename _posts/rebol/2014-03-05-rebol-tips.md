@@ -146,6 +146,8 @@ user1: make account [
     ]
 ]
 
+;注意，func [] 可缩写为 does
+
 user1/address
 get in  user1 'address
 
@@ -548,3 +550,57 @@ print 10.20.30 / 10
 print 1.2.3 * 1.2.3
 1.4.9
 {% endhighlight %}
+
+### 取出对象内容
+
+{% highlight rebol %}
+probe first luke
+[self first-name last-name account balance]
+
+probe next first luke
+[first-name last-name account balance]
+
+probe-object: func [object][
+    foreach word next first object [
+        print rejoin [word ":" tab get in object word]
+    ]
+]
+
+probe-object fred
+first-name: Luke
+last-name: Lakeswimmer
+account: 89431
+balance: $1204.52
+{% endhighlight %}
+
+### 模块处理
+
+**Needs**是放在开头的``REBOL [ Needs: [ mysql db-gui ] ]``中，指定需要的模块
+
+也可以在代码中使用``import [ mysql db-gui ]``，效果同上
+
+do比较简单，就是简单执行脚本，没有import那么多参数
+
+新建模块，导出函数：[module defining](http://www.rebol.com/r3/docs/concepts/modules-defining.html)
+
+使用import的对象：
+{% highlight rebol %}
+mysql: import 'mysql
+mysql/open-db %my-db.sql
+
+;多态
+mod: 'mysql
+import mod
+{% endhighlight %}
+
+### 开发扩展extensions
+
+[making extensions](http://www.rebol.com/r3/docs/concepts/extensions-making.html) 及后续几个页面
+
+### 端口协议
+
+[Ports](http://www.rebol.com/r3/docs/concepts/ports.html)
+
+[Protocols](http://www.rebol.com/r3/docs/concepts/protocols.html)
+
+
