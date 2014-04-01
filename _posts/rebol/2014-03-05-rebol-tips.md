@@ -474,12 +474,6 @@ say: func [`var] [probe var]
 say test
 test
 
-;引号
-++: func ['word] [set word 1 + get word]
-count: 0
-++ count
-print count
-1
 
 ;refinements设置
 sum: func [
