@@ -117,3 +117,11 @@ set encoding=cp936
 set termencoding=cp936
 set fileencoding=utf-8
 {% endhighlight %}
+
+### 正则式very magic
+
+[enchanted.vim](http://www.vim.org/scripts/script.php?script_id=4849) 让vim正则式一直very magic，省敲字
+
+需要预先安装[CRDispatcher.vim](http://www.vim.org/scripts/script.php?script_id=4856)
+
+very magic 参考：[vim-regexes-are-awesome](http://briancarper.net/blog/448/vim-regexes-are-awesome)
