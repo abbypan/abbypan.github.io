@@ -132,6 +132,7 @@ tagline: "TMTOWTDI"
 | Email::Simple | 
 | Email::Simple::Creator | 
 | Email::Stuff | 简单的邮件发送模块
+| File::Sip | 读取大文件
 | File::Slurp::Tiny | 读写文件、目录
 | File::Stream | 读入文件时，如果指定$/，则$/必须是字符串；如果要用正则式分隔，就用File::Stream。
 | File::Tail | 
