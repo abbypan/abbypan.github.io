@@ -9,7 +9,7 @@
     
 <script>
 //read music info
-$.getJSON('music.json', function(data) {
+$.getJSON('http://pumpkin.pancakeapps.com/music.json', function(data) {
         var items = [];
         $.each(data, function(i) {
             var s = data[i];
@@ -60,6 +60,39 @@ audio.play();
 }
 
 
+</script>
+</head>
+<body>
+<div id="wrapper">
+    <h1><em>喜欢的音乐</em></h1>
+    <p>键盘快捷键：
+    <em>&rarr;</em> 下一首 ,
+    <em>&larr;</em> 上一首 ,
+    <em>Space</em>  暂停
+    </p>
+
+    <p>PC在线播放 需预先配置下列站点：</p>
+    <ul>
+        <li>zhangmenshiting.baidu.com</li>
+        <li>file.qianqian.com</li>
+    </ul>
+    <p>
+    的referer为http://music.baidu.com
+    </p>
+
+    手机扫码听歌：<img src="music.png"></img>
+
+    <p><input type="checkbox" name="shuffle" id="shuffle" checked>随机播放</p>
+
+    <audio preload></audio>
+</div>
+<script>
+var checkExist = setInterval(function() {
+   if ($('ol').length) {
+      clearInterval(checkExist);
+   }
+}, 100); // check every 100ms
+
 //main audio process
 $(function() { 
 // Setup the player to autoplay the next track
@@ -94,32 +127,6 @@ $(document).keydown(function(e) {
         })
 });
 </script>
-</head>
-<body>
-<div id="wrapper">
-    <h1><em>喜欢的音乐</em></h1>
-    <p>键盘快捷键：
-    <em>&rarr;</em> 下一首 ,
-    <em>&larr;</em> 上一首 ,
-    <em>Space</em>  暂停
-    </p>
-
-    <p>PC在线播放 需预先配置下列站点：</p>
-    <ul>
-        <li>zhangmenshiting.baidu.com</li>
-        <li>file.qianqian.com</li>
-    </ul>
-    <p>
-    的referer为http://music.baidu.com
-    </p>
-
-    手机扫码听歌：<img src="music.png"></img>
-
-    <p><input type="checkbox" name="shuffle" id="shuffle" checked>随机播放</p>
-
-    <audio preload></audio>
-</div>
-
 
 <!--<div id="shortcuts">-->
 <!--<h1>键盘快捷键</h1>-->
