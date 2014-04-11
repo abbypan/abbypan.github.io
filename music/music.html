@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>喜欢的音乐</title>
+    <script src="jquery.js"></script>
+    <script src="audio.min.js"></script>
+    <link rel="stylesheet" href="index.css" media="screen">
+    
+<script>
+//read music info
+$.getJSON('http://pumpkin.pancakeapps.com/music.json', function(data) {
+        var items = [];
+        $.each(data, function(i) {
+            var s = data[i];
+            items.push('<li><a href="#" data-src="' + s.url + '">' + s.artist +'-' + s.title + ','+ s.kbps + 'kpbs' + '</a></li>');
+            });
+        $('<ol/>', {
+html: items.join('')
+}).appendTo('#wrapper');
+        });
+</script>
+
+<script>
+//select new song
+function get_shuffle_song() {
+    var song_num = $('ol li').size();
+    var rand_num = Math.floor(Math.random()*song_num);
+    var    song = $('ol li').eq(rand_num);
+    return song;
+}
+
+function get_next_song() {
+        var next = $('li.playing').next();
+        if (!next.length) next = $('ol li').first();
+        return next;
+}
+
+function get_prev_song() {
+        var prev =  $('li.playing').prev();
+        if (!prev.length) prev = $('ol li').last();
+        return prev;
+}
+
+function select_new_song(unicode) {
+    if(!unicode) unicode = 39; // default next song
+    var is_shuffle = $('#shuffle').attr('checked');
+    var song = is_shuffle ? get_shuffle_song() :
+(unicode == 39) ? get_next_song() :   // right arrow
+(unicode == 37) ? get_prev_song() : null;    // left arrow
+    return song;
+}
+
+//play_song
+function play_song(audio, next){
+next.addClass('playing').siblings().removeClass('playing');
+audio.load($('a', next).attr('data-src'));
+$('title').html(next.text());
+audio.play();
+}
+
+
+//main audio process
+$(function() { 
+// Setup the player to autoplay the next track
+var a = audiojs.createAll({
+trackEnded: function() {
+var next = select_new_song();
+play_song(audio,next);
+}
+});
+
+// Load in the first track
+var audio = a[0];
+first = $('ol a').attr('data-src');
+$('ol li').first().addClass('playing');
+audio.load(first);
+
+// Load in a track on click
+$('ol li').click(function(e) {
+    e.preventDefault();
+    play_song(audio,$(this));
+    });
+
+// Keyboard shortcuts
+$(document).keydown(function(e) {
+        var unicode = e.charCode ? e.charCode : e.keyCode;
+        if (unicode == 32) {
+            audio.playPause();
+            }else{
+                var song = select_new_song(unicode);
+                song.click();
+            }
+        })
+});
+</script>
+</head>
+<body>
+<div id="wrapper">
+    <h1><em>喜欢的音乐</em></h1>
+    <p>键盘快捷键：
+    <em>&rarr;</em> 下一首 ,
+    <em>&larr;</em> 上一首 ,
+    <em>Space</em>  暂停
+    </p>
+
+    <p>PC在线播放 需预先配置下列站点：</p>
+    <ul>
+        <li>zhangmenshiting.baidu.com</li>
+        <li>file.qianqian.com</li>
+    </ul>
+    <p>
+    的referer为http://music.baidu.com
+    </p>
+
+    手机扫码听歌：<img src="music.png"></img>
+
+    <p><input type="checkbox" name="shuffle" id="shuffle" checked>随机播放</p>
+
+    <audio preload></audio>
+</div>
+
+
+<!--<div id="shortcuts">-->
+<!--<h1>键盘快捷键</h1>-->
+<!--<p><em>&rarr;</em> 下一首 </p>-->
+<!--<p><em>&larr;</em> 上一首 </p>-->
+<!--<p><em>Space</em>  暂停 </p>-->
+<!--</div>-->
+
+</body>
+</html>
