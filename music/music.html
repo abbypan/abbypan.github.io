@@ -7,19 +7,6 @@
     <script src="audio.min.js"></script>
     <link rel="stylesheet" href="index.css" media="screen">
     
-<script>
-//read music info
-$.getJSON('music.json', function(data) {
-        var items = [];
-        $.each(data, function(i) {
-            var s = data[i];
-            items.push('<li><a href="#" data-src="' + s.url + '">' + s.artist +'-' + s.title + ','+ s.kbps + 'kpbs' + '</a></li>');
-            });
-        $('<ol/>', {
-html: items.join('')
-}).appendTo('#wrapper');
-        });
-</script>
 
 <script>
 //select new song
@@ -60,39 +47,6 @@ audio.play();
 }
 
 
-//main audio process
-$(function() { 
-// Setup the player to autoplay the next track
-var a = audiojs.createAll({
-trackEnded: function() {
-var next = select_new_song();
-play_song(audio,next);
-}
-});
-
-// Load in the first track
-var audio = a[0];
-first = $('ol a').attr('data-src');
-$('ol li').first().addClass('playing');
-audio.load(first);
-
-// Load in a track on click
-$('ol li').click(function(e) {
-    e.preventDefault();
-    play_song(audio,$(this));
-    });
-
-// Keyboard shortcuts
-$(document).keydown(function(e) {
-        var unicode = e.charCode ? e.charCode : e.keyCode;
-        if (unicode == 32) {
-            audio.playPause();
-            }else{
-                var song = select_new_song(unicode);
-                song.click();
-            }
-        })
-});
 </script>
 </head>
 <body>
@@ -118,8 +72,63 @@ $(document).keydown(function(e) {
     <p><input type="checkbox" name="shuffle" id="shuffle" checked>随机播放</p>
 
     <audio preload></audio>
+<script>
+//read music info
+$.getJSON('music.json', 
+        function(data) {
+        var items = [];
+        $.each(data, function(i) {
+            var s = data[i];
+            items.push('<li><a href="#" data-src="' + s.url + '">' + s.artist +'-' + s.title + ','+ s.kbps + 'kpbs' + '</a></li>');
+            });
+        $('<ol/>', {
+html: items.join('')
+}).appendTo('#wrapper');
+        });
+</script>
 </div>
+<script>
+//main audio process {{{
+// Setup the player to autoplay the next track
+var a = audiojs.createAll({
+trackEnded: function() {
+var next = select_new_song();
+play_song(audio,next);
+}
+});
 
+// Load in the first track
+var audio = a[0];
+
+var checkExist = setInterval(function() {
+   if ($('ol').length) {
+
+first = $('ol a').attr('data-src');
+$('ol li').first().addClass('playing');
+audio.load(first);
+
+// Load in a track on click
+$('ol li').click(function(e) {
+    e.preventDefault();
+    play_song(audio,$(this));
+    });
+
+// Keyboard shortcuts
+$(document).keydown(function(e) {
+        var unicode = e.charCode ? e.charCode : e.keyCode;
+        if (unicode == 32) {
+            audio.playPause();
+            }else{
+                var song = select_new_song(unicode);
+                song.click();
+            }
+        })
+      
+      clearInterval(checkExist);
+   }
+}, 100); // check every 100ms
+//}}}
+</script>
 
 <!--<div id="shortcuts">-->
 <!--<h1>键盘快捷键</h1>-->
