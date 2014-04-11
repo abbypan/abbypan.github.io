@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>喜欢的音乐</title>
+<script src="jquery.js"></script>
+
+<script src='jquery.base64.js'></script>
+<script src="flyjsonp.js"></script>
+
+<script src="audio.min.js"></script>
+<link rel="stylesheet" href="index.css" media="screen">
+
+<script>
+$.getJSON('music.json', function(data) {
+        var items = [];
+        console.log(data);
+        $.each(data, function(song_id, val) {
+            items.push('<li><a href="#" song-id="' + song_id + '">' +val + '</a></li>');
+            });
+        $('<ol/>', {
+html: items.join('')
+}).appendTo('#wrapper');
+        });
+</script>
+
+
+<script>
+FlyJSONP.init({debug: true}); 
+
+function main_play_song(audio, n){
+    var url = $('a',n).attr('data-src');
+    if(url) {
+        play_song(audio, n);
+    }else{
+        get_song(audio, $('a',n).attr('song-id')); 
+    }
+}
+
+function play_song(audio, next) {
+    next.addClass('playing').siblings().removeClass('playing');
+    var url = $('a', next).attr('data-src');
+    audio.load(url);
+    $('#test').html(url);
+    $('title').html(next.text());
+    audio.play();
+}
+
+
+function update_song_url(audio, f){
+    var url=f.url.replace(/&src=.*/,'');
+    $("[song-id='"+f.song_id+"']").attr('data-src', url);
+    play_song(audio, $("[song-id='"+f.song_id+"']").parent());
+}
+
+function get_song_url(audio, song_id, rate){
+    var post_url = "http://musicmini.baidu.com/app/link/getLinks.php";
+    var param_str = '{"songId":"'+song_id+'","songAppend":"","linkType":2,"isLogin":1,"clientVer":"","isHq":1,"isCloud":0,"hasMV":1,"noFlac":0,"rate":'+rate+'}';
+        var param = $.base64('encode', param_str);
+        FlyJSONP.init({debug: true}); 
+        FlyJSONP.post({
+url: post_url,
+parameters: { param: param },
+success: function(resp) {
+update_song_url(audio, { 
+song_id: song_id, 
+url: resp["file_list"].url, 
+album: resp.album_title,
+title: resp.song_title,
+artist: resp.song_artist
+});
+} 
+});
+}
+
+function get_song(audio, song_id){
+    var url = "http://musicmini.baidu.com/app/link/getLinks.php";
+    var param_str = '{"songId":"'+song_id+'","songAppend":"","linkType":1,"isLogin":1,"clientVer":"","isHq":1,"isCloud":0,"hasMV":1,"noFlac":0,"rate":0}';
+    var param = $.base64('encode', param_str);
+    FlyJSONP.post({
+url: url,
+parameters: { param: param },
+success: function(resp) {
+var flist = resp["file_list"];
+
+var f = flist;
+if(flist instanceof Array){
+for(var i=0; i<flist.length; i++){
+if(flist[i].format!="mp3") continue;
+break;
+f = flist[i];
+}
+}
+
+if(f.url){
+update_song_url(audio, { 
+song_id: song_id, 
+url: f.url, 
+album: resp.album_title,
+title: resp.song_title,
+artist: resp.song_artist
+});
+}else{
+    get_song_url(audio, song_id, f.kbps);
+} 
+
+}
+});
+}
+
+</script>
+
+    <script>
+    function get_shuffle_song() {
+      var is_shuffle = $('#shuffle').attr('checked');
+      var song;
+      if(is_shuffle){
+          var song_num = $('ol li').size();
+          var rand_num = Math.floor(Math.random()*song_num);
+          song = $('ol li').eq(rand_num);
+      }
+      return song;
+    }
+
+      $(function() { 
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+          trackEnded: function() {
+            var next = get_shuffle_song() || $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+
+            main_play_song(audio, next);
+
+//            next.addClass('playing').siblings().removeClass('playing');
+//            audio.load($('a', next).attr('data-src'));
+//            $('title').html(next.text());
+//            audio.play();
+          }
+        });
+
+        
+        // Load in the first track
+        var audio = a[0];
+        first = $('ol a').attr('data-src');
+        $('ol li').first().addClass('playing');
+        audio.load(first);
+
+        // Load in a track on click
+        $('ol li').click(function(e) {
+          e.preventDefault();
+            
+          main_play_song(audio, $(this));
+//          $(this).addClass('playing').siblings().removeClass('playing');
+//          audio.load($('a', this).attr('data-src'));
+//          $('title').html($('a',this).text());
+//          audio.play();
+        });
+        // Keyboard shortcuts
+
+
+        $(document).keydown(function(e) {
+          var unicode = e.charCode ? e.charCode : e.keyCode;
+
+          
+             // right arrow
+          if (unicode == 39) {
+            var next = get_shuffle_song() || $('li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.click();
+            // back arrow
+          } else if (unicode == 37) {
+            var prev =  get_shuffle_song() || $('li.playing').prev();
+            if (!prev.length) prev = $('ol li').last();
+            prev.click();
+            // spacebar
+          } else if (unicode == 32) {
+            audio.playPause();
+          }
+        })
+      });
+    </script>
+</head>
+
+<body>
+
+
+
+<div id="wrapper">
+    <h1><em>喜欢的音乐</em></h1>
+    <h1 id="test">test</h1>
+    <script>
+get_song("53826739");
+    </script>
+    <p>键盘快捷键：
+    <em>&rarr;</em> 下一首 ,
+    <em>&larr;</em> 上一首 ,
+    <em>Space</em>  暂停
+    </p>
+
+    <p>PC在线播放 需预先配置下列站点：</p>
+    <ul>
+        <li>zhangmenshiting.baidu.com</li>
+        <li>file.qianqian.com</li>
+    </ul>
+    <p>
+    的referer为http://music.baidu.com
+    </p>
+
+    手机扫码听歌：<img src="music.png"></img>
+    <audio preload></audio>
+</div>
+
+<!--<div id="shortcuts">-->
+<!--<div>-->
+<!--<h1>键盘快捷键</h1>-->
+<!--<p><em>&rarr;</em> 下一首 </p>-->
+<!--<p><em>&larr;</em> 上一首 </p>-->
+<!--<p><em>Space</em>  暂停 </p>-->
+<!--<p>在线听最好设置zhangmenshiting.baidu.com/file.qianqian.com的referer为music.baidu.com</p>-->
+<!--</div>-->
+<!--</div>-->
+
+</body>
+</html>
