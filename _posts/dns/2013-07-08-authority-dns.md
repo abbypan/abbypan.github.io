@@ -51,6 +51,25 @@ tsig 对dns消息做认证：http://backreference.org/2010/01/24/dns-security-ts
 
 [dns tampering and root servers](http://www.renesys.com/wp-content/uploads/2013/05/DNS-Tampering-and-Root-Servers.pdf)
 
+## 权威dns时延分析
+
+多个分布式探测点，探测权威ns时延
+
+优选方案2)：每个节点每n分钟同时发s个udp包，每个包等5s。支持量化评估权威时延。
+
+| 方案 | 优点 | 缺点 |
+| ---- | ---- | ---- |
+| 1) 每个节点每n分钟发1个udp包，每个包等5s | 简单 | 受网络丢包影响
+| 2) 每个节点每n分钟同时发s个udp包，每个包等5s | 简单 | 权威ns较多时，发包也多
+| 3) 每个节点先发1个udp包，超过t秒无返回，再发第2个包，最多重试x次 | 避免偶然丢包的影响 | 某些情况下权威ns查询时延/失败波动被主动忽略
+
+方案3)：
+一般用于时延报警策略误报优化，不用于基础数据探测。当等待时延t设置小于某些真实时延时，最终得出的时延与实际情况有偏差，且未知增减：
+- ``<=t``秒：无影响
+- 重试x次，写入``x*t + succ_rtt``：影响可能偏大
+- 重试x次，写入``succ_rtt``：影响偏小
+- 重试x次，均未在t秒内返回，返回失败：影响偏大
+
 ## 材料
 
 2011-02-14 BIND 9 DNS Security：http://www.nsa.gov/ia/_files/vtechrep/I733-004R-2010.pdf
