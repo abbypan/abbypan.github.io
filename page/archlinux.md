@@ -79,16 +79,23 @@ reboot
           'https::/usr/bin/axel -n 8 -o %o %u'
           'ftp::/usr/bin/axel -n 8 -o %o %u'
 
-## 系统配置
 
 
-### 图形界面
+## 图形界面
 
-安装X 
+### 安装X 
 
 ``yaourt -S xorg xorg-xinit consolekit``
 
-安装XFCE
+### 安装lxde
+
+``yaourt -S lxde openbox``
+
+编辑~/.xinitrc
+    
+    exec lxsession
+
+### 安装XFCE
 
 ``yaourt -S xfce4 xfce4-notifyd``
 
@@ -96,6 +103,8 @@ reboot
 
         exec ck-launch-session dbus-launch startxfce4
 
+
+## 配置
 
 ### 声卡
 - 安装：``yaourt -S gstreamer0.10 gstreamer0.10-base-plugins``
@@ -179,26 +188,32 @@ reboot
 - 安装: ``yaourt -S net-tools wireless_tools wpa_supplicant netctl``
 - 配置: 参考/etc/netctl/examples/
 
-新建一个/etc/netctl/athome配置(wpa)
+- 新建一个/etc/netctl/athome配置(wpa)
 
-      CONNECTION='wireless'
-      DESCRIPTION='athome'
-      INTERFACE='wlan0'
-      SECURITY='wpa'
-      ESSID=athome
-      IP='dhcp'
-      KEY=athomepasswd
+``wpa_passphrase athome athomepasswd``查看psk，假设psk为``xxxxxxxxxxxxx``
+
+{% highlight bash %}
+CONNECTION='wireless'
+DESCRIPTION='athome'
+INTERFACE='wlan0'
+SECURITY='wpa'
+ESSID='athome'
+IP='dhcp'
+KEY=\"xxxxxxxxxxxxx
+{% endhighlight %}
 
 
-新建一个/etc/netctl/atwork配置(wep)
+- 新建一个/etc/netctl/atwork配置(wep)
 
-      CONNECTION='wireless'
-      DESCRIPTION='atwork'
-      INTERFACE='wlan0'
-      SECURITY='wep'
-      ESSID=atwork
-      IP='dhcp'
-      KEY="s:myatworkpasswd"
+{% highlight bash %}
+CONNECTION='wireless'
+DESCRIPTION='atwork'
+INTERFACE='wlan0'
+SECURITY='wep'
+ESSID=atwork
+IP='dhcp'
+KEY="s:myatworkpasswd"
+{% endhighlight %}
 
 - 开机启动
 
@@ -213,9 +228,9 @@ reboot
 - 配置:
 假设配置ESSID为mywireless，密码为mypasswd的无线
 
-      wpa_passphrase mywireless mypasswd >> /etc/wpa_supplicant.conf
+      wpa_passphrase mywireless mypasswd >> /etc/wpa_supplicant/wpa_supplicant.conf
 
-手动修改/etc/wpa_supplicant.conf
+手动修改wpa_supplicant.conf
 
       update_config=1
       ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
