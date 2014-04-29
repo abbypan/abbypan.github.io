@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "Crypt::OpenSSL::Bignum"
+title:  "perl Crypt::OpenSSL::Bignum 大数运算"
 tagline: "大数"
 tags : ["perl", "cpan", "crypt", "openssl" ] 
 ---

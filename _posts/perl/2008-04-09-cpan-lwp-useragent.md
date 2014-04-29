@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "LWP::UserAgent"
+title:  "perl LWP::UserAgent 提取网页内容"
 tagline: "crawler"
 tags : ["perl", "cpan", "crawler", "web" ] 
 ---

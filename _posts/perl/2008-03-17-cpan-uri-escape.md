@@ -1,8 +1,8 @@
 ---
 layout: post
 category : tech
-title:  "URI::Escape"
-tagline: "笔记"
+title:  "perl URI::Escape 处理网址"
+tagline: "url"
 tags : ["perl", "cpan", "url", "uri" ] 
 ---
 {% include JB/setup %}

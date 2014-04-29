@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "Perl : 时间处理"
+title:  "Perl : POSIX 处理时间"
 tagline: ""
 tags : ["perl", "time"] 
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "Net::SFTP"
+title:  "perl Net::SFTP 通过sftp传文件"
 tagline: "ftp"
 tags : ["perl", "cpan", "sftp" ] 
 ---

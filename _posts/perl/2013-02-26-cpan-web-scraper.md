@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "Web::Scraper"
-tagline: "结构化提取网页内容"
-tags : ["perl", "cpan", "web"] 
+title:  "Perl Web::Scraper 结构化提取网页内容"
+tagline: "crawler"
+tags : [ "perl", "cpan", "web", "crawler" ] 
 ---
 {% include JB/setup %}
 

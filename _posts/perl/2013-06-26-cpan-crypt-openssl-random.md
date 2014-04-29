@@ -1,8 +1,8 @@
 ---
 layout: post
 category : tech
-title:  "Crypt::OpenSSL::Random"
-tagline: "随机数"
+title:  "perl Crypt::OpenSSL::Random 随机数"
+tagline: "random"
 tags : ["perl", "cpan", "crypt", "openssl" ] 
 ---
 {% include JB/setup %}

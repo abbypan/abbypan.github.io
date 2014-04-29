@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "MongoDB"
+title:  "perl MongoDB 连接数据库"
 tagline: "nosql"
 tags : ["perl", "cpan", "mongodb", "nosql" ] 
 ---

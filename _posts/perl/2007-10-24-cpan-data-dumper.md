@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "Data::Dumper"
+title:  "Perl Data::Dumper 打印变量"
 tagline: "笔记"
 tags: [ "perl", "cpan", "unicode" ] 
 ---

@@ -1,8 +1,8 @@
 ---
 layout: post
 category : tech
-title:  "Parse::RecDescent"
-tagline: "文本解析"
+title:  "perl Parse::RecDescent 递归下降解析文本"
+tagline: "parser"
 tags : ["perl", "cpan", "parse" ] 
 ---
 {% include JB/setup %}

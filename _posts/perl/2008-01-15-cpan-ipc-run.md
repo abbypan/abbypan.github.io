@@ -1,8 +1,8 @@
 ---
 layout: post
 category : tech
-title:  "IPC::Run"
-tagline: "进程"
+title:  "Perl IPC::Run 进程处理"
+tagline: "process"
 tags : ["perl", "cpan", "process", "ipc" ] 
 ---
 {% include JB/setup %}

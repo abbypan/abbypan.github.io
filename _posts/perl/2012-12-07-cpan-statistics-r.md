@@ -1,8 +1,8 @@
 ---
 layout: post
 category : tech
-title:  "Statistics::R"
-tagline: "在perl中调用R进行统计"
+title:  "perl Statistics::R 在perl中调用R进行统计"
+tagline: "stat"
 tags : ["perl", "cpan", "r", "rjson", "json" ] 
 ---
 {% include JB/setup %}

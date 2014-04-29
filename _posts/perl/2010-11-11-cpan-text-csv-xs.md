@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "Text::CSV_XS"
+title:  "Perl Text::CSV_XS 读csv文件"
 tagline: "解析文本"
 tags : ["perl", "cpan", "csv" ] 
 ---

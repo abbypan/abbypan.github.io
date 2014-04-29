@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "WWW::Mechanize::Firefox"
+title:  "perl WWW::Mechanize::Firefox 浏览器自动操作"
 tagline: "firefox自动操作"
 tags : ["perl", "cpan", "firefox" , "web" ] 
 ---

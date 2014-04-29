@@ -1,8 +1,8 @@
 ---
 layout: post
 category : tech
-title:  "Config::*"
-tagline: "解析文本"
+title:  "perl Config::* 解析配置文件"
+tagline: "config"
 tags : ["perl", "cpan", "config", "parse" ] 
 ---
 {% include JB/setup %}

@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "File::Find::Rule"
+title:  "Perl File::Find::Rule 批量处理文件"
 tagline: "笔记"
 tags : ["perl", "cpan", "file" ] 
 ---

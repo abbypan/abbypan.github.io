@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "IO::Socket"
-tagline: "裸发包"
-tags : ["perl", "cpan", "socket" ] 
+title:  "Perl IO::Socket 裸发包"
+tagline: "network"
+tags : ["perl", "cpan", "socket", "network" ] 
 ---
 {% include JB/setup %}
 
