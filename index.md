@@ -22,7 +22,7 @@ title: "求福不回，求用不匮"
 | 读书听歌 | [喜欢的歌](http://pumpkin.pancakeapps.com/music/music.html)，[喜欢的书](page/book.html)
 | 视频游戏 | [天之痕](page/swd3e.html)，[93倚天](page/93yitian.html)
 | 追星啥的 | [周华健](http://music.douban.com/musician/104913/)，[体操](page/gym.html)
-| 其他 | [我的豆瓣](http://www.douban.com/people/swd3e/)
+| 其他 | [我的微博](http://weibo.com/pllng), [我的豆瓣](http://www.douban.com/people/swd3e/)
 
 ## 技术
 
@@ -32,7 +32,7 @@ title: "求福不回，求用不匮"
 | 网络 | [DNS](page/dns.html)
 | 程序 | [Perl](page/perl.html)，[Rebol](page/rebol.html)
 | 工具 | [Vim](page/vim.html)，[Windows](page/windows.html)
-| 笔记 | [我的github](https://github.com/abbypan)，[我的blogspot](https://abbypan.blogspot.com)，[我的twitter](https://twitter.com/abbypan)
+| 笔记 | [我的github](https://github.com/abbypan)，[我的twitter](https://twitter.com/abbypan)
 
 ## 旧的回忆
 

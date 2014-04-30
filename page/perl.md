@@ -84,7 +84,7 @@ tagline: "TMTOWTDI"
 | 模块 | 用途 |
 | ---- | ---- |
 | App::cpanminus | 模块安装工具cpanm，替代cpan
-| Capture::Tiny | 抓STDOUT、STDERR消息
+| Capture::Tiny | 抓STDOUT、STDERR消息，参考 IPC::Open3::Simple
 | Chart Director | 画图模块
 | Dancer | Web 框架
 | Template::Toolkit | 模板生成
