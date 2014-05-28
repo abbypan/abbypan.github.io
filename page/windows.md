@@ -9,6 +9,7 @@ tagline: "常用软件"
 
 | 软件 | 用途 | 同类备用软件 |
 | ---- | ---- | ------------ |
+| [softperfect ramdisk](http://www.softperfect.com/products/ramdisk/) | 把windows、firefox等临时目录移到内存，加速访问 | 无 |
 | [FossHub](http://www.fosshub.com/) | 自由软件推荐 | 无 |
 | [7zip](http://sparanoid.com/lab/7z/) | 压缩解压 | 无 |
 | [ccleaner](https://www.piriform.com/ccleaner) | 清理系统 | wise care 365, 魔方 |
