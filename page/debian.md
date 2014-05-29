@@ -38,7 +38,10 @@ tagline: "安装笔记"
 
 ###  基础包 
 
-``apt-get install build-essential``
+{% highlight bash %}
+apt-get install build-essential dnsutils
+apt-get install libwww-perl libclass-methodmaker-perl libb-utils-perl libpadwalker-perl libcrypt-ssleay-perl libxml-parser-perl libdata-dump-streamer-perl libtemplate-perl
+{% endhighlight %}
 
 
 ## 网络
@@ -269,20 +272,14 @@ Y是windows下C盘所在分区的序号
     alsaconf
 {% endhighlight %}
 
-### dig
-    ``apt-get install dnsutils``
-
-
 ### apache + mysql + php 
 - [apache虚拟主机](http://wiki.ubuntu.org.cn/Apache%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E6%8C%87%E5%8D%97)
 - [lamp配置](https://wiki.debian.org/zh_CN/LAMP)
 - [Debian 6 下 Apache+MySQL+MySQL的LAMP服务器的配置](http://www.duyaofei.com/2012/03/29/vps-%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B11%EF%BC%9Adebian-6-%E4%B8%8B-apachemysqlmysql%E7%9A%84lamp%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/)
 
 {% highlight bash %}
-apt-get install apache2
-apt-get install mysql-server
+apt-get install apache2 libapache2-mod-perl2
 apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
-apt-get install php5-mysql
-apt-get install php5-gd
-apt-get install imagemagick php5-imagick
+apt-get install mysql-server php5-mysql
+apt-get install imagemagick php5-imagick php5-gd
 {% endhighlight %}
