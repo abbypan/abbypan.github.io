@@ -29,7 +29,7 @@ title: "求福不回，求用不匮"
 | 类型 | 笔记 |
 | ---- | ---- |
 | 系统 | [ArchLinux](page/archlinux.html)，[Debian](page/debian.html)，[Windows](page/windows.html)
-| 工具 | [Perl](page/perl.html)，[Rebol](page/rebol.html)，[Vim](page/vim.html)
+| 工具 | [Perl](page/perl.html)，[Rebol](page/rebol.html)，[Vim](page/vim.html)，[R](page/r.html)
 | 笔记 | [DNS](page/dns.html)，[我的github](https://github.com/abbypan)，[我的twitter](https://twitter.com/abbypan)
 
 ## 旧的回忆
