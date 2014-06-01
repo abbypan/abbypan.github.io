@@ -5,12 +5,14 @@ tagline: "常用软件"
 ---
 {% include JB/setup %}
 
+## 软件站
+
+- [FossHub](http://www.fosshub.com/) 自由软件推荐
+
 ## 软件
 
 | 软件 | 用途 | 同类备用软件 |
 | ---- | ---- | ------------ |
-| [softperfect ramdisk](http://www.softperfect.com/products/ramdisk/) | 把windows、firefox等临时目录移到内存，加速访问 | 无 |
-| [FossHub](http://www.fosshub.com/) | 自由软件推荐 | 无 |
 | [7zip](http://sparanoid.com/lab/7z/) | 压缩解压 | 无 |
 | [ccleaner](https://www.piriform.com/ccleaner) | 清理系统 | wise care 365, 魔方 |
 | [console2](http://sourceforge.net/projects/console/) | 命令行 | 参考 [What s a good alternative Windows console](http://stackoverflow.com/questions/440269/whats-a-good-alternative-windows-console) |
@@ -19,7 +21,11 @@ tagline: "常用软件"
 | [kitty](http://www.9bis.net/kitty/) | ssh 远程连接 | tunnelier，securecrt |
 | [mipony](http://www.mipony.net/) | mediafire、megaupload等网盘文件下载 | 无 |
 | [mp3tag](http://www.mp3tag.de/en/download.html) | mp3 文件信息编辑 | 无 |
+| [process tamer](http://www.donationcoder.com/Software/Mouser/proctamer/) | 调节进程CPU占用 | 无 |
+| [regjump](http://technet.microsoft.com/zh-cn/sysinternals/bb963880) | 跳转到指定注册表位置 | 无 |
+| [softperfect ramdisk](http://www.softperfect.com/products/ramdisk/) | 把windows、firefox等临时目录移到内存，加速访问 | 无 |
 | [waterfox](http://www.waterfoxproject.org/) | 浏览器 | 无 |
+| [wincdemu](http://wincdemu.sysprogs.org/portable/) | 虚拟光驱 | daemon lite |
 | abc amber chm converter | chm 转 pdf | 无 |
 | apploc | 游戏乱码 | 无 |
 | chart director | 画图库函数 | 无 |
@@ -47,14 +53,11 @@ tagline: "常用软件"
 | pdf xchange view | pdf阅读器 | adobe pdf reader |
 | pdfsam | pdf 文件分割合并 | 无 |
 | phpnow | apache + php + mysql 环境 | [uniform server](http://www.uniformserver.com/) |
-| [process tamer](http://www.donationcoder.com/Software/Mouser/proctamer/) | 调节进程CPU占用 | 无 |
 | qgifer | 从视频文件(mp4等)中提取gif | 无 |
-| 腾讯TM | 聊天 | 无 |
 | quod libet  | 音乐播放 | ttplayer 千千静听, qq音乐 |
 | rapidee | 修改环境变量 | 无 |
-| [regjump](http://technet.microsoft.com/zh-cn/sysinternals/bb963880) | 跳转到指定注册表位置 | 无 |
 | skype | 聊天、视频 | 无 |
-| SpeedUpMyPC | 系统加速 | 免费注册地址：http://mag.uniblue.com/stores/sp/signup |
+| speedUpMyPC | 系统加速 | 免费注册地址：http://mag.uniblue.com/stores/sp/signup |
 | speq | 计算器 | 无 |
 | strawberry perl | perl 开发 | 无 |
 | thunder 迅雷精简版 | 下载 | 无 |
@@ -68,6 +71,7 @@ tagline: "常用软件"
 | wireshark | 网络抓包 | 无 |
 | wordpress WXR File Splitter (RSS XML) | wordpress备份的xml文件分割 | 无 |
 | xlight ftp server | ftp 服务器 | 无 |
+| QQ国际版 | 聊天 | 腾讯TM |
 
 ## 软件使用
 

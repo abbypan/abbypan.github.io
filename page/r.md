@@ -1,0 +1,60 @@
+---
+layout: page
+title: "R语言"
+tagline: "统计"
+tags: [ "r" , "data" ]
+---
+{% include JB/setup %}
+
+
+## 简单入门
+
+| 资料 | 简介 |
+| ---- | ---- |
+| R intro (R导论) | 基本介绍
+| [Cookbook for R](http://wiki.stdout.org/rcookbook/) | 基础示例，写的很好
+| [One Page R](http://onepager.togaware.com/) | 使用示例，简单明了
+
+
+## 站点
+
+| 站点 | 简介 |
+| ---- | ---- |
+| [统计之都](http://cos.name/cn/#post-) | 中文社区
+
+
+## 书籍
+
+| 时间 | 书籍 | 读后感 |
+| ---- | ---- | ------ |
+| 2013 | R和Ruby数据分析之旅 | 当小品文看就行了，2-3个小时左右
+| 2012.02 | [R inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) | 
+| 2011.08 | R语言初学者指南者 | 比较薄，但还是晕，个人感觉小白入门还是换一本吧
+| 2011.07 | R语言数据操作(Data Manipulation with R) | 比较薄，当数据处理手册可以
+| 2011.03 | R Cookbook | 手册书，还不错，用到的时候记得翻
+| 2011.02 | 25 Recipes for Getting Started with R | R Cookbook 缩减版，随便翻翻
+| 2010 | R in a  Nutshell | 手册书，值得细看
+| 2010 | Data Mining with Rattle and R | 
+| 2009.10 | R in action (R语言实战) | 比较简短的入门书，值得一读
+| 2009.09 | The Art of R Programming (R语言编程艺术) | 很不错，简单清楚，适合入门
+| 2008 | 153分钟学会R | 很不错的入门FAQ
+| 2007 | The R book | 
+| 2006 | 统计建模与R软件 | 
+| 2006 | r for beginners | 比较简短，方便做语法入门手册
+| 2002 | Simple R | 
+
+
+## 模块笔记
+
+| 模块 | 用途 |
+| ---- | ---- |
+| [reshape2](http://cran.r-project.org/web/packages/reshape2/reshape2.pdf) | 数据处理，变换格式
+| plyr / dplyr | 数据统计，变换
+| ggplot2 | 画图，参考[Graphs](http://wiki.stdout.org/rcookbook/Graphs/)
+| rattle | 数据挖掘、数据分析
+| lubridate | 时间计算
+| stringr | 字符串
+| sqldf | 数据查询
+| RMYSQL | 数据库
+| [rCharts](http://ramnathv.github.io/rCharts/) | 可视化
+
