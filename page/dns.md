@@ -6,6 +6,7 @@ tagline: "Domain Name System "
 {% include JB/setup %}
 
 ## 基础
+
 | 资料 | 说明 |
 | ---- | ---- |
 | [DNS, Domain Name System](http://www.networksorcery.com/enp/protocol/dns.htm) | 爆全的DNS资料索引，世上还是好人多，感动 |
@@ -15,6 +16,7 @@ tagline: "Domain Name System "
 
 
 ## 工具
+
 | 工具 | 简介 |
 | ---- | ---- |
 | [ultradnstools](https://www.ultratools.com/) | ultradns提供的一系列DNS检测工具
@@ -33,6 +35,7 @@ tagline: "Domain Name System "
 
 
 ## 数据
+
 | 数据 | 简介 |
 | ---- | ---- |
 | [statdns](http://www.statdns.com) | 每月发布全球com/net/org等域名的统计，上面还有dns相关工具的整理、RFC的列表，非常不错
@@ -41,6 +44,7 @@ tagline: "Domain Name System "
 | [openresolverproject.org](http://openresolverproject.org) | open resolver 统计
 
 ## 节点
+
 - NS记录
 - IP库
 - 前端LocalDNS

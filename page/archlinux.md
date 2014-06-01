@@ -58,7 +58,6 @@ reboot
 
 - 重启之后，执行``wifi-menu``连接到无线网络
 
-
 ### 系统更新
 {% highlight bash %}
       pacman -Syu
@@ -385,4 +384,24 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
 ``$sudo pacman -Scc`` 清理空间
 
 ``$sudo pacman -S glibc -f``
+
+### 手动设置grub2引导 windows 双系统
+
+见：[Archlinux grub2 windows8 (windows7) win8 (win7) 引导设置](http://hi.baidu.com/flashgive/item/b05697120fbf84fc9d778a26)
+
+查看windows系统所在分区，假设是 /dev/sda1，即``(hd0,msdos0)``
+
+找出/dev/sda1的uuid：``sudo blkid /dev/sda1``，假设是xxxxxxxxxxxx
+
+在/boot/grub/grub.cfg中添加
+
+    menuentry 'Windows' {
+            load_video
+            insmod gzio
+            insmod part_msdos
+            insmod ntfs
+            set root='(hd0,msdos0)'
+            search --no-floppy --fs-uuid --set=root xxxxxxxxxxxx
+            chainloader +1
+    }
 

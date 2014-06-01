@@ -50,9 +50,10 @@ tagline: "TMTOWTDI"
 
 
 ## 其他书籍
+
 | 出版时间 | 书籍 | 读后感 |
 | -------- | ---- | ------ |
-| 2011.10 | Modern Perl | 整体还行，花一个晚上读一下也不错。个人感觉，比profession perl programming好一点，比effective perl programming差一点。
+| 2011.10  | Modern Perl | 整体还行，花一个晚上读一下也不错。个人感觉，比profession perl programming好一点，比effective perl programming差一点。
 | 2011.07 | Perl Pocket Reference | 手册书，随手翻翻罢了
 | 2010.09 | Using Perl6 | 先凑合看看，一时半会也用不上
 | 2009.05 | Automating System Administration with Perl | 这本是实用程序示例的手册，翻一两天就行了，写的挺仔细的。 推荐了一堆模块，需要的时候可以一一试用。 这本是2009年出的第二版。第一版是2000年出的，叫做“Perl for System Administration”。。。 
@@ -81,6 +82,7 @@ tagline: "TMTOWTDI"
 
 
 ## 常用模块
+
 | 模块 | 用途 |
 | ---- | ---- |
 | App::cpanminus | 模块安装工具cpanm，替代cpan
@@ -108,6 +110,7 @@ tagline: "TMTOWTDI"
 | YAML::XS | 读入或输出YAML数据，只认unicode
 
 ## 更多模块
+
 | 模块 | 备注 |
 | ---- | ---- |
 | Perl Advent Calendar Archivers | http://perladvent.pm.org/archives-Yd.html
