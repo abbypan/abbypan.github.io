@@ -28,7 +28,7 @@ tagline: "安装笔记"
 
 ### locale
 
-``apt-get install locales``
+``sudo apt-get install locales``
 
 编辑 ``/etc/locale.gen`` ，例如 ``en_US.UTF-8``
 
@@ -39,8 +39,9 @@ tagline: "安装笔记"
 ###  基础包 
 
 {% highlight bash %}
-apt-get install build-essential dnsutils
-apt-get install libwww-perl libclass-methodmaker-perl libb-utils-perl libpadwalker-perl libcrypt-ssleay-perl libxml-parser-perl libdata-dump-streamer-perl libtemplate-perl
+sudo apt-get install build-essential dnsutils
+sudo apt-get install libwww-perl libclass-methodmaker-perl libb-utils-perl libpadwalker-perl libcrypt-ssleay-perl libxml-parser-perl libdata-dump-streamer-perl libtemplate-perl libjson-perl
+sudo cpanm Plack::Handler::Apache2
 {% endhighlight %}
 
 
@@ -49,7 +50,7 @@ apt-get install libwww-perl libclass-methodmaker-perl libb-utils-perl libpadwalk
 ###  adsl 
 
 - 主要参考这两个贴子：[adsl by Fly1945@Hiweed](http://linux.hiweed.com/node/2467)，[adsl配置 by ryang](http://ryang.68ab.com/debian.html#sec8)
-- apt-get install pppoe
+- ``sudo apt-get install pppoe``
 - 将/etc/network/interfaces中的相关内容注释掉
 - /etc/ppp/peers/dsl-provider
 
@@ -85,7 +86,7 @@ apt-get install libwww-perl libclass-methodmaker-perl libb-utils-perl libpadwalk
   - [pptp-linux拨vpn by hacker ustc](http://bbs.ustc.edu.cn/cgi/bbscon?bn=Linux&fn=M454D58AB&num=2351)
   - [PPTP CLient by James Cameron](http://pptpclient.sourceforge.net/howto-debian.phtml)
   - [发一个让校内ip走vpn路由的perl脚本吧](http://bbs.ustc.edu.cn/cgi/bbstcon?board=Script&file=M.1211129882.A)
-- apt-get install pptp-linux
+- ``sudo apt-get install pptp-linux``
 - 设vpn连接名为$tunnel，连接的目标主机地址为$vpn_ip，用户名为$user，密码为$password
 - /etc/ppp/options.pptp
 
@@ -165,7 +166,7 @@ route add -net 211.86.0.0/16 gw $gateway dev eth0
 
 
 - 找接入的ap：
-   - apt-get install wpasupplicant wireless-tools
+   - sudo apt-get install wpasupplicant wireless-tools
    - iwlist eth1 scan
 
 - 编辑/etc/wpa_supplicant/lab.conf
@@ -268,7 +269,7 @@ Y是windows下C盘所在分区的序号
 ### 声卡驱动
 
 {% highlight bash %}
-    apt-get install alsa-utils alsa-oss
+    sudo apt-get install alsa-utils alsa-oss
     alsaconf
 {% endhighlight %}
 
@@ -278,8 +279,8 @@ Y是windows下C盘所在分区的序号
 - [Debian 6 下 Apache+MySQL+MySQL的LAMP服务器的配置](http://www.duyaofei.com/2012/03/29/vps-%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B11%EF%BC%9Adebian-6-%E4%B8%8B-apachemysqlmysql%E7%9A%84lamp%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/)
 
 {% highlight bash %}
-apt-get install apache2 libapache2-mod-perl2
-apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
-apt-get install mysql-server php5-mysql
-apt-get install imagemagick php5-imagick php5-gd
+sudo apt-get install apache2 libapache2-mod-perl2
+sudo apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
+sudo apt-get install mysql-server php5-mysql
+sudo apt-get install imagemagick php5-imagick php5-gd
 {% endhighlight %}
