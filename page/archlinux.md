@@ -61,23 +61,22 @@ reboot
 ### 系统更新
 {% highlight bash %}
       pacman -Syu
-      pacman -S yaourt
+      pacman -S yaourt aria2
 {% endhighlight %}
 
-### pacman/yaourt调用axel多线程下载文件
+### pacman/yaourt调用aria2多线程下载文件
 
 假设同时开8个连接
 
 在/etc/pacman.conf中指定
 
-``XferCommand = /usr/bin/axel -n 8 -o %o %u``
+``XferCommand = /usr/bin/aria2c -c -o %o %u``
 
 在/etc/makepkg.conf中指定DLAGENTS
 
-          'http::/usr/bin/axel -n 8 -o %o %u'
-          'https::/usr/bin/axel -n 8 -o %o %u'
-          'ftp::/usr/bin/axel -n 8 -o %o %u'
-
+          'http::/usr/bin/aria2c -c -o %o %u'
+          'https::/usr/bin/aria2c -c -o %o %u'
+          'ftp::/usr/bin/aria2c -c -o %o %u'
 
 
 ## 图形界面

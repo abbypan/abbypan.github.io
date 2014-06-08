@@ -24,3 +24,7 @@ sendemail -vv -u "标题" -m "内容" -a "attach.txt" -f from@xxx.com -t somea@b
 {% highlight perl %}
 sendEmail -u '标题' -m '内容' -f mygmail@gmail.com -a someattach.txt -t somerecv@yyy.com -vv -s smtp.gmail.com -xu mygmail -xp 'mygmailpwd'
 {% endhighlight %}
+
+## windows环境
+
+最好加上 ``-o message-charset=gb2312``
