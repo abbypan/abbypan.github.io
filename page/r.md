@@ -15,13 +15,31 @@ tags: [ "r" , "data" ]
 | [Cookbook for R](http://wiki.stdout.org/rcookbook/) | 基础示例，写的很好
 | [One Page R](http://onepager.togaware.com/) | 使用示例，简单明了
 
-
 ## 站点
 
 | 站点 | 简介 |
 | ---- | ---- |
 | [统计之都](http://cos.name/cn/#post-) | 中文社区
 
+## 模块
+
+| 模块 | 用途 |
+| ---- | ---- |
+| [reshape2](http://cran.r-project.org/web/packages/reshape2/reshape2.pdf) | 数据处理，变换格式
+| plyr / dplyr | 数据统计，变换
+| ggplot2 | 画图，参考[Graphs](http://wiki.stdout.org/rcookbook/Graphs/)
+| rattle | 数据挖掘、数据分析
+| lubridate | 时间计算
+| stringr | 字符串
+| sqldf | 数据查询
+| RMYSQL | 数据库
+| [rCharts](http://ramnathv.github.io/rCharts/) | 可视化
+
+## 资料
+
+| 资料 | 备注 |
+| ---- | ---- |
+| [date-formats-in-r](http://www.r-bloggers.com/date-formats-in-r/) | 时间处理
 
 ## 书籍
 
@@ -42,19 +60,3 @@ tags: [ "r" , "data" ]
 | 2006 | 统计建模与R软件 | 
 | 2006 | r for beginners | 比较简短，方便做语法入门手册
 | 2002 | Simple R | 
-
-
-## 模块笔记
-
-| 模块 | 用途 |
-| ---- | ---- |
-| [reshape2](http://cran.r-project.org/web/packages/reshape2/reshape2.pdf) | 数据处理，变换格式
-| plyr / dplyr | 数据统计，变换
-| ggplot2 | 画图，参考[Graphs](http://wiki.stdout.org/rcookbook/Graphs/)
-| rattle | 数据挖掘、数据分析
-| lubridate | 时间计算
-| stringr | 字符串
-| sqldf | 数据查询
-| RMYSQL | 数据库
-| [rCharts](http://ramnathv.github.io/rCharts/) | 可视化
-

@@ -14,3 +14,5 @@ tags : [ "vps", "linux", "lxde", "vnc" ]
 [小内存Linux安装LXDE挂机](http://blog.nicky1605.com/small-memory-linux-installed-lxde-hang-up.html)
 
 [windows下使用vnc viewer远程连接Linux桌面](http://nameyjj.blog.51cto.com/788669/582965)
+
+[Burst 的 VPS (Ubuntu) 上安装 xfce 和 vnc](http://abbypan.blogspot.com/2013/05/ubuntu-linux-vps-xfce.html)

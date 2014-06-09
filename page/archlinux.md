@@ -124,13 +124,29 @@ reboot
         options snd-usb-audio index=0
         options snd-hda-intel index=1
 
-### 输入法(scim)
+## 输入法
+
+### fcitxx
+- 安装：``yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra``
+
+### scim
 - 安装：``yaourt -S ibus ibus-table-zhengma ibus-pinyin``
 - 配置：[IBus](https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
 
+### 输入法设置
 
-### 输入法(fcitx)
-- 安装：``yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra``
+以fcitx为例
+
+在``$HOME/.bashrc``中添加：
+
+{% highlight bash %}
+export LANG="zh_CN"
+export LC_CTYPE="zh_CN"
+export XIM_PROGRAM=fcitx
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export XIM=fcitx
+{% endhighlight %}
 
 
 ### 中文环境
@@ -147,6 +163,7 @@ reboot
 
 
 ### 时间
+
 {% highlight bash %}
       yaourt -S ntp
       ntpdate asia.pool.ntp.org
@@ -171,7 +188,6 @@ reboot
 | 解压 | unzip
 | 浏览器 | firefox firefox-i18n-zh-cn
 | 网络 | dnsutils traceroute wireshark-gtk
-
 
 ## 网络
 
@@ -361,7 +377,13 @@ yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 # systemd-tmpfiles --create phy0-led.conf
 {% endhighlight %}
 
-## 报错
+## 其他
+
+### firefox 安装 flash 插件
+
+- 在 adobe 网站下载 flash player
+- 将其中的libflashplayer.so 复制到 ~/.mozilla/plugins/目录下
+- 执行 ldd ~/.mozilla/plugins/libflashplayer.so 
 
 ### /bin/plymouth: No such file or directory
 archlinux , thinkpad x61t，开机出错
