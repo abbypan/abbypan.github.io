@@ -11,11 +11,9 @@ title: "求福不回，求用不匮"
 
         谁将归去？守望一生。
 
-![我的邮箱](assets/img/mail.png)
-
-[订阅rss](/rss.xml)
-
 {% include google_search.html %}
+
+![我的邮箱](assets/img/mail.png) [订阅rss](/rss.xml)
 
 ## 生活
 
