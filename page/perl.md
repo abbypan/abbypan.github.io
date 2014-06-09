@@ -53,7 +53,7 @@ tagline: "TMTOWTDI"
 
 | 出版时间 | 书籍 | 读后感 |
 | -------- | ---- | ------ |
-| 2011.10  | Modern Perl | 整体还行，花一个晚上读一下也不错。个人感觉，比profession perl programming好一点，比effective perl programming差一点。
+| 2014  | Modern Perl | 整体还行，花一个晚上读一下也不错。个人感觉，比profession perl programming好一点，比effective perl programming差一点。
 | 2011.07 | Perl Pocket Reference | 手册书，随手翻翻罢了
 | 2010.09 | Using Perl6 | 先凑合看看，一时半会也用不上
 | 2009.05 | Automating System Administration with Perl | 这本是实用程序示例的手册，翻一两天就行了，写的挺仔细的。 推荐了一堆模块，需要的时候可以一一试用。 这本是2009年出的第二版。第一版是2000年出的，叫做“Perl for System Administration”。。。 
@@ -163,7 +163,7 @@ tagline: "TMTOWTDI"
 | Nmap::Scanner | 
 | Params::Validate | 检查函数参数
 | Parse::Syslog | 
-| Path::Class | 
+| Path::Class | 接口比较漂亮
 | Path::Tiny | 路径处理
 | Perl6::Form | 
 | Pod::Browser |  本地查看pod

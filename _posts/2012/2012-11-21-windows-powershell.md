@@ -11,6 +11,10 @@ tags : [ "windows", "powershell" ]
 
 [powershell-notes.pdf](http://www.ansatt.hig.no/erikh/tutorial-powershell/powershell-notes.pdf)
 
+## 提示无法执行 ps1
+
+``set-executionpolicy remotesigned``
+
 ## 批量 move 文件到指定的子目录
 
 {% highlight powershell %}
