@@ -1,6 +1,6 @@
 ---
 layout: post
-category : toy
+category : tech
 title:  "绿晋江坑品查看器"
 tagline: "www.jjwxc.net"
 tags : ["firefox", "greasemonkey", "javascript", "jjwxc", "ljj" ] 
