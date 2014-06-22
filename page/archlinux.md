@@ -426,3 +426,17 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
             chainloader +1
     }
 
+### 无线速度慢 wireless slow
+
+参考[Slow Wireless Intel 6235 (iwlwifi module)](https://bbs.archlinux.org/viewtopic.php?id=146518)
+
+    echo options iwlwifi 11n_disable=1 | sudo tee /etc/modprobe.d/51-disable-6235-11n.conf 
+
+### 数据包更新失败
+
+{% highlight bash %}
+sudo pacman-key --refresh-keys
+sudo pacman-key --populate archlinux
+sudo pacman -Scc
+sudo pacman -Syu
+{% endhighlight %}
