@@ -30,6 +30,7 @@ tagline: "Domain Name System "
 | [just dns lookup](http://just-dnslookup.com/index.php) | 从全球各地探测指定域名
 | [massivedns](http://massivedns.com/) | 探测
 | [dnstcpbench](http://blog.powerdns.com/2013/06/25/simple-tcpip-dns-benchmarking-tool/) | dns压测工具
+| [dns-tools](http://www.bind9.net/dns-tools) | bind 网站整理的
 | [chinaz站长dns工具](http://tool.chinaz.com/dns/) | 从国内各地探测指定域名，也可指定dns，还可以traceroute
 | [networktools](http://networktools.nl/) | 老外的站长工具
 
@@ -42,6 +43,8 @@ tagline: "Domain Name System "
 | [iana 的root zone 数据](http://www.iana.org/domains/root/db) | 根域登记
 | [open resolver surveys](http://dns.measurement-factory.com/surveys/openresolvers.html) | open resolver asn 统计
 | [openresolverproject.org](http://openresolverproject.org) | open resolver 统计
+| [root-servers](http://www.root-servers.org/index.html) | 根镜像
+| [j.root-servers](http://j.root-servers.org/metrics.html) | J根
 
 ## 节点
 
