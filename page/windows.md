@@ -15,7 +15,7 @@ tagline: "常用软件"
 | ---- | ---- | ------------ |
 | [7zip](http://sparanoid.com/lab/7z/) | 压缩解压 | 无 |
 | [ccleaner](https://www.piriform.com/ccleaner) | 清理系统 | wise care 365, 魔方 |
-| [console2](http://sourceforge.net/projects/console/) | 命令行 | 参考 [What s a good alternative Windows console](http://stackoverflow.com/questions/440269/whats-a-good-alternative-windows-console) |
+| [cmder](http://bliker.github.io/cmder/)  | 命令行 | [console2](http://sourceforge.net/projects/console/)，参考 [What s a good alternative Windows console](http://stackoverflow.com/questions/440269/whats-a-good-alternative-windows-console) |
 | [easeus partition manager](http://www.partition-tool.com) | 硬盘分区 | 无 |
 | [freecommander](http://www.freecommander.com/) | 文件管理器 | 无 |
 | [kitty](http://www.9bis.net/kitty/) | ssh 远程连接 | tunnelier，securecrt |
