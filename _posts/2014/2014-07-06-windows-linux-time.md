@@ -1,6 +1,6 @@
 ---
 layout: post
-category : windows
+category : tech
 title:  "windows & linux 双系统，重启之后，windows时间不同步"
 tagline: "time"
 tags : [ "windows", "linux", "time" ] 
