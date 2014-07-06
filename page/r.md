@@ -10,11 +10,9 @@ tags: [ "r" ]
 
 | 资料 | 简介 |
 | ---- | ---- |
-| R intro (R导论) | 基本介绍
-| [Cookbook for R](http://wiki.stdout.org/rcookbook/) | 基础示例，写的很好
-| [One Page R](http://onepager.togaware.com/) | 使用示例，简单明了
-| The Art of R Programming (R语言编程艺术) | 很不错，简单清楚，适合入门
 | R in action (R语言实战) | 比较简短的入门书，值得一读
+| The Art of R Programming (R语言编程艺术) | 很不错，简单清楚，适合入门
+| R Graphics Cookbook | R作图，主要是ggplot2
 | [rdatamining](http://www.rdatamining.com/) | 资料较全的r数据分析教程
 
 ## 模块
@@ -36,15 +34,21 @@ tags: [ "r" ]
 
 | 资料 | 备注 |
 | ---- | ---- |
+| R intro (R导论) | 基本介绍
+| [Cookbook for R](http://wiki.stdout.org/rcookbook/) | 基础示例，写的很好
+| [One Page R](http://onepager.togaware.com/) | 使用示例，简单明了
 | [date-formats-in-r](http://www.r-bloggers.com/date-formats-in-r/) | 时间处理
 | [列联表分析](http://wenku.baidu.com/link?url=BExg2hfnu01XzoPVH8lrJSubWPxZkVcXnEgFsIiz3l5vVgfunO7dSOEwcGoMcn17lJ6wwUE3STi6mC2c0u_IgBtdPYNJSG5X5HsjUiSxRN7) | 列联表，假设检验
-| [主成分分析](http://blog.sina.com.cn/s/blog_4da7b8a90101kmss.html) | 主成分，线性组合
+| [主成分分析](http://blog.sina.com.cn/s/blog_4da7b8a90101kmss.html) | 主成分，变量的线性组合生成新的“成分”，主成分个数<变量数，降维
+| [因子分析-Exploratory Factor Analysis in R](https://www.psych.umn.edu/faculty/waller/classes/FA2010/FAinR/FAinR.pdf) | 因子分析，因子的线性组合生成已有的“变量”，因子数<变量数，降维
+
 
 ## 书籍
 
 | 时间 | 书籍 | 读后感 |
 | ---- | ---- | ------ |
 | 2013 | R和Ruby数据分析之旅 | 当小品文看就行了，2-3个小时左右
+| 2012.12 | R Graphics Cookbook | R作图，主要是ggplot2
 | 2012.02 | [R inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) | 
 | 2011.08 | R语言初学者指南者 | 比较薄，但还是晕，个人感觉小白入门还是换一本吧
 | 2011.07 | R语言数据操作(Data Manipulation with R) | 比较薄，当数据处理手册可以
