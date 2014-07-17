@@ -39,9 +39,10 @@ tagline: "安装笔记"
 ###  基础包 
 
 {% highlight bash %}
-sudo apt-get install build-essential dnsutils
+sudo apt-get install build-essential dnsutils cpanminus sendemail
 sudo apt-get install libwww-perl libclass-methodmaker-perl libb-utils-perl libpadwalker-perl libcrypt-ssleay-perl libxml-parser-perl libdata-dump-streamer-perl libtemplate-perl libjson-perl libarchive-zip-perl perltidy
-sudo cpanm Plack::Handler::Apache2
+sudo cpanm Plack Plack::Handler::Apache2
+sudo apt-get install phantomjs
 {% endhighlight %}
 
 
@@ -284,3 +285,5 @@ sudo apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
 sudo apt-get install mysql-server php5-mysql
 sudo apt-get install imagemagick php5-imagick php5-gd
 {% endhighlight %}
+
+修改配置后重启apache2：``sudo apache2ctl graceful``
