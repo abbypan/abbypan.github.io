@@ -13,7 +13,9 @@ title: "求福不回，求用不匮"
 
 {% include google_search.html %}
 
-![我的邮箱](assets/img/mail.png) [订阅rss](/rss.xml)
+![我的邮箱](assets/img/mail.png) 
+
+[![RSS](assets/img/rss.png)](/rss.xml)
 
 ## 生活
 

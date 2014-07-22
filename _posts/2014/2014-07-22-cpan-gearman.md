@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "Perl : Gearman 分发任务"
 tagline: "distribute job"
-tags : ["perl", "gearman", "job", "task" ] 
+tags : [ "cpan", "perl", "gearman", "job", "task" ] 
 ---
 {% include JB/setup %}
 
@@ -14,6 +14,8 @@ tags : ["perl", "gearman", "job", "task" ]
 [Gearman and Perl](http://www.slideshare.net/andy.sh/gearman-and-perl)
 
 [Gearman for MySQL](http://www.slideshare.net/datacharmer/gearman-for-mysql)
+
+[Gearman](http://search.cpan.org/~dormando/Gearman/)
 
 以 debian 系统为例，假设 job server为 job.xxx.com，worker为机器W，client为机器C
 
@@ -87,5 +89,5 @@ $taskset->wait;
 
 {% highlight bash %}
 sudo apt-get install libgearman-client-perl
-perl client.pl
+perl client.pl 'myname'
 {% endhighlight %}
