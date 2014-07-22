@@ -93,6 +93,7 @@ tagline: "TMTOWTDI"
 | Data::Dump | 打印变量，比Data::Dumper简洁
 | Devel::Peek | 查看变量内部构造
 | [Dist::Zilla](http://perl-users.jp/articles/advent-calendar/2012/casual/9) | CPAN模块打包
+| Gearman | 任务分发，简单可扩展
 | JSON | JSON数据编解码
 | Log::Any::App | 打日志！
 | Moo | 轻量级面向对象
