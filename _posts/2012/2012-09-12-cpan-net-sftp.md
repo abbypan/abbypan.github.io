@@ -21,3 +21,13 @@ my $sftp = Net::SFTP->new(
        ssh_args => [ port => $port, privileged=>0 ],
  );
 {% endhighlight %}
+
+### 单行命令
+
+需要安装 lftp
+
+{% highlight bash %}
+lftp sftp://usr:passwd@remote.host.com  -e "put some.txt; bye"
+
+lftp -e 'mirror -R /local/somedata/ /remote/backup/' -u usr,passwd remote.host.com
+{% endhighlight %}
