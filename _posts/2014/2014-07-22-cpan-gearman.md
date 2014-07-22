@@ -10,8 +10,10 @@ tags : ["perl", "gearman", "job", "task" ]
 ## 介绍
 
 参考：
-- [Gearman and Perl](http://www.slideshare.net/andy.sh/gearman-and-perl)
-- [Gearman for MySQL](http://www.slideshare.net/datacharmer/gearman-for-mysql)
+
+[Gearman and Perl](http://www.slideshare.net/andy.sh/gearman-and-perl)
+
+[Gearman for MySQL](http://www.slideshare.net/datacharmer/gearman-for-mysql)
 
 以 debian 系统为例，假设 job server为 job.xxx.com，worker为机器W，client为机器C
 
@@ -64,7 +66,7 @@ use Gearman::Client;
 use Data::Dumper;
 
 my $client = Gearman::Client->new;
-$client->job_servers('idouzi.tk:4730');
+$client->job_servers('job.xxx.com:4730');
 
 my ($name) = @ARGV;
 
