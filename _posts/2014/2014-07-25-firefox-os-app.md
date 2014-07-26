@@ -25,7 +25,7 @@ tags : [ "firefox", "app", "jquery" , "mobile", "ajax" ]
 
 按照前面的教程贴，需要生成一个目录，假设为myapp
 
-编辑myapp目录下的 manifest.webapp，设置权限，还有启动页面之类
+编辑myapp目录下的``manifest.webapp``文件，设置权限，还有启动页面之类
 
 在``Firefox OS Simulator``中指定该目录
 
@@ -35,7 +35,7 @@ tags : [ "firefox", "app", "jquery" , "mobile", "ajax" ]
 
 参考： [Firefox OS Tutorial : Episode 2 : Hello World](http://rominirani.com/2013/07/29/firefox-os-tutorial-episode-2-hello-world/)
 
-先编辑``webapp.manifest``，设置权限
+先编辑``manifest.webapp``，设置权限
 
 {% highlight json %}
 "permissions": {
