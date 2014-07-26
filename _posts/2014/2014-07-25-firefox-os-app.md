@@ -38,6 +38,7 @@ tags : [ "firefox", "app", "jquery" , "mobile", "ajax" ]
 先编辑``manifest.webapp``，设置权限
 
 {% highlight json %}
+"type": "privileged",
 "permissions": {
     "systemXHR": { "description": "ajax xhr" }
 }
