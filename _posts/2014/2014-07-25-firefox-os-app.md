@@ -31,7 +31,33 @@ tags : [ "firefox", "app", "jquery" , "mobile", "ajax" ]
 
 剩下的就是纯 html5 + js 的开发
 
-# xhr的ajax请求
+# xhr的ajax请求，跨域，gb2312编码
+
+参考： [Firefox OS Tutorial : Episode 2 : Hello World](http://rominirani.com/2013/07/29/firefox-os-tutorial-episode-2-hello-world/)
+
+先编辑``webapp.manifest``，设置权限
+
+{% highlight json %}
+"permissions": {
+    "systemXHR": { "description": "ajax xhr" }
+}
+{% endhighlight %}
+
+js代码示例
+
+{% highlight js %}
+var xhr = new XMLHttpRequest({mozSystem: true});
+xhr.open("GET", "http://xxx.xxx.com/xxx", true);
+xhr.setRequestHeader("Content-Type","text/html;charset=gb2312");
+
+xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+        var $res = $.parseHTML(xhr.responseText,true);
+        var somehtml = $res.find('#someid').html();
+    }
+}
+xhr.send();
+{% endhighlight %}
 
 
 # jquery mobile 
@@ -39,4 +65,3 @@ tags : [ "firefox", "app", "jquery" , "mobile", "ajax" ]
 基础教程：[jquery mobile w3c](http://www.w3school.com.cn/jquerymobile/index.asp)
 
 本地html之间跳转时，同时传递参数：[jquery.mobile.paramsHandler](https://github.com/CameronAskew/jquery.mobile.paramsHandler)
-
