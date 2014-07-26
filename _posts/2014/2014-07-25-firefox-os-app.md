@@ -49,7 +49,7 @@ js代码示例
 {% highlight js %}
 var xhr = new XMLHttpRequest({mozSystem: true});
 xhr.open("GET", "http://xxx.xxx.com/xxx", true);
-xhr.setRequestHeader("Content-Type","text/html;charset=gb2312");
+xhr.overrideMimeType('text/html; charset=gb2312'); 
 
 xhr.onreadystatechange = function() {
     if (xhr.readyState == 4) {
