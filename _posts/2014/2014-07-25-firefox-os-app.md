@@ -48,7 +48,7 @@ js代码示例
 
 {% highlight js %}
 var xhr = new XMLHttpRequest({mozSystem: true});
-xhr.open("GET", "http://xxx.xxx.com/xxx", true);
+xhr.open("GET", "http://xxx.xxx.com/xxx", true); //true是异步，false是同步
 xhr.overrideMimeType('text/html; charset=gb2312'); 
 
 xhr.onreadystatechange = function() {
@@ -60,9 +60,131 @@ xhr.onreadystatechange = function() {
 xhr.send();
 {% endhighlight %}
 
+# html5的localStorage本地缓存
+
+可以用 lscache 库，支持指定缓存时间
+
+官方接口为 localStorage.getItem / setItem 
+
+{% highlight js %}
+    var s = JSON.stringify(data);
+    localStorage.setItem(key, s);
+
+    var ds = localStorage.getItem(key);
+    var d = JSON.parse(ds);
+{% endhighlight %}
 
 # jquery mobile 
 
 基础教程：[jquery mobile w3c](http://www.w3school.com.cn/jquerymobile/index.asp)
 
 本地html之间跳转时，同时传递参数：[jquery.mobile.paramsHandler](https://github.com/CameronAskew/jquery.mobile.paramsHandler)
+
+## 禁止 navbar 切换page时刷新闪屏
+
+``$.mobile.defaultPageTransition = 'none';``
+
+## 检查checkbox是否被选中
+
+{% highlight js %}
+if($('#some_element').prop("checked")){
+    alert($('#some_element').prop("value"));
+}
+{% endhighlight %}
+
+## 跳转到顶部
+
+``$.mobile.silentScroll(0);``
+
+## 跳转到底部
+
+``$(document).scrollTop($(document).height());``
+
+## 等each全部执行完毕之后再执行
+
+{% highlight js %}
+var s='';
+$(h).find('.some_class').each(function() {
+    s+=$(this).text() + "\n";
+}).promise().done(function(){
+    alert(s);
+});
+{% endhighlight %}
+
+## 绑定click
+
+{% highlight js %}
+$('#some_parent_node').on('click', 
+'#some_click_node', function(){
+    //some action
+});
+{% endhighlight %}
+
+##  二层列表，支持搜索，自动展开
+
+{% highlight html %}
+<div data-role="collapsible-set" data-inset="false" data-filter="true" id="some_filter">
+<div data-role="collapsible">
+<h3>test1</h3>
+<ul data-role="listview" data-inset="false">
+<li><a href="#someurl_a">someurl_a</a></li>
+<li><a href="#someurl_b">someurl_b</a></li>
+</ul>
+</div>
+<div data-role="collapsible">
+<h3>test2</h3>
+<ul data-role="listview" data-inset="false">
+<li><a href="#someurl_c">someurl_c</a></li>
+<li><a href="#someurl_d">someurl_d</a></li>
+</ul>
+</div>
+</div>
+{% endhighlight %}
+
+{% highlight js %}
+$("#some_filter").on( "filterablefilter", function( event, ui ) {
+    ui.items.each(function( index ) {
+        $(this).collapsible("option", "collapsed", $(this).hasClass("ui-screen-hidden")).removeClass("ui-screen-hidden");
+    });
+});
+{% endhighlight %}
+
+
+## textarea 文本框自动调节大小
+
+用``elastic``库
+
+``$('textarea').elastic();``
+
+## 夜晚模式
+
+{% highlight html %}
+<head>
+<style>
+</style>
+</head>
+<body>
+<select name="night" data-role="slider" id="night_bgcolor"> 
+              <option value="off">白天</option> 
+              <option value="on">黑夜</option> 
+              </select> 
+
+<div id="night_css" style="display:none;">
+    body,div,table  {
+    background-color: #000000;
+    color: #f0efd0;
+    }
+    a:link  { color: #71baa5; }
+    a:hover {color: #FFE900 !important; background-color: #363037 !important;}
+</div>
+</body>
+{% endhighlight %}
+
+{% highlight js %}
+$("#night_bgcolor").on("change", function () {
+        var s= $(this).val()=='on' ?  $('#night_css').html() : ""; 
+        $('head').find('style').html(s);
+        });
+{% endhighlight %}
+
+## 调整字号
