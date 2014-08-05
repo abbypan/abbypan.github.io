@@ -167,7 +167,7 @@ $("#some_filter").on( "filterablefilter", function( event, ui ) {
 <select name="night" data-role="slider" id="night_bgcolor"> 
               <option value="off">白天</option> 
               <option value="on">黑夜</option> 
-              </select> 
+</select> 
 
 <div id="night_css" style="display:none;">
     body,div,table  {
@@ -188,3 +188,37 @@ $("#night_bgcolor").on("change", function () {
 {% endhighlight %}
 
 ## 调整字号
+
+参考：[jQuery之字体大小的设置方法](http://www.poluoluo.com/jzxy/201402/264210.html)
+
+{% highlight js %}
+function font_click(ce, e){
+        $(ce).click(function(){
+            var thisEle = $(e).css("font-size"); 
+            var textFontSize = parseFloat(thisEle , 10);
+            var unit = thisEle.slice(-2); //获取单位
+            var cName = $(this).attr("type");
+            if(cName == "bigger"){
+                    textFontSize += 2;
+            }else if(cName == "smaller"){
+                    textFontSize -= 2;
+            }
+            var sz = textFontSize + unit;
+            $(e).css( "font-size" , sz );
+
+            lscache.set('font-size', sz);
+        });
+}
+
+font_click(".change_font_size", "body");
+
+{% endhighlight %}
+
+{% highlight html %}
+<div id="font_size_d"> 
+字号： 
+<a class="change_font_size" type="bigger">放大</a> 
+&nbsp; 
+<a class="change_font_size" type="smaller">缩小</a> 
+</div> 
+{% endhighlight %}
