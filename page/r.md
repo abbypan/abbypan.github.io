@@ -13,6 +13,7 @@ tags: [ "r" ]
 | R in action (R语言实战) | 比较简短的入门书，值得一读
 | The Art of R Programming (R语言编程艺术) | 很不错，简单清楚，适合入门
 | R Graphics Cookbook | R作图，主要是ggplot2
+| [r packages](http://bbs.pinggu.org/thread-2477637-1-1.html) | 一些r包整理
 | [rdatamining](http://www.rdatamining.com/) | 资料较全的r数据分析教程
 
 ## 模块
@@ -29,6 +30,12 @@ tags: [ "r" ]
 | stringr | 字符串，基础库
 | sqldf | 数据查询
 | RMYSQL | 数据库
+| party | 决策树，参考[R and Data Mining](http://cran.r-project.org/doc/contrib/Zhao_R_and_data_mining.pdf)，[Tree-Based Models](http://www.statmethods.net/advstats/cart.html)
+| rpart | 决策树，参考[R and Data Mining](http://cran.r-project.org/doc/contrib/Zhao_R_and_data_mining.pdf)，[Tree-Based Models](http://www.statmethods.net/advstats/cart.html)
+| randomForest | 随机森林，参考[R and Data Mining](http://cran.r-project.org/doc/contrib/Zhao_R_and_data_mining.pdf)，[Tree-Based Models](http://www.statmethods.net/advstats/cart.html)
+| lm 函数 | 线性回归，参考[R and Data Mining](http://cran.r-project.org/doc/contrib/Zhao_R_and_data_mining.pdf)
+| glm 函数 | 指定 family = "binomial" 即为逻辑回归，参考[R and Data Mining](http://cran.r-project.org/doc/contrib/Zhao_R_and_data_mining.pdf)
+
 
 ## 资料
 
