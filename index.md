@@ -24,15 +24,13 @@ title: "求福不回，求用不匮"
 | 读书听歌 | [喜欢的歌](http://temp.idouzi.tk/music/)，[喜欢的书](page/book.html)
 | 视频游戏 | [天之痕](page/swd3e.html)，[93倚天](page/93yitian.html)
 | 追星啥的 | [周华健](http://music.douban.com/musician/104913/)，[体操](page/gym.html)
-| 其他 | [我的微博](http://weibo.com/pllng)，[我的twitter](https://twitter.com/abbypan)
 
 ## 技术
 
 | 类型 | 笔记 |
 | ---- | ---- |
 | 系统 | [ArchLinux](page/archlinux.html)，[Debian](page/debian.html)，[Windows](page/windows.html)
-| 工具 | [Perl](page/perl.html)，[Rebol](page/rebol.html)，[Vim](page/vim.html)，[R](page/r.html)
-| 笔记 | [DNS](page/dns.html)，[我的github](https://github.com/abbypan)
+| 笔记 | [Perl](page/perl.html)，[Rebol](page/rebol.html)，[Vim](page/vim.html)，[R](page/r.html)，[DNS](page/dns.html)
 
 ## 旧的回忆
 
