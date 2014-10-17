@@ -21,6 +21,7 @@ tagline: "TMTOWTDI"
 | ---- | ---- |
 | [PerlFAQ](http://faq.perl.org/)，[PerlFaq中文翻译](http://perl.org.tw/docs/faq/perlfaq/) | 常见问题
 | [PerlDOC](http://perldoc.perl.org/) | 基础文档
+| [perl unicode正则匹配](https://speakerdeck.com/patch/unicode-regular-expressions-in-perl) | 正则
 
 
 ## 站点
@@ -173,10 +174,12 @@ tagline: "TMTOWTDI"
 | Regexp::Common | 常用的正则式
 | Regexp::Log::Common | 
 | Regexp::Log::DateRange | 
-| Sort::ByExample | 排序时指定某些项优先
 | SSH::Batch  | 远程SSH批量操作
 | Set::Array  | 数组操作模块
 | Sinffer::HTTP | 
+| Sort::ByExample | 排序时指定某些项优先
+| Spreadsheet::ParseExcel | 解析xls
+| Spreadsheet::WriteExcel | 写入xls， 注意写入中文时必须为Unicode，不然会报错
 | Sub::Exporter | 生成多个闭包函数
 | Term::Prompt | 
 | Term::Prompt | 
@@ -206,3 +209,6 @@ tagline: "TMTOWTDI"
 | YAML | 
 | [App::FatPacker](https://metacpan.org/pod/App::FatPacker) | 把perl程序打包成独立的执行文件，只要有perl就能用
 | [Time::Piece](http://perltricks.com/article/59/2014/1/10/Solve-almost-any-datetime-need-with-Time-Piece) | 时间处理
+| Hash::Util | 锁定hash值
+| Try::Tiny | 异常处理
+| Carp | 异常处理，有的用 use autodie;

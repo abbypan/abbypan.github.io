@@ -48,6 +48,7 @@ tags: [ "r" ]
 | [列联表分析](http://wenku.baidu.com/link?url=BExg2hfnu01XzoPVH8lrJSubWPxZkVcXnEgFsIiz3l5vVgfunO7dSOEwcGoMcn17lJ6wwUE3STi6mC2c0u_IgBtdPYNJSG5X5HsjUiSxRN7) | 列联表，假设检验
 | [主成分分析](http://blog.sina.com.cn/s/blog_4da7b8a90101kmss.html) | 主成分，变量的线性组合生成新的“成分”，主成分个数<变量数，降维
 | [因子分析-Exploratory Factor Analysis in R](https://www.psych.umn.edu/faculty/waller/classes/FA2010/FAinR/FAinR.pdf) | 因子分析，因子的线性组合生成已有的“变量”，因子数<变量数，降维
+| [Plot Weekly or Monthly Totals in R](http://www.r-bloggers.com/plot-weekly-or-monthly-totals-in-r/) | 通过 cut + ggplot 迅速画出 按时段　week / month 统计图
 
 
 ## 书籍

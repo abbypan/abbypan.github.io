@@ -9,9 +9,9 @@ tags : [ "nook", "ebook", "android", "rom" ]
 
 ## 烧录sd卡
 
-下载 [emmc-cwm.zip](http://nook.rootshell.ru/hd/cm-11-20140118-UNOFFICIAL-ovation-emmc.zip)
+下载 [emmc-cwm-early3.1.img.gz](http://forum.xda-developers.com/showthread.php?t=2600572)
 
-解压``emmc-cwm.zip``得到``emmc-cwm-early.img``
+解压``emmc-cwm-early3.1.img.gz``得到``emmc-cwm-early.img``
 
 ### windows
 
@@ -50,4 +50,8 @@ tags : [ "nook", "ebook", "android", "rom" ]
 
 ## 安装 google play
 
-在 [google apps](http://wiki.cyanogenmod.org/w/Google_Apps#Downloads) 下载对应的zip文件，进recovery刷入即可
+只有 [google-play-store](http://forum.xda-developers.com/showthread.php?t=2397942)
+
+所有 [google-play-apps](http://wiki.cyanogenmod.org/w/Google_Apps#Downloads)
+
+下载对应的zip文件，进recovery刷入即可
