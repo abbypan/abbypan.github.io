@@ -5,24 +5,16 @@ tagline: "TMTOWTDI"
 ---
 {% include JB/setup %}
 
-
-## 简单入门
+## 入门资料
 
 | 资料 | 简介 |
 | ---- | ---- |
 | Learning Perl | 经典的Perl入门书籍
 | [Perl学习手札](http://easun.org/perl/perl-toc) | 很不错的简单入门文章，特别是附录介绍了常用的模块
 | [PLEAC-Perl](http://pleac.sourceforge.net/pleac_perl/index.html) | 代码示例，很好很强大
-
-
-## 官方文档
-
-| 资料 | 简介 |
-| ---- | ---- |
 | [PerlFAQ](http://faq.perl.org/)，[PerlFaq中文翻译](http://perl.org.tw/docs/faq/perlfaq/) | 常见问题
 | [PerlDOC](http://perldoc.perl.org/) | 基础文档
 | [perl unicode正则匹配](https://speakerdeck.com/patch/unicode-regular-expressions-in-perl) | 正则
-
 
 ## 站点
 
@@ -82,18 +74,26 @@ tagline: "TMTOWTDI"
 | 1997.03 | Web Client Programming With Perl | 写的挺好，就是内容挺旧了
 
 
-## 常用模块
+## 模块
+
+| 资料 | 地址 |
+| ---- | ---- |
+| Perl Advent Calendar Archivers | http://perladvent.pm.org/archives-Yd.html
+| Great Perl Modules | http://jff.googlecode.com/svn-history/r866/trunk/Perl/great-perl-modules.txt
+| pm.org的Advent | http://perladvent.pm.org
+| Colonizing the Lacuna Expanse with Perl | http://www.perl.com/pub/2010/10/colonizing-the-lacuna-expanse-with-perl.html
+| MVC | Perl的MVC框架介绍：[What is the Perl Web Framework du jour?](http://www.perlmonks.org/?node_id=753411)
+
+###　常用模块
 
 | 模块 | 用途 |
 | ---- | ---- |
 | App::cpanminus | 模块安装工具cpanm，替代cpan
 | Capture::Tiny | 抓STDOUT、STDERR消息，参考 IPC::Open3::Simple
 | Chart Director | 画图模块
-| Dancer | Web 框架
-| Template::Toolkit | 模板生成
 | Data::Dump | 打印变量，比Data::Dumper简洁
 | Devel::Peek | 查看变量内部构造
-| [Dist::Zilla](http://perl-users.jp/articles/advent-calendar/2012/casual/9) | CPAN模块打包
+| Dist::Zilla | CPAN模块打包，参考[perl-advent](http://perl-users.jp/articles/advent-calendar/2012/casual/9)
 | Gearman | 任务分发，简单可扩展
 | JSON | JSON数据编解码
 | Log::Any::App | 打日志！
@@ -101,35 +101,30 @@ tagline: "TMTOWTDI"
 | Parallel::ForkManger | 多进程处理，[例子](http://perltalks.celogeek.com/slides/2012/01/parallel-forkmanager-slide.html)
 | Parse::RecDescent | 自定义解析模块
 | Perl::Tidy | 整理代码
-| re::engine::RE2 | 采用google的RE2正则引擎
-| Safe::Isa | 检查某个对象是否属于指定object
-| snaked | 支持秒级的crontab，支持日志滚动
-| Statistics::Basic | 基础统计函数，均值、中位数、方差、标准差等等
+| Template::Toolkit | 模板生成
 | Teng | 数据库操作，轻量级
 | Term::ProgressBar | 文本进度条
-| Test::Output | 测试stdout, stderr的输出内容
 | Web::Scraper | 抓取网页
-| YAML::XS | 读入或输出YAML数据，只认unicode
+| snaked | 支持秒级的crontab，支持日志滚动
 
-## 更多模块
+### 更多模块
 
 | 模块 | 备注 |
 | ---- | ---- |
-| Perl Advent Calendar Archivers | http://perladvent.pm.org/archives-Yd.html
-| Great Perl Modules | http://jff.googlecode.com/svn-history/r866/trunk/Perl/great-perl-modules.txt
-| pm.org的Advent | http://perladvent.pm.org
-| Colonizing the Lacuna Expanse with Perl | http://www.perl.com/pub/2010/10/colonizing-the-lacuna-expanse-with-perl.html
-| MVC | Perl的MVC框架介绍：[What is the Perl Web Framework du jour?](http://www.perlmonks.org/?node_id=753411)
 | Algorithm::Accounting | 
 | App::Ack | 
+| App::FatPacker | 把perl程序打包成独立的执行文件，只要有perl就能用
 | Array::PrintCols | 
 | Benchmark::Timer  | 程序运行时间
+| Carp | 异常处理，有的用 use autodie;
 | Clone | 复制数据结构，传入的参数必须为引用
-| Config::Auto | 
-| Config::Context | 
-| Config::Scoped | 
-| Config::YAML | 
+| Config::Auto | 配置文件
+| Config::Context | 配置文件
+| Config::Scoped | 配置文件
+| Config::YAML | 配置文件
+| Cookie::Baker | 生成set-cookie的内容
 | DBM::Deep | 
+| Dancer | Web 框架
 | Date::Parse | 从字符串解析时间
 | EV::ADNS | 
 | Email::MIME::Creator | 
@@ -144,6 +139,7 @@ tagline: "TMTOWTDI"
 | File::Temp | 注意这个读文件的时候是binary mode，实际处理时可能要自己设binmode
 | Filesys::Df | 查看剩余空间
 | GraphViz::Regex | 将正则式画成图片
+| Hash::Util | 锁定hash值
 | IO::Socket | 
 | Log4Perl | 
 | Log::Dispatch | 
@@ -175,15 +171,18 @@ tagline: "TMTOWTDI"
 | Regexp::Log::Common | 
 | Regexp::Log::DateRange | 
 | SSH::Batch  | 远程SSH批量操作
+| Safe::Isa | 检查某个对象是否属于指定object
 | Set::Array  | 数组操作模块
 | Sinffer::HTTP | 
 | Sort::ByExample | 排序时指定某些项优先
 | Spreadsheet::ParseExcel | 解析xls
 | Spreadsheet::WriteExcel | 写入xls， 注意写入中文时必须为Unicode，不然会报错
+| Statistics::Basic | 基础统计函数，均值、中位数、方差、标准差等等
 | Sub::Exporter | 生成多个闭包函数
 | Term::Prompt | 
 | Term::Prompt | 
 | Test::Harness | 
+| Test::Output | 测试stdout, stderr的输出内容
 | Test::Output | 测试stdout、stderr输出的内容
 | Text::Autoformat | 
 | Text::Balanced | 解析字符串，提取内容 
@@ -195,6 +194,8 @@ tagline: "TMTOWTDI"
 | Text::Wrap | 
 | Text::Xslate  | 类似Text::Template的模块 ，速度很快
 | TextFormatTAble | 
+| Time::Piece | 时间处理，[例子](http://perltricks.com/article/59/2014/1/10/Solve-almost-any-datetime-need-with-Time-Piece)
+| Try::Tiny | 异常处理
 | User::pwent | 
 | Win32::TieRegistry | 用Win32::TieRegistry读出windows已安装软件的列表
 | XLSperl | 命令行操作xls文件
@@ -206,9 +207,6 @@ tagline: "TMTOWTDI"
 | XML::Simple | 很简单
 | XML::Struct | 接口比较简单
 | XML::Twig | 适用于大容量数据的一个小子集
-| YAML | 
-| [App::FatPacker](https://metacpan.org/pod/App::FatPacker) | 把perl程序打包成独立的执行文件，只要有perl就能用
-| [Time::Piece](http://perltricks.com/article/59/2014/1/10/Solve-almost-any-datetime-need-with-Time-Piece) | 时间处理
-| Hash::Util | 锁定hash值
-| Try::Tiny | 异常处理
-| Carp | 异常处理，有的用 use autodie;
+| YAML | 读入或输出YAML数据
+| YAML::XS | 读入或输出YAML数据，只认unicode
+| re::engine::RE2 | 采用google的RE2正则引擎
