@@ -1,11 +1,17 @@
 ---
 layout: post
-category : tech
-title:  "用 ssh 远程登陆，socks5配置"
+category : 穿越火线
+title:  "访问互联网：ssh 远程登陆配置，ssh tunnel配置"
 tagline: "笔记"
 tags : [ "ssh", "plink", "pac", "tunnel", "socks5", "sshpass" ]
 ---
 {% include JB/setup %}
+
+ssh tunnel的优点：十分稳定，连接比较快
+
+ssh tunnel的缺点：windows下要装个ssh client，ios不越狱tunnel支持不好
+
+建议：android / linux / windows 下使用
 
 # 使用ssh进行远程登录
 
