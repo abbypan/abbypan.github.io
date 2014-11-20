@@ -87,6 +87,10 @@ middle上的``.ssh/config``示例
 
 # ssh tunnel
 
+## android 
+
+安装 sshtunnel app，配置host相关信息即可
+
 ## linux环境
 
 ``ssh someuser@remote -N -D 127.0.0.1:7070 -F ~/.ssh/config``
