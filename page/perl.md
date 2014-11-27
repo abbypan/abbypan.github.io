@@ -84,7 +84,7 @@ tagline: "TMTOWTDI"
 | Colonizing the Lacuna Expanse with Perl | http://www.perl.com/pub/2010/10/colonizing-the-lacuna-expanse-with-perl.html
 | MVC | Perl的MVC框架介绍：[What is the Perl Web Framework du jour?](http://www.perlmonks.org/?node_id=753411)
 
-###　常用模块
+###　重点模块
 
 | 模块 | 用途 |
 | ---- | ---- |
@@ -97,9 +97,10 @@ tagline: "TMTOWTDI"
 | Gearman | 任务分发，简单可扩展
 | JSON | JSON数据编解码
 | Log::Any::App | 打日志！
+| Marpa::R2 | BNF语法解析器，可以自定义解析模块
 | Moo | 轻量级面向对象
 | Parallel::ForkManger | 多进程处理，[例子](http://perltalks.celogeek.com/slides/2012/01/parallel-forkmanager-slide.html)
-| Parse::RecDescent | 自定义解析模块
+| Parse::RecDescent | 自定义解析模块，自顶向下
 | Perl::Tidy | 整理代码
 | Template::Toolkit | 模板生成
 | Teng | 数据库操作，轻量级

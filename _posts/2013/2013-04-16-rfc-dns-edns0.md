@@ -25,3 +25,10 @@ UDP PAYLOAD选多大，可以看看双方MTU，以太网环境1280也还行
 
 注意：OPT RRs MUST NOT be cached,forwarded, or stored in or loaded from master files. 其实就是控制信息不缓存。
 
+## 测试edns0
+
+参考 [oarc-edns-test](https://www.dns-oarc.net/oarc/services/replysizetest)
+
+$ dig @xxx.xxx.xxx.xxx +noall +comments +edns=0 yyy.com
+
+$ dig @xxx.xxx.xxx.xxx +noall +comments +bufsize=1 yyy.com
