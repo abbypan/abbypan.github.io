@@ -21,6 +21,8 @@ tags : [ "openvpn", "vps", "iphone", "android", "windows", "itools" ]
 
 ## 安装openvpn服务，生成client的key/crt文件
 
+[github-openvpn-install](https://github.com/Nyr/openvpn-install)
+
 [bandwagonhost的VPS一键安装OpenVPS](http://www.goagent.biz/thread-1362-1-1.html)
 
 [CentOS上OpenVPN的安装与使用](http://www.oschina.net/question/54100_26864)
