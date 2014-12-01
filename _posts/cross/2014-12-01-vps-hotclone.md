@@ -28,28 +28,8 @@ tags : [ "linux", "hotcloning" ]
     IdentityFile ~/.ssh/id_rsa
 
 假设新建一个``/root/backup``文件夹，在该目录下
-- 新建一个``hotclone_exclude.txt``文件，内容与上面的相同
-- 新建一个``hotclone.sh``文件，内容例如
-{% highlight bash %}
-#!/bin/bash
-f=`ifconfig | grep 'xxx.xxx.xxx.xxx'`
-if [[ -n $f ]]; then
-    echo "backup"
-else
-    echo "hotclone"
-    /usr/bin/rsync -e ssh -avz --exclude-from=/root/backup/hotclone_exclude.txt root@main.xxx.com:/ /
-fi
-{% endhighlight %}
-- ``crontab -e``新增一个crontab，例如
-{% highlight bash %}
-0 */6 * * * cd /root/backup && ./hotclone.sh >/dev/null 2>&1
-{% endhighlight %}
 
-# 在bak上手动备份
-
-- 安装debian minimal版本
-- 安装rsync：``apt-get install rsync``
-- 新建一个hotclone_exclude.txt，内容例如
+新建一个``hotclone_exclude.txt``文件，内容例如
 
     /boot/
     /lib/modules
@@ -64,8 +44,33 @@ fi
     /etc/network/
     /root/.ssh/known_hosts
 
-- 执行备份：``rsync -e ssh -avz --exclude-from=hotclone_exclude.txt root@main.xxx.com:/ /``
+新建一个``hotclone.crontab``文件，内容例如
+{% highlight bash %}
+0 */6 * * * cd /root/backup && ./hotclone.sh >/dev/null 2>&1
+{% endhighlight %}
 
+新建一个``hotclone.sh``文件，内容例如
+{% highlight bash %}
+#!/bin/bash
+f=`ifconfig | grep 'xxx.xxx.xxx.xxx'`
+if [[ -n $f ]]; then
+    echo "backup"
+else
+    echo "hotclone"
+    /usr/bin/rsync -e ssh -avz --exclude-from=/root/backup/hotclone_exclude.txt --delete root@idouzi.tk:/ /
+    /usr/bin/crontab /root/backup/hotclone.crontab
+fi
+{% endhighlight %}
+
+# 在bak上手动备份
+
+- 安装debian minimal版本
+- 安装rsync：``apt-get install rsync``
+- 新建一个hotclone_exclude.txt，内容与上面的相同
+- 执行备份：``rsync -e ssh -avz --exclude-from=hotclone_exclude.txt --delete root@main.xxx.com:/ /``
 - 重启：``reboot``
-- 手动再执行一次备份，检查是否异常：``rsync -e ssh -avz --exclude-from=hotclone_exclude.txt root@main.xxx.com:/ /``
+
+# 检查 
+
+- 手动再执行一次备份，检查是否异常：``rsync -e ssh -avz --exclude-from=hotclone_exclude.txt --delete root@main.xxx.com:/ /``
 - 检查是否每隔6小时自动热备
