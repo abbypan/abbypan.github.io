@@ -92,6 +92,8 @@ tagline: "TMTOWTDI"
 | Capture::Tiny | 抓STDOUT、STDERR消息，参考 IPC::Open3::Simple
 | Chart Director | 画图模块
 | Data::Dump | 打印变量，比Data::Dumper简洁
+| Data::UUID | 生成全球唯一标识符
+| Data::GUID | 生成全球唯一标识符
 | Devel::Peek | 查看变量内部构造
 | Dist::Zilla | CPAN模块打包，参考[perl-advent](http://perl-users.jp/articles/advent-calendar/2012/casual/9)
 | Gearman | 任务分发，简单可扩展
@@ -142,6 +144,7 @@ tagline: "TMTOWTDI"
 | GraphViz::Regex | 将正则式画成图片
 | Hash::Util | 锁定hash值
 | IO::Socket | 
+| IO::All | 把io操作封装成面向对象的形式，还行吧
 | Log4Perl | 
 | Log::Dispatch | 
 | Log::Statistics | 
@@ -210,4 +213,5 @@ tagline: "TMTOWTDI"
 | XML::Twig | 适用于大容量数据的一个小子集
 | YAML | 读入或输出YAML数据
 | YAML::XS | 读入或输出YAML数据，只认unicode
+| YAML::Syck | 读入或输出YAML数据，只认unicode
 | re::engine::RE2 | 采用google的RE2正则引擎

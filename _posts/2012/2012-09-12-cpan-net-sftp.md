@@ -30,4 +30,6 @@ my $sftp = Net::SFTP->new(
 lftp sftp://usr:passwd@remote.host.com  -e "put some.txt; bye"
 
 lftp -e 'mirror -R /local/somedata/ /remote/backup/' -u usr,passwd remote.host.com
+
+lftp -e 'set net:timeout 10; cd somedir;mput *.csv; bye' -u someusr,somepw abc.xxx.com:4329
 {% endhighlight %}
