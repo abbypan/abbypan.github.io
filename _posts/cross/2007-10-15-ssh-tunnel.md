@@ -50,6 +50,16 @@ sshpass -p somepasswd ssh someuser@xxx.xxx.xxx.xxx
         IdentityFile ~/.ssh/remote_rsa
 
 
+### 批量免登陆
+
+批量指定多台机器免登陆
+
+```
+Host *.xxx.com
+    IdentityFile ~/.ssh/remote_rsa
+    User someuser
+```
+
 ### 多层ssh
 
 参考：[transparent multi hop](http://sshmenu.sourceforge.net/articles/transparent-mulithop.html)
