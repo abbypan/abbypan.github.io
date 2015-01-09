@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "perl 101: 001 解析器 YAML::Syck"
+title:  "Perl : 解析器 YAML::Syck"
 tagline: ""
 tags : [ "cpan", "yaml", "perl" ]
 ---
