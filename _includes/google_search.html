@@ -1,12 +1,13 @@
-<script language="javascript" type="text/javascript">
-  function my_search_google()
-  {
-    var query = document.getElementById("my-google-search").value;
-    window.open("http://google.com/search?q=" + query
-	+ "%20site:" + "http://abbypan.github.io");
-  }
+<script>
+  (function() {
+          var cx = '009772050743998195273';
+              var gcse = document.createElement('script');
+                  gcse.type = 'text/javascript';
+                      gcse.async = true;
+                          gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                      '//www.google.com/cse/cse.js?cx=' + cx;
+                              var s = document.getElementsByTagName('script')[0];
+                                  s.parentNode.insertBefore(gcse, s);
+                                    })();
 </script>
-
-<form onsubmit="my_search_google()" >
-站内搜索 <input type="text" id="my-google-search">
-</form>
+<gcse:searchbox-only></gcse:searchbox-only>
