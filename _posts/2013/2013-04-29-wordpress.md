@@ -1,11 +1,23 @@
 ---
 layout: post
 category : tech
-title:  "WordPress"
+title:  "WordPress 搬家"
 tagline: "笔记"
 tags : [ "wordpress" ] 
 ---
 {% include JB/setup %}
+
+## 迁移wordpress站点，更新数据表
+
+假设原站点为 http://xxx.old.com ，新站点为 http://yyy.new.com
+
+登入mysql的wp数据库，执行
+
+{% highlight bash %}
+> update wp_options set option_value='http://yyy.new.com' where option_value='http://xxx.old.com';
+
+> update wp_posts set post_content = replace (post_content,'xxx.old.com','yyy.new.com')
+{% endhighlight %}
 
 ##  WordPress 需要访问您网页服务器的权限
 
