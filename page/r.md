@@ -55,6 +55,7 @@ tags: [ "r" ]
 
 | 时间 | 书籍 | 读后感 |
 | ---- | ---- | ------ |
+| 2013 | 机器学习 实用案例解析 | 推荐，非常值得一读，行文不蔓不枝
 | 2013 | R和Ruby数据分析之旅 | 当小品文看就行了，2-3个小时左右
 | 2012.12 | R Graphics Cookbook | R作图，主要是ggplot2
 | 2012.02 | [R inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) | 

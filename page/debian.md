@@ -287,3 +287,7 @@ sudo apt-get install imagemagick php5-imagick php5-gd
 {% endhighlight %}
 
 修改配置后重启apache2：``sudo apache2ctl graceful``
+
+### deiban 系统降级内核
+
+[Downgrade from Debian SID to Stable from Jessie to Wheezy](http://ispire.me/downgrade-from-debian-sid-to-stable-from-jessie-to-wheezy/)
