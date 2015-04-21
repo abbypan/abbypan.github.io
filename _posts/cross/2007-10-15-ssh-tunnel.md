@@ -136,22 +136,14 @@ var tunnel_list = [
 "googleapis.com"
 ];
 
-var tunnel = {};
-for (var i = 0; i < tunnel_list.length; i += 1) {
-    tunnel[tunnel_list[i]] = true;
-}
-
-function host2domain(host) {
-    var dotpos = host.lastIndexOf(".");
-    if (dotpos === -1) return host;
-
-    dotpos = host.lastIndexOf(".", dotpos - 1);
-    if (dotpos === -1) return host;
-
-    return host.substring(dotpos + 1);
-};
-
 function FindProxyForURL(url, host) {
-    return tunnel[host2domain(host)] ? http_proxy : direct;
+    if(! host) return direct;
+    for (var i = 0; i < tunnel_list.length; i += 1) {
+        var v = tunnel_list[i];
+        if ( dnsDomainIs(host, v)) {
+            return http_proxy;
+        }
+    }
+    return direct;
 };
 {% endhighlight %}
