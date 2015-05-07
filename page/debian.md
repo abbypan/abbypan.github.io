@@ -40,7 +40,7 @@ tagline: "安装笔记"
 
 {% highlight bash %}
 sudo apt-get install build-essential dnsutils cpanminus sendemail
-sudo apt-get install libwww-perl libclass-methodmaker-perl libb-utils-perl libpadwalker-perl libcrypt-ssleay-perl libxml-parser-perl libdata-dump-streamer-perl libtemplate-perl libjson-perl libarchive-zip-perl perltidy
+sudo apt-get install libwww-perl libclass-methodmaker-perl libb-utils-perl libpadwalker-perl libcrypt-ssleay-perl libxml-parser-perl libdata-dump-streamer-perl libtemplate-perl libjson-perl libarchive-zip-perl perltidy libdist-zilla-perl
 sudo cpanm Plack Plack::Handler::Apache2
 sudo apt-get install phantomjs lftp
 {% endhighlight %}
