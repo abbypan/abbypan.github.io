@@ -26,11 +26,11 @@ tags : [ "grub" ]
     grub rescue > insmod normal
     grub rescue > normal
 
-选择对应linux启动项，键盘输入e，编辑其中引导的分区为msdos2，F10保存自动重启到linux系统
+    选择对应linux启动项，键盘输入e，编辑其中引导的分区为msdos2，F10保存自动重启到linux系统
 
 4. 进入linux系统，重装grub到硬盘，假设硬盘为 /dev/sda
 
-linux系统最好预先安装 os-prober，用于自动探测多系统
+    linux系统最好预先安装 os-prober，用于自动探测多系统
    
     # grub-install /dev/sda
     # os-prober
