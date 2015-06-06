@@ -13,12 +13,11 @@ tags : [ "grub" ]
 
 1. 查看分区名称
 
-grub rescue > ls
-
+    grub rescue > ls
 
 2. 依次测试grub在哪个分区下，例如：
 
-grub rescue > ls (hd0, msdos2)/boot/grub
+    grub rescue > ls (hd0, msdos2)/boot/grub
 
 3. 假设linux安装在msdos2分区下面
 
