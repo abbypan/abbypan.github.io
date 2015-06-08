@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "Opportunistic Encryption with DANE Semantics and IPsec: IPSECA"
 tagline: ""
- tags : [ "dns", "dane", "ipsec", "ipseca" ] 
+tags : [ "dns", "dane", "ipsec", "ipseca" ] 
 ---
 {% include JB/setup %}
 
