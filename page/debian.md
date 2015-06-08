@@ -282,7 +282,7 @@ Y是windows下C盘所在分区的序号
 {% highlight bash %}
 sudo apt-get install apache2 libapache2-mod-perl2
 sudo apt-get install libapache2-mod-php5 php5 php-pear php5-xcache php5-curl
-sudo apt-get install mysql-server php5-mysql
+sudo apt-get install bsdutils mysql-server php5-mysql
 sudo apt-get install imagemagick php5-imagick php5-gd
 {% endhighlight %}
 
