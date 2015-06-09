@@ -7,6 +7,8 @@ tags : [ "dns", "dane", "ipsec", "ipseca" ]
 ---
 {% include JB/setup %}
 
+https://tools.ietf.org/html/draft-osterweil-dane-ipsec-02
+
 英文单词：
 
 eavesdrop 偷听
