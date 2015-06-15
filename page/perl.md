@@ -12,6 +12,7 @@ tagline: "TMTOWTDI"
 | Learning Perl | 经典的Perl入门书籍
 | [Perl学习手札](http://easun.org/perl/perl-toc) | 很不错的简单入门文章，特别是附录介绍了常用的模块
 | [PLEAC-Perl](http://pleac.sourceforge.net/pleac_perl/index.html) | 代码示例，很好很强大
+| [learn perl6 in y miniutes](http://learnxinyminutes.com/docs/perl6/) | perl6 简单语法
 | [PerlFAQ](http://faq.perl.org/)，[PerlFaq中文翻译](http://perl.org.tw/docs/faq/perlfaq/) | 常见问题
 | [PerlDOC](http://perldoc.perl.org/) | 基础文档
 | [perl unicode正则匹配](https://speakerdeck.com/patch/unicode-regular-expressions-in-perl) | 正则
