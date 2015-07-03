@@ -9,6 +9,7 @@ tagline: ""
 
 | 资料 | 说明 |
 | ---- | ---- |
+| [rebol tutorial](http://video.respectech.com:8080/tutorial/r3/index.r3) | 基础教程
 | [Rebol Programming Language_Features](http://en.wikibooks.org/wiki/REBOL_Programming/Language_Features) | 基础说明
 | [REBOL 3 concepts](http://www.rebol.com/r3/docs/concepts.html) | 基础介绍
 | [rebol script lib](http://www.rebol.org/index.r) | rebol script 示例

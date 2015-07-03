@@ -55,6 +55,7 @@ charset 是字符集，属于bitset，所以匹配速度较快
 {% endhighlight %}
 
 set 与 copy 用法类似
+
 {% highlight rebol %}
 >> parse [ $100 ] [set wallet money!]
 == true
@@ -62,11 +63,23 @@ set 与 copy 用法类似
 == $100
 {% endhighlight %}
 
+### 检查是否匹配时执行括号内相关代码
+
+{% highlight rebol %}
+>> parse {123} [ "1" (print "found 1!") "A" end ]
+found 1!
+== false
+{% endhighlight %}
+
+参考 [R3 Advanced Parse](http://video.respectech.com:8080/tutorial/r3/index.r3?cgi=QYrbKq9KhmNapYrRxsrLhEd3vvbIE03zkT/z3YieeJaPMRwcrX1wBji7tfE4V2yjgQlOO6yp/JUqWLlGnMtR) 中 sell/cost 费用的 total price解析例子
+
 ### while
 
 无限循环：``parse input-string [ while [ any "dog" ] ]``
 
-while 内部的 subrule 匹配fail时，while循环停止。while自身总是返回``success``。
+while 内部的 subrule 匹配fail时，while循环停止。while自身的返回状态总是``success``。
+
+OPT 也类似，返回状态总是 success
 
 ### break 终止当前block匹配
 
@@ -158,9 +171,20 @@ Where is the turkey! Have you seen the turkey!
 
 ``mark``  取出对应的变量值
 
-``mark:`` 把mark内容置为**当前的位置**
+``mark:`` 把mark置为**当前的位置**
 
-``:mark`` 表示把 mark的内容 插入**当前的位置**
+``:mark`` 表示把 mark指向的内容 插入**:mark所标记的位置**
+
+参考 [chapter 15 - parsing](http://www.rebol.com/docs/core23/rebolcore-15.html)
+
+先匹配123，mark指到4开头，执行括号内容，mark指到6开头，匹配字符串
+
+{% highlight rebol %}
+>> parse {1234567} ["123" mark: (mark: next next mark) :mark "67"]
+== true
+{% endhighlight %}
+
+
 
 {% highlight rebol %}
 str: "at this time, I'd like to see the time change"
