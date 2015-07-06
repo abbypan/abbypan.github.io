@@ -120,6 +120,7 @@ tagline: "TMTOWTDI"
 | App::FatPacker | 把perl程序打包成独立的执行文件，只要有perl就能用
 | Array::PrintCols | 
 | Benchmark::Timer  | 程序运行时间
+| Bing::Translate | 翻译
 | Carp | 异常处理，有的用 use autodie;
 | Clone | 复制数据结构，传入的参数必须为引用
 | Config::Auto | 配置文件
@@ -206,6 +207,7 @@ tagline: "TMTOWTDI"
 | XLSperl | 命令行操作xls文件
 | XML::Compile | 
 | XML::LibXML | 很快
+| XML::Fast | 听说很快
 | XML::Rabbit | 见[thanks-to-xmlrabbit](http://www.modernperlbooks.com/mt/2012/10/i-stopped-parsing-xml-thanks-to-xmlrabbit.html)
 | XML::Rules | 
 | XML::SAX | 适用于体积较大的XML
