@@ -1,11 +1,24 @@
 ---
 layout: post
 category : tech
-title:  "perl WWW::Mechanize::Firefox 浏览器自动操作"
+title:  "cpan : WWW::Mechanize::Firefox 浏览器自动操作"
 tagline: "firefox自动操作"
 tags : ["perl", "cpan", "firefox" , "web" ] 
 ---
 {% include JB/setup %}
+
+## 模拟键盘按键
+
+模拟按 -> 右方向键，keycode是39
+
+{% highlight perl %}
+$mech->eval_in_page( q[
+        var ev = document.createEvent('KeyboardEvent');
+        ev.initKeyEvent(
+            'keydown', true, true, window, false, false, false, false, 39, 0);
+        document.body.dispatchEvent(ev);
+        ]);
+{% endhighlight %}
 
 ## 调用 click 之后 脚本卡住的问题
 见：[Clicking on a link makes the Perl script wait forever](http://search.cpan.org/%7Ecorion/WWW-Mechanize-Firefox-0.71/lib/WWW/Mechanize/Firefox/Troubleshooting.pod#___top)

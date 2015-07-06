@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "Perl WWW::Mechanize 取网页"
+title:  "cpan : WWW::Mechanize 取网页"
 tagline: "crawler"
 tags : [ "perl", "cpan", "web", "crawler" ] 
 ---
