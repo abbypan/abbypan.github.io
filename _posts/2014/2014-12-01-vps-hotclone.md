@@ -3,7 +3,7 @@ layout: post
 category : 穿越火线
 title:  "Linux Hotcloning 系统备份，双机热备"
 tagline: ""
-tags : [ "linux", "hotcloning" ] 
+tags : [ "vps", "linux", "hotcloning" ] 
 ---
 {% include JB/setup %}
 
