@@ -147,3 +147,10 @@ function FindProxyForURL(url, host) {
     return direct;
 };
 {% endhighlight %}
+
+## ssh 保持连接
+参考 [Keep Your Linux SSH Session From Disconnecting](http://www.howtogeek.com/howto/linux/keep-your-linux-ssh-session-from-disconnecting/)，在``~/.ssh/config``中添加
+{% highlight bash %}
+Host *
+  ServerAliveInterval 60
+{% endhighlight %}
