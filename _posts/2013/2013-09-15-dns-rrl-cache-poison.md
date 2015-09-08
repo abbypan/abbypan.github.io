@@ -36,6 +36,12 @@ rate-limit {
 };
 {% endhighlight %}
 
+qps-scale 是大招
+
+( qps-scale / DNS query arrival rate ) * responses-per-second = effective rate-limit
+
+假设算出来的 effective rate-limit 为 4，则权威在1 sec内对指定条件的任意client只响应前4个查询
+
 
 # rrl 的问题 
 

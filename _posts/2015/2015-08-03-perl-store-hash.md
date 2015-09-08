@@ -14,3 +14,5 @@ tags : [ "perl", "hash" ]
 [JSON::PP](https://metacpan.org/pod/JSON::PP)  支持深层hash，其他与JSON模块基本相同。
 
 [DBM::Deep](https://metacpan.org/pod/distribution/DBM-Deep/lib/DBM/Deep.pod) 接口麻烦点，适合存复杂hash。
+
+参考 [http://perlmaven.com/data-serialization-in-perl](http://perlmaven.com/data-serialization-in-perl)
