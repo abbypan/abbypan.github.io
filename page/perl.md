@@ -218,3 +218,4 @@ tagline: "TMTOWTDI"
 | YAML::XS | 读入或输出YAML数据，只认unicode
 | YAML::Syck | 读入或输出YAML数据，只认unicode
 | re::engine::RE2 | 采用google的RE2正则引擎
+| Rex | 自动化运维管理工具，例如远程批量执行命令等等
