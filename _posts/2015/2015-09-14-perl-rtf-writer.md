@@ -46,3 +46,32 @@ $rtf->close;
 {% endhighlight %}
 
 ![rtf_writer.png](/assets/posts/rtf_writer.png)
+
+{% highlight perl %}
+use RTF::Writer;
+use utf8;
+
+my $rtf = RTF::Writer->new_to_file('test.rtf');
+
+$rtf->print(
+    #首页页眉、页脚
+    \"\\titlepg {\\headerf\\pard\\plain\\qc\\f1 ", "首页荣耀", \"\\par}", 
+   \"{\\footerf {\\pard \\brdrb \\brdrs\\brdrw10\\brsp20 {\\fs4\\~}\\par \\pard} \\pard\\plain\\qc\\fs23", "一寸灰", \"\\par}", 
+
+    #正文页眉、页脚
+    \"\n{\\header \\pard\\qc\\plain\\f1", "我是叶修", \"\\par}\n\n", 
+    \"{\\footer {\\pard \\brdrb \\brdrs\\brdrw10\\brsp20 {\\fs4\\~}\\par \\pard} \\pard\\plain\\qc\\fs23 ", "我是蓝河",  \"\\chpgn of {\\field{\\*\\fldinst NUMPAGES }}\\par}",
+);
+
+$rtf->paragraph( "首页内容blabla\n");
+$rtf->paragraph( \'\pagebb' ); #分页
+$rtf->paragraph( "正文内容blabla\n");
+
+$rtf->close;
+{% endhighlight %}
+
+![rtf_writer_head1.png](/assets/posts/rtf_writer_head1.png)
+
+![rtf_writer_head2.png](/assets/posts/rtf_writer_head2.png)
+
+![rtf_writer_head3.png](/assets/posts/rtf_writer_head3.png)
