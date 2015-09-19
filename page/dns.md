@@ -71,6 +71,7 @@ tagline: "Domain Name System "
 | [BIND 9 DNS Cache Poisoning](http://landing2.trusteer.com/list-context/publications/bind-9-dns-cache-poisoning) | Bind9 缓存中毒资料
 | [BIND 8 DNS Cache Poisoning](http://landing2.trusteer.com/list-context/publications/bind-8-dns-cache-poisoning) | Bind8 缓存中毒资料
 | [关于DNSCURVE](http://abbypan.blogspot.com/2011/11/dnscurve.html) | DNSCurve笔记，关于加密DNS解析请求
+| [What DNS Is Not](http://queue.acm.org/detail.cfm?id=1647302) | 讨论了些dns nxdomain/cdn 的误用跟滥用
 
 
 ## 厂商
@@ -99,6 +100,7 @@ tagline: "Domain Name System "
 
 | 时间 | RFC编号 | 简介 |
 | ---- | ------- | ---- |
+| 2015 | [DNS Terminology](https://www.ietf.org/id/draft-ietf-dnsop-dns-terminology-04.txt) | DNS术语集合，跟查字典差不多
 | 2010 | RFC 5966 | 用TCP做DNS查询的相关事项，过一遍
 | 2008 | RFC 5358 | DNS反射攻击的预防，比较口水话，随便看看
 | 2006 | RFC 4592 | 泛域名，感觉不错，值得一读
