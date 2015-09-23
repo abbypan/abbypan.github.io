@@ -1,0 +1,10 @@
+---
+layout: post
+category : tech
+title:  "excel 资料"
+tagline: ""
+tags : [ "excel" ] 
+---
+{% include JB/setup %}
+
+[数据透视表](http://wenku.baidu.com/link?url=oX_LKt6zlDWwS2nu1MlbWic5EN__3-rjR9WKSDEOsbpWhw_yD1er04yf6mSNNuy6csf1UwX-OSALEV1G7FQaboKe8N_0ZzRNSmIC4BpqYNi)
