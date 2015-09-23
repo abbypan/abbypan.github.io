@@ -19,7 +19,7 @@ title: "求福不回，求用不匮"
 
 ## 生活
 
-| 类型 | 杂感 |
+| 类型 | 链接 |
 | ---- | ---- |
 | 读书听歌 | [喜欢的歌](http://temp.idouzi.tk/music/)，[喜欢的书](page/book.html)
 | 视频游戏 | [天之痕](page/swd3e.html)，[93倚天](page/93yitian.html)
@@ -27,16 +27,17 @@ title: "求福不回，求用不匮"
 
 ## 技术
 
-| 类型 | 笔记 |
+| 类型 | 链接 |
 | ---- | ---- |
-| 系统 | [ArchLinux](page/archlinux.html)，[Debian](page/debian.html)，[Windows](page/windows.html)
-| 笔记 | [Perl](page/perl.html)，[Rebol](page/rebol.html)，[Vim](page/vim.html)，[R](page/r.html)，[DNS](page/dns.html)
+| 工具 | [Perl](page/perl.html)，[archlinux](page/archlinux.html)
+| 其他 | [Vim](page/vim.html)，[DNS](page/dns.html)
+| 笔记 | [blogspot](http://abbypan.blogspot.com)
 
 ## 旧的回忆
 
-| 类型 | 笔记 |
+| 类型 | 链接 |
 | ---- | ---- |
-| 旧的主页 | [viki deplate](assets/viki_deplate)，[txt2tags](assets/txt2tags)
+| 主页 | [viki deplate](assets/viki_deplate)，[txt2tags](assets/txt2tags)
 | USTC | [瀚海星云](http://bbs.ustc.edu.cn)
 
 ![create with vim](assets/img/vim.png)

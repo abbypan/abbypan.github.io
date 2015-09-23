@@ -1,9 +1,10 @@
 ---
 layout: page
-title: "Archlinux"
-tagline: 安装笔记
+title: "archlinux"
+tagline: "kiss"
 ---
 {% include JB/setup %}
+
 
 ## 基础系统
 - 下载archlinux最新iso文件：http://www.archlinux.org/download/
