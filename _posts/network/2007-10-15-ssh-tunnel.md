@@ -3,7 +3,7 @@ layout: post
 category : 穿越火线
 title:  "访问互联网：ssh 远程登陆配置，ssh tunnel配置"
 tagline: "笔记"
-tags : [ "ssh", "plink", "pac", "tunnel", "socks5", "sshpass" ]
+tags : [ "great.w", "ssh", "plink", "pac", "tunnel", "socks5", "sshpass" ]
 ---
 {% include JB/setup %}
 
