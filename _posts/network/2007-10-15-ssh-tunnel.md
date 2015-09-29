@@ -13,6 +13,8 @@ ssh tunnel的缺点：windows下要装个ssh client，ios不越狱tunnel支持�
 
 建议：android / linux / windows 下使用
 
+改进方案：linux下安装polipo，将socks5转换为http proxy，android / ios 下配置wlan连接使用该http proxy。比openvpn速度快很多。
+
 # 使用ssh进行远程登录
 
 假设远程机子叫remote，地址为xxx.xxx.xxx.xxx，用户名为someuser
@@ -154,3 +156,37 @@ function FindProxyForURL(url, host) {
 Host *
   ServerAliveInterval 60
 {% endhighlight %}
+
+## 将本地 socks5 转换为http proxy
+
+[通过 Socks5 Proxy 实现 HTTP Proxy](http://cs-cjl.com/2014/10/29/http_proxy)
+
+[archlinux polipo](https://wiki.archlinux.org/index.php/Polipo_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
+
+{% highlight bash %}
+# /etc/polipo/config
+proxyAddress = "0.0.0.0"
+proxyPort = 7007
+socksParentProxy = "127.0.0.1:7008"
+socksProxyType = socks5
+{% endhighlight %}
+
+直接执行``sudo polipo``即可成功开启本地http proxy
+
+测试： ``curl -x 127.0.0.1:7007  http://ipinfo.io``
+
+### 手机使用本地http proxy访问外网
+
+假设本地开启http proxy的机器内网ip为 192.168.1.111。
+
+全局proxy：
+
+android 无线配置：在wlan ssid名称处长按，选择“高级选项”，填入本地http proxy地址 192.168.1.111 、端口 7007。
+
+ios配置与android类似。
+
+指定某些app使用proxy：
+
+anroid 可安装 [ProxyDroid](https://play.google.com/store/apps/details?id=org.proxydroid)，需要root权限
+
+
