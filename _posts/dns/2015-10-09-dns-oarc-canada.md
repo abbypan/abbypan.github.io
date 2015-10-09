@@ -51,7 +51,7 @@ HTTPS，SMTP，XMPP，SIP等有PKI应用场景的其实都能用。
 
 跟$$$$$$$$近的是 Payment Association Records (PMTA)。
 
-我觉得如果DNSSEC未来广泛部署到二级域名，DANE很可能大势所趋，毕竟浏览器侧、APP侧的集中式CA服务太依赖大平台了，跟递归侧的篡改风险相比，生意还是可以做。
+**我觉得如果DNSSEC未来广泛部署到二级域名，DANE很可能大势所趋，毕竟浏览器侧、APP侧的集中式CA服务太依赖大平台了，跟递归侧的篡改风险相比，生意还是可以做。**
 
 # Benchmarking of authoritative DNS servers and DNSSEC impact assessment （cznic）
 
@@ -167,7 +167,7 @@ nl的查询量没那么大，嗯。
 
 google的ECS改进，带client ip subnet信息优化cdn命中啥的
 
-这个问题根源自ip混合了isp信息+递归代理查询。在现阶段subnet太分散可能影响时延，而其实这生意在递归上再优化两下也能做。
+**我认为这个问题根源自ip混合了isp信息+递归代理查询。在现阶段subnet太分散可能影响时延，而其实这生意在递归上再优化两下也能做。**
 
 # dnstap-whoami: one-legged exfiltration of resolver queries （fastsight）
 
