@@ -5,41 +5,12 @@ tagline: "一梦十年"
 ---
 {% include JB/setup %}
 
-
-## 站点
-
-| 站点 | 介绍 |
-| ---- | ---- |
-| [逍遥世间](http://www.xq4ever.cn/) | 逍芙
-| [绿柳山庄](http://www.93yitian.com/bbs/) | 张殷，忌敏
-| [怡然-梦回倚天](http://ycool.com/user/jzz1224) | 剧评
-
-
 ## 广告
 
         此倚天非彼倚天
         
         作者：枉凝眉
         
-        我们有念着《江城子》，生死相许的张无忌；
-        
-        我们有堪怜痴情，催人泪下的赵敏；
-        
-        我们有性情孤高，最后清修淡然的芷若；
-        
-        我们有轻贱世俗，古今第一的杨逍；
-        
-        我们有缠绵哀怨，让人唏嘘长叹的殷素素；
-        
-        我们有玉树临风，让人铭心刻骨的张翠山；
-        
-        我们有邪气逼人，却至情至性的殷离；
-        
-        我们有温柔体贴，单纯到可爱的小昭；
-        
-        我们有秀美绝伦，内心刚执的纪晓芙；
-        
-        我们有至死不渝，深情无限的宋青书；
         
         我们有天涯痴心，生死与共的爱情；
         
@@ -59,15 +30,6 @@ tagline: "一梦十年"
         
         公元一九九四，马版倚天。
 
-
-## 同人
-
-| 名字 | 类型 | 作者 | 简评 |
-| ---- | ---- | ---- | ---- |
-| [旁白](http://blog.sina.com.cn/benranlaisi#serial_4c6fa9af05000ku5) | 逍芙 | 白露嘉 | 才气纵横。坑。
-| [乐游原](http://blog.sina.com.cn/benranlaisi#serial_4c6fa9af05000ku8) | 不悔 | 白露嘉 | 文笔极佳。坑。
-
-
 ## mv
 
 | 名字 | 类型 | 作者 | 简评 |
@@ -81,4 +43,3 @@ tagline: "一梦十年"
 | [发现](http://www.tudou.com/programs/view/EBAgd6wUjkU/) | 张殷 | christina奕奕 | 冰火岛成全了他们十年，最后仍要背负现实的沉重
 | [半面妆](http://www.tudou.com/programs/view/xcbxnFKHkJM/) | 两代 | 醉酹寒香 | 英雄谁属
 | [如意](http://www.tudou.com/programs/view/JhlNZZIIfJM/) | 无忌+四美 | 湮垣之城 | 小昭最漂亮
-

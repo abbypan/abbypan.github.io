@@ -21,7 +21,7 @@ title: "求福不回，求用不匮"
 
 | 类型 | 链接 |
 | ---- | ---- |
-| 读书听歌 | [喜欢的歌](http://temp.idouzi.tk/music/)，[喜欢的书](page/book.html)
+| 读书听歌 | [喜欢的书](page/book.html)
 | 视频游戏 | [天之痕](page/swd3e.html)，[93倚天](page/93yitian.html)
 | 追星啥的 | [周华健](http://music.douban.com/musician/104913/)，[体操](page/gym.html)
 
@@ -38,6 +38,7 @@ title: "求福不回，求用不匮"
 | 类型 | 链接 |
 | ---- | ---- |
 | 主页 | [viki deplate](assets/viki_deplate)，[txt2tags](assets/txt2tags)
-| USTC | [瀚海星云](http://bbs.ustc.edu.cn)
+| USTC | [瀚海星云](http://bbs.ustc.edu.cn)，[科大音乐](http://music.ustc.edu.cn)
+
 
 ![create with vim](assets/img/vim.png)
