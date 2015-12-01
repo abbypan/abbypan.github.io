@@ -91,11 +91,13 @@ tagline: "TMTOWTDI"
 | ---- | ---- |
 | [perlbrew](http://perlbrew.pl/) | 本地perl版本切换
 | App::cpanminus | 模块安装工具cpanm，替代cpan
+| Bloom::Faster | Bloomfilter 模块
 | Capture::Tiny | 抓STDOUT、STDERR消息，参考 IPC::Open3::Simple
 | Chart Director | 画图模块
 | Data::Dump | 打印变量，比Data::Dumper简洁
 | Data::UUID | 生成全球唯一标识符
 | Data::GUID | 生成全球唯一标识符
+| Data::MessagePack | 数据序列化，跨平台
 | Devel::Peek | 查看变量内部构造
 | Dist::Zilla | CPAN模块打包，参考[perl-advent](http://perl-users.jp/articles/advent-calendar/2012/casual/9)
 | Gearman | 任务分发，简单可扩展
