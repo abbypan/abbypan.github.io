@@ -1,7 +1,7 @@
 ---
 layout: page
 tagline: "abbypan"
-title: "求福不回，求用不匮"
+title: "吼吼吼吼吼嗷嗷"
 ---
 {% include JB/setup %}
 
@@ -29,7 +29,7 @@ title: "求福不回，求用不匮"
 
 | 类型 | 链接 |
 | ---- | ---- |
-| 工具 | [Perl](page/perl.html)，[archlinux](page/archlinux.html)，[Debian](page/debian.html)
+| 工具 | [Perl](page/perl.html)，[Perl6](page/perl6.html)，[archlinux](page/archlinux.html)，[Debian](page/debian.html)
 | 其他 | [Vim](page/vim.html)，[DNS](page/dns.html)
 | 笔记 | [blogspot](http://abbypan.blogspot.com)
 
