@@ -91,6 +91,7 @@ tagline: "TMTOWTDI"
 | ---- | ---- |
 | [perlbrew](http://perlbrew.pl/) | 本地perl版本切换
 | App::cpanminus | 模块安装工具cpanm，替代cpan
+| App::FatPacker | 把依赖模块打包到单个pl文件
 | Bloom::Faster | Bloomfilter 模块
 | Capture::Tiny | 抓STDOUT、STDERR消息，参考 IPC::Open3::Simple
 | Chart Director | 画图模块
