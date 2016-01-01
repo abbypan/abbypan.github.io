@@ -1,15 +1,17 @@
 ---
 layout: page
+title: "江天一色"
 tagline: "abbypan"
-title: "吼吼吼吼吼嗷嗷"
 ---
 {% include JB/setup %}
 
-        莫莫葛藟，肆於條枝，愷悌君子，求福不回。
+        求福不回。
 
-        神降之嘉生，民以物享，禍災不至，求用不匱。
+        求用不匱。
 
-        谁将归去？守望一生。
+        谁将归去？
+        
+        守望一生。
 
 {% include google_search.html %}
 
