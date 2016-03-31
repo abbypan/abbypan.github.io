@@ -4,12 +4,7 @@
 permalink: /:year/:month/:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
-<<<<<<< HEAD
-pygments: true
-=======
 highlighter: true
-#markdown: redcarpet
->>>>>>> origin/master
 markdown: kramdown
 
 safe: true
