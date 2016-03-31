@@ -1,9 +1,9 @@
 ---
 layout: post
-category : tech
+category: tech
 title:  ""
 tagline: ""
-tags : [ "" ] 
+tags: [ "" ] 
 ---
 {% include JB/setup %}
 
