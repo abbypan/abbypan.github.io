@@ -1,0 +1,26 @@
+---
+layout: post
+category : tech
+title:  "perl Config::* 解析配置文件"
+tagline: "config"
+tags : ["perl", "cpan", "config", "parse" ] 
+---
+{% include JB/setup %}
+
+## Config::Auto
+
+接口用着很方便，可以解析php.ini之类的。
+
+注释比较多的时候，可能突然error退出，载入分析之前把注释过滤掉比较保险。
+
+## Config::ApacheFormat
+
+接口用着很麻烦，能不用就不用吧。
+
+## Config::General
+
+号称能兼容apache，跑着就error退出了。
+
+## Apache::ConfigFile
+
+比较简单好用，推荐 

@@ -1,0 +1,41 @@
+---
+layout: post
+category : tech
+title:  "Perl IPC::Run 进程处理"
+tagline: "process"
+tags : ["perl", "cpan", "process", "ipc" ] 
+---
+{% include JB/setup %}
+
+
+## 等待进程在后台执行完毕之后再继续 background process
+
+来源：[Wait for background processes to complete](https://groups.google.com/group/comp.lang.perl.misc/browse_thread/thread/396ea55a558bc45c?hl=en)
+
+大约是这样的：先fork了一个shell，然后shell在后台执行cp，想在后台cp完成之后再继续往下执行。
+
+
+{% highlight perl %}
+use IPC::Run qw/run/;
+
+my @cmds;
+
+while (<*.txt>) {
+    print "Copying $_\n";
+    push @cmds, [cp => $_, "$_.old"];
+}
+
+run map { ($_, '&') } @cmds;
+{% endhighlight %}
+
+
+用bash可以直接wait，因为是在同一个shell里面调cp:
+
+{% highlight bash %}
+for x in `ls *.txt`
+do
+   print "Copying  $_ \n"
+   cp $_ $_.old &
+done
+wait 
+{% endhighlight %}
