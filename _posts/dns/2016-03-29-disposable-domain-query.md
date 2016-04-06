@@ -18,4 +18,4 @@ http://www.potaroo.net/ispcol/2016-03/zombies.html
 
 某些广告插件，临时生成uniq临时域名，只查一次
 
-==>>> 导致 cache 负担变重而无用 => 分级or热点
+导致 cache 负担变重而无用 => 分级or热点
