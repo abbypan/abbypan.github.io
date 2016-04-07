@@ -6,18 +6,19 @@ tagline: "kiss"
 {% include JB/setup %}
 
 
-## 基础系统
+# 初始安装
+
 - 下载archlinux最新iso文件：http://www.archlinux.org/download/
 - 可以制作成光盘，或U盘启动
 
 
-### U盘启动
+## U盘启动
 - 下载LinuxLive USB Creator：http://www.linuxliveusb.com/
 - 用LinuxLive USB Creator制作可启动的USB盘
 - 修改BIOS，从USB启动，进入archlinux
 
 
-### 设置arch源
+## 设置arch源
 - 编辑/etc/pacman.conf
 
        [archlinuxfr]
@@ -28,13 +29,13 @@ tagline: "kiss"
 
         Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 
-### 硬盘分区
+## 硬盘分区
 - 假设系统硬盘为/dev/sda，这边是SSD
 - 执行fdisk /dev/sda进行分区，假设新建的系统分区为/dev/sda1
 - ``mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1``
 
 
-### 安装系统
+## 安装系统
 - 执行``wifi-menu``，连接合适的无线网络
 - 编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
 
@@ -59,13 +60,13 @@ reboot
 
 - 重启之后，执行``wifi-menu``连接到无线网络
 
-### 系统更新
+## 系统更新
 {% highlight bash %}
-      pacman -Syu
-      pacman -S yaourt aria2
+pacman -Syu
+pacman -S yaourt aria2
 {% endhighlight %}
 
-### pacman/yaourt调用aria2多线程下载文件
+## pacman/yaourt调用aria2多线程下载文件
 
 假设同时开8个连接
 
@@ -79,14 +80,22 @@ reboot
           'https::/usr/bin/aria2c -c -o %o %u'
           'ftp::/usr/bin/aria2c -c -o %o %u'
 
+## 时间
 
-## 图形界面
+{% highlight bash %}
+      yaourt -S ntp
+      ntpdate asia.pool.ntp.org
+{% endhighlight %}
 
-### 安装X 
+
+
+# 图形界面
+
+## 安装X 
 
 ``yaourt -S xorg xorg-xinit consolekit``
 
-### 安装lxde
+## 安装lxde
 
 ``yaourt -S lxde openbox``
 
@@ -94,7 +103,7 @@ reboot
     
     exec lxsession
 
-### 安装XFCE
+## 安装XFCE
 
 ``yaourt -S xfce4 xfce4-notifyd``
 
@@ -103,9 +112,9 @@ reboot
         exec ck-launch-session dbus-launch startxfce4
 
 
-## 配置
+# 硬件驱动
 
-### 声卡
+## 声卡
 - 安装：``yaourt -S gstreamer0.10 gstreamer0.10-base-plugins``
 - 配置：[ArchWiki:设置ALSA](https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
 - [archlinux音量太小的问题解决](https://bbs.archlinux.org/viewtopic.php?pid=1090109)
@@ -125,16 +134,30 @@ reboot
         options snd-usb-audio index=0
         options snd-hda-intel index=1
 
-## 输入法
+## 热插拔(xfce4)
+- ``yaourt -S ntfs-3g thunar-volman udisks``
+- ``yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp``
+- 配置 /etc/fstab，手动挂载磁盘
 
-### fcitxx
+      /dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
+
+## 关闭触摸板
+
+{% highlight bash %}
+sudo pacman -S synaptics
+sudo synclient TouchpadOff=1
+{% endhighlight %}
+
+# 输入法
+
+## fcitxx
 - 安装：``yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra``
 
-### scim
+## scim
 - 安装：``yaourt -S ibus ibus-table-zhengma ibus-pinyin``
 - 配置：[IBus](https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
 
-### 输入法设置
+## 输入法设置
 
 以fcitx为例
 
@@ -150,7 +173,7 @@ export XIM=fcitx
 {% endhighlight %}
 
 
-### 中文环境
+## 中文环境
 - ``vim /etc/locale.gen``，指定zh_CN.UTF-8
 - ``vim /etc/local.conf``
 
@@ -163,22 +186,7 @@ export XIM=fcitx
       LOCALE=zh_CN.UTF-8
 
 
-### 时间
-
-{% highlight bash %}
-      yaourt -S ntp
-      ntpdate asia.pool.ntp.org
-{% endhighlight %}
-
-### 热插拔(xfce4)
-- ``yaourt -S ntfs-3g thunar-volman udisks``
-- ``yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp``
-- 配置 /etc/fstab，手动挂载磁盘
-
-      /dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
-
-
-### 常用软件
+# 常用软件
 
 | 类型 | 软件 |
 | ---- | ---- |
@@ -190,16 +198,16 @@ export XIM=fcitx
 | 浏览器 | firefox firefox-i18n-zh-cn
 | 网络 | dnsutils traceroute wireshark-gtk
 
-## 网络
+# 网络
 
-### 根据MAC地址固定网卡名称
+## 根据MAC地址固定网卡名称
 
 编辑文件/etc/udev/rules.d/10-network.rules
 
       SUBSYSTEM=="net", ATTR{address}=="00:26:2d:f6:ad:43", NAME="eth0"
       SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 
-### 无线(netctl)
+## 无线(netctl)
 - 安装: ``yaourt -S net-tools wireless_tools wpa_supplicant netctl``
 - 配置: 参考/etc/netctl/examples/
 
@@ -238,7 +246,7 @@ KEY="s:myatworkpasswd"
 
       ``netctl start athome``
 
-### 无线(wpa_supplicant)
+## 无线(wpa_supplicant)
 - 安装: ``yaourt -S net-tools wireless_tools wpa_supplicant``
 - 配置:
 假设配置ESSID为mywireless，密码为mypasswd的无线
@@ -285,7 +293,7 @@ dhcpcd $WLAN
 {% endhighlight %}
 
 
-### vpn
+## vpn
 - 参考：[archlinux pptp vpn拨号连接](http://blog.vkill.net/read.php?97)
 - 没看到arch下有/etc/ppp/ip-up.d目录，用以下脚本来启动vpn，我没有把它加为开机启动项，嗯。
 
@@ -316,7 +324,7 @@ sudo route add default gw $vpn_gateway dev ppp0
 sudo route -n
 {% endhighlight %}
 
-###  netctl提示wpa无线连接失败，要看 journal -xn等等
+##  netctl提示wpa无线连接失败，要看 journal -xn等等
 
 ``netctl start somewireless``
 
@@ -328,9 +336,9 @@ netctl 提示wpa无线连接失败，要看journal -xn等等
 
 ``netctl start somewireless``
 
-## 其它
+# 其它
 
-### NGINX+PHP
+## NGINX+PHP
 - ``yaourt -S nginx spawn-fcgi php-cgi``
 - 以http(用户):http(组)启动fastcgi : 
 ``spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi``
@@ -352,7 +360,7 @@ netctl 提示wpa无线连接失败，要看journal -xn等等
 - 启动nginx: /etc/rc.d/nginx start
 
 
-### KERNEL PANIC 恢复
+## KERNEL PANIC 恢复
 
 - 系统升级失败，重启提示kernel panic，switch_root : fail to ...
 - 从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之
@@ -362,9 +370,7 @@ mount /dev/sda1 /mnt
 yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 {% endhighlight %}
 
-## 硬件
-
-### 禁用 wifi 键盘灯 LED 闪烁
+## 禁用 wifi 键盘灯 LED 闪烁
 
 见：[wireless led blink](https://wiki.archlinux.org/index.php/Wireless_Setup_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#.E7.A6.81.E7.94.A8_LED_.E9.97.AA.E7.83.81)
 
@@ -378,22 +384,21 @@ yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 # systemd-tmpfiles --create phy0-led.conf
 {% endhighlight %}
 
-## 其他
 
-### firefox 安装 flash 插件
+## firefox 安装 flash 插件
 
 - 在 adobe 网站下载 flash player
 - 将其中的libflashplayer.so 复制到 ~/.mozilla/plugins/目录下
 - 执行 ldd ~/.mozilla/plugins/libflashplayer.so 
 
-### /bin/plymouth: No such file or directory
+## /bin/plymouth: No such file or directory
 archlinux , thinkpad x61t，开机出错
 
 journalctl -xn显示 /bin/plymouth: No such file or directory 
 
 删掉 /etc/fstab 中不存在的介质就行了
 
-### locale-gen时找不到character map file
+## locale-gen时找不到character map file
 
 ``$sudo pacman -Syu``升级的时候出的问题
 
@@ -407,7 +412,7 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
 
 ``$sudo pacman -S glibc -f``
 
-### 手动设置grub2引导 windows 双系统
+## 手动设置grub2引导 windows 双系统
 
 见：[Archlinux grub2 windows8 (windows7) win8 (win7) 引导设置](http://hi.baidu.com/flashgive/item/b05697120fbf84fc9d778a26)
 
@@ -427,13 +432,13 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
             chainloader +1
     }
 
-### 无线速度慢 wireless slow
+## 无线速度慢 wireless slow
 
 参考[Slow Wireless Intel 6235 (iwlwifi module)](https://bbs.archlinux.org/viewtopic.php?id=146518)
 
     echo options iwlwifi 11n_disable=1 | sudo tee /etc/modprobe.d/51-disable-6235-11n.conf 
 
-### 数据包更新失败
+## 数据包更新失败
 
 {% highlight bash %}
 sudo pacman-key --refresh-keys
@@ -441,3 +446,4 @@ sudo pacman-key --populate archlinux
 sudo pacman -Scc
 sudo pacman -Syu
 {% endhighlight %}
+
