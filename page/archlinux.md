@@ -134,6 +134,63 @@ pacman -S yaourt aria2
         options snd-usb-audio index=0
         options snd-hda-intel index=1
 
+## 配置thinkpad声音热键
+
+安装 pulseaudio
+
+在 /usr/local/bin 中添加 sound.sh：
+{% highlight bash %}
+#!/bin/bash
+# use PulseAudio
+
+case "$1" in
+  "up")
+          pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%
+          ;;
+  "down")
+          pactl set-sink-mute 0 false ; pactl -- set-sink-volume 0 -5%
+          ;;
+  "mute")
+          pactl set-sink-mute 0 toggle
+          ;;
+  "microphonemute")
+          pactl set-source-mute 1 toggle
+          ;;
+  *)
+          pactl set-sink-mute 0 false ; pactl -- set-sink-volume 0 $1%
+esac
+
+exit 0
+{% endhighlight %}
+
+
+在 ~/.xbindkeysrc 中添加：
+{% highlight bash %}
+# Increase volume
+"sound.sh up"  
+    m:0x0 + c:123
+    XF86AudioRaiseVolume
+
+# Decrease volume
+"sound.sh down"  
+    m:0x0 + c:122
+    XF86AudioLowerVolume
+
+# Toggle mute
+"sound.sh mute"  
+    m:0x0 + c:121
+    XF86AudioMute
+
+# Toggle microphonemute
+"sound.sh microphonemute"
+    m:0x0 + c:198
+    XF86AudioMicMute
+{% endhighlight %}
+
+
+在.xinitrc中添加：``xbindkeys``
+
+
 ## 热插拔(xfce4)
 - ``yaourt -S ntfs-3g thunar-volman udisks``
 - ``yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp``
