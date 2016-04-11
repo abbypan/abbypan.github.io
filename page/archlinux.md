@@ -5,6 +5,10 @@ tagline: "kiss"
 ---
 {% include JB/setup %}
 
+# 目录
+
+{:toc}
+
 
 # 初始安装
 
