@@ -5,7 +5,10 @@ tagline: "TMTOWTDI"
 ---
 {% include JB/setup %}
 
-## 入门资料
+* toc
+{:toc}
+
+# 入门资料
 
 | 资料 | 简介 |
 | ---- | ---- |
@@ -17,7 +20,7 @@ tagline: "TMTOWTDI"
 | [PerlDOC](http://perldoc.perl.org/) | 基础文档
 | [perl unicode正则匹配](https://speakerdeck.com/patch/unicode-regular-expressions-in-perl) | 正则
 
-## 站点
+# 站点
 
 | 站点 | 简介 |
 | ---- | ---- |
@@ -28,7 +31,7 @@ tagline: "TMTOWTDI"
 | [Perl-chinaUnix](http://bbs.chinaunix.net/forum-25-1.html)，[Perlchina](http://www.perlchina.org/) | 中文社区
 
 
-## 重要书籍
+# 重要书籍
 
 | 出版时间 | 书籍 | 读后感 |
 | -------- | ---- | ------ |
@@ -43,7 +46,7 @@ tagline: "TMTOWTDI"
 | 2003.08 | Perl Cookbook | 不错的手册书，翻上四五天比较好。常见问题基本都有了，就是容易看的烦，慢慢看。 
 
 
-## 其他书籍
+# 其他书籍
 
 | 出版时间 | 书籍 | 读后感 |
 | -------- | ---- | ------ |
@@ -75,7 +78,7 @@ tagline: "TMTOWTDI"
 | 1997.03 | Web Client Programming With Perl | 写的挺好，就是内容挺旧了
 
 
-## 模块
+# 模块
 
 | 资料 | 地址 |
 | ---- | ---- |
@@ -115,7 +118,7 @@ tagline: "TMTOWTDI"
 | Web::Scraper | 抓取网页
 | snaked | 支持秒级的crontab，支持日志滚动
 
-### 更多模块
+## 更多模块
 
 | 模块 | 备注 |
 | ---- | ---- |
