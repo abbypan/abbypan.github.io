@@ -5,6 +5,7 @@ tagline: "kiss"
 ---
 {% include JB/setup %}
 
+* toc
 {:toc}
 
 

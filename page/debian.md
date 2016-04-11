@@ -5,6 +5,7 @@ tagline: "flexible"
 ---
 {% include JB/setup %}
 
+* toc
 {:toc}
 
 # 安装
