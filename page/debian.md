@@ -5,10 +5,11 @@ tagline: "flexible"
 ---
 {% include JB/setup %}
 
+{:toc}
 
-## 安装
+# 安装
 
-###  设置apt源 
+##  设置apt源 
 - BIOS里选网络启动，重启，选debian网络安装； 
 - 网络启动介绍见[PXE.USTC 基本文档](http://pxe.ustc.edu.cn)
 - 也可以参考[硬盘安装说明 by lixuebai@ustc](http://mail.ustc.edu.cn/~lixuebai/GNU/DebianInstall.html)
@@ -18,16 +19,16 @@ tagline: "flexible"
    - ``deb ftp://202.38.73.198/debian sid foo``
 
 
-###  /etc/environment 
+##  /etc/environment 
 
     LANG="zh_CN.UTF-8"
     LANGUAGE="zh_CN:zh"
 
-###  /etc/fstab 
+##  /etc/fstab 
 
 ``/dev/sda1 /mnt/usb vfat user,rw,noauto,utf8=1,fmask=113,dmask=022,umask=022 0 0``
 
-### locale
+## locale
 
 ``sudo apt-get install locales``
 
@@ -37,7 +38,7 @@ tagline: "flexible"
 
 在 ``~/.bashrc`` 中 ``export LC_ALL=en_US.UTF-8``
 
-###  基础包 
+##  基础包 
 
 {% highlight bash %}
 sudo apt-get install build-essential dnsutils cpanminus sendemail
@@ -47,9 +48,9 @@ sudo apt-get install phantomjs lftp
 {% endhighlight %}
 
 
-## 网络
+# 网络
 
-###  adsl 
+##  adsl 
 
 - 主要参考这两个贴子：[adsl by Fly1945@Hiweed](http://linux.hiweed.com/node/2467)，[adsl配置 by ryang](http://ryang.68ab.com/debian.html#sec8)
 - ``sudo apt-get install pppoe``
@@ -82,7 +83,7 @@ sudo apt-get install phantomjs lftp
 
 
 
-###  vpn 
+##  vpn 
 - 主要参考这几个贴子
   - [VPN连接校园网 by kkk@ustc](http://bbs.ustc.edu.cn/cgi/bbscon?bn=Linux&fn=M3F936B98&num=2136)
   - [pptp-linux拨vpn by hacker ustc](http://bbs.ustc.edu.cn/cgi/bbscon?bn=Linux&fn=M454D58AB&num=2351)
@@ -136,7 +137,7 @@ route add -net 210.45.0.0/16 gw $gateway dev eth0
 route add -net 211.86.0.0/16 gw $gateway dev eth0
 {% endhighlight %}
 
-### 无线
+## 无线
 - 资料：
     - [CentrinoDriver輕鬆編譯](http://moto.debian.org.tw/viewtopic.php?t=7633&amp;start=0&amp;postdays=0&amp;postorder=asc&amp;highlight=&amp;sid=f3a3f4c96593f3a93781d49bcbca4a59)
     - [Wireless](http://ccl422.blogspot.com/2007/11/wireless.html)
@@ -212,9 +213,9 @@ route add -net 211.86.0.0/16 gw $gateway dev eth0
 ``ifup eth1``
 
 
-## grub
+# grub
 
-###  /boot/grub/menu.lst 
+##  /boot/grub/menu.lst 
 
     title		Debian GNU/Linux, kernel 2.6.18-4-686
     root		(hd0,0)
@@ -229,7 +230,7 @@ route add -net 211.86.0.0/16 gw $gateway dev eth0
     makeactive
     chainloader	+1
 
-###  重装windows后修复linux 
+##  重装windows后修复linux 
 - 作者是msygod@linuxsir，原帖在[这里](http://www.linuxsir.org/bbs/showthread.php?t=180376&highlight=windows)
 - 下载**grub for dos**，将其中的grldr拷到c:\
 - __notepad c:\boot.ini__，添加后面一行，``c:\grldr="grub"``
@@ -239,7 +240,7 @@ route add -net 211.86.0.0/16 gw $gateway dev eth0
      grub>setup (hd0)
      grub>reboot
 
-###  无法进入windows，停在grub>处 
+##  无法进入windows，停在grub>处 
 Y是windows下C盘所在分区的序号
 
      grub>rootnoverify (hd0,Y)
@@ -247,7 +248,7 @@ Y是windows下C盘所在分区的序号
      grub>boot
 
 
-###  无法进入windows，连grub>都看不到 
+##  无法进入windows，连grub>都看不到 
 - 作者是linzi222@linuxsir，原帖在[这里](http://www.linuxsir.org/bbs/archive/index.php/database/t-260082.html)
 - 用windows安装盘启动，加载驱动后，按"R"键进入故障修复控制台
 - 输入命令``fixboot c:``
@@ -255,27 +256,27 @@ Y是windows下C盘所在分区的序号
 - 还不行就试试 __fixmbr__
 
 
-## 其他
+# 其他
 
-### 无法进入X
+## 无法进入X
 
 - 重启，startx；
 - dpkg-reconfigure xserver-xorg，startx
 - 提示没权限，则dpkg-reconfigure x11-common，startx
 
 
-### 关于framebuffer
+## 关于framebuffer
 
     modconf->kernel->drivers->vedio->vga16fb
 
-### 声卡驱动
+## 声卡驱动
 
 {% highlight bash %}
     sudo apt-get install alsa-utils alsa-oss
     alsaconf
 {% endhighlight %}
 
-### apache + mysql + php 
+## apache + mysql + php 
 - [apache虚拟主机](http://wiki.ubuntu.org.cn/Apache%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E6%8C%87%E5%8D%97)
 - [lamp配置](https://wiki.debian.org/zh_CN/LAMP)
 - [Debian 6 下 Apache+MySQL+MySQL的LAMP服务器的配置](http://www.duyaofei.com/2012/03/29/vps-%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B11%EF%BC%9Adebian-6-%E4%B8%8B-apachemysqlmysql%E7%9A%84lamp%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE/)
@@ -289,6 +290,6 @@ sudo apt-get install imagemagick php5-imagick php5-gd
 
 修改配置后重启apache2：``sudo apache2ctl graceful``
 
-### deiban 系统降级内核
+## deiban 系统降级内核
 
 [Downgrade from Debian SID to Stable from Jessie to Wheezy](http://ispire.me/downgrade-from-debian-sid-to-stable-from-jessie-to-wheezy/)
