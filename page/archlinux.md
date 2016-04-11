@@ -5,8 +5,7 @@ tagline: "kiss"
 ---
 {% include JB/setup %}
 
-# 目录
-
+* 目录
 {:toc}
 
 
