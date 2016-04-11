@@ -7,6 +7,9 @@ tags : [ "dns", "privacy", "security" ]
 ---
 {% include JB/setup %}
 
+* toc
+{:toc}
+
 # 背景
 
 最近集中分析了一下 dns privacy，内心觉得它的应用前景很可能类似 PGP。。。
