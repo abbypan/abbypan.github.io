@@ -7,17 +7,20 @@ tags: [ "dns", "authority" ]
 ---
 {% include JB/setup %}
 
-## oarc的 tld mon
+* toc
+{:toc}
+
+# oarc的 tld mon
 
 常见的重点项基本都包括了：[OARC TLDmon Service](https://www.dns-oarc.net/oarc/services/tldmon)
 
 可视化：[结果分块着色](https://tldmon.dns-oarc.net/nagios/)，[趋势](https://tldmon.dns-oarc.net/history/)
 
-## tcpdump抓包
+# tcpdump抓包
 
 tcpdump -s0 port 53 -w test.cap
 
-## 权威TIPS 
+# 权威TIPS 
 
 DNS解析的性能更多是取决于NS记录的缓存时间，单独把A记录的TTL调低没太大影响
 
@@ -29,11 +32,11 @@ lame server表示该dns不负责某个网域的解析，但是却将该网域的
 
 global server load balancing (GSLB)-type DNS ：根据发起请求的用户所在地，返回不同的ip
 
-## tsig
+# tsig
 
 tsig 对dns消息做认证：http://backreference.org/2010/01/24/dns-security-tsig/
 
-## zone 授权
+# zone 授权
 
 存在跨层授权。
 
@@ -45,13 +48,13 @@ tsig 对dns消息做认证：http://backreference.org/2010/01/24/dns-security-ts
 
 同理，XXX.abc.com (XXX为随机数)，即使已知 abc.com 不存在，也会到 com 查一遍。
 
-## 根域分析
+# 根域分析
 
 梦里不知身是客！
 
 [dns tampering and root servers](http://www.renesys.com/wp-content/uploads/2013/05/DNS-Tampering-and-Root-Servers.pdf)
 
-## 权威dns时延分析
+# 权威dns时延分析
 
 多个分布式探测点，探测权威ns时延
 
@@ -70,11 +73,11 @@ tsig 对dns消息做认证：http://backreference.org/2010/01/24/dns-security-ts
 - 重试x次，写入``succ_rtt``：影响偏小
 - 重试x次，均未在t秒内返回，返回失败：影响偏大
 
-## 材料
+# 材料
 
 2011-02-14 BIND 9 DNS Security：http://www.nsa.gov/ia/_files/vtechrep/I733-004R-2010.pdf
 
-## 权威NS更新
+# 权威NS更新
 对域名testxxx.com做ns记录修改，本地ns服务器ns.new.net提供该域名解析
 
 在域名注册商处修改ns成功：原来是 ns.old.net ，现在是ns.new.net
@@ -89,11 +92,11 @@ dig testxxx.com -t ns +trace 从根开始问到底，中间在com.处返回ns.ne
 
 在域名注册商处把ns记录换成ns.new.net，父域com.的ns知道有改动了，但是ns.new.net上的旧记录没有更新。
 
-## 查询测速
+# 查询测速
 
 见：[Measuring Query Latency of Top Level DNS Servers](http://netsec.ccert.edu.cn/duanhx/files/2013/02/latency.pdf)
 
-### NXDOMAIN-QUERY
+## NXDOMAIN-QUERY
 
     client到根的rtt：client 向递归 dns_r 查不存在的tld域名查询，那么递归dns_r就会去根root查。 
 
@@ -108,7 +111,7 @@ dig testxxx.com -t ns +trace 从根开始问到底，中间在com.处返回ns.ne
 
 文章中用这个方法测了root，.com / .net / .org 等流行tld。
 
-### KING
+## KING
 
 用king法测量递归到13个根的时延，测的是到13个根anycast ip的rtt
 
@@ -119,7 +122,7 @@ dig testxxx.com -t ns +trace 从根开始问到底，中间在com.处返回ns.ne
 
 此外还用fpdns探测了一下bind版本 
 
-###  [King: Estimating Latency between Arbitrary Internet End Hosts](http://homes.cs.washington.edu/~gribble/papers/king.pdf)
+##  [King: Estimating Latency between Arbitrary Internet End Hosts](http://homes.cs.washington.edu/~gribble/papers/king.pdf)
 
 利用dns测两个ip之间的RTT
 - ip_a 本地网段有个递归 dns_r

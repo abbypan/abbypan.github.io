@@ -7,7 +7,10 @@ tags : [ "dns", "security", "recursive", "edns0", "dnssec" ]
 ---
 {% include JB/setup %}
 
-## 递归server迭代查询时，收到多个权威ns时的选择算法
+* toc
+{:toc}
+
+# 递归server迭代查询时，收到多个权威ns时的选择算法
 见：
 - http://www.nanog.org/meetings/nanog54/presentations/Tuesday/TrackYu.pdf
 - http://irl.cs.ucla.edu/data/files/papers/res_ns_selection.pdf
@@ -42,13 +45,13 @@ RTT初始化：
 - 定时查
 - 直接当成长RTT处理（得等好久才能再一次被选中） 
 
-## 端口随机性 port randomness test
+# 端口随机性 port randomness test
 
 见：https://www.dns-oarc.net/oarc/services/porttest
 
 把porttest.dns-oarc.net查询CNAME到z.y.x.w.v.u.t.s.r.q.p.o.n.m.l.k.j.i.h.g.f.e.d.c.b.a.pt.dns-oarc.net，计算这随后26个查询包源端口的标准差 
 
-## 测试递归是否支持DNSSEC查询
+# 测试递归是否支持DNSSEC查询
 
 {% highlight bash %}
 > dig com. SOA +dnssec @8.8.8.8
@@ -76,7 +79,7 @@ Z6JRmQMB0tU+cC dnvfVRMV8Cr/RC6utuH2IW7usXihWQ3IDh7Dv5ZJlAcFF6q44JSbLKRJ keM=
 ;; MSG SIZE  rcvd: 268 
 {% endhighlight %}
 
-## 测试递归DNS是否支持EDNS0
+# 测试递归DNS是否支持EDNS0
 
 {% highlight bash %}
 > dig com. ns +bufsize=4096 @61.139.2.69
@@ -129,20 +132,20 @@ e.gtld-servers.net.     165429  IN      A       192.12.94.30
 ;; MSG SIZE  rcvd: 520 
 {% endhighlight %}
 
-## 测试递归可支持的RESPONSE长度
+# 测试递归可支持的RESPONSE长度
 
 见：[OARC s DNS Reply Size Test Server](https://www.dns-oarc.net/oarc/services/replysizetest)
 
 用户 <-> 递归（前端cache，后端forwarder）<-> 权威
 
-### 总结
+## 总结
 
 oarc这个服务只能测单个链路(递归<->oarc权威)的edns支持情况，是否支持edns0的结论一般跟实际情况差别不会太大，测出的支持edns0最大长度则可能与实际不太一致（因为不同链路实际情况不同）。
 
 当然是否支持edns0的结论也可能出错，当 用户<->某个递归 edns0正常，但是该递归<->oarc权威 edns0失败，就会出现不一致的探测结果。
 
 
-### 分析
+## 分析
 
 如果递归不支持EDNS，则无法接收超过512字节的数据
 
@@ -161,7 +164,7 @@ BIND 9.5.0 之后，递归查询如果time out，会把edns的buffer长度设回
 ``dig tcf.rs.dns-oarc.net txt @xxx.xxx.xxx.xxx``
  
 
-### 检测原理
+## 检测原理
 
     一次查询多次CNAME检测
 
@@ -171,13 +174,13 @@ BIND 9.5.0 之后，递归查询如果time out，会把edns的buffer长度设回
 
     最终返回TXT记录，包含了上述测试的长度，以及是否支持EDNS的判断
 
-### 注意
+## 注意
 
 这个只能测 递归<->oarc权威之间的链路，没法测 用户<->递归 之间的链路
 
 对于forwarder的情况，用一些不常见的RR填充数据包可能会更好一点
 
-## 域名已经删除了但仍可以在递归持续解析
+# 域名已经删除了但仍可以在递归持续解析
 见：http://netsec.ccert.edu.cn/duanhx/archives/1656?lang=zh-hans
 
 清华的paper
@@ -192,7 +195,7 @@ ns1.somedomain.com可以定期发包强调当前权威可用，同时update用tt
 
 解决的时候，一个注意NS要从上级问，还有得按层次检查域名。
 
-## 权威错误数据传到递归后，递归如何清除缓存
+# 权威错误数据传到递归后，递归如何清除缓存
 见：[hijacking-dns-error-ddos-what-happened-and-what-you-can-do](https://www.isc.org/blogs/hijacking-dns-error-ddos-what-happened-and-what-you-can-do/)
 
 与缓存中毒不同，LinkedIn的问题出在注册商，所以从TLD权威开始就错了。
@@ -201,7 +204,7 @@ ns1.somedomain.com可以定期发包强调当前权威可用，同时update用tt
 
 [How do I flush or delete incorrect records from my recursive server cache](https://kb.isc.org/article/AA-01002)
 
-## isp ldns
+# isp ldns
 运营商一般是有少量（比如3～4个）只接收解析请求的前端LDNS、由前端LDNS向后端一堆（比如20多个）负责进行解析的LDNS转发解析请求，后端LDNS再返回该域名NS服务器解析结果给前端LDNS，前端LDNS再返回给用户。
 
 因此，靠近用户的运营商前端LDNS可能远小于靠近域名NS服务器的运营商后端LDNS。
@@ -210,7 +213,7 @@ LDNS收到域名解析的一些IP（比如10个）后，在缓存失效前，不
 
 因此，单独通过域名解析的IP轮询做负载均衡还不够，还应该在接收服务请求时也做一些负载分担。 
 
-## intranet recursive dns
+# intranet recursive dns
 
 问题根源在于recursive内外混用
 
@@ -222,9 +225,9 @@ LDNS收到域名解析的一些IP（比如10个）后，在缓存失效前，不
 
 [2013 dotless](http://www.potaroo.net/ispcol/2013-10/dotless.html) 这篇文章讨论了 dotless 在 newg 下，name collision 是否真的会很严重。作者观点：1）更可能出现在上网环境变更，自动切换dns，使得内部查询请求泄漏到root；2）关键在于统一操作系统、浏览器对于dotless的处理。（说实话这问题就是以前乱用留下的债，我也觉得挺无聊）
 
-## draft 笔记
+# draft 笔记
 
-### [Domain Name System (DNS) Cookies](http://tools.ietf.org/html/draft-eastlake-dnsext-cookies-03)
+## [Domain Name System (DNS) Cookies](http://tools.ietf.org/html/draft-eastlake-dnsext-cookies-03)
 参考：[DNS Cookies](http://www.ietf.org/proceedings/67/slides/dnsext-0/dnsext-0.ppt)
 
 差不多就是resolver 和  ns 之间互相发挑战码当cookie进行握手，双方都要支持
@@ -239,7 +242,7 @@ ns更容易被ddos调戏，伪造源IP查就可以触发它算一堆cookie；不
 
 （个人觉得这个认证越搞越麻烦，不如直接全上TCP，唉！）
 
-### [Improvements to DNS Resolvers for Resiliency, Robustness, and Responsiveness](http://tools.ietf.org/html/draft-vixie-dnsext-resimprove-00)
+## [Improvements to DNS Resolvers for Resiliency, Robustness, and Responsiveness](http://tools.ietf.org/html/draft-vixie-dnsext-resimprove-00)
 
 主要集中于递归对NS记录的处理，很多细节值得再读，类似于最佳实践总结
 
@@ -288,7 +291,7 @@ NS授权的信任
 
 5.2 下层域被NS cache poison长TTL影响缓解，因为上层glue有重新验证的时间（如果是在TLD注册的那些域，估计还是够呛）
 
-### [A Mechanism for Remote-Triggered DNS Cache Flushes (DNS FLUSH)](http://tools.ietf.org/html/draft-jabley-dnsop-dns-flush-00)
+## [A Mechanism for Remote-Triggered DNS Cache Flushes (DNS FLUSH)](http://tools.ietf.org/html/draft-jabley-dnsop-dns-flush-00)
 
 让权威主动通知某些递归，有某个域数据变了，不要等ttl过期，赶快flush
 
