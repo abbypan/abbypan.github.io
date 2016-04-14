@@ -33,4 +33,4 @@ ggsave('x_log10_y_percent.png')
 {% endhighlight %}
 
 
-<img src="/assets/posts/x_log10_y_percent.png" width="50%">
+<img src="/assets/posts/x_log10_y_percent.png" width="100%">
