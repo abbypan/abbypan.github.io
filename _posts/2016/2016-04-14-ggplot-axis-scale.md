@@ -32,4 +32,4 @@ print(gp)
 ggsave('x_log10_y_percent.png')
 {% endhighlight %}
 
-![x_log10_y_percent.png](/assets/posts/x_log10_y_percent.png)
+![x_log10_y_percent.png](/assets/posts/x_log10_y_percent.png | width=300 )
