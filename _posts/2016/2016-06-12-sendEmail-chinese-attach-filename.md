@@ -15,6 +15,8 @@ tags : [ "sendEmail", "chinese" ]
 
 ## 乱码场景
 
+以下bug场景由耗子发现……
+
 sendEmail将邮件正文内容以及附件文件以unicode编码发送
 
 ![sendEmail-unicode.png](/assets/posts/sendEmail-unicode.png)
