@@ -135,7 +135,8 @@ tagline: "TMTOWTDI"
 | Config::Scoped | 配置文件
 | Config::YAML | 配置文件
 | Cookie::Baker | 生成set-cookie的内容
-| DBM::Deep | 
+| CryptX | 加解密
+| DBM::Deep | 数据库
 | Dancer | Web 框架
 | Date::Parse | 从字符串解析时间
 | EV::ADNS | 
@@ -193,9 +194,8 @@ tagline: "TMTOWTDI"
 | Statistics::Basic | 基础统计函数，均值、中位数、方差、标准差等等
 | Sub::Exporter | 生成多个闭包函数
 | Term::Prompt | 
-| Term::Prompt | 
+| Term::ProgressBar::Simple | 进度条
 | Test::Harness | 
-| Test::Output | 测试stdout, stderr的输出内容
 | Test::Output | 测试stdout、stderr输出的内容
 | Text::Autoformat | 
 | Text::Balanced | 解析字符串，提取内容 
