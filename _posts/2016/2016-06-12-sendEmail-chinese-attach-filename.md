@@ -9,6 +9,8 @@ tags : [ "sendEmail", "chinese" ]
 
 ## sendEmail示例
 
+[sendEmail](https://github.com/mogaal/sendemail) 是一个非常好用的邮件发送工具，此处省略500字……
+
     sendEmail -u 华夏 -m 华夏 -o message-charset=utf8 -f xxx@xxx.com -t yyy@yyy.com -a 华夏.txt
 
 ## 乱码场景
@@ -17,7 +19,7 @@ sendEmail将邮件正文内容以及附件文件以unicode编码发送
 
 ![sendEmail-unicode.png](/assets/posts/sendEmail-unicode.png)
 
-用 QQ邮箱、163邮箱 接收邮件后，附件名称正常显示，但下载时自动乱码
+用 QQ邮箱、网易邮箱 接收邮件后，附件名称正常显示，但下载时自动乱码
 
 ![sendEmail-chn-err.png](/assets/posts/sendEmail-chn-err.png)
 
