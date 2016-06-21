@@ -1,8 +1,8 @@
 ---
 layout: post
 category: pastime
-title:  "体操本命，江钰源"
-tagline: ""
+title: "体操本命，江钰源"
+tagline: "酱油粉"
 tags: [ "gym" ] 
 ---
 {% include JB/setup %}
