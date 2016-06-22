@@ -39,7 +39,7 @@ tagline: "abbypan"
 
 | 类型 | 链接 |
 | ---- | ---- |
-| USTC | [瀚海星云](http://bbs.ustc.edu.cn)，[科大音乐](http://music.ustc.edu.cn)，[INFONET](http://if.ustc.edu.cn)
+| USTC | [瀚海星云](http://bbs.ustc.edu.cn)，[科大音乐](http://music.ustc.edu.cn)，[InfoNet](http://if.ustc.edu.cn)
 | 主页 | [viki deplate](assets/viki_deplate)，[txt2tags](assets/txt2tags)
 
 
