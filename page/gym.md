@@ -55,14 +55,14 @@ tagline: ""
 | 2011 | 东京 | 世锦赛 | [TF.VT](https://www.youtube.com/watch?v=2UHT4SSaf8I)
 | 2011 | - | 全锦赛 | [AA.UB](https://www.youtube.com/watch?v=7Z5_x4S9zHM), [AA.BB](https://www.youtube.com/watch?v=lw7KF4KHEaA)
 | 2010 | 荷兰.鹿特丹 | 世锦赛 | [AA.UB](https://www.youtube.com/watch?v=N6i5PYGhKFA), [AA.BB](https://www.youtube.com/watch?v=JP4He8If1hw), [AA.FX](https://www.youtube.com/watch?v=2Z0hBaQrqhA), [TF.FX](https://www.youtube.com/watch?v=0zk3Y_kTFF8)
-| 2010 | 中国.株洲 | [EF.BB](https://www.youtube.com/watch?v=3wufM_pi4hA)
-| 2009 | 中国.湖北 | [EF.UB](https://www.youtube.com/watch?v=C3o0KaSfCxE)
+| 2010 | 中国.株洲 | - | [EF.BB](https://www.youtube.com/watch?v=3wufM_pi4hA)
+| 2009 | 中国.湖北 | - | [EF.UB](https://www.youtube.com/watch?v=C3o0KaSfCxE)
 | 2008 | 中国.北京 | 奥运会 | [TF](https://www.youtube.com/watch?v=ELLG3Ar1BX8) 
 | 2007 | 德国.斯图加特 | 世锦赛 | [TF.FX](https://www.youtube.com/watch?v=GywpRQ56jYM), [EF.FX](https://www.youtube.com/watch?v=ulJc9ck6tJM)
 | 2006 | - | - | [UB](https://www.youtube.com/watch?v=UxlqasW9L7M), 
 | 2006 | - | RUS | [FX](https://www.youtube.com/watch?v=pNodyXey0oU), [BB](https://www.youtube.com/watch?v=AInZ-XdK_X0)
-| 2006 | 中国.湖北 | [EF.FX](https://www.youtube.com/watch?v=FtS4_7VHTYg), [BB](https://www.youtube.com/watch?v=5ZzjXS5Me3U)
-| 2006 | - | ITA | [FX](https://www.youtube.com/watch?v=a_sQoCyRaHs), [BB](https://www.youtube.com/watch?v=Z4HskcBS69c)
+| 2006 | 中国.湖北 | - | [EF.FX](https://www.youtube.com/watch?v=FtS4_7VHTYg), [BB](https://www.youtube.com/watch?v=5ZzjXS5Me3U)
+| 2006 | - | ITA | [VT](https://www.youtube.com/watch?v=eZryMHpDIik), [UB](https://www.youtube.com/watch?v=h25Eu4LecWI), [FX](https://www.youtube.com/watch?v=a_sQoCyRaHs), [BB](https://www.youtube.com/watch?v=Z4HskcBS69c)
 
 ## 视频
 
