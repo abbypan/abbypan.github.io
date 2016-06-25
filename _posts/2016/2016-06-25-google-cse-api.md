@@ -21,7 +21,7 @@ tags: [ "google" ]
 
 ## 例子
 
-{% highlight bash %}
+{% highlight perl %}
 #!/usr/bin/perl
 use strict;
 use warnings;
