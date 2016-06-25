@@ -1,7 +1,6 @@
 ---
 layout: page
-title: "Home"
-tagline: "Pan Lanlan"
+title: Home
 ---
 {% include JB/setup %}
 
