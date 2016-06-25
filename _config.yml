@@ -4,9 +4,12 @@
 permalink: /:year/:month/:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
-#highlighter: rouge
-highlighter: pygments
 markdown: kramdown
+#highlighter: pygments
+
+kramdown:
+  input: GFM
+  syntax_highlighter: pygments
 
 safe: true
 lsi: false
