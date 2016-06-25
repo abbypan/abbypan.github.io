@@ -5,6 +5,9 @@ tagline: "Domain Name System "
 ---
 {% include JB/setup %}
 
+* toc
+{:toc}
+
 ## 基础
 
 | 资料 | 说明 |

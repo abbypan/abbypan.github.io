@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "江天一色"
-tagline: "abbypan"
+title: "Home"
+tagline: "Pan Lanlan"
 ---
 {% include JB/setup %}
 
@@ -13,11 +13,7 @@ tagline: "abbypan"
         
         守望一生。
 
-{% include google_search.html %}
-
 ![我的邮箱](assets/img/mail.png) 
-
-[![RSS](assets/img/rss.png)](/rss.xml)
 
 ## 生活
 

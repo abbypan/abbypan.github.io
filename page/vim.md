@@ -5,6 +5,9 @@ tagline: "编辑器"
 ---
 {% include JB/setup %}
 
+* toc
+{:toc}
+
 ## 简单入门
 
 | 资料 | 简介 |
@@ -93,15 +96,17 @@ let g:Perl_FormatYear            = 'Year %Y'
 {% endhighlight %}
 
 ### Nerd Commenter 代码注释
+
 | 按键 | 作用 |
 | ---- | ---- |
-| ``,cc`` |	把选中的行注释掉
-| ``,cn`` |	把选中的行注释掉，已注释过的行仍继续加注释符
-| ``,c<space>`` | 反注释选中的行
-| ``,c$`` | 从光标开始处注释掉当前行
-| ``,cA`` | 在当前行结尾处添加注释
+| ,cc |	把选中的行注释掉 |
+| ,cn |	把选中的行注释掉，已注释过的行仍继续加注释符 |
+| ,c<space> | 反注释选中的行 |
+| ,c$ | 从光标开始处注释掉当前行 |
+| ,cA | 在当前行结尾处添加注释 |
 
 ### 自动识别打开的中文乱码
+
 把[fencview.vim](http://www.vim.org/scripts/script.php?script_id=1708)扔到``~/.vim/plugin``下
 
 在``~/.vimrc``中设置``let g:fencview_autodetect=1``
@@ -109,6 +114,7 @@ let g:Perl_FormatYear            = 'Year %Y'
 ###  Windows下的相关编码设置
 
 参考：[vim、gvim在windows下中文乱码的终极解决方案](http://blog.csdn.net/rehung/archive/2007/09/21/1794293.aspx)
+
 {% highlight vim %}
 language mes zh_CN.GBK
 set langmenu=zh_CN.UTF-8
