@@ -1,7 +1,7 @@
 ---
 layout: post
-category : 穿越火线
-title:  "Linux Hotcloning 系统备份，双机热备"
+category : tech
+title:  "VPS Linux Hotcloning 系统备份，双机热备"
 tagline: ""
 tags : [ "vps", "linux", "hotcloning" ] 
 ---

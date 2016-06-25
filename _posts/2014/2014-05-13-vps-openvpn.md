@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 穿越火线
+category : "freedom"
 title:  "访问互联网：搭建 openvpn 服务"
 tagline: ""
 tags : [ "great.w",  "openvpn", "vps", "iphone", "android", "windows", "itools" ] 
