@@ -19,6 +19,10 @@ tags: [ "google" ]
 
 [Using REST to Invoke the CSE API](https://developers.google.com/custom-search/json-api/v1/using_rest)
 
+[Google Custom Search JSON API](http://stackoverflow.com/questions/30565137/google-custom-search-json-api)
+
+取下一页内容：start=11&num=10，注意 num<=10
+
 ## 例子
 
 {% highlight perl %}
@@ -34,21 +38,26 @@ use Data::Dumper;
 
 # https://www.googleapis.com/customsearch/v1?key=$KEY&cx=$CX&q=$query&fields=items(title,link)
 our $API_KEY = 'AIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxY';
-our $ENGINE_ID CX = '088888888888888888883:txxxxxxxxxo';
+our $ENGINE_ID = '088888888888888888883:txxxxxxxxxo';
 
-my $d = query_xs($API_KEY, $ENGINE_ID, '风尘叹', "items(title,link)");
+my $d = query_xs( { key => $API_KEY, cx => $ENGINE_ID, q=> '风尘叹', fields=> "items(title,link)"} );
 print Dumper($d);
+my $d2 = query_xs( { key => $API_KEY, cx => $ENGINE_ID, q=> '风尘叹', fields=> "items(title,link)",
+        start => 11,
+        num => 10,
+    } );
+print Dumper($d2);
 
 sub query_xs {
-    my ($api_key, $engine_id, $query, $fields) = @_;
+    my ($r) = @_;
 
-    my $url = "https://www.googleapis.com/customsearch/v1?key=$api_key&cx=$engine_id&q=$query";
-    $url .= "&fields=$fields" if($fields);
+    my $s = join("&", map { "$_=$r->{$_}" } keys(%$r));
+    my $url = "https://www.googleapis.com/customsearch/v1?$s";
 
     my $res = HTTP::Tiny->new->get($url);
     return unless $res->{success};
 
-    my $r = decode_json($res->{content});
-    return $r;
+    my $d = decode_json($res->{content});
+    return $d;
 }
 {% endhighlight %}
