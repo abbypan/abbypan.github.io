@@ -38,6 +38,27 @@ tagline: "Domain Name System "
 | [dns-tools](http://www.bind9.net/dns-tools) | bind 网站整理的
 | [chinaz站长dns工具](http://tool.chinaz.com/dns/) | 从国内各地探测指定域名，也可指定dns，还可以traceroute
 | [networktools](http://networktools.nl/) | 老外的站长工具
+| [ccnso icann tld monitor](http://ccnso.icann.org/resources/tld-ops-secure-communication.htm) |
+| [TLD MONITOR](https://tldmonitor.blipp.com/) |
+| [DNS-OARC TLD Monitoring](https://tldmon.dns-oarc.net/nagios/) |
+| [RIPE Atlas DNS Monitoring](https://atlas.ripe.net/dnsmon) |
+| [Thousand Eyes](https://www.thousandeyes.com/) |
+| [DNSviz](http://dnsviz.net/d/ca/dnssec/) |
+| [DNSSEC Early warning](http://www.dnssek.info/) |
+| [DNSSEC Deployment Report](http://rick.eng.br/dnssecstat/) |
+| [Zonalizer](https://zonalizer.makeinstall.se) |
+| [Zonalizer history](https://zonalizer.makeinstall.se/browse/?ca) |
+| [CIRA DNS Checker](http://dnstest.cira.ca/) |
+| [DNS Configuration: ROBTEX](https://www.robtex.com/?dns=) |
+| [EDNSO Compliance Tester](https://ednscomp.isc.org/) |
+| [DDoS Mon  alerting](https://ddosmon.net/) |
+| [DNSDB](https://www.dnsdb.info) |
+| [Shadowserver Compromised Websites](https://www.shadowserver.org/wiki/pmwiki.php/Services/Reports) |
+| [OpenPhish Premium](https://openphish.com/phishing_feeds.html) |
+| [VirusTotal](https://www.virustotal.com/) |
+| [Secure Domain Foundation](http://www.securedomain.org/) , [API](https://api.securedomain.org/intel/json?key=YOURKEY4&email=xx@xx.xx)
+| [DNSDB](https://www.dnsdb.info) |
+| [PassiveTotal](https://www.passivetotal.com/) |
 
 
 ## 数据
