@@ -7,11 +7,16 @@ tags : [ "dns", "nsec", "nxdomain", "dnssec" ]
 ---
 {% include JB/setup %}
 
+* TOC
+{:toc}
+
 对于 nxdomain 场景，dnssec的处理方案是 nsec(3)，见 RFC4033/RFC4034/RFC4035/RFC7129
 
 对于nxdomain/nsec(3)提供的信息有几种利用思路
 
-## draft-ietf-dnsop-nsec-aggressiveuse 递归侧利用nsec(3)缓解ddos威胁
+## draft-ietf-dnsop-nsec-aggressiveuse 
+
+递归侧利用nsec(3)缓解ddos威胁
 
 递归根据nsec/nsec3提供的信息，自动返回该范围内的nxdomain，不需向权威查询
 
@@ -21,7 +26,9 @@ ddos缓解效果，与该域下的域名个数相关，相当于一个圆上划�
 
 对于com/net等超大型的tld域，递归进行nsec aggressiveuse查找，开销也会增大
 
-## draft-ietf-dnsop-nxdomain-cut 扩展nxdomain的覆盖认定，收到某域名的nxdomain也代表着该域下不存在其他子域名
+## draft-ietf-dnsop-nxdomain-cut 
+
+扩展nxdomain的覆盖认定，收到某域名的nxdomain也代表着该域下不存在其他子域名
 
 此时，对 QNAME minimisation [RFC7816] 的分层查询也有明显的好处
 
