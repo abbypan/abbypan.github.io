@@ -7,6 +7,9 @@ tags: [ "" ]
 ---
 {% include JB/setup %}
 
+* TOC
+{:toc}
+
 {% highlight perl %}
 注意几个参数：binary、sep_char、allow_loose_quotes
 
