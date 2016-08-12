@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "TLS 安全"
+title:  "TLS token binding 安全扩展"
 tagline: ""
 tags: [ "tls", "security" ] 
 ---
