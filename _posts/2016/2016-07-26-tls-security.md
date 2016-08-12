@@ -12,7 +12,7 @@ tags: [ "tls", "security" ]
 
 # 资料
 
-[Browse Auth](http://browserauth.net/)
+[http://browserauth.net/](http://browserauth.net/)
 
 ## Bearer Token
 
