@@ -69,6 +69,7 @@ tagline: ""
 | 时间 | 视频 |
 | ---- | ---- |
 | 2013 | [全运会-小江](https://www.youtube.com/watch?v=l2ST9uuiPKY)
+| 2012 | [请微笑着奔向明天-致敬中国体操小花](http://v.youku.com/v_show/id_XNzMyOTYyNDky.html)
 | 2012 | [人在奥运年-眭禄](https://www.youtube.com/watch?v=FB5zgPjDW24)
 | 2011 | [世锦赛前-小江](https://www.youtube.com/watch?v=6lJwEibvN0k)
 | 2008 | [我的奥林匹克-江钰源](https://www.youtube.com/watch?v=9SPYkXyjEn4)

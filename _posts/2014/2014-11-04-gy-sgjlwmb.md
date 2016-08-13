@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 文史
+category : pastime 
 title:  "国语-周语上《召公谏厉王弭谤》"
 tagline: ""
 tags : [ "国语", "先秦", "召公谏厉王弭谤" ] 
