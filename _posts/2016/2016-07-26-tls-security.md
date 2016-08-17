@@ -72,11 +72,33 @@ HTTPS + Token Binding ：服务器通过client public token binding key将cookie
 
 服务器将cookie与client public key绑定，而非像RFC5929一般（将数据与server public key绑定）
 
-。。。。。。
+{% highlight bash %}
+Kb :  client public key
 
-server -> client ： < uid, client public key > 的签名
+server -> client --------------
+Set-Cookie : { uid, Kb } signed with  Kb
 
-client -> server ：  < uid, client public key > 的签名，server接收后检查是否channel binding key与cookie里的key一致
+client -> server --------------
+Cookie: { uid, Kb } signed with  Kb
+Token-Binding:  Kb, { EKM } signed with Kb
+
+{% endhighlight %}
+
+服务器检查 :  
+
+{% highlight bash %}
+cookie received = cookie sent
+
+Kb in Token-Binding is same with Kb in { uid, Kb } 
+
+{ EKM } signed with Kb  match TLS { EKM }
+{% endhighlight %}
+
+EKM signature 参考 [Token Binding Protocol Message](https://tools.ietf.org/html/draft-ietf-tokbind-protocol-08#section-3)
+
+EKM 参考 [Keying Material Exporters for Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5705)
+
+这里的细节在于，Token-Binding里的EKM签名作用是与tls session信息关联，而Cookie里的uid+Kb签名作用是与Token-Binding里的Kb关联，两层关联即实现tls channel + client public key的信息绑定，有效减小中间人攻击的风险。
 
 ## Proof-Key Federation Protocols
 
@@ -114,4 +136,4 @@ FIDO：钓鱼、中间人攻击
 
 fido解决重点其实是在于身份认证，而tls token binding重点在于链路安全。
 
-浏览器支持的方面，fido应用驱动优势估计更大一些。
+实际浏览器支持的方面，fido应用驱动优势估计更大一些。
