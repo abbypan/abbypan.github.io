@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title: "Perl : unicode, utf8 字符串转换"
+title: "Perl : 中文 unicode, utf8 字符串转换"
 tagline: ""
-tags: [ "perl", "unicode", "utf8" ] 
+tags: [ "perl", "unicode", "utf8", "chinese" ] 
 ---
 {% include JB/setup %}
 
