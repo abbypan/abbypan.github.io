@@ -14,6 +14,7 @@ tags: [ "hyper", "debian", "vps" ]
 {% highlight bash %}
 $ wget https://hyper-install.s3.amazonaws.com/hyper-linux-x86_64.tar.gz
 $ tar zxvf hyper-linux-x86_64.tar.gz 
+$ chmod +x hyper
 $ mv hyper /usr/bin/
 $ hyper config
 #输入 Access Key, Secret Key
