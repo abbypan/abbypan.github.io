@@ -21,7 +21,7 @@ $ hyper config
 $ hyper pull debian:latest
 $ hyper run --size s2 --name mydebian -p 22 -i -t debian:latest bash
 root@88888888ca80:~# apt-get update
-root@88888888ca80:~# apt-get intall vim ssh net-tools wget
+root@88888888ca80:~# apt-get install vim ssh net-tools wget
 root@88888888ca80:~# /etc/init.d/ssh start
 root@88888888ca80:~# exit
 $ hyper fip allocate 1
