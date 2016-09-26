@@ -125,7 +125,7 @@ middle上的``.ssh/config``示例
 
 ![puttygen](/assets/posts/puttygen.jpg)
 
-## 浏览器pac文件示例
+## 浏览器pac文件示例（黑名单），默认直连
 
 {% highlight bash %}
 var direct = 'DIRECT';
@@ -150,7 +150,41 @@ function FindProxyForURL(url, host) {
 };
 {% endhighlight %}
 
+## 浏览器pac文件示例（白名单），默认代理
+
+{% highlight bash %}
+var direct = 'DIRECT';
+var http_proxy = 'SOCKS5 127.0.0.1:7070; DIRECT';
+var white_list = [
+".cn", 
+".com.cn",
+".qq.com",
+".jd.com",
+".360buyimg.com",
+".baidu.com",
+".bdstatic.com",
+".douban.com",
+"weibo.com",
+".taobao.com",
+".alipay.com",
+".alicdn.com", 
+".taobaocdn.com"
+];
+
+function FindProxyForURL(url, host) {
+    if(! host) return direct;
+    for (var i = 0; i < white_list.length; i += 1) {
+        var v = white_list[i];
+        if ( dnsDomainIs(host, v)) {
+            return direct;
+        }
+    }
+    return http_proxy;
+};
+{% endhighlight %}
+
 ## ssh 保持连接
+
 参考 [Keep Your Linux SSH Session From Disconnecting](http://www.howtogeek.com/howto/linux/keep-your-linux-ssh-session-from-disconnecting/)，在``~/.ssh/config``中添加
 {% highlight bash %}
 Host *
