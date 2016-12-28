@@ -28,7 +28,7 @@ title: Home
 | ---- | ---- |
 | 工具 | [Perl](page/perl.html)，[Perl6](page/perl6.html)，[archlinux](page/archlinux.html)，[Debian](page/debian.html)
 | 其他 | [Vim](page/vim.html)，[DNS](page/dns.html)
-| 交流 | [blogspot](http://abbypan.blogspot.com), [douban](https://www.douban.com/people/swd3e/), [twitter](https://twitter.com/abbypan)
+| 交流 | [linkedin](https://www.linkedin.com/in/abby-pan-54b90977)，[twitter](https://twitter.com/abbypan)，[douban](https://www.douban.com/people/swd3e/)，[blogspot](http://abbypan.blogspot.com)
 
 ## 旧的回忆
 
