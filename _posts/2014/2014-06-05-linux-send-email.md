@@ -14,7 +14,7 @@ tags : [ "sendemail", "mail", "smtp" ]
 ## 指定 发件人，并发送带附件 的邮件
 
 {% highlight perl %}
-sendemail -vv -u "标题" -m "内容" -a "attach.txt" -f from@xxx.com -t somea@bbb.com,otherb@yyy.com
+sendemail -vv -u '标题' -m '内容' -a 'someattach.txt' -f somefrom@xxx.com -t somea@yyy.com,otherb@zzz.com
 {% endhighlight %}
 
 ## 用gmail账号发送邮件
