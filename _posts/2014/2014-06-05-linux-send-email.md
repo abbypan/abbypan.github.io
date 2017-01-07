@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "Linux : 用 sendemail 指定 发件人，并发送带附件 的邮件"
+title:  "Linux : 用 sendemail 指定 发件人，并发送带附件的邮件"
 tagline: "sendEmail"
-tags : [ "sendemail", "mail" , "from", "attach"  ] 
+tags : [ "sendemail", "mail", "smtp" ] 
 ---
 {% include JB/setup %}
 
@@ -23,6 +23,16 @@ sendemail -vv -u "标题" -m "内容" -a "attach.txt" -f from@xxx.com -t somea@b
 
 {% highlight perl %}
 sendEmail -u '标题' -m '内容' -f mygmail@gmail.com -a someattach.txt -t somerecv@yyy.com -vv -s smtp.gmail.com -xu mygmail -xp 'mygmailpwd'
+{% endhighlight %}
+
+## 用qq邮箱账号发送带附件的邮件
+
+打开qq邮箱的imap/smtp功能：[如何打开POP3/SMTP/IMAP功能？](http://service.mail.qq.com/cgi-bin/help?subtype=1&&no=166&&id=28)
+
+假设邮箱用户名为 someusr, 打开imap/smtp之后获得的独立密码为 xxxxyyyyzzzzxxxx
+
+{% highlight perl %}
+sendEmail -u '标题' -m '内容' -f someusr@qq.com -a someattach.txt -t somerecv@yyy.com -vv -s smtp.qq.com:587 -o tls=yes -xu someusr -xp 'xxxxyyyyzzzzxxxx'
 {% endhighlight %}
 
 ## windows环境
