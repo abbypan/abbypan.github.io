@@ -248,15 +248,13 @@ export XIM=fcitx
 
 # 常用软件
 
-| 类型 | 软件 |
-| ---- | ---- |
-| 下载 | rsync curl lftp wget axel
-| 字体 | wqy-bitmapfont wqy-zenhei ttf-monaco
-| 视频 | smplayer flashplugin ffmpeg flashplayer
-| 办公 | libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
-| 解压 | unzip
-| 浏览器 | firefox firefox-i18n-zh-cn
-| 网络 | dnsutils traceroute wireshark-gtk
+    yaourt -S rsync curl lftp wget axel
+    yaourt -S wqy-bitmapfont wqy-zenhei ttf-monaco
+    yaourt -S smplayer ffmpeg flashplayer
+    yaourt -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
+    yaourt -S unzip
+    yaourt -S firefox firefox-i18n-zh-cn freshplayerplugin pepper-flash chromium
+    yaourt -S dnsutils traceroute wireshark-gtk
 
 # 网络
 
