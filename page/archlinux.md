@@ -210,16 +210,9 @@ sudo synclient TouchpadOff=1
 
 # 输入法
 
-## fcitxx
-- 安装：``yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra``
-
-## scim
-- 安装：``yaourt -S ibus ibus-table-zhengma ibus-pinyin``
-- 配置：[IBus](https://wiki.archlinux.org/index.php/IBus_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
-
-## 输入法设置
-
 以fcitx为例
+
+``yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra``
 
 在``$HOME/.bashrc``中添加：
 
@@ -232,8 +225,7 @@ export GTK_IM_MODULE=fcitx
 export XIM=fcitx
 {% endhighlight %}
 
-
-## 中文环境
+# 中文环境
 - ``vim /etc/locale.gen``，指定zh_CN.UTF-8
 - ``vim /etc/local.conf``
 
@@ -252,7 +244,7 @@ export XIM=fcitx
     yaourt -S wqy-bitmapfont wqy-zenhei ttf-monaco
     yaourt -S smplayer ffmpeg flashplayer
     yaourt -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
-    yaourt -S unzip
+    yaourt -S unzip unrar p7zip
     yaourt -S firefox firefox-i18n-zh-cn freshplayerplugin pepper-flash chromium
     yaourt -S dnsutils traceroute wireshark-gtk
 
