@@ -144,8 +144,15 @@ exec ck-launch-session dbus-launch startxfce4
 
 ## 声卡
 
-- 安装：``yaourt -S gstreamer0.10 gstreamer0.10-base-plugins``
-- 配置：[ArchWiki:设置ALSA](https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
+安装
+
+{% highlight bash %}
+yaourt -S gstreamer0.10 gstreamer0.10-base-plugins
+{% endhighlight %}
+
+配置
+
+- [ArchWiki:设置ALSA](https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
 - [archlinux音量太小的问题解决](https://bbs.archlinux.org/viewtopic.php?pid=1090109)
 
 {% highlight bash %}
@@ -345,11 +352,18 @@ netctl start athome
 {% endhighlight %}
 
 ## 无线(wpa_supplicant)
-- 安装: ``yaourt -S net-tools wireless_tools wpa_supplicant``
-- 配置:
+
+安装
+
+{% highlight bash %}
+yaourt -S net-tools wireless_tools wpa_supplicant
+{% endhighlight %}
+
 假设配置ESSID为mywireless，密码为mypasswd的无线
 
-      wpa_passphrase mywireless mypasswd >> /etc/wpa_supplicant/wpa_supplicant.conf
+{% highlight bash %}
+wpa_passphrase mywireless mypasswd >> /etc/wpa_supplicant/wpa_supplicant.conf
+{% endhighlight %}
 
 手动修改wpa_supplicant.conf
 
@@ -373,7 +387,7 @@ psk=09896d6dc939e1d6b279c10ee3d4d1c8c75970ce345c6552b7ee47d892f0740e
 }
 {% endhighlight %}
 
-- 手动连接：假设无线网卡为wlan0
+手动连接：假设无线网卡为wlan0
 
 {% highlight bash %}
 WLAN=wlan0
