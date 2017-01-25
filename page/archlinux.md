@@ -44,7 +44,9 @@ Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 
 执行fdisk /dev/sda进行分区，假设新建的系统分区为/dev/sda1
 
-``mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1``
+{% highlight bash %}
+mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
+{% endhighlight %}
 
 ## 安装系统
 
@@ -87,7 +89,9 @@ pacman -S yaourt aria2
 
 在/etc/pacman.conf中指定
 
-``XferCommand = /usr/bin/aria2c -c -o %o %u``
+{% highlight bash %}
+XferCommand = /usr/bin/aria2c -c -o %o %u
+{% endhighlight %}
 
 在/etc/makepkg.conf中指定DLAGENTS
 
@@ -108,11 +112,15 @@ ntpdate asia.pool.ntp.org
 
 ## 安装X 
 
-``yaourt -S xorg xorg-xinit consolekit``
+{% highlight bash %}
+yaourt -S xorg xorg-xinit consolekit
+{% endhighlight %}
 
 ## 安装lxde
 
-``yaourt -S lxde openbox``
+{% highlight bash %}
+yaourt -S lxde openbox
+{% endhighlight %}
 
 编辑~/.xinitrc
     
@@ -122,14 +130,15 @@ exec lxsession
 
 ## 安装XFCE
 
-``yaourt -S xfce4 xfce4-notifyd``
+{% highlight bash %}
+yaourt -S xfce4 xfce4-notifyd
+{% endhighlight %}
 
 进入X的配置，不然关机键老是灰的：编辑~/.xinitrc
 
 {% highlight bash %}
 exec ck-launch-session dbus-launch startxfce4
 {% endhighlight %}
-
 
 # 硬件驱动
 
@@ -186,8 +195,8 @@ esac
 exit 0
 {% endhighlight %}
 
-
 在 ~/.xbindkeysrc 中添加：
+
 {% highlight bash %}
 # Increase volume
 "sound.sh up"  
@@ -213,11 +222,14 @@ exit 0
 
 在.xinitrc中添加：``xbindkeys``
 
-
 ## 热插拔(xfce4)
-- ``yaourt -S ntfs-3g thunar-volman udisks``
-- ``yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp``
-- 配置 /etc/fstab，手动挂载磁盘
+
+{% highlight bash %}
+yaourt -S ntfs-3g thunar-volman udisks
+yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
+{% endhighlight %}
+
+配置 /etc/fstab，手动挂载磁盘
 
 {% highlight bash %}
 /dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
@@ -234,7 +246,9 @@ sudo synclient TouchpadOff=1
 
 以fcitx为例
 
-``yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra``
+{% highlight bash %}
+yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra
+{% endhighlight %}
 
 在``$HOME/.bashrc``中添加：
 
@@ -320,11 +334,15 @@ KEY="s:myatworkpasswd"
 
 - 开机启动
 
-      ``netctl enable athome``
+{% highlight bash %}
+netctl enable athome
+{% endhighlight %}
 
 - 手工启动
 
-      ``netctl start athome``
+{% highlight bash %}
+netctl start athome
+{% endhighlight %}
 
 ## 无线(wpa_supplicant)
 - 安装: ``yaourt -S net-tools wireless_tools wpa_supplicant``
@@ -408,22 +426,33 @@ sudo route -n
 
 ##  netctl提示wpa无线连接失败，要看 journal -xn等等
 
-``netctl start somewireless``
+{% highlight bash %}
+netctl start somewireless
+{% endhighlight %}
 
 netctl 提示wpa无线连接失败，要看journal -xn等等
 
 可以先禁用对应的网卡，再重新start，例如：
 
-``ip link set wlan0 down``
-
-``netctl start somewireless``
+{% highlight bash %}
+ip link set wlan0 down
+netctl start somewireless
+{% endhighlight %}
 
 # 其它
 
 ## NGINX+PHP
-- ``yaourt -S nginx spawn-fcgi php-cgi``
+
+{% highlight bash %}
+yaourt -S nginx spawn-fcgi php-cgi
+{% endhighlight %}
+
 - 以http(用户):http(组)启动fastcgi : 
-``spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi``
+
+{% highlight bash %}
+spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi
+{% endhighlight %}
+
 - 配置/etc/nginx/conf/nginx.conf
 
 {% highlight bash %}
@@ -484,17 +513,17 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
 
 ## locale-gen时找不到character map file
 
-``$sudo pacman -Syu``升级的时候出的问题
+``pacman -Syu``升级的时候出的问题
 
 执行locale-gen提示：``character map file "en_US" not found``
 
 结果locale就变成"C"
 
-``$sudo pacman -S glibc``重装一遍，还是出错，不过提示空间不足
+``pacman -S glibc``重装一遍，还是出错，不过提示空间不足
 
-``$sudo pacman -Scc`` 清理空间
+``pacman -Scc`` 清理空间
 
-``$sudo pacman -S glibc -f``
+``pacman -S glibc -f``
 
 ## 手动设置grub2引导 windows 双系统
 
@@ -522,7 +551,9 @@ menuentry 'Windows' {
 
 参考[Slow Wireless Intel 6235 (iwlwifi module)](https://bbs.archlinux.org/viewtopic.php?id=146518)
 
-    echo options iwlwifi 11n_disable=1 | sudo tee /etc/modprobe.d/51-disable-6235-11n.conf 
+{% highlight bash %}
+echo options iwlwifi 11n_disable=1 | sudo tee /etc/modprobe.d/51-disable-6235-11n.conf 
+{% endhighlight %}
 
 ## 数据包更新失败
 
