@@ -12,6 +12,8 @@ tags: [ "bgpsec", "bgp", "rpki" ]
 
 # RFC6482 : ROA
 
+# RFC6810 : The RPKI/Router Protocol 
+
 # RFC6811 : BGP Prifix Origin Validation
 
 VRP: Validated ROA Payload
