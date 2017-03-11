@@ -1,11 +1,10 @@
 ---
-layout: post
-category : tech
-title:  "windows 软件推荐"
-tagline: ""
-tags : [ "windows", "software" ] 
+layout: page
+title: "Windows"
+tagline: "软件推荐"
 ---
 {% include JB/setup %}
+
 
 
 ## 自由软件

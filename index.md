@@ -1,16 +1,13 @@
 ---
 layout: page
 title: Home
+tagline: ""
 ---
 {% include JB/setup %}
 
-        求福不回。
+求福不回。 求用不匱。
 
-        求用不匱。
-
-        谁将归去？
-        
-        守望一生。
+谁将归去？ 守望一生。
 
 ![我的邮箱](assets/img/mail.png) 
 
@@ -26,9 +23,9 @@ title: Home
 
 | 类型 | 链接 |
 | ---- | ---- |
-| 工具 | [Perl](page/perl.html)，[Perl6](page/perl6.html)，[archlinux](page/archlinux.html)，[Debian](page/debian.html)
-| 其他 | [Vim](page/vim.html)，[DNS](page/dns.html)
-| 交流 | [linkedin](https://www.linkedin.com/in/abby-pan-54b90977)，[twitter](https://twitter.com/abbypan)，[douban](https://www.douban.com/people/swd3e/)，[blogspot](http://abbypan.blogspot.com)
+| 工具 | [perl](page/perl.html)，[archlinux](page/archlinux.html)，[debian](page/debian.html)，[windows](page/windows.md)
+| 其他 | [vim](page/vim.html)，[dns](page/dns.html)
+| 交流 | [linkedin](https://www.linkedin.com/in/abby-pan-54b90977)，[twitter](https://twitter.com/abbypan)，[blogspot](http://abbypan.blogspot.com)
 
 ## 旧的回忆
 

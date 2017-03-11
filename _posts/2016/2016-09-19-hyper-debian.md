@@ -7,6 +7,8 @@ tags: [ "hyper", "debian", "vps" ]
 ---
 {% include JB/setup %}
 
+## 初始化
+
 注册 [hyper.sh](https://console.hyper.sh/register/invite/1yNQ8EdkyMfMW0gLA4kmh8JKG4d8xYSb) 帐号
 
 生成 [credential](https://console.hyper.sh/account/credential)，获取 Access Key, Secret Key
@@ -23,19 +25,34 @@ $ hyper run --size s2 --name mydebian -p 22 -i -t debian:latest bash
 root@88888888ca80:~# apt-get update
 root@88888888ca80:~# apt-get install vim ssh net-tools wget
 root@88888888ca80:~# /etc/init.d/ssh start
-root@88888888ca80:~# exit
-$ hyper fip allocate 1
-209.177.90.77
-$ hyper fip attach 209.177.90.77 mydebian
-$ hyper exec -it mydebian bash
 root@88888888ca80:~# passwd 
 #修改密码
 root@88888888ca80:~# exit
 {% endhighlight %}
 
+## 分配公网IP
+
+{% highlight bash %}
+$ hyper fip allocate 1
+209.177.90.77
+$ hyper fip attach 209.177.90.77 mydebian
+{% endhighlight %}
+
 ## 远程ssh登录镜像
 
 ssh root@209.177.90.77
+
+## 用hyper远程登录
+
+{% highlight bash %}
+hyper start mydebian
+hyper exec -it mydebian bash
+hyper stop mydebian
+{% endhighlight %}
+
+## 删除container
+
+hyper rm mydebian
 
 ## 删除image
 

@@ -144,19 +144,11 @@ exec ck-launch-session dbus-launch startxfce4
 
 ## 声卡
 
-安装
-
-{% highlight bash %}
-yaourt -S gstreamer0.10 gstreamer0.10-base-plugins
-{% endhighlight %}
-
-配置
-
 - [ArchWiki:设置ALSA](https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
 - [archlinux音量太小的问题解决](https://bbs.archlinux.org/viewtopic.php?pid=1090109)
 
 {% highlight bash %}
-# pacman -Sy alsa-lib alsa-utils alsa-oss
+# pacman -Sy pulseaudio alsa-lib alsa-utils alsa-oss
 # gpasswd -a USERNAME audio
 # alsaconf
 # alsamixer
@@ -173,8 +165,6 @@ options snd-hda-intel index=1
 {% endhighlight %}
 
 ## 配置thinkpad声音热键
-
-安装 pulseaudio
 
 在 /usr/local/bin 中添加 sound.sh：
 
@@ -202,7 +192,7 @@ esac
 exit 0
 {% endhighlight %}
 
-在 ~/.xbindkeysrc 中添加：
+thinkpad x1 carbon 2013 在 ~/.xbindkeysrc 中添加：
 
 {% highlight bash %}
 # Increase volume
@@ -226,6 +216,25 @@ exit 0
     XF86AudioMicMute
 {% endhighlight %}
 
+thinkpad x1 carbon 2015  在 ~/.xbindkeysrc 中添加：
+
+{% highlight bash %}
+# Increase volume
+"sound.sh up"  
+    XF86WakeUp + F3
+
+# Decrease volume
+"sound.sh down"  
+    XF86WakeUp + F2
+
+# Toggle mute
+"sound.sh mute"  
+    XF86WakeUp + F1
+
+# Toggle microphonemute
+"sound.sh microphonemute"
+    XF86WakeUp + F4
+{% endhighlight %}
 
 在.xinitrc中添加：``xbindkeys``
 
