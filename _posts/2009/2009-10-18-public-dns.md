@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "公共递归DNS服务器的地址"
 tagline: "public recursive dns"
-tags : ["recursive", "dns"] 
+tags : [ "recursive", "dns"] 
 ---
 {% include JB/setup %}
 
