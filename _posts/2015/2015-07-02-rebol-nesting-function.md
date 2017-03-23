@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "rebol 笔记: 嵌套函数 nesting function"
 tagline: "指针"
-tags : [ "rebol", "function", "point" ] 
+tags : [ "rebol" ] 
 ---
 {% include JB/setup %}
 

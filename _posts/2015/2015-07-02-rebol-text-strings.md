@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "rebol 笔记: 字符串处理函数"
 tagline: ""
-tags : [ "rebol", "function", "text" ] 
+tags : [ "rebol" ] 
 ---
 {% include JB/setup %}
 

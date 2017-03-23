@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "rebol 的 parse 解析"
 tagline: "笔记"
-tags : [ "rebol", "parse", "regex" ] 
+tags : [ "rebol", "regex" ] 
 ---
 {% include JB/setup %}
 

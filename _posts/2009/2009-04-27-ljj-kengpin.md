@@ -3,7 +3,7 @@ layout: post
 category : util
 title:  "绿晋江坑品查看器"
 tagline: "www.jjwxc.net"
-tags : ["firefox", "greasemonkey", "javascript", "jjwxc", "ljj" ] 
+tags : ["greasemonkey", "jjwxc" ] 
 ---
 {% include JB/setup %}
 

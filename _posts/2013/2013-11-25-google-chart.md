@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "google chart 画图"
 tagline: "解析文本"
-tags : ["chart", "google" ] 
+tags : [ "chart" ] 
 ---
 {% include JB/setup %}
 
