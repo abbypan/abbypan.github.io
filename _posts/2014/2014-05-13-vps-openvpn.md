@@ -3,7 +3,7 @@ layout: post
 category : "freedom"
 title:  "访问互联网：搭建 openvpn 服务"
 tagline: ""
-tags : [ "great.w",  "openvpn", "vps", "iphone", "android", "windows", "itools" ] 
+tags : [ "great.w",  "openvpn", "vps" ] 
 ---
 {% include JB/setup %}
 

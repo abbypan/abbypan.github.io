@@ -3,7 +3,7 @@ layout: post
 category : pastime 
 title:  "国语-周语上《召公谏厉王弭谤》"
 tagline: ""
-tags : [ "国语", "先秦", "召公谏厉王弭谤" ] 
+tags : [ "国语" ] 
 ---
 {% include JB/setup %}
 
