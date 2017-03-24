@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "dns 软件识别"
+title:  "dns software: 软件识别"
 tagline: ""
 tags : [ "dns" ] 
 ---

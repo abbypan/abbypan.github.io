@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "DNS 隐私方案分析"
+title:  "DNS Privacy: 隐私方案分析"
 tagline: ""
 tags : [ "dns", "privacy", "security" ] 
 ---

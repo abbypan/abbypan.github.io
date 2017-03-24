@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "DNS : 2015.10 加拿大 OARC 会议"
+title:  "DNS-OARC: 2015.10 加拿大 会议"
 tagline: ""
 tags : [ "dns", "oarc" ] 
 ---

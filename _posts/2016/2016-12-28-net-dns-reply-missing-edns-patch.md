@@ -1,9 +1,9 @@
 ---
 layout: post
 category: tech
-title:  "Perl Net::DNS 1.06 响应包不带EDNS OPT的问题处理"
+title:  "debug: Perl Net::DNS 1.06 响应包不带EDNS OPT的问题处理"
 tagline: ""
-tags: [ "perl", "dns" ] 
+tags: [ "edns", "dns" ] 
 ---
 {% include JB/setup %}
 

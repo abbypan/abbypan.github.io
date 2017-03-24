@@ -104,3 +104,12 @@ draft-valsorda-dnsop-black-lies：减少nsec记录数目，减少zone walking风
 3) 递归侧nsec aggressiveuse的出发点在于节省递归到权威的无效查询，并抵御ddos攻击；与权威侧 nsec(3) one-line诉求正好相反。折中的场景，递归默认开启nsec aggressiveuse支持，权威平时返回nsec(3) one-line信息，ddos的时候权威切换成传统nsec按圆圈生成的模式。如果是ddos+权威nsec3 one-line+递归nsec aggressiveuse，相当于回落到传统dns ddos场景，可能还要差些
 
 4) black-lies需要递归多一个主动识别nodata实际上是nxdomain的判定，否则副作用较大
+
+
+##  针对“不存在”记录的认证 NSEC3等
+
+见：[Authenticated Denial of Existence in the DNS](http://tools.ietf.org/html/draft-gieben-auth-denial-of-existence-dns-05)
+
+此篇自带吐槽，比较搞。主要是5.5 / 5.6。
+
+问题在于通过hash隐藏zone信息同时带来的混乱，以及 ``[ 分层授权设计 + 泛解析 + “不存在” 应答 ]`` 合在一起处理神烦。

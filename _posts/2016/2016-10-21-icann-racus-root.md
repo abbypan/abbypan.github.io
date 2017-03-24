@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "笔记：ICANN RSSAC Root Scheme Analysis"
+title:  "dns root: ICANN RSSAC Root Scheme Analysis"
 tagline: ""
 tags: [ "root", "icann", "dns" ] 
 ---
