@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "dns cookies"
+title:  "draft: dns cookies"
 tagline: ""
-tags : [ "dns", "cookie", "rfc" ] 
+tags : [ "dns", "opt" ] 
 ---
 {% include JB/setup %}
 

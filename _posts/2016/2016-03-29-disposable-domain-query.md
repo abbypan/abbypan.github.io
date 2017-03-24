@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "dns : disposable domain query 临时域名查询"
+title:  "DNS : disposable domain query 临时域名查询"
 tagline: "note"
-tags : [ "dns", "domain" ] 
+tags : [ "dns", "recursive" ] 
 ---
 {% include JB/setup %}
 

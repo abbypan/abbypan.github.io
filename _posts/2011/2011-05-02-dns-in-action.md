@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "DNS in Action"
+title:  "Book: DNS in Action"
 tagline: "笔记"
 tags : [ "dns" ] 
 ---

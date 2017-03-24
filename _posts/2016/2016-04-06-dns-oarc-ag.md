@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "DNS : 2016.04 阿根廷 OARC 会议"
+title:  "DNS-OARC: 2016.04 阿根廷 会议"
 tagline: ""
 tags : [ "dns", "oarc" ] 
 ---

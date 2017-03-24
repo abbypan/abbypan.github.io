@@ -1,13 +1,13 @@
 ---
 layout: post
 category : tech
-title:  "Opportunistic Encryption with DANE Semantics and IPsec: IPSECA"
+title:  "draft: IPSECA"
 tagline: ""
-tags : [ "dns", "dane", "ipsec", "ipseca" ] 
+tags : [ "dns", "rr" ] 
 ---
 {% include JB/setup %}
 
-https://tools.ietf.org/html/draft-osterweil-dane-ipsec-02
+[Opportunistic Encryption with DANE Semantics and IPsec: IPSECA](https://tools.ietf.org/html/draft-osterweil-dane-ipsec-02)
 
 英文单词：
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 category : tech
-title:  "DNS and BIND Cookbook"
+title:  "Book: DNS and BIND Cookbook"
 tagline: ""
 tags : [ "dns", "bind" ] 
 ---

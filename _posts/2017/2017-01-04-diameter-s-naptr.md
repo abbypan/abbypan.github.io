@@ -1,9 +1,9 @@
 ---
 layout: post
 category: tech
-title:  "笔记 Diameter Straightforward-Naming Authority Pointer(S-NAPTR)"
+title:  "RFC6408: Diameter S-NAPTR"
 tagline: ""
-tags: [ "dns", "rfc", "NAPTR", "SRV", "Diameter" ] 
+tags: [ "dns", "rfc", "rr" ] 
 ---
 {% include JB/setup %}
 
@@ -30,7 +30,7 @@ RFC3824 是NAPTR的典型应用场景，将E.164电话地址转换为SIP电话�
 
 注意第8节的隐私讨论，知道电话号码，就能反推sip地址，如果该地址没有匿名化处理，由于明文交互，这也可能是有security concern的
 
-## Diameter S-NAPTR RFC6408
+## Diameter Straightforward-Naming Authority Pointer(S-NAPTR)
 
 Diameter 协议的场景是通信双方对等协商，计费，认证之类，RFC3588
 

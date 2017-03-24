@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "confidential dns"
+title:  "draft: confidential dns"
 tagline: ""
-tags : [ "dns", "encrypt", "rfc" ] 
+tags : [ "dns", "rr" ] 
 ---
 {% include JB/setup %}
 
