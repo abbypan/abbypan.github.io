@@ -34,3 +34,21 @@ DNS COOKIES需要client/server双向认证，实际生效需要权威、递归�
 如果DNS COOKIES未来成为权威、递归软件的默认开启选项，则DNS DDOS攻击趋势将转成利用海量真实IP进行查询、或者利用少量真实IP向海量递归发起查询。
 
 趋势：在递归侧加强防御策略，总体上更为经济快速（存在误杀风险）。
+
+## draft 笔记
+
+[Domain Name System (DNS) Cookies](http://tools.ietf.org/html/draft-eastlake-dnsext-cookies-03)
+
+参考：[DNS Cookies](http://www.ietf.org/proceedings/67/slides/dnsext-0/dnsext-0.ppt)
+
+差不多就是resolver 和  ns 之间互相发挑战码当cookie进行握手，双方都要支持
+
+这样只要cookie定期更换、且不同server发不同cookie就很被难被骗，cache poison有所缓解
+
+ns更容易被ddos调戏，伪造源IP查就可以触发它算一堆cookie；不过如果resolver过不了认证，它后面发的攻击包就可以直接过滤掉
+
+伪造源IP向open resolver查，来做反射放大攻击的威胁还是跟之前一样，除非open resolver也对源来一下cookie检查
+
+伪造源IP直接向一堆NS查，来做反射放大攻击，威胁变小，因为过不了握手，不过还是得大家都支持
+
+（个人觉得这个认证越搞越麻烦，不如直接全上TCP，唉！）
