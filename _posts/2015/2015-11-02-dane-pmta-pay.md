@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "支付安全 : pmta 基于DANE的支付方案"
+title:  "draft: pmta 基于DANE的安全支付方案"
 tagline: ""
-tags : [ "security", "bitcoin", "dane", "pmta", "pay", "dns" ] 
+tags : [ "security", "dns", "bitcoin" ] 
 ---
 {% include JB/setup %}
 
