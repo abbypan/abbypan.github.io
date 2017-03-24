@@ -1,8 +1,8 @@
 ---
 layout: post
 category : tech
-title:  "公共递归DNS服务器"
-tagline: "public recursive resolver"
+title:  "public recursive resolver: 公共递归DNS服务器"
+tagline: ""
 tags : [ "recursive", "dns"]
 ---
 {% include JB/setup %}
