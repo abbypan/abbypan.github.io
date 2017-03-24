@@ -1,9 +1,9 @@
 ---
 layout: post
 category : tech
-title:  "DNS : RRL <=> CACHE POISON"
+title:  "DNS Security: RRL <=> CACHE POISON"
 tagline: "dns"
-tags : ["dns", "rrl", "cache", "security"] 
+tags : ["dns", "security"] 
 ---
 {% include JB/setup %}
 
