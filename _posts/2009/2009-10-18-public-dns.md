@@ -7,6 +7,9 @@ tags : [ "recursive", "dns"]
 ---
 {% include JB/setup %}
 
+* TOC
+{:toc}
+
 # 公共递归服务器地址
 
 注意，用这些DNS可能由于分布问题，导致访问部分网站速度变慢！
