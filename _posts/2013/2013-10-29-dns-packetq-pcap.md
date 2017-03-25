@@ -7,6 +7,10 @@ tags : [ "dns", "software" ]
 ---
 {% include JB/setup %}
 
+# tcpdump抓包
+
+tcpdump -s0 port 53 -w test.cap
+
 # 用PacketQ解析dns查询的pcap包
 
 - [PacketQ](https://github.com/dotse/PacketQ)
