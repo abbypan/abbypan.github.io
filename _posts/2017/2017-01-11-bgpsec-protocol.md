@@ -3,14 +3,37 @@ layout: post
 category: tech
 title:  "笔记：RPKI & BGPsec"
 tagline: ""
-tags: [ "bgpsec", "bgp", "rpki" ]
+tags: [ "security", "bgp", "rpki", "rfc" ]
 ---
 {% include JB/setup %}
 
 * TOC
 {:toc}
 
+# RFC6480 : RPKI
+
 # RFC6482 : ROA
+
+ROA: Route Origin Authorizations 路由源地址认证
+
+注意每个ROA里只含一个AS
+
+## ROA结构
+
+ROA : { version, asID, ipAddrBlocks } 其中，ipAddrBlocks是ROAIPAddressFamily地址序列
+
+ROAIPAddressFamily : { addressFamily, addresses } 其中，addresses是ROAIPAddress地址序列，Address Family Identifier(AFI)区分ipv4/ipv6
+
+ROAIPAddress : { address, maxLength } 其中，address是IPAddress的bit string，maxLength为最大前缀长度，如果未指定maxLength，就限定只能为地址中的前缀长度
+
+## ROA使用
+
+用ROA验证路由宣告之前，需要事先验证ROA
+
+注意ROA内容完整性校验支持用的是CMS: Crytopgraphic Message Syntax
+
+
+# RFC6488 : Signed Object Template for RPKI
 
 # RFC6810 : The RPKI/Router Protocol 
 
@@ -40,7 +63,7 @@ Invalid: 至少有一个VRP cover该Route，但没有VRP match该Route
 
 如果invalid就discard，那么保存roa、vrp的数据库就成为风险单点。攻击者伪装成valid source AS，发布伪造的BGP route announcement
 
-# BGPsec Protocol Specification
+# draft: BGPsec Protocol Specification
 
 [BGPsec Protocol Specification](https://datatracker.ietf.org/doc/draft-ietf-sidr-bgpsec-protocol/)
 
