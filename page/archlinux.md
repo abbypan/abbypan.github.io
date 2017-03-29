@@ -251,6 +251,14 @@ yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 /dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
 {% endhighlight %}
 
+## 音乐处理
+
+[cue_splitting](https://wiki.archlinux.org/index.php/CUE_Splitting)
+
+{% highlight bash %}
+sudo yaourt -S cuetools mp3info wavpack flac mac shntool bchunk
+{% endhighlight %}
+
 ## 关闭触摸板
 
 {% highlight bash %}
