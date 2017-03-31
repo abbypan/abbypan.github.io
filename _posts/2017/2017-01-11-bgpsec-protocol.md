@@ -174,7 +174,7 @@ rpki-rtr
 rpki-rtr-tls
 
 
-# RFC6811 : BGP Prifix Origin Validation
+# RFC6811 : BGP Prefix Origin Validation
 
 VRP: Validated ROA Payload
 
