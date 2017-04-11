@@ -10,6 +10,8 @@ tags: [ "security", "bgp", "rpki", "rfc" ]
 * TOC
 {:toc}
 
+# RFC4272 : BGP Security Vulnerabilities Analysis
+
 # RFC6480 : RPKI
 
 包含3部分：Resource Public Key Infrastructure(RPKI)，ROA 对routing objects签名，distributed repository system存放PKI objects和ROA
@@ -34,7 +36,7 @@ RIR, CA -> ISP, CA -> ISP, EE -> ROA
 
 NIR, CA -> ISP, CA -> ISP, EE -> ROA
 
-## RP: Repositories
+## Repositories
 
 存放CA, CRLs, manifests, ROA
 
@@ -52,7 +54,7 @@ RP数据可用rsync增量更新
 
 ## Manifests
 
-manifest里存的是当前RP系统里的signed object list，即certificate/CRL/ROA之类每个object的filename及hash
+manifest里存的是当前Repositories里的signed object list，即certificate/CRL/ROA之类每个object的filename及hash
 
 manifest本身也要被对应的certificate签名
 
@@ -199,6 +201,26 @@ Invalid: 至少有一个VRP cover该Route，但没有VRP match该Route
 对于invalid状态的处理由本地策略决定
 
 如果invalid就discard，那么保存roa、vrp的数据库就成为风险单点。攻击者伪装成valid source AS，发布伪造的BGP route announcement
+
+# RFC 7132 : Threat Model for BGP Path Security
+
+PKI : address space holder 拥有该前缀
+
+ROA : 前缀拥有者确认，某个AS被授权该前缀
+
+注意BGP路由以AS为核心
+
+INRs ( Internet Number Resources ) : IPv4 / IPv6 address space and ASNs
+
+Network Operator 可能为调整路由，到对其自身更为经济的线路，而这个调整可能对其他相关方不是一件好事
+
+repository system 是 RPKI 生效的关键所在，数据可用性，及时更新，稳定性。。。
+
+如果错误在CA自身发生，则外部无法确定该错误，因为CA是下属节点的授权起点。而其下属的受灾户，则会迅速发现。。。
+
+如果CA为overlapping INRs签名，则RPs也无法确认哪个是错误的重复分配。证书合法，不代表内容正确。。。
+
+这篇比较话唠，中间多数可以略读，不影响问题理解
 
 # draft: BGPsec Protocol Specification
 
