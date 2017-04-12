@@ -222,6 +222,14 @@ repository system 是 RPKI 生效的关键所在，数据可用性，及时更�
 
 这篇比较话唠，中间多数可以略读，不影响问题理解
 
+# RFC 7353 : Security Requirements for BGP Path Validation
+
+这篇属于列流水账风格，知道了的用不着看，不知道的也搞不清楚场景
+
+除AS_PATH之外的BGP attributes只应用于本地
+
+数据面可能不按控制面提供的path走
+
 # draft: BGPsec Protocol Specification
 
 [BGPsec Protocol Specification](https://datatracker.ietf.org/doc/draft-ietf-sidr-bgpsec-protocol/)
