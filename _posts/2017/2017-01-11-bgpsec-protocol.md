@@ -12,6 +12,18 @@ tags: [ "security", "bgp", "rpki", "rfc" ]
 
 # RFC4272 : BGP Security Vulnerabilities Analysis
 
+BGP问题可导致：流量被传到没法deliver it的节点，挂掉；网络拥塞；丢包，黑洞；延迟；循环；窃听；分区，自以为流量与其他分离，事实则否；分割，自以为不会被路由到某些网络，事实则否；churn，快速变化；不稳定，不保证能到；过载；资源耗尽；地址伪造。
+
+BGP攻击：窃听，重放，插入，删除，篡改，中间人，拒绝服务。。。
+
+BGP脆弱性：完整性、时效性，节点认证，NLRI源AS校验，path attributes的源AS认证
+
+合法的BGP peer如果出错？
+
+各种加签名。。。
+
+BGP消息自身保护，可达性。。。
+
 # RFC6480 : RPKI
 
 包含3部分：Resource Public Key Infrastructure(RPKI)，ROA 对routing objects签名，distributed repository system存放PKI objects和ROA
@@ -327,11 +339,6 @@ Single RLP Flag per Update: 只有源AS标记RLP，其余AS只转发不再添加
 显然Per-Hop提供的信息量更多点，方便识别leak
 
 而Single RLP提供的消息不一定足以让接收方100%标记到leak AS（此时如果leak的路径来自customer，很可能属于优选)
-
-
-# draft : Route Leak Detection and Mitigation
-
-
 
 # draft : BGPsec Protocol Specification
 
