@@ -234,6 +234,30 @@ repository system 是 RPKI 生效的关键所在，数据可用性，及时更�
 
 # RFC 7908 : Problem Definition and Classification of BGP Route Leaks
 
+参考文献是一堆route leak accident，可以重点浏览
+
+route leak : 路由宣告被传播到非预期的scope，违反了AS_PATH中的某些AS的预期策略。多数由于误操作引起
+
+后果：流量被重定向到其他path，导致窃听、过载、丢包、。。。
+
+offending AS : 错误发布了违反预期策略的路由宣告的AS
+
+有几种类型：
+
+* Hairpin Turn with Full Prefix: 上游A -> offending AS customer -> 上游B，同等条件下，上游B会一般会优选来自customer的宣告；数据包经由offending AS到达目的地，如果offending AS无法处理这些重定向的流量，则可能造成丢包
+
+* Lateral ISP-ISP-ISP leak: ISP A -> offending AS ISP B -> ISP C，通过全局BGP update进行detect，经验认为三个大型ISP之间不会这么乱买transit，当然如果真的买了就是known case标记处理
+
+* Leak of Transit-Provider to Peer:  上游A -> offending AS customer -> lateral peer
+
+* Leak of Peer Prefixs to Transit-Provider:  Lateral Peer -> offending AS -> 上游
+
+* Prefix Re-origination with Data Path to Legitimate Origin: re-origination/mis-origination，offending AS从某个上游ISP获知route，又修改该route，使得另一个上游ISP误以为该offending AS才是Origination，此时，数据包可经由offending AS到达目标地址，也可能被offending AS中间误丢
+
+* Accidental Leak of Internal Prefixes and More-Specific prefixes: 把内部的prefixes错误的宣告给Transit-Provider/ISP peer，由于地址前缀长度的优选变化，可能导致流量没法走best path。
+
+总结：1-4都是传播route给错误的对象，5是篡改，6是内部信息错误发布到外面
+
 # draft : Methods for Detection and Mitigation of BGP Route Leaks
 
 [Methods for Detection and Mitigation of BGP Route Leaks](https://tools.ietf.org/html/draft-ietf-idr-route-leak-detection-mitigation-06)
@@ -340,6 +364,8 @@ Flags 是最左一位记为Confed_Segment flag，取1则标识该bgp update mess
 每个Signature Segment格式（见Fig7）：20字节SKI，2字节sig长度，最后是sig
 
 SKI就是对应的RPKI证书
+
+链式的hash签名见Fig9，[ Secure_Path Segment: 1, Secure_Path Segment: 2, Signature Segment: 1, ..., Secure_Path Segment: N, Signature Segment: N-1 ]，中括号里的内容即为Signature Segment N将要hash+sign的data
 
 ## 注意事项
 
