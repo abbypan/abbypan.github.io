@@ -123,6 +123,8 @@ ROAIPAddress : { address, maxLength } 其中，address是IPAddress的bit string�
 
 # RFC6488 : Signed Object Template for RPKI
 
+RPKI的数据结构说明
+
 # RFC6810 : The RPKI to Router Protocol 
 
 Local Cache 周期性的获取 Global RPKI 数据
@@ -243,6 +245,7 @@ repository system 是 RPKI 生效的关键所在，数据可用性，及时更�
 数据面可能不按控制面提供的path走
 
 # RFC 7454 : BGP Operations and Security
+
 
 # RFC 7908 : Problem Definition and Classification of BGP Route Leaks
 

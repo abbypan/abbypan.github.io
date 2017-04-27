@@ -150,7 +150,7 @@ function FindProxyForURL(url, host) {
 };
 {% endhighlight %}
 
-## 浏览器pac文件示例（白名单），默认代理
+## 浏览器pac文件示例（黑白名单），默认代理
 
 {% highlight bash %}
 var direct = 'DIRECT';
@@ -171,14 +171,30 @@ var white_list = [
 ".taobaocdn.com"
 ];
 
+var black_list = [
+"google.com", 
+"youtube.com"
+];
+
 function FindProxyForURL(url, host) {
     if(! host) return direct;
+
+    for (var i = 0; i < black_list.length; i += 1) {
+        var v = black_list[i];
+        var dotv = '.' + v;
+        if ( dnsDomainIs(host, dotv) || dnsDomainIs(host, v)) {
+            return http_proxy;
+        }
+    }
+
     for (var i = 0; i < white_list.length; i += 1) {
         var v = white_list[i];
-        if ( dnsDomainIs(host, v)) {
+        var dotv = '.' + v;
+        if ( dnsDomainIs(host, dotv) || dnsDomainIs(host, v)) {
             return direct;
         }
     }
+
     return http_proxy;
 };
 {% endhighlight %}
