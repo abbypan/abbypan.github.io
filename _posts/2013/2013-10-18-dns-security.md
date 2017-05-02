@@ -7,6 +7,9 @@ tags : ["dns", "security"]
 ---
 {% include JB/setup %}
 
+* TOC
+{:toc}
+
 一些典型案例问题，一些分析点简述。。。
 
 # DDoS 拒绝服务
