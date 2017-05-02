@@ -67,3 +67,15 @@ ndss 2017 dns privacy workshop: [EIL: Dealing with the Privacy Problem of ECS](h
 避免用户subnet隐私泄漏，以及ipv6 subnet数量爆涨引起的缓存问题
 
 如果在public recursive resolver上部署eil，则相当于将resolver ip与client ip分离所引起的权威ecs subnet识别开销转移回公共递归
+
+# 公共递归的测量指标
+
+* BGP生效情况，x地用户是否访问到正确的前端广播节点？
+
+* GeoIP牵制，后端节点是否能够被互联网业务权威智能解析正确识别？
+
+* 分散部署程度，后端节点是否具备一定的地理分布？
+
+* GeoIP识别，前端节点是否针对用户来源智能分配不同的后端节点？
+
+* 重点域名是否起用ECS？
