@@ -3,7 +3,7 @@ layout: post
 category: tech
 title:  "RFC6408: Diameter S-NAPTR"
 tagline: ""
-tags: [ "dns", "rfc", "rr" ] 
+tags: [ "dns", "ietf", "rr" ] 
 ---
 {% include JB/setup %}
 

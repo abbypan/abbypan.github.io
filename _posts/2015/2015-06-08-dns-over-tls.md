@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "draft: TLS for DNS"
 tagline: ""
-tags : [ "dns", "encrypt", "rfc" ] 
+tags : [ "dns", "encrypt", "ietf" ] 
 ---
 {% include JB/setup %}
 

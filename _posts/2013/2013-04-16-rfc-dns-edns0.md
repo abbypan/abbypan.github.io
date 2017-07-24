@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "RFC 6891 : DNS  EDNS0"
 tagline: "笔记"
-tags : ["rfc", "dns", "edns0"] 
+tags : ["ietf", "dns", "edns0"] 
 ---
 {% include JB/setup %}
 

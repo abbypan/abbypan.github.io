@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "一些 dns draft 笔记"
 tagline: "note"
-tags : [ "dns", "draft", "rfc" ] 
+tags : [ "dns", "ietf", "ietf" ] 
 ---
 {% include JB/setup %}
 

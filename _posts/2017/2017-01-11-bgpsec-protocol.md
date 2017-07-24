@@ -3,7 +3,7 @@ layout: post
 category: tech
 title:  "RFC: RPKI & BGPsec"
 tagline: ""
-tags: [ "security", "bgp", "rpki", "rfc" ]
+tags: [ "security", "bgp", "rpki", "ietf" ]
 ---
 {% include JB/setup %}
 
