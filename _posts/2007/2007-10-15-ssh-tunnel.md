@@ -7,6 +7,11 @@ tags : [ "great.w", "ssh", "socks5" ]
 ---
 {% include JB/setup %}
 
+* TOC
+{:toc}
+
+# 说明
+
 ssh tunnel的优点：十分稳定，连接比较快
 
 ssh tunnel的缺点：windows下要装个ssh client，ios不越狱tunnel支持不好
@@ -239,4 +244,27 @@ ios配置与android类似。
 
 anroid 可安装 [ProxyDroid](https://play.google.com/store/apps/details?id=org.proxydroid)，需要root权限
 
+# socks tunnel使用方法（简易版）
+
+假设已购买了vps，ip地址为xxx.xxx.xxx.xxx，用户名为someusr，密码为somepasswd
+
+WINDOWS系统
+
+下载 [plink](http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html)
+
+本地新建一个 p.bat 文件，其内容为
+
+    plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -pw somepasswd
+
+将p.bat保存在与plink.exe相同目录下。
+
+双击p.bat，运行，遇到提示信息选择 y (yes)，此时本地端口为8888，不要关闭窗口。
+
+以firefox浏览器为例，下载并安装：[firefox-portable-install](http://portableapps.com/apps/internet/firefox_portable)
+
+打开firefox-portable，option配置如下：
+
+![firefox-socks](/assets/posts/firefox_socks.png)
+
+配置完毕后直接测试访问google。
 

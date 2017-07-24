@@ -7,6 +7,11 @@ tags : [ "great.w",  "openvpn", "vps" ]
 ---
 {% include JB/setup %}
 
+* TOC
+{:toc}
+
+# 说明
+
 在 vps 上搭建 openvpn 服务
 
 配置windows/android/iphone连接openvpn，访问互联网
@@ -90,3 +95,24 @@ server端生成的client文件为``client1.crt``、``client1.key``
 ## windows 
 
 [bandwagonhost的VPS一键安装OpenVPS](http://www.goagent.biz/thread-1362-1-1.html)
+
+
+# ovpn的使用方法（简易版）
+
+假设已自建vpn，生成了v.ovpn文件。。。
+
+IOS系统
+
+注册一个美国区的appleid，在apple store下载openvpn connect应用
+
+itunes连接手机，添加v.ovpn文件到openvpn connect应用
+
+在手机上打开 openvpn connect应用 ，点击添加v.ovpn文件，连接。
+
+ANDROID系统
+
+下载openvpn connect的apk文件：https://www.apk4fun.com/apk/6697/ ，安装。
+
+将v.ovpn文件传入手机存储文件夹，假设为sdcard/download文件夹内。
+
+在手机上打开openvpn connect应用，右上角选择import，导入v.ovpn文件，连接。
