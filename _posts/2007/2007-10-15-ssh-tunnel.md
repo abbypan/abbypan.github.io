@@ -130,6 +130,11 @@ middle上的``.ssh/config``示例
 
 ![puttygen](/assets/posts/puttygen.jpg)
 
+## 浏览器DNS配置
+
+以firefox为例，about:config设置network.proxy.socks_remote_dns为true
+
+
 ## 浏览器pac文件示例（黑名单），默认直连
 
 {% highlight bash %}
