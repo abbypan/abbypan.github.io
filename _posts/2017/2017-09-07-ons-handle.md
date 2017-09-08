@@ -115,7 +115,15 @@ Client -> Handle服务器之间的通信支持：加密、认证、签名、隐�
 
 8-4-4-4-12 共32个16进制数，即128位，随机生成。
 
-## 其他
+# 其他
+
+## CID & Ecode
+
+[中欧物联网标识白皮书2014](http://www.miit.gov.cn/n1146312/n1146909/n1146991/n1648536/c3489529/part/3489531.pdf)
+
+通信标识符（ Communication Identifier ， CID ）是工信部电信研究院提出的一套面向公众用户的物联网标识命名管理系统。
+
+物品统一编码（ Entity  Code ， Ecode ）是中国物品编码中心提出的用于标识物联网标识体系中任意物品的统一的、兼容的编码方案。
 
 ## UID : Ubiquitous ID
 
@@ -132,15 +140,3 @@ Ubiquitous Code(ucode) 128bits: Version 4bits, Top Level Domain Code(TLD) 16bits
 128bits: TLC 12bits, Class 4bits, Company Code + Item Category Code + Item Code + Serial Code 112bit
 
 解析与ORS类似，返回NAPTR指向的Object Directory Service (ODS) 服务地址
-
-## CID
-
-[中欧物联网标识白皮书2014](http://www.miit.gov.cn/n1146312/n1146909/n1146991/n1648536/c3489529/part/3489531.pdf)
-
-通信标识符（ Communication Identifier ， CID ）是工信部电信研究院提出的一套面向公众用户的物联网标识命名管理系统。
-
-## Ecode 
-
-[中欧物联网标识白皮书2014](http://www.miit.gov.cn/n1146312/n1146909/n1146991/n1648536/c3489529/part/3489531.pdf)
-
-物品统一编码（ Entity  Code ， Ecode ）是中国物品编码中心提出的用于标识物联网标识体系中任意物品的统一的、兼容的编码方案。
