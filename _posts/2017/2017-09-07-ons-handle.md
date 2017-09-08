@@ -1,9 +1,9 @@
 ---
 layout: post
 category: tech
-title:  "OID-ORS & EPC-ONS & DOI-HANDLE"
+title:  "OID-ORS & EPC-ONS & DOI-Handle"
 tagline: ""
-tags: [ "" ]
+tags: [ "oid", "ors", "epc", "ons", "doi", "handle", "uuid", "ecode", "ucode", "mcode", "cid", "uid" ]
 ---
 {% include JB/setup %}
 
