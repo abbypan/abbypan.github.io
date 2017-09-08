@@ -57,7 +57,7 @@ mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 {% highlight bash %}
 mount /dev/sda1 /mnt
 pacstrap /mnt base base-devel
-pacstrap /mnt grub2-bios
+pacstrap /mnt grub-bios
 genfstab -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 {% endhighlight %}

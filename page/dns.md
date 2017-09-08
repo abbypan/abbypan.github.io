@@ -17,6 +17,7 @@ tagline: "Domain Name System "
 | [Domain Name Service DNS](http://www.freesoft.org/CIE/Topics/75.htm) | 很清晰的DNS基础介绍 |
 | [Understanding the DNS Protocol](http://www.windowsnetworking.com/articles_tutorials/understanding-dns-protocol-part1.html) | DNS协议介绍 |
 | [DNS包细节](http://www.networksorcery.com/enp/protocol/dns.htm) | 各bit说明 |
+| [What's in a Name?](http://www.potaroo.net/ispcol/2015-12/names.html) | 名址问题分析 |
 
 
 ## 工具
