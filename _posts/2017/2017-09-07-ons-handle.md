@@ -47,11 +47,11 @@ GS1 Identification Key type 有多种数据类型，例如GTIN/GDTI/GSIN等等
 
 这些数据类型可以转换成统一格式的Application Unique String (AUS)， ONS Client可以把AUS转换成FQDN域名格式用于ONS查询：
 
-GTIN-13 061414132260 -> AUS : ||gtin|00614141322602  -> 0.0.6.2.2.3.1.4.1.4.1.6.0.gtin.gs1.id.onsepc.com
+    GTIN-13 061414132260 -> AUS : ||gtin|00614141322602  -> 0.0.6.2.2.3.1.4.1.4.1.6.0.gtin.gs1.id.onsepc.com
 
 AUS到FQDN的转换大概规则：去掉  optional serial number / checksum digit ; 保留leading digit；reverse剩余的digit。
 
-||gtin|00614141322602，去掉末位的2，提取首位0，剩余061414132260倒转为 062231414160，类型为 gtin，使用onsepc.com权威域，最终生成：
+    ||gtin|00614141322602，去掉末位的2，提取首位0，剩余061414132260倒转为 062231414160，类型为 gtin，使用onsepc.com权威域，最终生成：
 
     0.0.6.2.2.3.1.4.1.4.1.6.0.gtin.gs1.id.onsepc.com
 
