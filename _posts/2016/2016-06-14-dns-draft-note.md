@@ -11,32 +11,6 @@ tags : [ "dns", "ietf", "ietf" ]
 
 DNS的APL记录，IP地址前缀列表
 
-## RFC 2782
-
-DNS的SRV记录，用于查询指定域是否提供某些通用服务，以及服务的地址
-
-_Service._Proto.Name TTL Class SRV Priority Weight Port Target
-
-例如 _ldap._tcp.example.com
-
-## RFC6762 Multicast DNS
-
-本地节点zero-config特定的DNS，自己起个名称啥的
-
-## RFC 6763
-
-DNS-SD ( DNS-Based Service Discovery )
-
-如果1楼的人查询 _ipp._tcp.example.com. 的SRV记录，随机选了一个7楼的打印机，显然是不合适的
-
-因此，接着SRV记录的思路，加入服务实例的标识
-
-先PTR查询 _ipp._tcp.example.com.
-
-Service Instance Name = <Instance> . <Service> . <Domain>
-
-得到一堆服务实例域名，然后再选取其中1个实例域名，查询其TXT记录（此时还能支持一些key-value属性对）
-
 ## draft-huitema-dnssd-privacy 
 
 一个较为复杂的公共服务信息隐藏方案
@@ -76,15 +50,6 @@ dns sd的安全威胁
 ## draft-jeong-its-iot-dns-autoconf	  
 
 物联网自动配置，id编址
-
-## draft-ietf-dnssd-hybrid	  
-
-服务查询用PTR再转一下
-
-    b._dns-sd._udp.example.com.    PTR   Building 1.example.com.
-                                          PTR   Building 2.example.com.
-                                          PTR   Building 3.example.com.
-                                          PTR   Building 4.example.com.
 
 ## draft-wallstrom-dnsop-dns-delegation-requirements
 
