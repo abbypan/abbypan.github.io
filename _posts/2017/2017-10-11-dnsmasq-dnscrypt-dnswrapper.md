@@ -30,14 +30,16 @@ tags: [ "dns", "hijack", "privacy", "dnsmasq", "dnswrapper", "dnscrypt" ]
 
 /etc/resolver.conf 中指定nameserver为127.0.0.1，即使用本地dnsmasq提供53服务
 
-    weibo.cn 
-    <--plain--> dnsmaq(127.0.0.1:53) 
-    <--plain--> local_pub_resolver(114.114.114.114)
+{% highlight bash %}
+weibo.cn 
+<--plain--> dnsmaq(127.0.0.1:53) 
+<--plain--> local_pub_resolver(114.114.114.114)
 
-    www.google.com 
-    <--plain--> dnsmaq(127.0.0.1:53) 
-    <--plain--> localhost_dnscrypt_forwarding(127.0.0.1:53330, dnscrypt-proxy) 
-    <--dnscrypt--> remote_dnscrypt_pub_resolver(208.67.220.220, opendns)
+www.google.com 
+<--plain--> dnsmaq(127.0.0.1:53) 
+<--plain--> localhost_dnscrypt_forwarding(127.0.0.1:53330, dnscrypt-proxy) 
+<--dnscrypt--> remote_dnscrypt_pub_resolver(208.67.220.220, opendns)
+{% endhighlight %}
 
 ## dnsmasq
 
@@ -66,7 +68,9 @@ server=/google.com/127.0.0.1#53330
 
 运行
 
-    $ sudo dnsmasq
+{% highlight bash %}
+$ sudo dnsmasq
+{% endhighlight %}
 
 ## dnscrypt-proxy
 
@@ -89,8 +93,9 @@ Daemonize yes
 
 运行
 
-    $ sudo dnscrypt-proxy /etc/dnscrypt-proxy.conf
-
+{% highlight bash %}
+$ sudo dnscrypt-proxy /etc/dnscrypt-proxy.conf
+{% endhighlight %}
 
 # 方案2：自建支持dnscrypt解析服务器
 
@@ -98,17 +103,19 @@ Daemonize yes
 
 /etc/resolver.conf 中指定nameserver为127.0.0.1，即使用本地dnsmasq提供53服务
 
-    weibo.cn 
-    <--plain--> dnsmaq(127.0.0.x:53) 
-    <--plain--> local_open_resolver(xxx.xxx.xxx.xxx)
+{% highlight bash %}
+weibo.cn 
+<--plain--> dnsmaq(127.0.0.x:53) 
+<--plain--> local_open_resolver(xxx.xxx.xxx.xxx)
 
-    www.google.com 
-    <--plain--> dnsmaq(127.0.0.1:53) 
-    <--plain--> localhost_dnscrypt_forwarding(127.0.0.1:53330, dnscrypt-proxy) 
-    <--dnscrypt--> remote_dnscrypt_forwarding(yyy.yyy.yyy.yyy:53332, dnscrypt-wrapper) 
-    <--plain--> remote_dnscrypt_forwarding(yyy.yyy.yyy.yyy, 127.0.0.1:53333, dnscrypt-proxy) 
-    <--dnscrypt--> remote_dnscrypt_resolver(zzz.zzz.zzz.zzz:53335, dnscrypt-wrapper) 
-    <--plain--> remote_bind(zzz.zzz.zzz.zzz, 127.0.0.1:53, bind)
+www.google.com 
+<--plain--> dnsmaq(127.0.0.1:53) 
+<--plain--> localhost_dnscrypt_forwarding(127.0.0.1:53330, dnscrypt-proxy) 
+<--dnscrypt--> remote_dnscrypt_forwarding(yyy.yyy.yyy.yyy:53332, dnscrypt-wrapper) 
+<--plain--> remote_dnscrypt_forwarding(yyy.yyy.yyy.yyy, 127.0.0.1:53333, dnscrypt-proxy) 
+<--dnscrypt--> remote_dnscrypt_resolver(zzz.zzz.zzz.zzz:53335, dnscrypt-wrapper) 
+<--plain--> remote_bind(zzz.zzz.zzz.zzz, 127.0.0.1:53, bind)
+{% endhighlight %}
 
 DNS隐私的一个大问题是多数到权威的查询是明文，可以用一层跳板稍微增加溯源时关联分析的成本。这里不考虑经过的线路运营商流量数据共享分析，用TOR匿名查询，或者混杂查询等情况。
 
