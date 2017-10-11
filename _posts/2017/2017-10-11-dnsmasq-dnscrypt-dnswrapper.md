@@ -103,6 +103,10 @@ $ sudo dnscrypt-proxy /etc/dnscrypt-proxy.conf
 
 /etc/resolver.conf 中指定nameserver为127.0.0.1，即使用本地dnsmasq提供53服务
 
+DNS隐私的一个大问题是多数到权威的查询是明文，可以用一层跳板稍微增加溯源时关联分析的成本。这里不考虑经过的线路运营商流量数据共享分析，用TOR匿名查询，或者混杂查询等情况。
+
+注意，为保证解析到最合适的IP，local_open_resolver(xxx.xxx.xxx.xxx)的后端resolver_ip要与本地IP线路geolocation相近，自建的remote_dnscrypt_resolver(zzz.zzz.zzz.zzz)要与负责访问www.google.com的代理IP线路geolocation相近。
+
 {% highlight bash %}
 weibo.cn 
 <--plain--> dnsmaq(127.0.0.x:53) 
@@ -116,10 +120,6 @@ www.google.com
 <--dnscrypt--> remote_dnscrypt_resolver(zzz.zzz.zzz.zzz:53335, dnscrypt-wrapper) 
 <--plain--> remote_dnscrypt_resolver(zzz.zzz.zzz.zzz, 127.0.0.1:53, bind)
 {% endhighlight %}
-
-DNS隐私的一个大问题是多数到权威的查询是明文，可以用一层跳板稍微增加溯源时关联分析的成本。这里不考虑经过的线路运营商流量数据共享分析，用TOR匿名查询，或者混杂查询等情况。
-
-注意，为保证解析到最合适的IP，local_open_resolver(xxx.xxx.xxx.xxx)的后端resolver_ip要与本地IP线路geolocation相近，自建的remote_dnscrypt_resolver(zzz.zzz.zzz.zzz)要与负责访问www.google.com的代理IP线路geolocation相近。
 
 ## remote_dnscrypt_resolver : zzz.zzz.zzz.zzz
 
