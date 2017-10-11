@@ -114,7 +114,7 @@ www.google.com
 <--dnscrypt--> remote_dnscrypt_forwarding(yyy.yyy.yyy.yyy:53332, dnscrypt-wrapper) 
 <--plain--> remote_dnscrypt_forwarding(yyy.yyy.yyy.yyy, 127.0.0.1:53333, dnscrypt-proxy) 
 <--dnscrypt--> remote_dnscrypt_resolver(zzz.zzz.zzz.zzz:53335, dnscrypt-wrapper) 
-<--plain--> remote_bind(zzz.zzz.zzz.zzz, 127.0.0.1:53, bind)
+<--plain--> remote_dnscrypt_resolver(zzz.zzz.zzz.zzz, 127.0.0.1:53, bind)
 {% endhighlight %}
 
 DNS隐私的一个大问题是多数到权威的查询是明文，可以用一层跳板稍微增加溯源时关联分析的成本。这里不考虑经过的线路运营商流量数据共享分析，用TOR匿名查询，或者混杂查询等情况。
@@ -144,10 +144,10 @@ $ cd /etc/dnscrypt-wrapper
 $ sudo dnscrypt-wrapper --gen-provider-keypair | tee zzz.public.key.info
 $ sudo dnscrypt-wrapper --gen-crypt-keypair --crypt-secretkey-file=1.key
 $ sudo dnscrypt-wrapper --gen-cert-file --crypt-secretkey-file=1.key --provider-cert-file=1.cert \
-                   --provider-publickey-file=public.key --provider-secretkey-file=secret.key
+           --provider-publickey-file=public.key --provider-secretkey-file=secret.key
 $ sudo dnscrypt-wrapper --resolver-address=127.0.0.1:53 --listen-address=0.0.0.0:53335 \
-                   --provider-name=2.dnscrypt-cert.mytestresolver.com \
-                   --crypt-secretkey-file=1.key --provider-cert-file=1.cert
+           --provider-name=2.dnscrypt-cert.mytestresolver.com \
+           --crypt-secretkey-file=1.key --provider-cert-file=1.cert
 {% endhighlight %}
 
 
@@ -173,10 +173,10 @@ $ cd /etc/dnscrypt-wrapper
 $ sudo dnscrypt-wrapper --gen-provider-keypair | tee yyy.public.key.info
 $ sudo dnscrypt-wrapper --gen-crypt-keypair --crypt-secretkey-file=1.key
 $ sudo dnscrypt-wrapper --gen-cert-file --crypt-secretkey-file=1.key --provider-cert-file=1.cert \
-                   --provider-publickey-file=public.key --provider-secretkey-file=secret.key
+           --provider-publickey-file=public.key --provider-secretkey-file=secret.key
 $ sudo dnscrypt-wrapper --resolver-address=127.0.0.1:53333 --listen-address=0.0.0.0:53332 \
-                   --provider-name=2.dnscrypt-cert.mytestforwarding.com \
-                   --crypt-secretkey-file=1.key --provider-cert-file=1.cert
+           --provider-name=2.dnscrypt-cert.mytestforwarding.com \
+           --crypt-secretkey-file=1.key --provider-cert-file=1.cert
 {% endhighlight %}
 
 ## 本地dnscrypt-proxy
