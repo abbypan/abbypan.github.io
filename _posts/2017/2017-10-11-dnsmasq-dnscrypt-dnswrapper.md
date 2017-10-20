@@ -109,7 +109,7 @@ DNS隐私的一个大问题是多数到权威的查询是明文，可以用一�
 
 {% highlight bash %}
 weibo.cn 
-<--plain--> dnsmaq(127.0.0.x:53) 
+<--plain--> dnsmaq(127.0.0.1:53) 
 <--plain--> local_open_resolver(xxx.xxx.xxx.xxx)
 
 www.google.com 
