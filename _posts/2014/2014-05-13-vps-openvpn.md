@@ -1,7 +1,7 @@
 ---
 layout: post
 category : "freedom"
-title:  "访问互联网：搭建 openvpn 服务"
+title:  "访问互联网：在 vps 上搭建 openvpn 服务"
 tagline: ""
 tags : [ "great.w",  "openvpn", "vps" ] 
 ---
@@ -11,8 +11,6 @@ tags : [ "great.w",  "openvpn", "vps" ]
 {:toc}
 
 # 说明
-
-在 vps 上搭建 openvpn 服务
 
 配置windows/android/iphone连接openvpn，访问互联网
 
@@ -101,7 +99,7 @@ server端生成的client文件为``client1.crt``、``client1.key``
 
 假设已自建vpn，生成了v.ovpn文件。。。
 
-IOS系统
+## IOS系统
 
 注册一个美国区的appleid，在apple store下载openvpn connect应用
 
@@ -109,7 +107,7 @@ itunes连接手机，添加v.ovpn文件到openvpn connect应用
 
 在手机上打开 openvpn connect应用 ，点击添加v.ovpn文件，连接。
 
-ANDROID系统
+## ANDROID系统
 
 下载openvpn connect的apk文件：https://www.apk4fun.com/apk/6697/ ，安装。
 

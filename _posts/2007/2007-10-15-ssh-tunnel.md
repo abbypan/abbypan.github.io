@@ -12,13 +12,15 @@ tags : [ "great.w", "ssh", "socks5" ]
 
 # 说明
 
-ssh tunnel的优点：十分稳定，连接比较快
+方案：
+- 安装ssh/putty，本地提供ssh tunnel。本机浏览器、Dropbox等客户端直接使用tunnel。
+- 安装polipo/privoxy，本地提供http proxy，再转发到ssh tunnel。android / ios 下配置wlan连接使用该http proxy。比openvpn速度快很多。
 
-ssh tunnel的缺点：windows下要装个ssh client，ios不越狱tunnel支持不好
+优点：稳定，连接比较快
+
+缺点：配置比较麻烦
 
 建议：android / linux / windows 下使用
-
-改进方案：linux下安装polipo，将socks5转换为http proxy，android / ios 下配置wlan连接使用该http proxy。比openvpn速度快很多。
 
 # 使用ssh进行远程登录
 
@@ -102,6 +104,14 @@ middle上的``.ssh/config``示例
     PreferredAuthentications publickey
     IdentityFile ~/.ssh/remote_rsa
 
+## ssh 保持连接
+
+参考 [Keep Your Linux SSH Session From Disconnecting](http://www.howtogeek.com/howto/linux/keep-your-linux-ssh-session-from-disconnecting/)，在``~/.ssh/config``中添加
+{% highlight bash %}
+Host *
+  ServerAliveInterval 60
+{% endhighlight %}
+
 # ssh tunnel
 
 ## android 
@@ -110,15 +120,15 @@ middle上的``.ssh/config``示例
 
 ## linux环境
 
-``ssh someuser@remote -N -D 127.0.0.1:7070 -F ~/.ssh/config``
+``ssh someuser@remote -N -D 127.0.0.1:8888 -F ~/.ssh/config``
 
 ## windows环境
 
 下载 [plink](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
-根据用户名、密码登录： ``plink -C -D 7070 -N someuser@xxx.xxx.xxx.xxx -pw somepasswd``
+根据用户名、密码登录： ``plink -C -D 8888 -N someuser@xxx.xxx.xxx.xxx -pw somepasswd``
 
-根据用户名、私钥登录： ``plink -C -D 7070 -N someuser@xxx.xxx.xxx.xxx -i private.ppk``
+根据用户名、私钥登录： ``plink -C -D 8888 -N someuser@xxx.xxx.xxx.xxx -i private.ppk``
 
 ### 将文本形式的私钥文件 remote_rsa.key 转换成 putty可用的ppk文件
 
@@ -130,6 +140,8 @@ middle上的``.ssh/config``示例
 
 ![puttygen](/assets/posts/puttygen.jpg)
 
+# 浏览器使用ssh tunnel
+
 ## 浏览器DNS配置
 
 以firefox为例，about:config设置network.proxy.socks_remote_dns为true
@@ -139,7 +151,7 @@ middle上的``.ssh/config``示例
 
 {% highlight bash %}
 var direct = 'DIRECT';
-var http_proxy = 'SOCKS5 127.0.0.1:7070; DIRECT';
+var http_proxy = 'SOCKS5 127.0.0.1:8888; DIRECT';
 
 var tunnel_list = [
 "gmail.com",
@@ -164,7 +176,7 @@ function FindProxyForURL(url, host) {
 
 {% highlight bash %}
 var direct = 'DIRECT';
-var http_proxy = 'SOCKS5 127.0.0.1:7070; DIRECT';
+var http_proxy = 'SOCKS5 127.0.0.1:8888; DIRECT';
 var white_list = [
 ".cn", 
 ".com.cn",
@@ -209,15 +221,12 @@ function FindProxyForURL(url, host) {
 };
 {% endhighlight %}
 
-## ssh 保持连接
 
-参考 [Keep Your Linux SSH Session From Disconnecting](http://www.howtogeek.com/howto/linux/keep-your-linux-ssh-session-from-disconnecting/)，在``~/.ssh/config``中添加
-{% highlight bash %}
-Host *
-  ServerAliveInterval 60
-{% endhighlight %}
+# http proxy
 
-## 将本地 socks5 转换为http proxy
+## linux 环境
+
+安装 polipo
 
 [通过 Socks5 Proxy 实现 HTTP Proxy](http://cs-cjl.com/2014/10/29/http_proxy)
 
@@ -226,34 +235,50 @@ Host *
 {% highlight bash %}
 # /etc/polipo/config
 proxyAddress = "0.0.0.0"
-proxyPort = 7007
-socksParentProxy = "127.0.0.1:7008"
+proxyPort = 9999
+socksParentProxy = "127.0.0.1:8888"
 socksProxyType = socks5
 {% endhighlight %}
 
 直接执行``sudo polipo``即可成功开启本地http proxy
 
-测试： ``curl -x 127.0.0.1:7007  http://ipinfo.io``
+## windows 环境
 
-### 手机使用本地http proxy访问外网
+安装 [privoxy](https://www.privoxy.org/)
+
+{% highlight bash %}
+# config.txt
+listen-address 0.0.0.0:9999
+forward-socks5 / 127.0.0.1:8888 .
+{% endhighlight %}
+
+# 使用 http proxy
 
 假设本地开启http proxy的机器内网ip为 192.168.1.111。
 
-全局proxy：
+## PC
 
-android 无线配置：在wlan ssid名称处长按，选择“高级选项”，填入本地http proxy地址 192.168.1.111 、端口 7007。
+``curl -x http://192.168.1.111:9999  https://ipinfo.io``
+
+``curl -x socks5://192.168.1.111:8888  https://ipinfo.io``
+
+## android
+
+无线配置：在wlan ssid名称处长按，选择“高级选项”，填入本地http proxy地址 192.168.1.111 、端口 9999。
+
+指定某些app使用proxy：可安装 [ProxyDroid](https://play.google.com/store/apps/details?id=org.proxydroid)，需要root权限
+
+## ios
 
 ios配置与android类似。
 
-指定某些app使用proxy：
+# socks tunnel使用方法（windows简易版）
 
-anroid 可安装 [ProxyDroid](https://play.google.com/store/apps/details?id=org.proxydroid)，需要root权限
-
-# socks tunnel使用方法（简易版）
+## 购买vps
 
 假设已购买了vps，ip地址为xxx.xxx.xxx.xxx，用户名为someusr，密码为somepasswd
 
-WINDOWS系统
+## ssh tunnel
 
 下载 [plink](http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html)
 
@@ -265,6 +290,8 @@ WINDOWS系统
 
 双击p.bat，运行，遇到提示信息选择 y (yes)，此时本地端口为8888，不要关闭窗口。
 
+## 浏览器
+
 以firefox浏览器为例，下载并安装：[firefox-portable-install](http://portableapps.com/apps/internet/firefox_portable)
 
 打开firefox-portable，option配置如下：
@@ -272,4 +299,3 @@ WINDOWS系统
 ![firefox-socks](/assets/posts/firefox_socks.png)
 
 配置完毕后直接测试访问google。
-
