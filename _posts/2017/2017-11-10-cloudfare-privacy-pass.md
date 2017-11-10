@@ -24,6 +24,8 @@ tags: [ "CAPTCHA" ]
 
 那么下回用户向edge服务器再次请求在cloudflare托管的其他站点内容时，就不用再次输入验证码，cloudflare直接验token即可（该token之前没用过）
 
+可以算做server端防ddos策略影响用户浏览体验的一种折中方案，privacy另议。
+
 # Signing phase
 
     C samples a random ‘blind’ r ← ZZ_q  #模为q的整数环
