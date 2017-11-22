@@ -12,9 +12,8 @@ tags : [ "great.w", "ssh", "socks5", "privoxy", "polipo", "plink" ]
 
 # 说明
 
-方案：
-- 安装ssh/putty，本地提供ssh tunnel。本机浏览器、Dropbox等客户端直接使用tunnel。
-- 安装polipo/privoxy，本地提供http proxy，再转发到ssh tunnel。android / ios 下配置wlan连接使用该http proxy。比openvpn速度快很多。
+- 安装ssh/plink/putty，本地提供ssh tunnel。本机浏览器、Dropbox等客户端直接使用tunnel。
+- 安装polipo/privoxy，本地提供http proxy，再转发到ssh tunnel。android / ios 手机配置wlan连接使用该http proxy。比openvpn速度快很多。
 
 优点：稳定，连接比较快
 
@@ -22,9 +21,64 @@ tags : [ "great.w", "ssh", "socks5", "privoxy", "polipo", "plink" ]
 
 建议：android / linux / windows 下使用
 
-# 使用ssh进行远程登录
+# windows 
 
-假设远程vps叫remote，ip地址为xxx.xxx.xxx.xxx，用户名为someusr，密码为somepasswd
+## 购买VPS
+
+假设购买的远程vps叫remote，ip地址为xxx.xxx.xxx.xxx，用户名为someusr，密码为somepasswd
+
+## 开启 ssh tunnel
+
+下载 [plink](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+
+根据用户名、密码登录： ``plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -pw somepasswd``
+
+根据用户名、私钥登录： ``plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -i private.ppk``
+
+
+或者本地新建一个 p.bat 文件，其内容为
+
+    plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -pw somepasswd
+
+将p.bat保存在与plink.exe相同目录下。
+
+双击p.bat，运行，遇到提示信息选择 y (yes)，此时本地端口为8888，不要关闭窗口。
+
+## 浏览器使用ssh tunnel
+
+以firefox为例，下载并安装：[firefox-portable-install](http://portableapps.com/apps/internet/firefox_portable)
+
+打开firefox，
+
+about:config设置network.proxy.socks_remote_dns为true
+
+option配置如下：
+
+![firefox-socks](/assets/posts/firefox_socks.png)
+
+配置完毕后直接测试访问google。
+
+## 开启 http proxy
+
+安装 [privoxy](https://www.privoxy.org/)
+
+{% highlight bash %}
+# config.txt
+listen-address 0.0.0.0:9999
+forward-socks5 / 127.0.0.1:8888 .
+{% endhighlight %}
+
+## 使用 http proxy
+
+假设本地开启http proxy的机器内网ip为 192.168.1.111
+
+android 无线配置：在wlan ssid名称处长按，选择“高级选项”，填入本地http proxy地址 192.168.1.111 、端口 9999。
+
+android 指定某些app使用proxy：可安装 [ProxyDroid](https://play.google.com/store/apps/details?id=org.proxydroid)，需要root权限
+
+ios配置与android类似。
+
+# 使用ssh进行远程登录
 
 ## 输密码
 
@@ -122,36 +176,15 @@ Host *
 
 ![puttygen](/assets/posts/puttygen.jpg)
 
-# ssh tunnel
+# linux
 
-## linux
+## ssh tunnel
 
 ``ssh someusr@remote -N -D 127.0.0.1:8888 -F ~/.ssh/config``
 
-## windows
+android 安装 sshtunnel app，配置host相关信息即可
 
-下载 [plink](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-
-根据用户名、密码登录： ``plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -pw somepasswd``
-
-根据用户名、私钥登录： ``plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -i private.ppk``
-
-
-或者本地新建一个 p.bat 文件，其内容为
-
-    plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -pw somepasswd
-
-将p.bat保存在与plink.exe相同目录下。
-
-双击p.bat，运行，遇到提示信息选择 y (yes)，此时本地端口为8888，不要关闭窗口。
-
-## android
-
-安装 sshtunnel app，配置host相关信息即可
-
-# http proxy
-
-## linux
+## http proxy
 
 安装 polipo
 
@@ -169,31 +202,16 @@ socksProxyType = socks5
 
 直接执行``sudo polipo``即可成功开启本地http proxy
 
-## windows
+## 使用 http proxy
 
-安装 [privoxy](https://www.privoxy.org/)
+假设本地开启http proxy的机器内网ip为 192.168.1.111
 
-{% highlight bash %}
-# config.txt
-listen-address 0.0.0.0:9999
-forward-socks5 / 127.0.0.1:8888 .
-{% endhighlight %}
+``curl -x http://192.168.1.111:9999  https://ipinfo.io``
 
-# 使用ssh tunnel
+``curl -x socks5://192.168.1.111:8888  https://ipinfo.io``
 
-## 浏览器DNS配置
 
-以firefox为例，about:config设置network.proxy.socks_remote_dns为true
-
-## 浏览器socks proxy配置
-
-以firefox为例，下载并安装：[firefox-portable-install](http://portableapps.com/apps/internet/firefox_portable)
-
-打开firefox，option配置如下：
-
-![firefox-socks](/assets/posts/firefox_socks.png)
-
-配置完毕后直接测试访问google。
+# PAC代理配置文件
 
 ## 浏览器pac文件示例（黑名单），默认直连
 
@@ -269,22 +287,3 @@ function FindProxyForURL(url, host) {
 };
 {% endhighlight %}
 
-# 使用 http proxy
-
-假设本地开启http proxy的机器内网ip为 192.168.1.111
-
-## PC
-
-``curl -x http://192.168.1.111:9999  https://ipinfo.io``
-
-``curl -x socks5://192.168.1.111:8888  https://ipinfo.io``
-
-## android
-
-无线配置：在wlan ssid名称处长按，选择“高级选项”，填入本地http proxy地址 192.168.1.111 、端口 9999。
-
-指定某些app使用proxy：可安装 [ProxyDroid](https://play.google.com/store/apps/details?id=org.proxydroid)，需要root权限
-
-## ios
-
-ios配置与android类似。
