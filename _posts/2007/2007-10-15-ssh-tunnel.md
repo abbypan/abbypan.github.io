@@ -78,6 +78,116 @@ android 指定某些app使用proxy：可安装 [ProxyDroid](https://play.google.
 
 ios配置与android类似。
 
+# linux
+
+## ssh tunnel
+
+``ssh someusr@remote -N -D 127.0.0.1:8888 -F ~/.ssh/config``
+
+android 安装 sshtunnel app，配置host相关信息即可
+
+## http proxy
+
+安装 polipo
+
+[通过 Socks5 Proxy 实现 HTTP Proxy](http://cs-cjl.com/2014/10/29/http_proxy)
+
+[archlinux polipo](https://wiki.archlinux.org/index.php/Polipo_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
+
+{% highlight bash %}
+# /etc/polipo/config
+proxyAddress = "0.0.0.0"
+proxyPort = 9999
+socksParentProxy = "127.0.0.1:8888"
+socksProxyType = socks5
+{% endhighlight %}
+
+直接执行``sudo polipo``即可成功开启本地http proxy
+
+## 使用 http proxy
+
+假设本地开启http proxy的机器内网ip为 192.168.1.111
+
+``curl -x http://192.168.1.111:9999  https://ipinfo.io``
+
+``curl -x socks5://192.168.1.111:8888  https://ipinfo.io``
+
+# PAC代理配置文件
+
+## 浏览器pac文件示例（黑名单），默认直连
+
+{% highlight bash %}
+var direct = 'DIRECT';
+var http_proxy = 'SOCKS5 127.0.0.1:8888; DIRECT';
+
+var tunnel_list = [
+"gmail.com",
+"google.com",
+"google.com.hk",
+"googleapis.com"
+];
+
+function FindProxyForURL(url, host) {
+    if(! host) return direct;
+    for (var i = 0; i < tunnel_list.length; i += 1) {
+        var v = tunnel_list[i];
+        if ( dnsDomainIs(host, v)) {
+            return http_proxy;
+        }
+    }
+    return direct;
+};
+{% endhighlight %}
+
+## 浏览器pac文件示例（黑白名单），默认代理
+
+{% highlight bash %}
+var direct = 'DIRECT';
+var http_proxy = 'SOCKS5 127.0.0.1:8888; DIRECT';
+var white_list = [
+".cn", 
+".com.cn",
+".qq.com",
+".jd.com",
+".360buyimg.com",
+".baidu.com",
+".bdstatic.com",
+".douban.com",
+"weibo.com",
+".taobao.com",
+".alipay.com",
+".alicdn.com", 
+".taobaocdn.com"
+];
+
+var black_list = [
+"google.com", 
+"youtube.com"
+];
+
+function FindProxyForURL(url, host) {
+    if(! host) return direct;
+
+    for (var i = 0; i < black_list.length; i += 1) {
+        var v = black_list[i];
+        var dotv = '.' + v;
+        if ( dnsDomainIs(host, dotv) || dnsDomainIs(host, v)) {
+            return http_proxy;
+        }
+    }
+
+    for (var i = 0; i < white_list.length; i += 1) {
+        var v = white_list[i];
+        var dotv = '.' + v;
+        if ( dnsDomainIs(host, dotv) || dnsDomainIs(host, v)) {
+            return direct;
+        }
+    }
+
+    return http_proxy;
+};
+{% endhighlight %}
+
 # 使用ssh进行远程登录
 
 ## 输密码
@@ -175,115 +285,4 @@ Host *
 选择save private key，生成 private.ppk
 
 ![puttygen](/assets/posts/puttygen.jpg)
-
-# linux
-
-## ssh tunnel
-
-``ssh someusr@remote -N -D 127.0.0.1:8888 -F ~/.ssh/config``
-
-android 安装 sshtunnel app，配置host相关信息即可
-
-## http proxy
-
-安装 polipo
-
-[通过 Socks5 Proxy 实现 HTTP Proxy](http://cs-cjl.com/2014/10/29/http_proxy)
-
-[archlinux polipo](https://wiki.archlinux.org/index.php/Polipo_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
-
-{% highlight bash %}
-# /etc/polipo/config
-proxyAddress = "0.0.0.0"
-proxyPort = 9999
-socksParentProxy = "127.0.0.1:8888"
-socksProxyType = socks5
-{% endhighlight %}
-
-直接执行``sudo polipo``即可成功开启本地http proxy
-
-## 使用 http proxy
-
-假设本地开启http proxy的机器内网ip为 192.168.1.111
-
-``curl -x http://192.168.1.111:9999  https://ipinfo.io``
-
-``curl -x socks5://192.168.1.111:8888  https://ipinfo.io``
-
-
-# PAC代理配置文件
-
-## 浏览器pac文件示例（黑名单），默认直连
-
-{% highlight bash %}
-var direct = 'DIRECT';
-var http_proxy = 'SOCKS5 127.0.0.1:8888; DIRECT';
-
-var tunnel_list = [
-"gmail.com",
-"google.com",
-"google.com.hk",
-"googleapis.com"
-];
-
-function FindProxyForURL(url, host) {
-    if(! host) return direct;
-    for (var i = 0; i < tunnel_list.length; i += 1) {
-        var v = tunnel_list[i];
-        if ( dnsDomainIs(host, v)) {
-            return http_proxy;
-        }
-    }
-    return direct;
-};
-{% endhighlight %}
-
-## 浏览器pac文件示例（黑白名单），默认代理
-
-{% highlight bash %}
-var direct = 'DIRECT';
-var http_proxy = 'SOCKS5 127.0.0.1:8888; DIRECT';
-var white_list = [
-".cn", 
-".com.cn",
-".qq.com",
-".jd.com",
-".360buyimg.com",
-".baidu.com",
-".bdstatic.com",
-".douban.com",
-"weibo.com",
-".taobao.com",
-".alipay.com",
-".alicdn.com", 
-".taobaocdn.com"
-];
-
-var black_list = [
-"google.com", 
-"youtube.com"
-];
-
-function FindProxyForURL(url, host) {
-    if(! host) return direct;
-
-    for (var i = 0; i < black_list.length; i += 1) {
-        var v = black_list[i];
-        var dotv = '.' + v;
-        if ( dnsDomainIs(host, dotv) || dnsDomainIs(host, v)) {
-            return http_proxy;
-        }
-    }
-
-    for (var i = 0; i < white_list.length; i += 1) {
-        var v = white_list[i];
-        var dotv = '.' + v;
-        if ( dnsDomainIs(host, dotv) || dnsDomainIs(host, v)) {
-            return direct;
-        }
-    }
-
-    return http_proxy;
-};
-{% endhighlight %}
 
