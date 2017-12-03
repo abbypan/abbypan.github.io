@@ -18,11 +18,11 @@ tags: [ "cookie", "cookie_jar" ]
 
 提取出HTTP的Cookie头部字段，假设为 "name1=value1; name2=value2"
 
-从firefox的HTTP请求记录中直接提取Cookie
+1) 从firefox的HTTP请求记录中直接提取Cookie
 
 或者
 
-从cookies.sqlite文件中提取指定域名的Cookie信息拼接成cookie string
+2) 从cookies.sqlite文件中提取指定域名的Cookie信息拼接成cookie string
 
 {% highlight perl %}
     $cookie_file='/home/xxx/.mozilla/firefox/xxxx/cookies.sqlite';
@@ -36,11 +36,11 @@ tags: [ "cookie", "cookie_jar" ]
 
 导出 Netscape HTTP Cookie File 格式的文本文件，假设文件名为 cookie.txt
 
-使用 [extract_cookies.sh](https://gist.github.com/spk/5014421) 工具自动导出
+1) 使用 [extract_cookies.sh](https://gist.github.com/spk/5014421) 工具自动导出
 
 或者 
 
-firefox安装 [Export Cookies](https://addons.mozilla.org/en-US/firefox/addon/export-cookies/) 扩展手动导出
+2) firefox安装 [Export Cookies](https://addons.mozilla.org/en-US/firefox/addon/export-cookies/) 扩展手动导出
 
 
 # curl 使用上述 cookie
