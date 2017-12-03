@@ -86,7 +86,7 @@ package Novel::Robot::Browser::CookieJar;
 
 sub new {
   my ( $self, %opt ) = @_;
-  bless {%opt}, __PACKAGE__;
+  bless \%opt, __PACKAGE__;
 }
 
 sub add {
