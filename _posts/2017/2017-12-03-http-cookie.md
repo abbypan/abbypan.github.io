@@ -1,9 +1,9 @@
 ---
 layout: post
 category: tech
-title:  "笔记：curl / HTTP::Tiny 使用浏览器保存的 http cookie"
+title: "笔记：curl / perl HTTP::Tiny 使用浏览器保存的 http cookie"
 tagline: ""
-tags: [ "cookie", "cookie_jar" ] 
+tags: [ "cookie", "cookie_jar" ]
 ---
 {% include JB/setup %}
 
@@ -45,9 +45,9 @@ firefox安装 [Export Cookies](https://addons.mozilla.org/en-US/firefox/addon/ex
 
 # curl 使用上述 cookie
 
-curl -b "name1=value1; name2=value2" "http://m.jjwxc.net/vip/217747/33" -o 33.html
+    $ curl -b "name1=value1; name2=value2" "http://m.jjwxc.net/vip/217747/33" -o 33.html
 
-curl -b cookie.txt -c cookie.txt "http://m.jjwxc.net/vip/217747/33" -o 33.html
+    $ curl -b cookie.txt -c cookie.txt "http://m.jjwxc.net/vip/217747/33" -o 33.html
 
 # perl 的 HTTP::Tiny 模块使用上述cookie
 
