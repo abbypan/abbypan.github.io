@@ -168,6 +168,7 @@ if $str ~~ /<greeting=word> ', ' <audience=word>/ {
 }
 
 "abc" ~~ /.(.$<char>=[.])/   # $0.<char> = c
+{% endhighlight %}
 
 # chap6 正则实现机制
 
@@ -175,11 +176,11 @@ if $str ~~ /<greeting=word> ', ' <audience=word>/ {
 
 {% highlight perl %}
 # : 避免回溯 
-    / $<tag>=[ <[a..z]>+: ] /
+/ $<tag>=[ <[a..z]>+: ] /
 
 # {} 切分声明块，取出单个声明块里的最长匹配，因此是ab
-    say "abc" ~~ /ab | a.* /;       # Output: abc
-    say "abc" ~~ /ab | a {} .* /;   # Output: ab
+say "abc" ~~ /ab | a.* /;       # Output: abc
+say "abc" ~~ /ab | a {} .* /;   # Output: ab
 
 {% endhighlight %}
 
