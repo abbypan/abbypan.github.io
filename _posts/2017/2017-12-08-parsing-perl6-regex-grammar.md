@@ -173,15 +173,14 @@ if $str ~~ /<greeting=word> ', ' <audience=word>/ {
 
 复习了一下编译原理的NFA/DFA
 
-
 {% highlight perl %}
 # : 避免回溯 
-/ $<tag>=[ <[a..z]>+: ] /
+    / $<tag>=[ <[a..z]>+: ] /
 
 # {} 切分声明块，取出单个声明块里的最长匹配，因此是ab
-say "abc" ~~ /ab | a.* /;       # Output: abc
-say "abc" ~~ /ab | a {} .* /;   # Output: ab
-{% endhighlight %}
+    say "abc" ~~ /ab | a.* /;       # Output: abc
+    say "abc" ~~ /ab | a {} .* /;   # Output: ab
+
 {% endhighlight %}
 
 # chap7 正则技术
