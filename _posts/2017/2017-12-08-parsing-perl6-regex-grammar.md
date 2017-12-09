@@ -2,8 +2,8 @@
 layout: post
 category: tech
 title:  "笔记：Parsing with Perl 6 Regexes and Grammars"
-tagline: ""
-tags: [ "perl" ] 
+tagline: "Moritz Lenz"
+tags: [ "perl6" ] 
 ---
 {% include JB/setup %}
 
@@ -251,8 +251,39 @@ grammar JSON {
 
 # chap9 以grammar进行解析
 
-P120
+算式解析示例
+
+自顶向下 vs 自底向上
+
+避免回溯
+
+# chap10 提取数据
+
+abstract syntax tree 例子
+
+按语法解析，按指定的公式自动计算，make 及 made 的数组展开
+
+跟lisp里面的概念类似
+
+# chap11 错误信息
 
 {% highlight perl %}
-
+#配对符号尽量靠近，用 ~ 代指 <sum>
+token group {
+    '(' <sum> ')'
+}
+#you can write
+token group {
+    '(' ~ ')' <sum>
+}
 {% endhighlight %}
+
+# chap12 unicode以及部分特殊字符
+
+里面中文的部分约等于没有
+
+# chap13 例子
+
+理性讨论了一下S-Expression，没有lisp显得自然，所以也没有那么多括号
+
+这章的出发点估计可以加上，手写解析树是不人道的之类
