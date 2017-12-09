@@ -243,9 +243,7 @@ Host *.xxx.com
 
 在三台机器上安装netcat
 
-``公钥认证``配置，使得：``本地``能够不输密码登陆middle，middle能够不输密码登陆``remote``
-
-本地``.ssh/config``示例
+本地配置 ~/.ssh/config，使得本地能够不输密码，通过middle登陆remote
 
     Host middle
     User miduser
@@ -258,15 +256,22 @@ Host *.xxx.com
     Hostname rem.yyy.com
     User remuser
     ProxyCommand ssh -q middle nc -q0 %h 23456
-
-middle上的``.ssh/config``示例
-
-    Host remote
-    User remuser
-    Hostname rem.yyy.com
-    Port 23456
-    PreferredAuthentications publickey
     IdentityFile ~/.ssh/remote_rsa
+
+middle的 ~/.ssh/authorized_keys 为 ~/.ssh/middle_rsa 所对应的公钥
+
+remote的 ~/.ssh/authorized_keys 为 ~/.ssh/remote_rsa 所对应的公钥
+
+rsync使用不受影响： rsync -avzu root@remote:/root/test/ /root/test
+
+ansible需要配置 /etc/ansible/hosts，例如
+
+    [multihop]
+    rem.yyy.com
+
+    [multihop:vars]
+    ansible_ssh_common_args = -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=300s -o ServerAliveInterval=60 -o ProxyCommand="ssh -q middle.xxx.com nc -q0 %h 23456"
+
 
 ## ssh 保持连接
 

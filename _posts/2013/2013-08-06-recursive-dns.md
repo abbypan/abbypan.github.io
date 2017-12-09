@@ -96,6 +96,18 @@ dns client service：
 
 # option test
 
+## 测试edns & 后端resolver ip
+
+    dig o-o.myaddr.l.google.com -t txt +short
+    
+    dig -t a whoami.v4.powerdns.org
+    dig -t txt whoami.v4.powerdns.org
+    dig -t txt whoami-ecs.v4.powerdns.org
+
+    dig -t aaaa whoami.v6.powerdns.org
+    dig -t txt whoami.v6.powerdns.org
+    dig -t txt whoami-ecs.v6.powerdns.org
+
 ## 测试端口随机性 port randomness test
 
 见：https://www.dns-oarc.net/oarc/services/porttest
