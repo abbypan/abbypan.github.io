@@ -12,6 +12,8 @@ tags: [ "dns", "hijack", "privacy", "dnsmasq", "dnswrapper", "dnscrypt" ]
 
 # 说明
 
+https://github.com/abbypan/dnsmasq_dnscrypt_configure
+
 主要防劫持，如google.com/dropbox.com之类。小部分提升隐私，减少dns leak。
 
 参考：
