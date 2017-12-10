@@ -24,7 +24,7 @@ tags: [ "dns", "hijack", "privacy", "dnsmasq", "dnswrapper", "dnscrypt" ]
 
 [dnscrypt-wrapper](https://github.com/cofyc/dnscrypt-wrapper)
 
-# 方案1：不搭建自有的解析服务器
+# plan_a：不搭建自有的解析服务器
 
 本地安装 dnsmasq，dnscrypt-proxy
 
@@ -97,7 +97,7 @@ Daemonize yes
 $ sudo dnscrypt-proxy /etc/dnscrypt-proxy.conf
 {% endhighlight %}
 
-# 方案2：自建支持dnscrypt解析服务器
+# plan_b：自建支持dnscrypt解析服务器
 
 本地安装 dnsmasq，dnscrypt-proxy
 
@@ -218,3 +218,28 @@ server=/qq.com/xxx.xxx.xxx.xxx
 {% highlight bash %}
 server=/google.com/127.0.0.1#53330
 {% endhighlight %}
+
+# plan_c：自建支持dnscrypt解析服务器，但是不使用forwarding做中间隐藏
+
+本地安装 dnsmasq，dnscrypt-proxy
+
+/etc/resolver.conf 中指定nameserver为127.0.0.1，即使用本地dnsmasq提供53服务
+
+remote_dnscrypt_resolver(xxx.xxx.xxx.xxx) 负责接收dnscrypt-proxy查询，转换成传统明文查询发到真正负责解析的resolver
+
+负责解析的resolver可以是自建的bind，或者直接采用google public dns之类
+
+本地配置参考plan_a，dnswrapper + resolver 配置参考plan_b
+
+
+    weibo.cn
+    <--plain--> dnsmaq(127.0.0.1:53)
+    <--plain--> local_open_resolver(202.106.46.151)
+
+    www.google.com
+    <--plain--> dnsmaq(127.0.0.1:53)
+    <--plain--> localhost_dnscrypt_forwarding(127.0.0.1:53330, dnscrypt-proxy)
+    <--dnscrypt--> remote_dnscrypt_resolver(xxx.xxx.xxx.xxx:53332, dnscrypt-wrapper)
+    <--plain--> remote_dnscrypt_resolver(xxx.xxx.xxx.xxx, 127.0.0.1:53, bind)
+                or  
+                remote_dnscrypt_resolver(xxx.xxx.xxx.xxx, 8.8.8.8, google dns)
