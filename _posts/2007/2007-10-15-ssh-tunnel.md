@@ -3,7 +3,7 @@ layout: post
 category : "freedom"
 title:  "访问互联网：ssh 远程登陆配置，ssh tunnel配置"
 tagline: "socks5 + http proxy"
-tags : [ "great.w", "ssh", "socks5", "privoxy", "polipo", "plink" ]
+tags : [ "great.w", "ssh", "socks5", "privoxy", "polipo", "plink", "rsync" ]
 ---
 {% include JB/setup %}
 
@@ -280,6 +280,12 @@ ansible需要配置 /etc/ansible/hosts，例如
 Host *
   ServerAliveInterval 60
 {% endhighlight %}
+
+## rsync 同步目录
+
+    rsync --progress -avzu --delete remote_usr@remote.xxx.com:/var/remote/ /var/local
+
+    sshpass -p "remote_passwd" rsync --progress -avzu --delete -e ssh remote_usr@remote.xxx.com:/var/remote/ /var/local
 
 ## 将文本形式的私钥文件 remote_rsa.key 转换成 putty可用的ppk文件
 
