@@ -22,38 +22,38 @@ tagline: "软件推荐"
 | 压缩解压 | [7zip](http://sparanoid.com/lab/7z/) |
 | 文件管理器 | [freecommander](http://www.freecommander.com/) | 
 | ssh 远程连接 | [kitty](http://www.9bis.net/kitty/) | 
-| 截图、屏幕录像 | fscapture |
-| 形码输入法 | 极点郑码 |
-| 硬件驱动 | 驱动人生 |
-| 聊天 | QQ国际版 |
-| 邮件管理 | foxmail |
-| 电子书 | calibre |
-| 网盘 | dropbox, baidu云网盘web版 |
-| 办公 | 微软office, libreoffice |
-| 同步文件夹 | pathsync | 
-| pdf阅读器 | pdf xchange view | 
-| 下载 | 迅雷精简版 | 
-| sftp / ftp 客户端 | winscp |
-| 音乐播放 | 1by1 |
-| 图片处理 | imagemagick | 
-| 播放器 | vlc |
+| 截图、屏幕录像 | [fscapture](http://www.faststone.org/download.htm) |
+| 邮件管理 | [foxmail](https://www.foxmail.com/) |
+| 电子书 | [calibre](https://calibre-ebook.com/) |
+| pdf阅读器 | [pdf xchange view](https://www.tracker-software.com/product/pdf-xchange-viewer) | 
+| 网盘 | [dropbox](https://www.dropbox.com/) |
+| 办公 | 微软office |
+| 同步文件夹 | [pathsync](https://www.cockos.com/pathsync/) | 
+| 形码输入法 | [极点郑码](http://tieba.baidu.com/p/2912709871) |
+| 硬件驱动 | [驱动人生](http://www.160.com/) |
+| sftp / ftp 客户端 | [winscp](https://winscp.net/) |
+| 音乐播放 | [1by1](http://mpesch3.de1.cc/1by1.html) |
+| 图片处理 | [imagemagick](https://www.imagemagick.org/) | 
+| 播放器 | [vlc](https://www.videolan.org/index.zh.html) |
+| 修改环境变量 | [rapidee](https://www.rapidee.com/) | 
+| 画图库函数 | [chart director](http://www.advsofteng.com/) | 
+| dos环境模拟器 | [dosbox](https://www.dosbox.com/) | 
+| U盘linux系统 | [linux Live USB Creator](https://www.linuxliveusb.com/) | 
+| 根据cue分割音乐文件 | [medieval cue splitter](http://www.medieval.it/cuesplitter-pc/menu-id-71.html) | 
+| perl | [strawberry perl](http://strawberryperl.com/) |
+| mysql管理 | [navicat for mysql](https://www.navicat.com/) |
+| pdf 文件分割合并 | [pdfsam](https://pdfsam.org/) | 
+| 从视频文件(mp4等)中提取gif | qgifer | 
+| 计算器 | speq | 
 | 文件解锁，删除 | unlocker | 
-| 修改环境变量 | rapidee | 
+| 游戏乱码 | apploc | 
+| 调整游戏时画面速度 | gear 变速齿轮 | 
+| 编程字体 | monaco ttf | 
+| 聊天 | QQ国际版 |
+| 下载 | 迅雷精简版 | 
 | wordpress备份的xml文件分割 | wordpress WXR File Splitter (RSS XML) | 
 | 命令行 | [cmder](http://bliker.github.io/cmder/), [console2](http://sourceforge.net/projects/console/)，参考 [What s a good alternative Windows console](http://stackoverflow.com/questions/440269/whats-a-good-alternative-windows-console) |
 | mp3 文件信息编辑 | [mp3tag](http://www.mp3tag.de/en/download.html) | 
 | 跳转到指定注册表位置 | [regjump](http://technet.microsoft.com/zh-cn/sysinternals/bb963880) | 
 | 虚拟光驱 | [wincdemu](http://wincdemu.sysprogs.org/portable/), daemon lite |
-| 游戏乱码 | apploc | 
-| 画图库函数 | chart director | 
-| dos环境模拟器 | dosbox | 
-| 调整游戏时画面速度 | gear 变速齿轮 | 
-| U盘linux系统 | linuxLive USB Creator | 
-| 根据cue分割音乐文件 | medieval cue splitter | 
-| 编程字体 | monaco ttf | 
-| mysql管理 | navicat for mysql, heidisql |
-| pdf 文件分割合并 | pdfsam | 
 | apache + php + mysql 环境 | [uniform server](http://www.uniformserver.com/) |
-| 从视频文件(mp4等)中提取gif | qgifer | 
-| 计算器 | speq | 
-| perl 开发 | strawberry perl | 
