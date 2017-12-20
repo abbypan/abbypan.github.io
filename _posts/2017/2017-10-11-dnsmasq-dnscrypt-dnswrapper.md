@@ -28,9 +28,12 @@ https://github.com/abbypan/dnsmasq_dnscrypt_configure
 
 # plan_a：不搭建自有的解析服务器
 
+说明：国内网站用114解析，国外网站用opendns的dnscrypt加密，不过opendns会发送client subnet且忽略下游client subnet，存在隐私泄漏问题。
+
 本地安装 dnsmasq，dnscrypt-proxy
 
 /etc/resolver.conf 中指定nameserver为127.0.0.1，即使用本地dnsmasq提供53服务
+
 
 {% highlight bash %}
 weibo.cn 
@@ -100,6 +103,8 @@ $ sudo dnscrypt-proxy /etc/dnscrypt-proxy.conf
 {% endhighlight %}
 
 # plan_b：自建支持dnscrypt解析服务器
+
+说明：国内网站用114解析，国外网站dnscrypt加密，通过自建的forwarding转发及resolver实现简单防dns污染及解析信息隐藏。
 
 本地安装 dnsmasq，dnscrypt-proxy
 
@@ -222,6 +227,8 @@ server=/google.com/127.0.0.1#53330
 {% endhighlight %}
 
 # plan_c：自建支持dnscrypt解析服务器，但是不使用forwarding做中间隐藏
+
+说明：国内网站用114解析，国外网站dnscrypt加密，通过自建的resolver简单搭建防dns污染的服务器，信息隐藏程度低。
 
 本地安装 dnsmasq，dnscrypt-proxy
 
