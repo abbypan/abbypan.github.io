@@ -69,6 +69,12 @@ Anycast。。。
 
 BCP38，近源处置
 
+## 终端Stub: 2018 Mami篡改macOS的stub DNS及本地根证书 
+
+
+[New MaMi Malware targets macOS systems and changes DNS settings](https://securityaffairs.co/wordpress/67709/malware/mami-malware-dns-changer.html)
+
+
 # Hijack 劫持
 
 没有DNSSEC, DNSCrypt, DNSCurve，又或Registrar失守，递归被骗，如何处治？
