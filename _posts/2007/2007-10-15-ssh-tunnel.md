@@ -3,7 +3,7 @@ layout: post
 category : "freedom"
 title:  "访问互联网：ssh 远程登陆配置，ssh tunnel配置"
 tagline: "socks5 + http proxy"
-tags : [ "great.w", "ssh", "socks5", "privoxy", "polipo", "plink", "rsync" ]
+tags : [ "great.w", "ssh" ]
 ---
 {% include JB/setup %}
 
