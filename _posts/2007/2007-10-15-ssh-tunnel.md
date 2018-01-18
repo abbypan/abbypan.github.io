@@ -48,13 +48,13 @@ tags : [ "great.w", "ssh", "socks5", "privoxy", "polipo", "plink", "rsync" ]
 
 以firefox为例，下载并安装：[firefox-portable-install](http://portableapps.com/apps/internet/firefox_portable)
 
-打开firefox，
+打开firefox portable，下载并安装扩展 [foxyproxy](https://addons.mozilla.org/zh-CN/firefox/addon/foxyproxy-standard/)
 
-about:config设置network.proxy.socks_remote_dns为true
-
-option配置如下：
+foxyproxy配置如下：
 
 ![firefox-socks](/assets/posts/firefox_socks.png)
+
+![firefox-socks](/assets/posts/firefox_socks2.png)
 
 配置完毕后直接测试访问google。
 
