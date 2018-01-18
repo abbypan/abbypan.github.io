@@ -1,7 +1,7 @@
 ---
 layout: post
 category : "freedom"
-title:  "访问互联网：在 vps 上搭建 openvpn 服务"
+title:  "访问互联网：搭建 openvpn 服务"
 tagline: ""
 tags : [ "great.w",  "openvpn" ] 
 ---
