@@ -24,6 +24,7 @@ tagline: "Domain Name System "
 
 | 工具 | 简介 |
 | ---- | ---- |
+| [Public DNS Server List](https://public-dns.info/) | 公用递归列表
 | [new gtld stat](https://ntldstats.com/) | new gtld 的统计信息
 | [ultradnstools](https://www.ultratools.com/) | ultradns提供的一系列DNS检测工具
 | [DNS Looking Glass](http://www.dns-lg.com/) | 可指定节点查询给定域名的RR，支持正向、反向解析，以WEB API形式提供服务，也是statdns的

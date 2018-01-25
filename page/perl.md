@@ -24,6 +24,7 @@ tagline: "TMTOWTDI"
 
 | 站点 | 简介 |
 | ---- | ---- |
+| [All Perl Books](http://allperlbooks.com/) | Perl 书籍列表
 | [PerlFAQ](http://faq.perl.org/)，[PerlFaq中文翻译](http://perl.org.tw/docs/faq/perlfaq/) | 常见问题
 | [CPAN](http://cpan.uwinnipeg.ca/)，[MetaCPAN](http://metacpan.org) | 模块查找
 | [PerlMonks](http://www.perlmonks.org/)，[PerlMongers](http://www.pm.org/) | 问题讨论

@@ -28,6 +28,8 @@ GNUPG
 
 [dns oarc 2016 ag](https://indico.dns-oarc.net/event/22/timetable/#all.detailed)
 
+[DNS Privacy Implementa3on and Deployment](https://ccnso.icann.org/sites/default/files/file/field-file-attach/2017-04/presentation-dns-privacy-implementation-deployment-13mar17-en.pdf)
+
 # 现行解析架构
 
 根据DNS协议的分层设计，用户的DNS解析请求从用户终端的Stub 解析器发送到递归服务器，再由递归服务器向根、顶级域、二级及以下权威服务器发起迭代查询。该查询过程至少会涉及上述5个DNS节点的4条查询链路：
