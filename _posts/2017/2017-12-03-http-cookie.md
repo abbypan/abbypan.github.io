@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title: "笔记：curl / perl HTTP::Tiny 使用浏览器保存的 http cookie"
+title: "curl / perl HTTP::Tiny 使用浏览器保存的 http cookie"
 tagline: ""
 tags: [ "cookie", "cookie_jar" ]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "笔记：Parsing with Perl 6 Regexes and Grammars"
+title:  "Parsing with Perl 6 Regexes and Grammars"
 tagline: "Moritz Lenz"
 tags: [ "perl6" ] 
 ---

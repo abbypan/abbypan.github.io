@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "笔记：httpbis ORIGIN & Secondary Certificate Authentication ; DNS DOH"
+title:  "httpbis ORIGIN & Secondary Certificate Authentication ; DNS DOH"
 tagline: ""
 tags: [ "dns", "http" ] 
 ---

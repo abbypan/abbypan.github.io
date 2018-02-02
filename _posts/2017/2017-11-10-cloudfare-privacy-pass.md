@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "笔记：Privacy Pass"
+title:  "Privacy Pass"
 tagline: ""
 tags: [ "CAPTCHA" ] 
 ---

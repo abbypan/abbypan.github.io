@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "笔记：DNSSD Privacy"
+title:  "DNSSD Privacy"
 tagline: ""
 tags: [ "dns", "dnssd", "privacy" ] 
 ---
