@@ -28,7 +28,7 @@ tags: [ "tls", "security" ]
 
 # 分析
 
-此方案试图通过对称加密计算MAC来节省无效cipher suite计算的防御资源
+此方案试图通过对称加密计算MAC，来节省无效cipher suite计算所消耗的防御资源
 
 传统proxy型的连接保护： client <-> proxy <-> server
 
