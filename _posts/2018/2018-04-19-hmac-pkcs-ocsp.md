@@ -1,9 +1,9 @@
 ---
 layout: post
 category: tech
-title:  "HMAC, HMAC-SHA-256, PKCS#12, OSCP相关"
+title:  "HMAC, HMAC-SHA-256, PKCS#12, OCSP相关"
 tagline: ""
-tags: [ "hmac", "pkcs", "pki", "oscp", "tls" ] 
+tags: [ "hmac", "pkcs", "pki", "ocsp", "tls" ] 
 ---
 {% include JB/setup %}
 
@@ -62,7 +62,7 @@ PFX PDU格式参考第4节。
 - AuthenticatedSafe，AuthenticatedSafe后面可以带签名。AuthenticatedSafe自身带一系列ContentInfo信息，包含可能被加密的内容(content)。每个ContentInfo可以带一种类型的内容集合，例如private keys, certificates等等。
 - MacData参数用于password integrity，可选项，包含MacValue(PKCS#7 Digest Info), MacSalt, iterationCount。MacKey由上述三个参数生成。
 
-# OSCP (online certificate status protocol)
+# OCSP (online certificate status protocol)
 
 [Addressing the challenges of TLS, revocation, and OCSP](https://www.fastly.com/blog/addressing-challenges-tls-revocation-and-ocsp)
 
@@ -74,21 +74,21 @@ PFX PDU格式参考第4节。
 
 事实上多数浏览器采用OCSP，因为CRL文件太大没必要。
 
-而由于OSCP存在时延、隐私问题，建议采用OSCP stapling，由服务器代理获取TLS验证所需的相关证书链信息。
+而由于ocsp存在时延、隐私问题，建议采用ocsp stapling，由服务器代理获取TLS验证所需的相关证书链信息。
 
-google chrome的人反对oscp主要基于时延的考虑，此外认为soft-fail模式的存在会使得攻击者阻断client->oscp的通信，使得client接受revocated证书，对MITM攻击的防御并没有什么提升。
+google chrome的人反对ocsp主要基于时延的考虑，此外认为soft-fail模式的存在会使得攻击者阻断client->ocsp的通信，使得client接受revocated证书，对MITM攻击的防御并没有什么提升。
 
 而避免CRL/OCSP的解决方案可以是浏览器厂商周期性更新CRL的一个子集，里面只包含"chrome/firefox认为"是"重点"的revocation信息，浏览器定时更新即可。例如chrome的CRLSet，firefox的OneCRL。优点明显，不用下载CRL的全集大文件，避免了OCSP的时延开销；缺点是人家说你重要你就重要，说你不重要你就不重要，此外就是凭什么相信某些"安全"浏览器的问题。
 
 或者强制 [OCSP Must-Staple](https://scotthelme.co.uk/ocsp-must-staple/)，实用性有限。
 
-问题的根源在于证书的有效时间一般一签就是几年，中途撤销信息必须能及时推送。如果OCSP Stapling + OSCP Response定期更新（例如有效期设置为几天），对多数网站是一个相对可接受的折中。
+问题的根源在于证书的有效时间一般一签就是几年，中途撤销信息必须能及时推送。如果OCSP Stapling + ocsp Response定期更新（例如有效期设置为几天），对多数网站是一个相对可接受的折中。
 
 ## RFC6066
 
 [RFC6066, Section 8 Certificate Status Request](https://tools.ietf.org/html/rfc6066#page-14)
 
-OSCP请求的数据结构，其中ResponderID是指client信任的CSP responders列表，如果列表为空则表示server已预先知道这些responders无需重复指定。
+ocsp请求的数据结构，其中ResponderID是指client信任的CSP responders列表，如果列表为空则表示server已预先知道这些responders无需重复指定。
 
          struct {
               CertificateStatusType status_type;
@@ -107,7 +107,7 @@ OSCP请求的数据结构，其中ResponderID是指client信任的CSP responders
           opaque ResponderID<1..2^16-1>;
           opaque Extensions<0..2^16-1>;
 
-OSCP应答的数据结构
+ocsp应答的数据结构
 
      struct {
           CertificateStatusType status_type;
@@ -143,10 +143,10 @@ OSCP应答的数据结构
 
      thisUpdate: responder知道该status的时间
      nextUpdate: 该status在哪个时间之前有效
-     producedAt: OSCP responder签发该response的时间
+     producedAt: ocsp responder签发该response的时间
      revocationTime: 该证书被撤销的时间
 
-# OSCP Stapling
+# ocsp Stapling
 
 [The case for “OCSP Must-Staple”](https://www.grc.com/revocation/ocsp-must-staple.htm)
 
@@ -156,7 +156,7 @@ OSCP应答的数据结构
 
 TLS Multiple Certificate Status Request extension
 
-支持服务器在TLS握手时发送多个OSCP响应
+支持服务器在TLS握手时发送多个ocsp响应
 
 请求的数据结构
 
