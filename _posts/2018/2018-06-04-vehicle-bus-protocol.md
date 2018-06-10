@@ -1,9 +1,9 @@
 ---
 layout: post
 category: tech
-title:  "Vehicle Bus Protocol: CAN"
+title:  "Vehicle Bus Protocol: CAN, LIN"
 tagline: ""
-tags: [ "can" ] 
+tags: [ "can", "lin" ] 
 ---
 {% include JB/setup %}
 
