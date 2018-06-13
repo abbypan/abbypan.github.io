@@ -1,9 +1,9 @@
 ---
 layout: post
 category: tech
-title:  "Vehicle Bus Protocol: CAN, LIN, FlexRay"
+title:  "Vehicle Bus Protocol: CAN, LIN, FlexRay, MOST"
 tagline: ""
-tags: [ "vehicle", "can", "lin", "flexray" ] 
+tags: [ "vehicle", "can", "lin", "flexray", "most" ] 
 ---
 {% include JB/setup %}
 
