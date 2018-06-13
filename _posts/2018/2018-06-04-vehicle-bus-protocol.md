@@ -18,6 +18,11 @@ tags: [ "vehicle", "can", "lin", "flexray" ]
 
 [Awesome Vehicle Security](https://github.com/jaredthecoder/awesome-vehicle-security)
 
+[Basics of In-Vehicle Networking (IVN) Protocols](http://www.onsemi.cn/PowerSolutions/document/TND6015-D.PDF)
+
+[Introduction In-Vehicle-Networking](https://www.youtube.com/watch?v=DeQb8Q6hEkA)
+
+[Automotive Bus Systems](https://theeshadow.com/files/S40MY2005/pg29_32_autobussyste.pdf)
 
 # CAN (Controller Area Network)
 
@@ -215,6 +220,48 @@ FlexRay 主要优势是通过分时time slot确定传输的frame，避免冲突�
 
 星形拓扑可以在star节点做一些处置。
 
-# MOST
+# MOST (Media Oriented Systems Transport)
 
-# Ethernet
+[Media Oriented Systems Transport (MOST)](https://vector.com/vi_most_en.html)
+
+[MOST: THE AUTOMOTIVE MULTIMEDIA NETWORK](http://www.ciando.com/img/books/extract/3645250611_lp.pdf)
+
+[MOST150 – The Next Generation Automotive Infotainment Backbone](https://www.mouser.com/pdfdocs/Microchip-Next-Generation-Automotive-Infotainment.pdf)
+
+[Bridging MOST to IEEE Standards](http://www.ieee802.org/1/files/public/docs2012/new-Bridging-MOST-Muyshondt-Bridging-MOST-to-IEEE-Standards-0712.pdf)
+
+[Vehicle Networks Multimedia Protocols](https://www.sti-innsbruck.at/sites/default/files/courses/fileadmin/documents/vn-ws0809/06-VN-MultimediaNetworks.pdf)
+
+[New elements in vehicle communication “media oriented systems transport” protocol](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1006.4793&rep=rep1&type=pdf)
+
+[MOST Technology Report - MOST Cooperation](https://www.mostcooperation.com/publications/.../most-technology-report/)
+
+一般是环形拓扑，最多64个节点，节点即插即用。也可采用星形，或双环。
+
+有一个Time Master节点负责向ring发布frame，其他Time Slave节点保持同步。25Mbps~150Mbps，光纤，主要用于车载娱乐系统(音频，视频，数据）。60 Channels.
+
+Every slave synchronizes with the frame preamble by a Phase-Locked Loop (PLL)
+
+MOST提供控制指令的信道，也可以用专用信道tunnel Ethernet Communication。
+
+## 帧格式
+
+MOST25, 64Bytes: Preamble, Boundary Descriptor, Synchronous channel, Asynchronous Packet Data channel, Control channel 2Bytes, Frame Control, Parity Bit
+
+MOST50, 128Bytes: Control 4Bytes, Synchronous, Asynchronous Packet Data Channel
+
+MOST150, 384Bytes: Control 4Bytes, Synchronous/isochronous streaming channel, Asynchronous Packet Channel/Most Ethernet Packet (MEP) Channel
+
+## Ethernet over MOST150
+
+[Interfacing to the MOST Ethernet Channel](http://www.ieee802.org/1/files/public/docs2013/AC-Muyshondt-InterfacingMOSTEthernetChannel-0713-v01.pdf)
+
+## 安全
+
+娱乐系统一般很少有入侵动机，除非做为攻击跳板。
+
+MOST frame比较大，传输关键channel数据的时候可加校验。
+
+# Automotive Ethernet
+
+[Automotive Ethernet:  An Overview](https://support.ixiacom.com/sites/default/files/resources/whitepaper/ixia-automotive-ethernet-primer-whitepaper_1.pdf)
