@@ -265,3 +265,6 @@ MOST frame比较大，传输关键channel数据的时候可加校验。
 # Automotive Ethernet
 
 [Automotive Ethernet:  An Overview](https://support.ixiacom.com/sites/default/files/resources/whitepaper/ixia-automotive-ethernet-primer-whitepaper_1.pdf)
+
+[Automotive Ethernet Specifications](http://www.opensig.org/Automotive-Ethernet-Specifications/)
+
