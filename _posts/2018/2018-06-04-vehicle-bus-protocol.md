@@ -268,3 +268,6 @@ MOST frame比较大，传输关键channel数据的时候可加校验。
 
 [Automotive Ethernet Specifications](http://www.opensig.org/Automotive-Ethernet-Specifications/)
 
+[Ethernet in Automotive Networks](https://www.nada.kth.se/utbildning/grukth/exjobb/rapportlistor/2011/rapporter11/matzols_erik_11126.pdf)
+
+[Tomorrow’s In-Car Interconnect?](https://pdfs.semanticscholar.org/fe76/02c816610db0f2e06cc1d94c94a0ed1c248d.pdf)
