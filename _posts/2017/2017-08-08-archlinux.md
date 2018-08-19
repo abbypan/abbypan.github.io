@@ -1,7 +1,9 @@
 ---
-layout: page
+layout: post
+category: tech
 title: "archlinux"
 tagline: "kiss"
+tags: [ "archlinux" ] 
 ---
 {% include JB/setup %}
 
