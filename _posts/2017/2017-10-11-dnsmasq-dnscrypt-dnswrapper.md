@@ -79,27 +79,14 @@ $ sudo dnsmasq
 
 ## dnscrypt-proxy
 
-/etc/dnscrypt-proxy.conf
-
 指定本地监听地址 127.0.0.1:53330
 
 指定remote_dnscrypt_pub_resolver信息
 
-{% highlight bash %}
-#/etc/dnscrypt-proxy.conf
-LocalAddress 127.0.0.1:53330
-
-ProviderName 2.dnscrypt-cert.opendns.com
-ProviderKey B735:1140:206F:225D:3E2B:D822:D7FD:691E:A1C3:3CC8:D666:8D0C:BE04:BFAB:CA43:FB79
-ResolverAddress 208.67.220.220
-
-Daemonize yes
-{% endhighlight %}
-
 运行
 
 {% highlight bash %}
-$ sudo dnscrypt-proxy /etc/dnscrypt-proxy.conf
+$ sudo dnscrypt-proxy -config /etc/dnscrypt-proxy/dnscrypt-proxy.toml
 {% endhighlight %}
 
 # plan_b：自建支持dnscrypt解析服务器
@@ -160,17 +147,7 @@ $ sudo dnscrypt-wrapper --resolver-address=127.0.0.1:53 --listen-address=0.0.0.0
 
 ## remote_dnscrypt_forwarding: yyy.yyy.yyy.yyy
 
-yyy.yyy.yyy.yyy 的 /etc/dnscrypt-proxy.conf 配置的是 zzz.zzz.zzz.zzz 的信息, ProviderKey 从 zzz.public.key.info 提取
-
-{% highlight bash %}
-LocalAddress 127.0.0.1:53333
-
-ProviderName 2.dnscrypt-cert.mytestresolver.com
-ProviderKey XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX
-ResolverAddress zzz.zzz.zzz.zzz:53335
-
-Daemonize yes
-{% endhighlight %}
+yyy.yyy.yyy.yyy 的 dnscrypt-proxy 配置的是 zzz.zzz.zzz.zzz 的信息
 
 yyy.yyy.yyy.yyy 的 /etc/dnscrypt-wrapper 配置的是在53332监听客户端dnscrypt查询，转成plain查询后，提交给本地的dnscrypt-proxy 53333
 
@@ -188,18 +165,7 @@ $ sudo dnscrypt-wrapper --resolver-address=127.0.0.1:53333 --listen-address=0.0.
 
 ## 本地dnscrypt-proxy
 
-本地的 /etc/dnscrypt-proxy.conf 配置的是 yyy.yyy.yyy.yyy 的信息, ProviderKey 从 yyy.public.key.info 提取
-
-{% highlight bash %}
-#/etc/dnscrypt-proxy.conf
-LocalAddress 127.0.0.1:53330
-
-ProviderName 2.dnscrypt-cert.mytestforwarding.com
-ProviderKey XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX
-ResolverAddress yyy.yyy.yyy.yyy:53332
-
-Daemonize yes
-{% endhighlight %}
+本地的 dnscrypt-proxy 配置的是 yyy.yyy.yyy.yyy 的信息
 
 ## 本地dnsmasq
 
