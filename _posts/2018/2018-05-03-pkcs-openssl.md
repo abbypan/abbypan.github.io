@@ -343,54 +343,18 @@ Root Certificate, Intermediate certificate, End-entity certificate
 
 示例文件见 [openssl_cmd](https://github.com/abbypan/openssl_cmd)
 
-{% highlight bash %}
-#!/bin/bash
+# RFC8017 PKCS#1 RSA
 
-#连接在线证书，列出trust chain
-openssl s_client -connect www.taobao.com:443
+Encryption Schemes: [RSAES-OAEP](https://tools.ietf.org/html/rfc8017#section-7.1) 加入了seed参与运算。优于 [RSAES-PKCS1-v1_5](https://tools.ietf.org/html/rfc8017#section-7.2.1)。
 
-#生成RSA4096的PKCS#10 格式CSR文件 test.csr，私钥为 test.key
-openssl req -nodes -newkey rsa:4096 -keyout test.key -out test.csr -subj "/C=CN/ST=Anhui/L=Hefei/O=USTC/OU=Cybersecurity/CN=PB02210"
-openssl req -noout -text -in test.csr
+PSS: Probabilistic Signature Scheme 
 
-#生成自签名证书
-openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout CA.key -out CA.crt  -subj "/C=CN/ST=Anhui/L=Hefei/O=USTC/OU=West/CN=Information Science and Technology"
-openssl x509 -in CA.crt -text -noout
+Signature Scheme with Appendix: [RSASSA-PSS](https://tools.ietf.org/html/rfc8017#section-8.1.1) 加入了salt参与运算，每次运算得到的signature值各自不同。优于 [RSASSA-PKCS1-v1_5](https://tools.ietf.org/html/rfc8017#section-8.2.1)。
 
-#用CA.key为test.csr签名
-openssl req -verify -in test.csr -text -noout
-openssl x509 -req -days 360 -in test.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out test.crt -sha256
-openssl x509 -text -noout -in test.crt
+Encoding Methods for Signatures with Appendix：[EMSA-PSS](https://tools.ietf.org/html/rfc8017#section-9.1) 优于 [EMSA-PKCS1-v1_5](https://tools.ietf.org/html/rfc8017#section-9.2)，注意这是hash型的单向变换
 
-#PEM/DER证书转换
-openssl x509 -outform der -in test.crt -out test.der
-openssl x509 -inform der -in test.der -out test.pem
+[RSA Key Representation](https://tools.ietf.org/html/rfc8017#appendix-A.1) 各项参数说明，p/q/e/d/...
 
-#PKCS #7文件转换
-openssl crl2pkcs7 -nocrl -certfile test.crt -out test.p7b -certfile CA.crt
-openssl pkcs7 -print_certs -in test.p7b -out test_with_trust_chain.cer
+[Mask Generation Functions](https://tools.ietf.org/html/rfc8017#page-66) 掩码生成，默认MGF1使用的hash函数为sha1。
 
-#outform: PEM(default), DER
-openssl crl2pkcs7 -nocrl -certfile test.crt -out test.p7c -outform DER -certfile CA.crt
-
-#PKCS #12文件转换
-openssl pkcs12 -export -out test.pfx -inkey test.key -in test.crt -certfile CA.crt -password pass:sometestpw
-openssl pkcs12 -in test.pfx -out test_all.cer -nodes -password pass:sometestpw
-openssl pkcs12 -in test.pfx -out test_only_priv.cer -nodes -nocerts -password pass:sometestpw
-openssl pkcs12 -in test.pfx -out test_only_cert.cer -nodes -nokeys -password pass:sometestpw
-
-#ECC curves
-openssl ecparam -list_curves
-
-#ecc generate private key & public key
-openssl ecparam -genkey -name prime256v1 -noout -out ecc_priv.pem
-openssl ec -in ecc_priv.pem -pubout -out ecc_pub.pem
-
-#ecc csr
-openssl req -new -key ecc_priv.pem -out ecc.csr -sha256 -subj "/C=CN/ST=Anhui/L=Hefei/O=USTC/OU=Cybersecurity/CN=Infosec"
-openssl req -verify -in ecc.csr -text -noout
-
-#ecc sign & verify
-openssl dgst -sha256 -sign ecc_priv.pem -out src.sign src.txt
-openssl dgst -sha256 -verify ecc_pub.pem -signature src.sign src.txt
-{% endhighlight %}
+PSS的实现代码可以参考 [Crypt::RSA::SS::PSS](https://metacpan.org/source/Crypt::RSA::SS::PSS)，不过需要注意，源码中的 $params{Message} || $params{Plaintext} 其实相当于[EMSA-PSS](https://tools.ietf.org/html/rfc8017#section-9.1) 中的mHash，而不是M。
