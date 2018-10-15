@@ -357,4 +357,4 @@ Encoding Methods for Signatures with Appendix：[EMSA-PSS](https://tools.ietf.or
 
 [Mask Generation Functions](https://tools.ietf.org/html/rfc8017#page-66) 掩码生成，默认MGF1使用的hash函数为sha1。
 
-PSS的实现代码可以参考 [Crypt::RSA::SS::PSS](https://metacpan.org/source/Crypt::RSA::SS::PSS)，不过需要注意，源码中的 $params{Message} || $params{Plaintext} 其实相当于[EMSA-PSS](https://tools.ietf.org/html/rfc8017#section-9.1) 中的mHash，而不是M。
+PSS的实现代码可以参考 [Crypt::RSA::SS::PSS](https://metacpan.org/source/Crypt::RSA::SS::PSS)，不过需要注意，源码中的 ``$params{Message} || $params{Plaintext}`` 其实相当于[EMSA-PSS](https://tools.ietf.org/html/rfc8017#section-9.1) 中的mHash，而不是M。
