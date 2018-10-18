@@ -3,12 +3,16 @@ layout: post
 category: tech
 title:  "ASN.1, Certificate, PKCS, openssl"
 tagline: ""
-tags: [ "pki", "certificate", "x509v3", "openssl", "pkcs" ] 
+tags: [ "pki", "certificate", "x509v3", "openssl", "pkcs", "rsa" ] 
 ---
 {% include JB/setup %}
 
 * TOC
 {:toc}
+
+[An Overview of Cryptography](https://www.garykessler.net/library/crypto.html)
+
+[Block Ciphers Modes of Operation](http://www.crypto-it.net/eng/theory/modes-of-block-ciphers.html)
 
 # ASN.1
 
@@ -34,7 +38,17 @@ tags: [ "pki", "certificate", "x509v3", "openssl", "pkcs" ]
 
 .pfx – PFX personal information exchange, predecessor of PKCS#12 (usually contains data in PKCS#12 format, e.g., with PFX files generated in IIS)
 
-# PKCS#7
+# openssl
+
+[The Most Common OpenSSL Commands](https://www.sslshopper.com/article-most-common-openssl-commands.html)
+
+[openssl command](https://gist.github.com/webtobesocial/5313b0d7abc25e06c2d78f8b767d4bc3)
+
+[How to Convert certificates between PEM, DER, P7B/PKCS#7, PFX/PKCS#12](https://myonlineusb.wordpress.com/2011/06/19/how-to-convert-certificates-between-pem-der-p7bpkcs7-pfxpkcs12/)
+
+示例文件见 [openssl_cmd](https://github.com/abbypan/openssl_cmd)
+
+# RFC2315 PKCS #7: Cryptographic Message Syntax
 
 [RFC2315 PKCS #7: Cryptographic Message Syntax](https://tools.ietf.org/html/rfc2315)
 
@@ -169,7 +183,27 @@ content用content-encryption key加密
 
 当recipient收到数据后，先用自身私钥解密获得content-encryption key；然后解密content；然后解密上面二次加密的message-digest；根据解密的content计算message-digest，与解密得到的message-digest比对。
 
-# PKCS#10
+# PKCS #8: Private-Key Information Syntax Specification
+
+## Private-Key Information Syntax
+
+版本，私钥算法，私钥，属性信息
+
+    PrivateKeyInfo ::= SEQUENCE {
+            version                   Version,
+            privateKeyAlgorithm       PrivateKeyAlgorithmIdentifier,
+            privateKey                PrivateKey,
+            attributes           [0]  IMPLICIT Attributes OPTIONAL }
+
+## Encrypted Private-Key Information Syntax
+
+    EncryptedPrivateKeyInfo ::= SEQUENCE {
+            encryptionAlgorithm  EncryptionAlgorithmIdentifier,
+            encryptedData        EncryptedData }
+
+encryptionAlgorithm例如pbeWithMD5AndDES-CBC
+
+# RFC2986 PKCS #10: Certification Request Syntax
 
 [RFC2986: PKCS #10: Certification Request Syntax Specification](https://tools.ietf.org/html/rfc2986)
 
@@ -204,7 +238,7 @@ CertificationRequestInfo的内容用DER编码成octet string，然后使用subje
             values SET SIZE(1..MAX) OF ATTRIBUTE.&Type({IOSet}{@type})
        }
 
-# PKCS#12
+# RFC7292 PKCS #12: Personal Information Exchange Syntax
 
 [RFC7292 PKCS #12: Personal Information Exchange Syntax](https://tools.ietf.org/html/rfc7292)
 
@@ -333,15 +367,6 @@ Root Certificate, Intermediate certificate, End-entity certificate
                                           -- if present, version MUST be v2
                                       }
 
-# openssl
-
-[The Most Common OpenSSL Commands](https://www.sslshopper.com/article-most-common-openssl-commands.html)
-
-[openssl command](https://gist.github.com/webtobesocial/5313b0d7abc25e06c2d78f8b767d4bc3)
-
-[How to Convert certificates between PEM, DER, P7B/PKCS#7, PFX/PKCS#12](https://myonlineusb.wordpress.com/2011/06/19/how-to-convert-certificates-between-pem-der-p7bpkcs7-pfxpkcs12/)
-
-示例文件见 [openssl_cmd](https://github.com/abbypan/openssl_cmd)
 
 # RFC8017 PKCS#1 RSA
 
@@ -358,3 +383,70 @@ Encoding Methods for Signatures with Appendix：[EMSA-PSS](https://tools.ietf.or
 [Mask Generation Functions](https://tools.ietf.org/html/rfc8017#page-66) 掩码生成，默认MGF1使用的hash函数为sha1。
 
 PSS的实现代码可以参考 [Crypt::RSA::SS::PSS](https://metacpan.org/source/Crypt::RSA::SS::PSS)，不过需要注意，源码中的 ``$params{Message} || $params{Plaintext}`` 其实相当于[EMSA-PSS](https://tools.ietf.org/html/rfc8017#section-9.1) 中的mHash，而不是M。
+
+# RFC2631 PKCS#3 Diffie-Hellman
+
+KEK : Key Encryption Key
+
+CEK : Content Encryption Key
+
+a与b协商共同的KEK，即ZZ，其中，ya/xa为a的key pair，yb/xb为b的key pair
+
+ZZ = g ^ (xb * xa) mod p = (yb ^ xa)  mod p  = (ya ^ xb)  mod p
+
+ya = g ^ xa mod p
+
+yb = g ^ xb mod p
+
+# RFC8018 PKCS#5 Password-Based Cryptography Specification
+
+## KDF: key derivation functions
+
+基于password, salt, iterationCount生成key
+
+推荐用 derived_key = PBKDF2(password, salt, iterationCount, derived_key_len)
+
+    T_l = F (P, S, c, l)
+
+    F (P, S, c, i) = U_1 \xor U_2 \xor ... \xor U_c
+
+    U_1 = PRF (P, S || INT (i)) ,
+    U_2 = PRF (P, U_1) ,
+    ...
+    U_c = PRF (P, U_{c-1}) 
+
+    DK = T_1 || T_2 ||  ...  || T_l<0..r-1>
+
+其中，PRF是PseudoRandom Functions，例如HMAC-SHA-2
+
+## ES: encryption scheme
+
+PBES2 Encryption Operation
+
+已有password，选择PBKDF2, salt, iterationCount, 生成一个derived_key
+
+使用derived_key使用指定算法（例如AES-CBC-Pad, RC5-CBC-Pad）加密消息message，获得cipher
+
+## MAS: Message Authentication Schemes
+
+PBMAC1 使用 PBKDF2 生成一个derived_key，使用derived_key 与消息message 作为输入，使用underlying message authentication scheme计算出一个消息验证码T。 
+
+例如HMAC-SHA-1, HMAC-SHA-2
+
+# PKCS #6: Extended-Certificate Syntax
+
+# RFC2985 PKCS #9: Selected Object Classes and Attribute Types
+
+# PKCS #11: Cryptographic Token Interface
+
+# PKCS #13: Elliptic curve cryptography Standard
+
+# PKCS #14: Pseudo-random Number Generation
+
+# PKCS #15: Cryptographic Token Information Format Standard
+
+# RFC5652 Cryptographic Message Syntax (CMS)
+
+# RFC5083 Cryptographic Message Syntax (CMS) Authenticated-Enveloped-Data Content Type
+
+# RFC5958 Asymmetric Key Packages
