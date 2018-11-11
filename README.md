@@ -1,8 +1,8 @@
 # 个人主页
 
-http://abbypan.github.io/archive
+https://abbypan.github.io/archive
 
-https://www.linkedin.com/in/abby-pan-54b90977
+https://www.linkedin.com/in/lanlan-pan-54b90977/
 
 # Jekyll-Bootstrap
 
