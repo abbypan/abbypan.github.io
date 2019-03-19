@@ -16,6 +16,8 @@ tags: [ "ocsp" ]
 
 [RFC6066 Transport Layer Security (TLS) Extensions: Extension Definitions](https://tools.ietf.org/html/rfc6066)
 
+[RFC6961 The Transport Layer Security (TLS) Multiple Certificate Status Request Extension](https://tools.ietf.org/html/rfc6961)
+
 [OCSP Must-Staple](https://scotthelme.co.uk/ocsp-must-staple/)
 
 [Online Certificate Status Protocol](https://wiki.wuji.cz/services:tls:ocsp)
@@ -38,7 +40,7 @@ tags: [ "ocsp" ]
 
 tls连接时，如果client收到的server certificate包含该ocsp must-staple extension，则client需要发status_request请求，要求server发ocsp stapling信息。
 
-certificate status request/response格式见RFC6066。
+certificate status request/response格式见RFC6066。status_request_v2见RFC6961。
 
 如果server没有发送对应的ocsp stapling信息给client，则根据must-staple extension的策略，client将终止连接。
 
