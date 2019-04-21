@@ -14,6 +14,8 @@ tags: [ "pki", "certificate", "x509v3", "openssl", "pkcs", "rsa" ]
 
 [Block Ciphers Modes of Operation](http://www.crypto-it.net/eng/theory/modes-of-block-ciphers.html)
 
+[PKCS #12 v1.1: Personal Information Exchange Syntax](http://www.emclink.net/collateral/white-papers/h11301-pkcs-12v1-1-personal-information-exchange-syntax-wp.pdf)
+
 # ASN.1
 
 [ASN.1 introduction](https://www.itu.int/en/ITU-T/asn1/Pages/introduction.aspx)
