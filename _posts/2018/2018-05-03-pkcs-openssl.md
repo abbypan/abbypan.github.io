@@ -50,25 +50,6 @@ tags: [ "pki", "certificate", "x509v3", "openssl", "pkcs", "rsa" ]
 
 示例文件见 [openssl_cmd](https://github.com/abbypan/openssl_cmd)
 
-# PKCS #8: Private-Key Information Syntax Specification
-
-## Private-Key Information Syntax
-
-版本，私钥算法，私钥，属性信息
-
-    PrivateKeyInfo ::= SEQUENCE {
-            version                   Version,
-            privateKeyAlgorithm       PrivateKeyAlgorithmIdentifier,
-            privateKey                PrivateKey,
-            attributes           [0]  IMPLICIT Attributes OPTIONAL }
-
-## Encrypted Private-Key Information Syntax
-
-    EncryptedPrivateKeyInfo ::= SEQUENCE {
-            encryptionAlgorithm  EncryptionAlgorithmIdentifier,
-            encryptedData        EncryptedData }
-
-encryptionAlgorithm例如pbeWithMD5AndDES-CBC
 
 # RFC2986 PKCS #10: Certification Request Syntax
 
