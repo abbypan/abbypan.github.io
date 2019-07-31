@@ -51,40 +51,6 @@ tags: [ "pki", "certificate", "x509v3", "openssl", "pkcs", "rsa" ]
 示例文件见 [openssl_cmd](https://github.com/abbypan/openssl_cmd)
 
 
-# RFC2986 PKCS #10: Certification Request Syntax
-
-[RFC2986: PKCS #10: Certification Request Syntax Specification](https://tools.ietf.org/html/rfc2986)
-
-CertificationRequestInfo 包含 subject distinguished name，subject public key，其他相关信息。
-
-CertificationRequestInfo的内容用DER编码成octet string，然后使用subject's private key对其进行签名，得到a bit string
-
-## CertificationRequestInfo
-
-    CertificationRequestInfo ::= SEQUENCE {
-            version       INTEGER { v1(0) } (v1,...),
-            subject       Name,
-            subjectPKInfo SubjectPublicKeyInfo{{ PKInfoAlgorithms }},
-            attributes    [0] Attributes{{ CRIAttributes }}
-       }
-
-       SubjectPublicKeyInfo { ALGORITHM : IOSet} ::= SEQUENCE {
-            algorithm        AlgorithmIdentifier {{IOSet}},
-            subjectPublicKey BIT STRING
-       }
-
-       PKInfoAlgorithms ALGORITHM ::= {
-            ...  -- add any locally defined algorithms here -- }
-
-       Attributes { ATTRIBUTE:IOSet } ::= SET OF Attribute{{ IOSet }}
-
-       CRIAttributes  ATTRIBUTE  ::= {
-            ... -- add any locally defined attributes here -- }
-
-       Attribute { ATTRIBUTE:IOSet } ::= SEQUENCE {
-            type   ATTRIBUTE.&id({IOSet}),
-            values SET SIZE(1..MAX) OF ATTRIBUTE.&Type({IOSet}{@type})
-       }
 
 # RFC7292 PKCS #12: Personal Information Exchange Syntax
 

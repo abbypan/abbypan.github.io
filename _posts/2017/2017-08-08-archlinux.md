@@ -69,7 +69,7 @@ arch-chroot /mnt
 {% highlight bash %}
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 mkinitcpio -p linux
-grub-install --no-floppy /dev/sda
+grub-install --target i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
 exit
@@ -597,3 +597,7 @@ sudo pacman -Scc
 sudo pacman -Syu
 {% endhighlight %}
 
+## 调整分区大小
+
+    e2fsck -f /dev/sda1
+    resize2fs /dev/sda1
