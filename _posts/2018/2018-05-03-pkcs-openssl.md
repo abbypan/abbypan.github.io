@@ -52,51 +52,6 @@ tags: [ "pki", "certificate", "x509v3", "openssl", "pkcs", "rsa" ]
 
 
 
-# RFC7292 PKCS #12: Personal Information Exchange Syntax
-
-[RFC7292 PKCS #12: Personal Information Exchange Syntax](https://tools.ietf.org/html/rfc7292)
-
-PKCS #12 describes a transfer syntax for personal identity information, including private keys, certificates, miscellaneous secrets, and extensions.
-
-Shrouding:  Encryption as applied to private keys
-
-隐私模式：
-- Public-key privacy mode: 信息以公钥加密(源, TPDestEncK)，以私钥解密(目标, VDestEncK)
-- Password privacy mode: 信息以对称密钥加解密
-
-完整性模式：
-- Public-key integrity mode: 信息以私钥签名(源, VSrcSigK)，以公钥验证(目标, TPSrcSigK)
-- Password integrity mode: 通过密码参与计算得到Message Authentication Code (MAC)进行验证
-
-两类模式之间可以自由组合，注意 Password privacy mode 跟 Password integrity mode 的password可以不同
-
-PFX PDU格式参考第4节。
-- AuthenticatedSafe，AuthenticatedSafe后面可以带签名。AuthenticatedSafe自身带一系列ContentInfo信息，包含可能被加密的内容(content)。每个ContentInfo可以带一种类型的内容集合，例如private keys, certificates等等。
-- MacData参数用于password integrity，可选项，包含MacValue(PKCS#7 Digest Info), MacSalt, iterationCount。MacKey由上述三个参数生成。
-
-## PFX
-
-     PFX ::= SEQUENCE {
-           version     INTEGER {v3(3)}(v3,...),
-           authSafe    ContentInfo,
-           macData     MacData OPTIONAL
-       }
-
-       MacData ::= SEQUENCE {
-           mac         DigestInfo,
-           macSalt     OCTET STRING,
-           iterations  INTEGER DEFAULT 1
-           -- Note: The default is for historical reasons and its
-           --       use is deprecated.
-       }
-
-## AuthenticatedSafe
-
-     AuthenticatedSafe ::= SEQUENCE OF ContentInfo
-           -- Data if unencrypted
-           -- EncryptedData if password-encrypted
-           -- EnvelopedData if public key-encrypted
-
 # X.509v3
 
 [RFC5280 Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile](https://tools.ietf.org/html/rfc5280)
