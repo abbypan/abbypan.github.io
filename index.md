@@ -15,8 +15,8 @@ tagline: "江畔何人初见月，江月何年初照人"
 
 | 类型 | 链接 |
 | ---- | ---- |
-| 娱乐 | [喜欢的书](page/book.html)，[周华健](http://music.douban.com/musician/104913/)
-| 交流 | [twitter](https://twitter.com/abbypan)，[linkedin](https://www.linkedin.com/in/abby-pan-54b90977)，[blogspot](http://abbypan.blogspot.com)
+| 娱乐 | [喜欢的书](page/book.html)
+| 交流 | [twitter](https://twitter.com/abbypan)，[linkedin](https://www.linkedin.com/in/lanlan-pan-54b90977/)，[blogspot](http://abbypan.blogspot.com)
 
 # 旧的回忆
 
