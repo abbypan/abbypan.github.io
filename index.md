@@ -9,13 +9,12 @@ tagline: "江畔何人初见月，江月何年初照人"
 
 谁将归去？ 守望一生。
 
-![我的邮箱](assets/img/mail.png) 
+![邮箱](assets/img/mail.png) 
 
 # 日常
 
 | 类型 | 链接 |
 | ---- | ---- |
-| 娱乐 | [喜欢的书](page/book.html)
 | 交流 | [twitter](https://twitter.com/abbypan)，[linkedin](https://www.linkedin.com/in/lanlan-pan-54b90977/)，[blogspot](http://abbypan.blogspot.com)
 
 # 旧的回忆
