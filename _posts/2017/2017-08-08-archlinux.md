@@ -3,7 +3,7 @@ layout: post
 category: tech
 title: "archlinux"
 tagline: "kiss"
-tags: [ "archlinux" ] 
+tags: [ "archlinux", "clonezilla" ] 
 ---
 {% include JB/setup %}
 
@@ -12,17 +12,21 @@ tags: [ "archlinux" ]
 
 # 初始安装
 
-下载archlinux最新iso文件：http://www.archlinux.org/download/
-
-可以制作成光盘，或U盘启动
+[How to Install Arch Linux](https://itsfoss.com/install-arch-linux/)
 
 ## U盘启动
 
-下载LinuxLive USB Creator：http://www.linuxliveusb.com/
+下载archlinux最新iso文件：http://www.archlinux.org/download/
 
-用LinuxLive USB Creator制作可启动的USB盘
+linux 环境刻录u盘:
 
-修改BIOS，从USB启动，进入archlinux
+    dd bs=4M if=archlinux.iso of=/dev/sdx status=progress && sync
+
+windows环境刻录u盘:
+
+    下载LinuxLive USB Creator：http://www.linuxliveusb.com/
+
+修改BIOS，从U盘启动，进入archlinux live
 
 ## 设置arch源
 
@@ -34,7 +38,7 @@ SigLevel = Optional TrustAll
 Server = http://repo.archlinux.fr/$arch
 {% endhighlight %}
 
-编辑/etc/pacman.d/mirrorlist
+编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
 
 {% highlight bash %}
 Server = http://mirrors.163.com/archlinux/$repo/os/$arch
@@ -54,8 +58,6 @@ mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 
 执行``wifi-menu``，连接合适的无线网络
 
-编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
-
 {% highlight bash %}
 mount /dev/sda1 /mnt
 pacstrap /mnt base base-devel
@@ -64,7 +66,7 @@ genfstab -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 {% endhighlight %}
 
-设置arch源，见上节
+编辑/etc/pacman.d/mirrorlist，设置arch源，同上节
 
 {% highlight bash %}
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -76,9 +78,9 @@ exit
 reboot
 {% endhighlight %}
 
-重启之后，执行``wifi-menu``连接到无线网络
-
 ## 系统更新
+
+重启之后，执行``wifi-menu``连接到无线网络
 
 {% highlight bash %}
 pacman -Syu
@@ -103,7 +105,7 @@ XferCommand = /usr/bin/aria2c -c -o %o %u
 'ftp::/usr/bin/aria2c -c -o %o %u'
 {% endhighlight %}
 
-## 时间
+## ntp时间同步
 
 {% highlight bash %}
 yaourt -S ntp
@@ -601,3 +603,49 @@ sudo pacman -Syu
 
     e2fsck -f /dev/sda1
     resize2fs /dev/sda1
+    
+# 用 clonezilla 迁移 archlinux 系统 
+
+## 环境
+
+假设旧机器为A，archlinux 装在A机器的 /dev/sda1 上
+
+假设新机器为B，B上的硬盘为X
+
+假设想要将 机器A上的archlinux 迁移到 机器B上硬盘X的第2分区
+
+## 制作一个启动U盘
+
+下载：[clonezilla-live-zip](http://drbl.nchc.org.tw/clonezilla/clonezilla-live/download/)
+
+例如windows下可以在解压zip文件的目录中找到 utils\win32\ 的bat，双击即可自动制作U盘
+
+##  复制分区
+
+将启动U盘插入机器A，bios设置从U盘启动，重启机器A进入clonezilla-live
+
+A机器的硬盘被挂载为/dev/sda
+
+U盘被挂载为/dev/sdb
+
+把硬盘X从机器B取出，当作移动硬盘插到机器A，假设被挂载为 /dev/sdc
+
+按clonezilla提示，选择从``本机分区``复制到``本机分区``，源分区为/dev/sda1，目标分区为/dev/sdc2
+
+等待clonezilla完成分区复制
+
+## 安装grub
+
+分区复制完成之后，回到clonezilla命令行
+
+获取root权限：``su root -``
+
+挂载/dev/sdc2： ``mount /dev/sdc2 /mnt``
+
+安装grub到/dev/sdc：``grub-install --root-directory=/mnt /dev/sdc``
+
+## 完成迁移
+
+将硬盘X重新插入机器B，启动机器B，即可进入archlinux
+
+如果硬盘X上还有其他操作系统，可编辑/boot/grub/grub.cfg，增加其他启动项
