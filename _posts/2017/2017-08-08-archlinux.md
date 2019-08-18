@@ -135,7 +135,7 @@ exec lxsession
 ## 安装XFCE
 
 {% highlight bash %}
-yaourt -S xfce4 xfce4-notifyd
+yaourt -S xfce4 xfce4-notifyd elementary-xfce-icons
 {% endhighlight %}
 
 进入X的配置，不然关机键老是灰的：编辑~/.xinitrc

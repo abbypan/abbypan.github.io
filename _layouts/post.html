@@ -5,3 +5,8 @@ layout: default
 ---
 {% include JB/setup %}
 {% include themes/twitter/post.html %}
+
+{% if site.disqus.shortname %}
+  {% include disqus_comments.html %}
+{% endif %}
+
