@@ -135,7 +135,7 @@ exec lxsession
 ## 安装XFCE
 
 {% highlight bash %}
-yaourt -S xfce4 xfce4-notifyd elementary-xfce-icons
+yaourt -S xfce4 xfce4-goodies xfce4-notifyd elementary-xfce-icons
 {% endhighlight %}
 
 进入X的配置，不然关机键老是灰的：编辑~/.xinitrc
@@ -152,7 +152,7 @@ exec ck-launch-session dbus-launch startxfce4
 - [archlinux音量太小的问题解决](https://bbs.archlinux.org/viewtopic.php?pid=1090109)
 
 {% highlight bash %}
-# pacman -Sy pulseaudio alsa-lib alsa-utils alsa-oss
+# pacman -Sy pavucontrol pulseaudio alsa-lib alsa-utils alsa-oss
 # gpasswd -a USERNAME audio
 # alsaconf
 # alsamixer
@@ -260,7 +260,7 @@ yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 [cue_splitting](https://wiki.archlinux.org/index.php/CUE_Splitting)
 
 {% highlight bash %}
-sudo yaourt -S cuetools mp3info wavpack flac mac shntool bchunk
+yaourt -S cuetools mp3info wavpack flac mac shntool bchunk
 {% endhighlight %}
 
 ## 关闭触摸板
@@ -272,22 +272,40 @@ sudo synclient TouchpadOff=1
 
 # 输入法
 
-以fcitx为例
-
 {% highlight bash %}
-yaourt -S fcitx fcitx-sunpinyin fcitx-table-extra
+yaourt -S ibus-rime
 {% endhighlight %}
 
 在``$HOME/.bashrc``中添加：
 
 {% highlight bash %}
-export LANG="zh_CN"
-export LC_CTYPE="zh_CN"
-export XIM_PROGRAM=fcitx
-export XMODIFIERS=@im=fcitx
-export GTK_IM_MODULE=fcitx
-export XIM=fcitx
+export LANG="zh_CN.UTF-8"
+export LC_CTYPE="zh_CN.UTF-8"
+export XIM_PROGRAM=ibus
+export XMODIFIERS="@im=ibus"
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XIM=ibus
 {% endhighlight %}
+
+在``$HOME/.xinitrc``中添加：
+
+    ibus-daemon -drx
+
+## 郑码
+
+安装郑码:
+
+    $ git clone https://github.com/rime/plum
+    $ cd plum 
+    $ bash rime-install lotem/rime-zhengma
+
+编辑 ``~/.config/ibus/rime/default.custom.yaml``：
+
+    patch:
+      schema_list:
+        - schema: zhengma
+        - schema: terra_pinyin
 
 # 中文环境
 - ``vim /etc/locale.gen``，指定zh_CN.UTF-8
@@ -593,6 +611,7 @@ echo options iwlwifi 11n_disable=1 | sudo tee /etc/modprobe.d/51-disable-6235-11
 ## 数据包更新失败
 
 {% highlight bash %}
+sudo pacman -S archlinux-keyring  
 sudo pacman-key --refresh-keys
 sudo pacman-key --populate archlinux
 sudo pacman -Scc
