@@ -76,7 +76,23 @@ l = 1, ..., u
 
 其他与UOV一致
 
+
+# HFE: Hidden Fields Equations
+
+[Solving Systems of Quadratic Equation](https://www.slideserve.com/niveditha/solving-systems-of-quadratic-equations)
+
+[Hidden Field Equations(HFE) and Isomorphisms of Polynomials(IP): two new Families of Asymmetric Algorithms](http://www.minrank.org/hfe.pdf)
+
+[Winter school-pq2016v2](https://www.slideshare.net/LudovicPerret/winter-schoolpq2016v2)
+
+F 为有限域多项式
+
+
 # SimpleMatrix (ABC) Encryption
+
+[Simple Matrix Scheme for Encryption](https://www.researchgate.net/publication/268028336_Simple_Matrix_Scheme_for_Encryption)
+
+[Simple Matrix – A Multivariate Public Key Cryptosystem (MPKC) for Encryption](https://www.researchgate.net/publication/279636226_Simple_Matrix_-_A_Multivariate_Public_Key_Cryptosystem_MPKC_for_Encryption)
 
 n = s^2
 
@@ -86,7 +102,7 @@ A, B, C 为3个 s x s 的矩阵
 
 E1 = A . C, E2 = B . C
 
-central map F : 由E1, E2组成
+central map F : 由E1, E2拼成，m个方程
 
 公钥 P = S . F . T  ， n -> m
 
@@ -100,16 +116,20 @@ F(y) = x
 
 将 x = (x_1, ..., x_m) 拆入 E1, E2，其中，x_1, ..., x_n 为E1的对角线，x_n+1, ..., x_m 为E2的对角线
 
-求解 A^-1 . E1 - B = 0, A^-1 . E2 - C = 0
+根据E1, E2, A的可逆状况，分类型求解。
 
-得到 A^-1 的 r_1, ..., r_n
+例如，如果A可逆，
 
-r1, ..., r_n, y_1, ..., y_n 结合得到m元，运用高斯消元，恢复 y_1, ..., y_n
+    求解 A^-1 . E1 - B = 0, A^-1 . E2 - C = 0
+
+    得到 A^-1 的 r_1, ..., r_n
+
+    r1, ..., r_n, y_1, ..., y_n 结合得到m元，运用高斯消元，恢复 y_1, ..., y_n
 
 
 ## 问题
 
-A如果不可逆，解密就会失败
+E1, E2, A 如果都不可逆，解密就会失败
 
 
 
