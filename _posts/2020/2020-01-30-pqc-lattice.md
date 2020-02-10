@@ -14,6 +14,8 @@ tags: [ "crypto", "lattice" ]
 
 [Practical Aspects of Modern Cryptography](https://slideplayer.com/slide/14252306/)
 
+[A Decade of Lattice Cryptography](https://web.eecs.umich.edu/~cpeikert/pubs/lattice-survey.pdf)
+
 [Summer School on real-world crypto and privacy](https://summerschool-croatia.cs.ru.nl/2018/program.shtml)
 
 [NIST Cryptographic Standards and Guidelines](https://csrc.nist.gov/Projects/Cryptographic-Standards-and-Guidelines)
@@ -27,8 +29,6 @@ tags: [ "crypto", "lattice" ]
 [Lattice Based Cryptography for Beginners](https://eprint.iacr.org/2015/938.pdf)
 
 [2019 Status Report on the First Round of the NIST Post-Quantum Cryptography Standardization Process](https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8240.pdf)
-
-[A Decade of Lattice Cryptography](https://web.eecs.umich.edu/~cpeikert/pubs/lattice-survey.pdf)
 
 # RLWE (Ring Learning With Errors) Problem
 
