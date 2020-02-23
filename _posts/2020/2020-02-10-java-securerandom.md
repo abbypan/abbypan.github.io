@@ -12,6 +12,10 @@ tags: [ "crypto" ]
 
 # 参考
 
+[The Right Way to Use SecureRandom](https://tersesystems.com/blog/2015/12/17/the-right-way-to-use-securerandom/)
+
+[SecureRandom](https://developer.android.com/reference/java/security/SecureRandom.html)
+
 [Insufficient cryptographic randomness](https://www.computest.nl/advisories/CT-2019-0704_spring-security.txt)
 
 [Class SecureRandom](https://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html)
