@@ -31,7 +31,7 @@ verifiable presentation 包含metadata（属性信息），verifiable credential
 
 数据以json形式组织，签名链式校验参考[Linked Data Proofs](https://w3c-dvcg.github.io/ld-proofs/)，签名内容采用RFC7797的JSON Web Signature (JWS) Unencoded Payload Option。
 
-参考阅读JSON Web系列的RFC7515，RFC7516，RFC7519，RFC8259。
+参考阅读JSON Web系列的RFC7515，RFC7516，RFC7519，RFC7797，RFC8259。
 
 # Zero-Knowledge Proofs
 
