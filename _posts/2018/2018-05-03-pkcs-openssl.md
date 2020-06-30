@@ -155,3 +155,16 @@ Root Certificate, Intermediate certificate, End-entity certificate
 # RFC5083 Cryptographic Message Syntax (CMS) Authenticated-Enveloped-Data Content Type
 
 # RFC5958 Asymmetric Key Packages
+
+# ocsp
+
+[OCSP Validation with OpenSSL](https://akshayranganath.github.io/OCSP-Validation-With-Openssl/)
+
+[Specification documentfor OCSP](https://www.nets.eu/dk-da/kundeservice/nemid-tjenesteudbyder/Documents/TU-pakken/Tools/Specifikationsdokumenter/Specification%20document%20for%20OCSP%20EN.pdf)
+
+[OpenSSL: Manually verify a certificate against an OCSP](https://raymii.org/s/articles/OpenSSL_Manually_Verify_a_certificate_against_an_OCSP.html)
+
+[Using OpenSSL to run an OCSP query for an SSL Certificate](https://knowledge.digicert.com/solution/SO19587.html)
+
+
+

@@ -18,6 +18,8 @@ tags: [ "apple", "mobile" ]
 
 [Privacy](https://www.apple.com/privacy/features/)
 
+[data security](https://support.apple.com/en-us/HT202303)
+
 # Hardware Security and Biometrics
 
 uid 保护 Media Key

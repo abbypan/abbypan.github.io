@@ -12,6 +12,8 @@ tags: [ "crypto", "lattice" ]
 
 # 参考
 
+[The Quantum Menace](https://reidbix.github.io/QuantumMenace/TheQuantumMenacePresentation.pdf)
+
 [Practical Aspects of Modern Cryptography](https://slideplayer.com/slide/14252306/)
 
 [A Decade of Lattice Cryptography](https://web.eecs.umich.edu/~cpeikert/pubs/lattice-survey.pdf)
