@@ -9,7 +9,7 @@ tagline: "江畔何人初见月，江月何年初照人"
 
 | 类型 | 链接 |
 | ---- | ---- |
-| 交流 | [twitter](https://twitter.com/abbypan)，[linkedin](https://www.linkedin.com/in/lanlan-pan-54b90977/)，[blogspot](https://abbypan.blogspot.com)
+| 交流 | [twitter](https://twitter.com/abbypan)，[linkedin](https://www.linkedin.com/in/panlanlan/)，[blogspot](https://abbypan.blogspot.com)
 
 # 旧的回忆
 
