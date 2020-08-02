@@ -161,6 +161,17 @@ mackey与消息M都转换为bit string，调用MAC函数计算得到bit string�
     R = (x_R, y_R) = u_1 * G + u_2 *Q_U
     v = x_R mod n
     if v=r, output “valid”
+        
+# r,s 的 asn1 显示
+
+[ECDSA Signature R|S to ASN1 DER Encoding question](https://crypto.stackexchange.com/questions/57731/ecdsa-signature-rs-to-asn1-der-encoding-question)
+
+    0x30|b1|0x02|b2|r|0x02|b3|s
+    b1 = Length of remaining data
+    b2 = Length of r
+    b3 = Length of s 
+
+注意r/s为正数，因此，当 r/s 的hex值的首个bit是1的时候，需要在前面加 0x00 解决负数补码的问题。
 
 # Encryption and Key Transport Schemes
 

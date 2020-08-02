@@ -167,4 +167,6 @@ Root Certificate, Intermediate certificate, End-entity certificate
 [Using OpenSSL to run an OCSP query for an SSL Certificate](https://knowledge.digicert.com/solution/SO19587.html)
 
 
+# x509v3 Extensions
 
+[ How to generate x509v3 Extensions in the End user certificate ](https://access.redhat.com/solutions/28965)

@@ -10,6 +10,8 @@ tags : ["dns", "security"]
 * TOC
 {:toc}
 
+[DNS WARS](https://blog.apnic.net/2019/11/04/dns-wars/)
+
 一些典型案例问题，一些分析点简述。。。
 
 # DDoS 拒绝服务
