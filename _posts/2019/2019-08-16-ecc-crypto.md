@@ -20,8 +20,10 @@ tags: [ "ecc", "crypto" ]
 ## Elliptic-Curve-Point-to-Octet-String Conversion
 
 非零场景下：
-- 压缩模式，octet string将以 0x02 或 0x03 开头，后面带X
-- 非压缩模式，octet string将以 0x04 开头，后面带 X || Y
+- 非压缩模式，octet string将以 0x04 开头，后面带 `X || Y`
+- 压缩模式，octet string将以 0x02 或 0x03 开头，后面带X; 02表示Y为even，03表示Y为odd
+
+X、Y 各 256 bit
 
 # Cryptographic Components
 
@@ -29,7 +31,7 @@ tags: [ "ecc", "crypto" ]
 
 n为基点G的阶
 
-Cofactor h为该椭圆曲线在F_p上的点的个数除以n后的值
+Cofactor h为该椭圆曲线在`F_p`上的点的个数除以n后的值
 
     T= (p, a, b, G, n, h)
 
@@ -95,7 +97,7 @@ keydatalen 为生成目标key的预期长度
 
 SharedInfo 为预设的共享信息，可选
 
-Counter为4字节计数器，从 Counter=1 开始计算 K_i=Hash(Z‖Counter‖[SharedInfo])
+Counter为4字节计数器，从 Counter=1 开始计算 `K_i=Hash(Z‖Counter‖[SharedInfo])`
 
 拼接K_i，得到目标key
 
@@ -135,7 +137,7 @@ mackey与消息M都转换为bit string，调用MAC函数计算得到bit string�
 
 ### sign
 
-发送方U临时选定一个key pair (k, R), 其中 R = (x_R, y_R) 
+发送方U临时选定一个key pair (k, R), 其中`R = (x_R, y_R)`
 
     r =  x_R mod n
 
@@ -181,7 +183,7 @@ mackey与消息M都转换为bit string，调用MAC函数计算得到bit string�
 
 ### encrypt
 
-发送方U临时选定一个key pair (k, R), 其中 R = (x_R, y_R) 
+发送方U临时选定一个key pair (k, R), 其中`R = (x_R, y_R)`
 
 U使用R，与接收方V通过DH协商出一个Z
 
@@ -199,7 +201,7 @@ C= (~R, EM, D)
 
 ### decrypt
 
-接收方V将~R恢复为R = (X_R, Y_R)的EC Point模式
+接收方V将~R恢复为`R = (X_R, Y_R)`的EC Point模式
 
 接收方V使用R恢复出Z
 
@@ -218,7 +220,7 @@ U使用K加密随机内容密钥C，获得wrapped key W。
 注意，如果U同时对多个V_1, V_2, V_3, 。。。发送相同的消息M，可能会使用同一个内容密钥C。
 此时，如果只使用K，C计算出W，则存在V_i恶意泄漏C，篡改V_j收到的加密消息的风险，解决方案一般是：
 - 使用C计算M的MAC值T；
-- 以T做为SharedInfo参与agreement密钥K_x的计算，或者让T加入W_x的计算参数，或者基于T为每个接收方x再单独计算出一个T_x = MAC(K_x, T)。
+- 以T做为SharedInfo参与agreement密钥K_x的计算，或者让T加入W_x的计算参数，或者基于T为每个接收方x再单独计算出一个`T_x = MAC(K_x, T)`。
 
 # Key Agreement Schemes
 
