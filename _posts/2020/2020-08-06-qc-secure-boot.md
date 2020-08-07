@@ -85,3 +85,22 @@ loader对image依次干这些事：
 
 把metadata从leaf certificate里面挪出来，省事
 
+
+# mbn
+
+[ Exploring Qualcomm's Secure Execution Environment ](http://bits-please.blogspot.com/2016/04/exploring-qualcomms-secure-execution.html)
+
+[Qualcomm平台下基于QSEE的指纹识别方案移植之四TA移植](https://blog.csdn.net/dshine_/article/details/84316364)
+
+
+.mbn: 整个elf大文件
+
+.flist: 把.mbn拆分成.mdt, .b00, .b01, ..., .b06的文件信息列表
+
+.mdt: 包含 { elf header, program header,  hash segment }
+
+.b00: 包含 { elf header, program header }
+
+.b01: 包含 { hash segment }
+
+.b02, ..., .b06: 后面的segments
