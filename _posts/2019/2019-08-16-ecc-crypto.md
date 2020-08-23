@@ -181,6 +181,8 @@ mackey与消息M都转换为bit string，调用MAC函数计算得到bit string�
 
 [Integrated Encryption Scheme](https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme)
 
+[A Survey of the Elliptic Curve Integrated Encryption Scheme](http://digital.csic.es/bitstream/10261/32671/1/V2-I2-P7-13.pdf)
+
 ### encrypt
 
 发送方U临时选定一个key pair (k, R), 其中`R = (x_R, y_R)`
