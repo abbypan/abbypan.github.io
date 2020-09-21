@@ -589,7 +589,20 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
 在/boot/grub/grub.cfg中添加
 
 {% highlight bash %}
-menuentry 'Windows' {
+menuentry "Windows 10" {
+    insmod part_gpt
+    insmod fat
+    insmod search_fs_uuid
+    insmod chain
+    search --fs-uuid --no-floppy --set=root xxxxxxxxxxxx
+    chainloader (${root})/efi/Microsoft/Boot/bootmgfw.efi
+}
+{% endhighlight %}
+
+或
+
+{% highlight bash %}
+menuentry 'Windows 7' {
         load_video
         insmod gzio
         insmod part_msdos
@@ -622,6 +635,34 @@ sudo pacman -Syu
 
     e2fsck -f /dev/sda1
     resize2fs /dev/sda1
+
+# archlinux/windows10 双系统迁移   
+
+## 背景
+
+不拆机，不直接对拷硬盘。
+
+以archlinux, windows10为例。
+
+刻录3个启动u盘：clonezilla，archlinux，winpe。
+
+## 步骤
+
+用clonezilla备份旧机器上的archlinux系统。用winpe的ghost备份旧机器上的window10系统。备份的数据存放在外接移动硬盘。
+
+用clonezilla进入新机器，fsck硬盘分区，注意n是新建分区，t是改分区类型(例如ntfs是86)。
+
+新机器外接备份数据所在的移动硬盘。
+
+用clonezilla在新机器上恢复archlinux系统。
+
+用archlinux的启动u盘在新机器上chroot，然后grub-install /dev/sda 写入，可能需要编辑/etc/fstab，/boot/grub/grub.cfg。
+
+用winpe在新机器上ghost恢复windows10系统。
+
+重启新机器，进入archlinux，用os-prober检测windows10系统，更新grub.cfg。
+
+重启新机器进入windows10。
     
 # 用 clonezilla 迁移 archlinux 系统 
 
@@ -668,3 +709,36 @@ U盘被挂载为/dev/sdb
 将硬盘X重新插入机器B，启动机器B，即可进入archlinux
 
 如果硬盘X上还有其他操作系统，可编辑/boot/grub/grub.cfg，增加其他启动项
+
+
+# 安装uefi grub
+
+[Archlinux安装UEFI Grub](https://blog.csdn.net/puppylpg/article/details/77618180)
+
+## 准备活动
+
+    pacman -S grub efibootmgr
+
+## 将磁盘旧的msdos分区表切换为gpt
+
+    sgdisk -g /dev/sda
+
+## efi分区 
+
+磁盘新建一个efi分区（假设为 /dev/sda5），类型为vfat，标识为`boot, esp`
+
+假设启动标识为`arch`
+
+    mkdir /boot/efi
+    mount /dev/sda5 /boot/efi
+    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch
+    grub-mkconfig -o /boot/grub/grub.cfg
+    cp /boot/grub/grub.cfg  /boot/efi/EFI/arch/grub/
+
+## 修改fstab
+
+    /dev/sda5      	/boot/efi         	vfat      	defaults 0 2
+
+## 其他
+
+实在不行就把uefi里面的csm选项打开
