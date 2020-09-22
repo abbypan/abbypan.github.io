@@ -742,3 +742,84 @@ U盘被挂载为/dev/sdb
 ## 其他
 
 实在不行就把uefi里面的csm选项打开
+
+# partclone 分区克隆
+
+[Partclone](https://wiki.archlinux.org/index.php/Partclone_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+
+[Partclone中的功能](https://linux.cn/article-9426-1.html)
+
+[gparted-live](https://gparted.org/livecd.php)
+
+    partclone.ext4 -d -c -s /dev/sda1 -o sda1_backup.pcl
+    partclone.ext4 -d -r -s sda1_backup.pcl -o /dev/sda1
+
+
+# u盘grub2 + gpt + efi 启动多个linux live iso
+
+[制作BIOS和EFI多启动U盘](https://www.lainme.com/doku.php/blog/2017/07/%E5%88%B6%E4%BD%9Cbios%E5%92%8Cefi%E5%A4%9A%E5%90%AF%E5%8A%A8u%E7%9B%98)
+
+
+    sudo mount /dev/sdb1 /mnt
+    sudo grub-install --target=x86_64-efi --efi-directory=/mnt --boot-directory=/mnt/boot --removable --recheck
+
+将 /dev/sdb2 格式化为ntfs，在其根目录下新建一个image文件夹放live iso，假设有：archlinux.iso, clonezilla.iso，gparted.iso
+
+注意，各iso：
+
+- /boot/grub/grub.cfg里抄一下menuentry
+- 使用loopback载入iso
+- /live目录下为引导的镜像信息
+- /live/filesystem.squashfs为待载入内存的文件(linux指令行添加toram, findiso)
+
+rootuuid通过`blkid /dev/sdb2`获取
+
+示例如下：
+
+    insmod search_fs_uuid
+    set rootuuid=741263DC21F00000
+    set rootpath=/dev/disk/by-uuid/$rootuuid
+    search --no-floppy --set=rootpart --fs-uuid $rootuuid
+
+    insmod vbe
+    insmod efi_gop
+    insmod efi_uga
+    insmod font
+    if loadfont ${prefix}/fonts/unicode.pf2
+    then
+        insmod gfxterm
+        set gfxmode=auto
+        set gfxpayload=keep
+        terminal_output gfxterm
+    fi
+
+
+    menuentry 'Archlinux' {
+        set isopath=/image/archlinux.iso
+        loopback loop ($rootpart)$isopath
+        linux (loop)/arch/boot/x86_64/vmlinuz-linux archisodevice=/dev/loop0 img_dev=$rootpath img_loop=$isopath
+        initrd (loop)/arch/boot/x86_64/archiso.img
+    }
+
+    menuentry 'clonezilla' {
+        insmod efi_gop
+        insmod efi_uga
+        set gfxmode=auto
+        insmod gfxterm
+        terminal_output gfxterm
+        insmod play
+        play 960 440 1 0 4 440 1
+
+        set isopath=/image/clonezilla.iso
+        loopback loop ($rootpart)$isopath
+        linux (loop)/live/vmlinuz boot=live union=overlay username=user config components quiet noswap edd=on nomodeset locales= keyboard-layouts= ocs_live_run="ocs-live-general" ocs_live_extra_param="" ocs_live_batch="no" vga=788 ip= net.ifnames=0  nosplash i915.blacklist=yes radeonhd.blacklist=yes nouveau.blacklist=yes vmwgfx.enable_fbdev=1 toram=filesystem.squashfs findiso=$isopath
+        initrd (loop)/live/initrd.img
+    }
+
+
+    menuentry "GParted Live (Default settings)" --id live-default {
+        set isopath=/image/gparted.iso
+        loopback loop ($rootpart)$isopath
+        linux (loop)/live/vmlinuz boot=live union=overlay username=user config components quiet noswap  ip= net.ifnames=0  nosplash  toram=filesystem.squashfs findiso=$isopath
+        initrd (loop)/live/initrd.img
+    }
