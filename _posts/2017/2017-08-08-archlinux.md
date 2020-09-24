@@ -14,6 +14,8 @@ tags: [ "archlinux", "clonezilla" ]
 
 [How to Install Arch Linux](https://itsfoss.com/install-arch-linux/)
 
+[Arch Linux and Windows 10 (UEFI + Encrypted) Install Guide](https://octetz.com/docs/2020/2020-2-16-arch-windows-install/)
+
 ## U盘启动
 
 下载archlinux最新iso文件：http://www.archlinux.org/download/
@@ -755,13 +757,14 @@ U盘被挂载为/dev/sdb
     partclone.ext4 -d -r -s sda1_backup.pcl -o /dev/sda1
 
 
-# u盘grub2 + gpt + efi 启动多个linux live iso
+# u盘grub2 + gpt + efi 启动多个live iso
 
 [制作BIOS和EFI多启动U盘](https://www.lainme.com/doku.php/blog/2017/07/%E5%88%B6%E4%BD%9Cbios%E5%92%8Cefi%E5%A4%9A%E5%90%AF%E5%8A%A8u%E7%9B%98)
 
-
     sudo mount /dev/sdb1 /mnt
     sudo grub-install --target=x86_64-efi --efi-directory=/mnt --boot-directory=/mnt/boot --removable --recheck
+    
+## linux live iso
 
 将 /dev/sdb2 格式化为ntfs，在其根目录下新建一个image文件夹放live iso，假设有：archlinux.iso, clonezilla.iso，gparted.iso
 
@@ -822,4 +825,19 @@ rootuuid通过`blkid /dev/sdb2`获取
         loopback loop ($rootpart)$isopath
         linux (loop)/live/vmlinuz boot=live union=overlay username=user config components quiet noswap  ip= net.ifnames=0  nosplash  toram=filesystem.squashfs findiso=$isopath
         initrd (loop)/live/initrd.img
+    }
+
+## winpe iso
+
+直接解压 winpe iso的内容到/dev/sdb2分区的根目录
+
+在grub.cfg添加:
+
+    menuentry "WinPE"{ 
+        insmod part_gpt
+            insmod fat
+            insmod search_fs_uuid
+            insmod chain
+            search --fs-uuid --no-floppy --set=root 741263DC21F00000
+            chainloader (${root})/efi/boot/bootx64.efi 
     }
