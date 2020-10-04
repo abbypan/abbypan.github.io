@@ -162,3 +162,9 @@ ICANN 多方共治, 兄弟们...
 RFC7706 不存在那啥...
 
 只有一张互联网...
+
+# 协议缺陷
+
+## referral
+
+[The “Indefinitely” Delegating NameServers (iDNS) Attack](https://indico.dns-oarc.net/event/21/contributions/301/attachments/272/492/slides.pdf)

@@ -39,4 +39,12 @@ tags: [ "ble", "bluetooth", "Security" ]
 
 [Misbinding Attacks on Secure Device Pairing and Bootstrapping](https://dl.acm.org/doi/10.1145/3321705.3329813)
 
+[Breaking BLE — Vulnerabilities in pairing protocols leave Bluetooth devices open for attack](https://www.microcontrollertips.com/breaking-ble-vulnerabilities-in-bluetooth-pairing-provide-openings-for-attack-faq/)
 
+# privacy
+
+[Protecting Privacy of BLE Device Users](https://www.semanticscholar.org/paper/Protecting-Privacy-of-BLE-Device-Users-Fawaz-Kim/558380e0cba2c5bcda7d4d94e23f215ede0e910f?p2df)
+
+[Bluetooth Low Energy - privacy enhancement for advertisement](https://core.ac.uk/download/pdf/52107479.pdf)
+
+[Automatic Fingerprinting Of Vulnerable BLE IoT DevicesWith Static UUIDs From Mobile Apps](https://web.cse.ohio-state.edu/~lin.3021/file/CCS19a-slides.pdf#beamerbibfawaz2016protecting)

@@ -14,6 +14,8 @@ tags: [ "ecc", "crypto" ]
 
 [SEC 1: Elliptic Curve Cryptography](http://www.secg.org/sec1-v2.pdf)
 
+[SEC 2: Recommended Elliptic Curve Domain Parameters](https://www.secg.org/SEC2-Ver-1.0.pdf)
+
 
 # Data Types and Conversions
 

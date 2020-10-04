@@ -22,4 +22,4 @@ tags: [ "rfc" ]
 
 [OAuth 2.0 Token Binding](https://medium.facilelogin.com/oauth-2-0-token-binding-e84cbb2e60)
 
-
+[Token Binding in Simple Terms](https://medium.com/@inthiraj1994/token-binding-in-simple-terms-6d2035075ab)

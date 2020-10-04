@@ -12,6 +12,8 @@ tags: [ "crypto", "lattice" ]
 
 # 参考
 
+[Lattice-based Cryptography](https://pqcrypto2016.jp/data/Nguyen-pdf-PQC-LatticeCrypto.pdf)
+
 [The Quantum Menace](https://reidbix.github.io/QuantumMenace/TheQuantumMenacePresentation.pdf)
 
 [Practical Aspects of Modern Cryptography](https://slideplayer.com/slide/14252306/)

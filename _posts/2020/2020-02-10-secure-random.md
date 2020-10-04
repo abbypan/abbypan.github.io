@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "JAVA: securerandom"
+title:  "secure random"
 tagline: ""
 tags: [ "crypto" ] 
 ---
@@ -10,7 +10,15 @@ tags: [ "crypto" ]
 * TOC
 {:toc}
 
-# 参考
+# doc
+
+[Random Numbers](https://wiki.openssl.org/index.php/Random_Numbers)
+
+[Is intel's RdRand TRNG or PRNG?](https://stackoverflow.com/questions/27653736/is-intels-rdrand-trng-or-prng)
+
+[Pseudorandom number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator)
+
+# JAVA: secure random 概要 
 
 [The Right Way to Use SecureRandom](https://tersesystems.com/blog/2015/12/17/the-right-way-to-use-securerandom/)
 
@@ -21,9 +29,6 @@ tags: [ "crypto" ]
 [Class SecureRandom](https://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html)
 
 [SecureRandom漏洞解析](http://www.droidsec.cn/securerandom%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90/)
-
-
-# 概要 
 
 new SecureRandom() 之后，如果直接调用nextBytes，默认使用SecureRandom对象(例如/dev/urandom)自身做为seed。
 

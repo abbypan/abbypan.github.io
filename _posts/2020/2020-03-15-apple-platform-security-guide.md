@@ -14,6 +14,8 @@ tags: [ "apple", "mobile" ]
 
 [Apple Platform Security](https://support.apple.com/guide/security/welcome/web)
 
+[Apple Platform Security 2020](https://manuals.info.apple.com/MANUALS/1000/MA1902/en_US/apple-platform-security-guide.pdf)
+
 [Security](https://developer.apple.com/documentation/security)
 
 [Privacy](https://www.apple.com/privacy/features/)
