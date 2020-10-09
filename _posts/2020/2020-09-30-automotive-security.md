@@ -47,3 +47,5 @@ tags: [ "automotive", "vehicle" ]
 [ieee 1609.2 IEEE Standard for Wireless Access in Vehicular Environments—Security Services for Applications and Management Messages](https://docbox.etsi.org/STF/Archive/STF538_TC_ITS/STFworkarea/libaries/IEEE_Std_1609_2a-2017.pdf)
 
 [Network Security Issues and Solutions  on Vehicular Communication Systems](https://pdfs.semanticscholar.org/3465/0f72fdd84ab6cb0e98f2792de6bad00ed9af.pdf)
+
+[v2x Security](https://www.slideshare.net/EngSaif1/v2x-security)
