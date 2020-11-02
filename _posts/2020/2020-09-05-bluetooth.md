@@ -29,6 +29,14 @@ tags: [ "ble", "bluetooth", "Security" ]
 
 [Evaluation of Out-of-Band Channels for IoT Security](https://link.springer.com/article/10.1007/s42979-019-0018-8)
 
+# privacy
+
+[Protecting Privacy of BLE Device Users](https://www.semanticscholar.org/paper/Protecting-Privacy-of-BLE-Device-Users-Fawaz-Kim/558380e0cba2c5bcda7d4d94e23f215ede0e910f?p2df)
+
+[Bluetooth Low Energy - privacy enhancement for advertisement](https://core.ac.uk/download/pdf/52107479.pdf)
+
+[Automatic Fingerprinting Of Vulnerable BLE IoT DevicesWith Static UUIDs From Mobile Apps](https://web.cse.ohio-state.edu/~lin.3021/file/CCS19a-slides.pdf#beamerbibfawaz2016protecting)
+
 # attack
 
 [CVE-2018-5383: Breaking the Bluetooth Pairing – The Fixed Coordinate Invalid Curve Attack](https://eprint.iacr.org/2019/1043.pdf)
@@ -41,10 +49,10 @@ tags: [ "ble", "bluetooth", "Security" ]
 
 [Breaking BLE — Vulnerabilities in pairing protocols leave Bluetooth devices open for attack](https://www.microcontrollertips.com/breaking-ble-vulnerabilities-in-bluetooth-pairing-provide-openings-for-attack-faq/)
 
-# privacy
+## blesa
 
-[Protecting Privacy of BLE Device Users](https://www.semanticscholar.org/paper/Protecting-Privacy-of-BLE-Device-Users-Fawaz-Kim/558380e0cba2c5bcda7d4d94e23f215ede0e910f?p2df)
+[BLESA: Spoofing Attacks against Reconnections in Bluetooth Low Energy](https://www.usenix.org/system/files/woot20-paper-wu-updated.pdf)
 
-[Bluetooth Low Energy - privacy enhancement for advertisement](https://core.ac.uk/download/pdf/52107479.pdf)
+缺乏authentication & encryption，伪造交互信息，从secure connection降级
 
-[Automatic Fingerprinting Of Vulnerable BLE IoT DevicesWith Static UUIDs From Mobile Apps](https://web.cse.ohio-state.edu/~lin.3021/file/CCS19a-slides.pdf#beamerbibfawaz2016protecting)
+其根源在于向后兼容，允许降级
