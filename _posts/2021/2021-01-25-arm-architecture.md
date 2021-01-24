@@ -48,4 +48,3 @@ Architecture:
 - AMBA: Advanced Microcontroller Bus Architecture
 
 Processing Element (PE): anything that has its own program counter and can execute a program
-
