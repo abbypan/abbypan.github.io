@@ -56,9 +56,16 @@ Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 {% endhighlight %}
 
+## 连接无线网絡
+
+``wifi-menu``
+
+[iwd](https://wiki.archlinux.org/index.php/Iwd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+
+``iwctl --passphrase <passphrase> station <device> connect <SSID>``
+
 ## 安装系统
 
-执行``wifi-menu``，连接合适的无线网络
 
 {% highlight bash %}
 mount /dev/sda1 /mnt
