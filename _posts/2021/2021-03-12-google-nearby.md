@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "Nearby Threats"
+title:  "Google Nearby"
 tagline: ""
 tags: [ "security", "connectivity" ] 
 ---
