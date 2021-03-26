@@ -132,7 +132,7 @@ FIDO：钓鱼、中间人攻击
 
 ## 总结
 
-这是tls的增强扩展，优势在于攻击者在client<->server的channel建立之后难以进行中间人攻击，但是没法解决建立channel之间就存在的中间窃听问题。
+这是tls的增强扩展，优势在于攻击者在`client<->server`的channel建立之后难以进行中间人攻击，但是没法解决建立channel之前就存在的中间窃听问题。
 
 fido解决重点其实是在于身份认证，而tls token binding重点在于链路安全。
 

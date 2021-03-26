@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "TLS: "
+title:  "TLS: host verifier"
 tagline: ""
 tags: [ "tls", "android" ] 
 ---
