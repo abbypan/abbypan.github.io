@@ -848,3 +848,21 @@ rootuuid通过`blkid /dev/sdb2`获取
             search --fs-uuid --no-floppy --set=root 741263DC21F00000
             chainloader (${root})/efi/boot/bootx64.efi 
     }
+
+# virtualbox
+
+参考： [Install VirtualBox on Arch Linux](https://linuxhint.com/install-virtualbox-arch-linux/)
+
+    bios -> cpu 设置 -> 打开 amd-v
+
+    pacman -S virtualbox  选择 virtualbox-host-modules-arch
+
+    pacman -S linux linux-headers
+
+    reboot
+
+    modprobe vboxdrv
+
+    yay -S virtualbox-ext-oracle
+    
+    usermod -G vboxusers -a [username]

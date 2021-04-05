@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "Apple Platform Security Guide 2019"
+title:  "Apple Platform Security"
 tagline: ""
 tags: [ "apple", "mobile" ] 
 ---
@@ -14,47 +14,391 @@ tags: [ "apple", "mobile" ]
 
 [Apple Platform Security](https://support.apple.com/guide/security/welcome/web)
 
-[Apple Platform Security 2020](https://manuals.info.apple.com/MANUALS/1000/MA1902/en_US/apple-platform-security-guide.pdf)
-
 [Security](https://developer.apple.com/documentation/security)
 
 [Privacy](https://www.apple.com/privacy/features/)
 
 [data security](https://support.apple.com/en-us/HT202303)
 
+# intro
+
+custom silicon
+
+privacy is a fundamental human right
+
 # Hardware Security and Biometrics
 
-uid 保护 Media Key
+## soc security
 
-password + uid 保护 class key
+Page Protection Layer (PPL): execute only signed and trusted code
 
-class key 保护 volume key
+## secure enclave
 
-volume key 保护 volume metadata & content
+独立的 boot rom & aes engine & protected memory
 
-内部**防重放**
+保护biometric data for touch ID and face ID
 
-aes-256:  uid fused; gid compiled  => 无法读取
+NAND flash storage/DRAM 划出专门的区域
 
-工厂预置Face/Touch ID与芯片的shared key，通过aes key wrapping协商session key，session 用 aes ccm
+### memory protection engine
+
+device启动时，secure enclave boot rom随机生成一个临时的memory protection key，给到memory protection engine。
+
+当secure enclave写内容到memory，engine就执行AES-XEX（xor-encrypt-xor）加密，并计算CMAC。
+
+当secure enclave从memory读内容，engine就进行authtag校验，如果不匹配，就通知secure enclave停止。
+
+防重放：nonce参与CMAC计算
+
+A14之后有两个临时的memory protection key，一个用于secure enclave，另一个用于secure neural engine。
+
+对于secure enclave而言，memory protection engine提供的保护是透明的。
+
+### secure enclave boot rom
+
+secure enclave boot rom 是 secure enclave 的信任起点，初始化memory protection engine
+
+Application Processor(AP) 把 sepOS image 传给secure enclave boot rom，把sepOS image的内容拷到secure enclave protected memory
+
+进行签名校验，确保image的合法性
+
+A10之后，把sepOS的hash锁到专门的register里，Public Key Accelerator(PKA)用这个hash搞os-bound keys。
+
+活主要是给secure monitor干
+
+### TRNG
+
+    CTR_DBRG
+
+### Root Cryptographic Keys
+
+UID: unique to each individual device, fused into SoC, 256
+
+sepOS 使用 UID 保护 device-specific secrets，例如：
+- 在UID的保护下，internal SSD storage拆到别的机器上，数据仍然无法读取。
+- Touch ID data / Face ID data
+
+GID: device group ID, compiled
+- 与SoC绑定
+
+UID/GID无法通过Joint Test Action Group(JTAG) 或者其他调试口读取
+
+### secure enclave aes engine
+
+secure enclave aes engine支持hardware key & software key
+
+hardware key通过secure enclave UID/GID派生，外部无法直接读取，但是可以请求加解密。
+
+注意，在Device Firmware Update(DFU)模式下，secure enclave AES engine禁止外部访问UID/GID保护的key——进而保护用户数据。
+
+### aes engine
+
+direct memory access(DMA) 路径下，在application  processor system memory 与 NAND flash storage之间
+
+device启动时，sepOS 生成临时的wrapping key，把这个key传给aes engine。
+
+sepOS用这个wrapping key，加密file-system需要用的file keys，把密文传给aes engine。
+
+aes engine使用wrapping key解密出file keys，可以支持file-system的解密。
+
+核心在于file keys 不会明文传输。
+
+### Public key Accelerator (pka)
+
+RSA/ECC
+
+PKA支持hardware key & software key
+
+hardware key通过secure enclave UID/GID派生，sepOS software也读不到
+
+A10之后，PKA支持OS-bound keys，又称为Sealed Key Protection(SKP):  基于 UID + hash(sepOS) 派生。版本绑定、防止无用户授权的变更，等等。
+
+### secure nonvolatile storage
+
+专门的secure nonvolatile storage只能由secure enclave访问。
+
+有counter，支持anti-replay
+
+每个 counter lockbox: 
+- 128-bit salt
+- 128-bit passcode verifier
+- 8-bit counter
+- 8-bit maximum attempt value
+
+secure enclave访问counter lockbox也是要用encrypted and authenticated protocol
+
+passcode entropy: 基于passcode & UID派生
+
+### secure neural engine
+
+使用direct memory access (DMA)访问，使用input-output memory management unit(IOMMU)管控
+
+## touch ID & face ID
+
+### touch ID
+
+touch ID sensor在工厂已经写入一个与secure enclave绑定的shared key。
+
+touch ID sensor 与 secure enclave 的session key基于shared key协商(aes key wrapping)，application processor只转发不解密。
+
+其实就是两边各随机生成一个random key，用shared key wrapping一下。
+
+session 用 aes-ccm
+
+### face ID
+
+face ID 的通信安全与 touch ID类似
+
+另一个关键是识别digital spoofing & physical spoofing
+
+### passcode & password
+
+注意，touch ID & face ID 无法取代 passcode & password
 
 trigger Face/Touch ID的前提是校验过passcode/password。
 
 安全敏感型的操作必须校验passcode/password：软件升级、设备重置、修改配置、解锁、重启、账号登出、多次解锁失败等。
 
+### unlocking a device or user account
+
+如果禁用touch ID/face ID：device/account lock状态， keys for the highest class of Data Protection —— 要discard；等下回使用passcode/password解锁，才能把对应的files/keychain items的key弄回来。
+
+如果启用touch ID/face ID：device/account lock状态， keys for the highest class of Data Protection —— 不discard；使用touch ID/face ID解锁成功，则提供keys for the highest class of Data Protection的unwraping key。
+
+设备重启之后，touch ID/face ID用于解锁device/account的key已丢失，要输入password/passcode才能获取。
+
+
+### developer
+
+指定touch ID/face ID作为secure-sensitive app的second factor
+
+生成touch ID/face ID保护的公私钥对
+
+## Hardware microphone disconnect
+
+硬件开关
+
+## express card
+
+系统低电量模式，仍可用
+
 # System Security
+
+## secure boot
 
 The Boot ROM code contains the Apple Root CA public key
 
-Device Firmware Upgrade (DFU)
+boot过程以boot rom为起点，链式校验签名，安全启动，最终执行ios kernel。
 
-## System security in watchOS
+如果启动失败：
+- 无法load LLB的设备： 进入DFU mode
+- LLB/iboot的设备：进入recovery mode
 
-watch 与 iphone 在 out of band (oob) process交换公钥
+此外，
+- 基带自己也有secure boot
+- secure enclave自己也有secure boot
 
-Apple Identity Service(IDS)
+### boot process for mac with apple silicon
+
+注意，LLB validate LocalPolicy signature，签名是secure enclave计算的。计算签名用到的LocalPolicy nonce是secure enclave boot rom 从secure storage component读的。
+
+nonce的作用是anti-replay
+
+LocalPolicy file设定operating system的三种模式：
+- Full Security: personalized signature，与ios类似，只能运行install time时找apple sining server签回来的内容——签名请求中包含exclusive chip identification(ECID)，相当于apple后台对cpu、software的状态进行审核，anti-rollback
+- Reduced Security: global signature——只与software内容关联，无法保证latest，无法anti-rollback
+- Permissive Security: global signature——也可以不严格要求只执行含合法signature的image。。。
+
+### LocalPolicy signing-key creation and management (macOS)
+
+restore场景下，系统会随机生成Owner Identity Key（OIK, private key) —— 由secure enclave管控，保护等级与Volume encryption key相同。
+
+activation lock初始化场景下，除了OIK，还要User Identity Key (UIK, private key)。
+
+activation lock初始化时，首先登录用户账号，基于UIK生成 User Identity Certificate (ucrt) 的CSR，由apple签发ucrt。
+
+基于UIK生成Owner Identity Certificate (OIC) 的CSR——注意这里公钥是OIK对应的公钥，由Basic Attestation Authority (BAA) server签发OIC。BAA server使用ucrt里的公钥校验CSR。
+
+Image4 可以有 LocalPolicy ， LocalPolicy 内容由 OIK 签名，使用OIC校验。—— 在BAA的trust chain下。
+
+Image4 可以有 RemotePolicy，对于personalized signature，证书内容要包含ECID；对于global signature，证书内容不含ECID。—— 在ucrt的证书里设定例如ECID/ChipID/BoardID等。
+
+Image4 文件是 asn.1 DER format。
+
+多个操作系统复用OIK时，可以通过user password + hardware key派生的KEK，来加解密OIK——用户要输password。
+
+## secure software updates
+
+install only apple-signed code
+
+### personalized update process
+
+    device -> apple authorization server: Cryptographic measurements (例如各Firmware的hash)、nonce (anti-replay)、device's unique exclusive chip identification (ECID)
+    apple authorization server: 基于measurements确认升级状态，基于ECID确保personalized
+    
+    user data volume 在software update过程中不会被mount，避免读取
+
+## operating system integrity
+
+### kernel integrity protection (KIP)
+
+Application Processor's Memory Management Unit (MMU)，内核专用的memory region
+
+### Fast Permission Restrictions
+
+限制某个memory的execute permission
+
+### System Coprocessor Integrity Protection (SCIP)
+
+与KIP类似，在启动时，iboot把Coprocessor的Firmware读到protected memory region
+
+### Pointer Authentication Code
+
+5个128-bitd的key用来算PAC
+
+不同场景下的key，salt不同
+
+抵御内存攻击，例如return-oriented programming (ROP) attack，等等。
+
+### Page Protection Layer
+
+PPL用于prevent user space code from being modified after code signature verification is complete.
+
+就是校验通过之后，还要防止被篡改。
+
+基于KIP & Fast Permission Restrictions，确保PPL的管控。
+
+PPL is only applicable on systems where all excuted code must be signed.
+
+## additional macos system security capabilities
+
+### signed system volume (SSV)
+
+system volume 是单独的一个volume。
+
+SSV: 运行时校验system content的完整性，拒掉所有未经apple签名的data（不论是否code）。
+
+SSV使用APFS (Apple File System) snapshots，升级失败的场景下，可以直接用旧版本恢复，不用重装。
+
+SSV SHA256的hash是针对整个volume的内容的，层次类似merkle tree，称为seal。
+
+每当macOS 安装/升级，seal要重算。
+
+measurements要经过apple签名。
+
+bootloader把measurements和signature发给kernel，kernel要校验seal，才能mount root file system。
+
+### SSV and code signing
+
+SSV 确保读取的内容的完整性
+
+code signing确保内存执行内容过程中的完整性
+
+### SSV and FileVault
+
+system volume 加密没啥意义。
+
+开启SSV，system volume有完整性保护，不用加密。
+
+如果开启了FileVault保护user data，那么SSV必须同时开启。
+
+### system integrity Protection (SIP)
+
+#### mandatory access controls
+
+sandboxing, parental controls, managed preferences, extensions, ...
+
+#### SIP
+
+restrict components to read-only in specific critical file system locations to prevent malicious code from modifying them
+
+### Trust caches
+
+SSV保护下的system binary被执行前，它对应的code directory要算hash。
+
+如果该hash能在SSV trust cache里找到，grant platform privileges，不用再搞更多的签名校验。
+
+Nonplatform binaries执行之前，要校验签名，来自apple的信任链。
+
+### Direct memory access protections for MAC computers
+
+支持DMA。
+
+使用IOMMU管控DMA agent——每个agent只能访问限定的memory region。
+
+### kernel extentions
+
+kexts
+
+## System security for watchOS
+
+### secure pairing with iphone
+
+watch 一次仅能与一个iphone 配对：
+- 用out of band (oob) process生成BLE link shared secret。 OOB: encoded secret，扫码。。。
+- 如果不能用OOB，就用传统的BLE passkey配对。
+
+配对成功后，使用link shared secret建立蓝牙信道，安全交换公钥(256-bit Ed25519 key pair)。
+- 类似Apple Identity Service (IDS)的方式
+- 类似IKEv2/IPsec的方式
+
+成功交换公钥后：
+- 基于已交换的公钥，做数据层加密
+- 如果前面是用IKEv2/IPsec，已协商的密钥存入system keychain，用于后续会话 CHACHA20-POLY1305 (256-bit key)。
 
 15分钟更新一次bluetooth地址
+
+Facetime场景使用Apple Identity Service (IDS) 与iphone 互联、或者直接进行internet连接。
+
+使用hardware-encrypted storage and class-based protection of files and keychain items。
+
+### secure use of Wi-Fi, cellular, icloud, gmail
+
+Wi-Fi凭据安全同步。
+
+iphone帮某个配对的watch找gmail要一个该watch专用的oauth token。iphone通过Apple Identity Service服务把oauth token安全传给watch。watch使用该oauth token访问gmail。
+
+### locking and unlocking apple watch
+
+配对的时候，iphone可以获得某个key。该key可以用于unlock watch的Data Protection key。
+
+iphone不知道watch的passcode。
+
+### apple watch unlock mac
+
+近场BLE环境，可以使用apple watch解锁mac，前置条件：icloud account with two-factor authentication configured
+
+mac生成一个one-time-use unlock secret，传给watch。
+
+基于之前协商的shared key，派生secure key。如果确认watch与mac距离很近，就用secure key加密 unlock secret，解锁mac。
+
+成功解锁后，mac再生成下一个one-time-use unlock secret给到watch。
+
+### approve with apple watch
+
+watch可以协助认证、授权的场景还包括：
+- macOS/apple apps authorization
+- 第三方app的authentication
+- saved safari passwords
+- secure notes
+
+## RNG
+
+CPRNGs: Cryptographic pseudorandom number generators
+
+### Entropy sources
+
+- secure enclave hardware TRNG
+- Time-based jitter collected during boot
+- Entropy collected from hardware interrupts
+- seed file used to persist entropy across boots
+- intel random instructions, such as RDSEED, RDRAND
+
+### kernel CPRNG
+
+256-bit security level:
+- getentropy system call
+- /dev/random
 
 # Encryption and Data Protection
 
@@ -81,6 +425,14 @@ A9 Soc的Secure Enclave需要防重放。
 每次启动生成一个临时的effaceable key加密data volume的metadata key
 
 ## Data Protection classes
+
+uid 保护 Media Key
+
+password + uid 保护 class key
+
+class key 保护 volume key
+
+volume key 保护 volume metadata & content
 
 ### Complete Protection 
 
