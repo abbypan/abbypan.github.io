@@ -402,29 +402,98 @@ CPRNGs: Cryptographic pseudorandom number generators
 
 # Encryption and Data Protection
 
-ios 256bit per-file key = 128 bit tweak + 128 bit cipher key
+## overview
 
-默认用AES-XTS
+    ios file encryption => Data Protection (class A/B/C/D)
 
-A7/S2/S3 Soc: AES-CBC, iv值用sha1(per-file key)加了个密
+    mac with intel silicon => volume encryption = FileVault
+
+    mac with apple silicon => class D not support,  class C default = FileVault
+
+
+secure enclave <-> dedicated AES Engine, support line-speed encryption
+
+sandbox => restrict what data an app can access
+
+DataVault => restrict the calls an app can make
+
+## passcodes and passwords
+
+passcode / password => provide entropy for certain encryption keys
+
+passcode / password  + UID  => kdf
+
+## Data Protection
+
+### implementation
+
+Apple File System (APFS) 
+
+per-file / per-extent (分chunk，每个chunk的key不同)  => 256-bit key
+- A14, M1 devices: AES-256-XTS,  NIST SP 800-108, (256-bit tweak, 256-bit cipher key) = kdf(per-file key)
+- A13, S5, S6: AES-128-XTS, 256bit per-file key = 128 bit tweak + 128 bit cipher key
+
+### Data Protection in Apple device
 
 RFC3394 NIST AES Key Wrapping
 
-wrapped per-file key 置于 file metadata
+class key wrap per-file key, 密文存储于 file metadata
 
-打开文件时，用file system key解密file metadata，然后取出wrapped per-file key，再使用对应的class key解出 per-file key
+file cloning: 解密，再加密。
 
-class key由uid、passcode之类的保护。
+file open:
+- secure enclave: 用file system volume key 解密 file metadata
+- secure enclave: 从file metadata 提取 per-file key 的密文
+- secure enclave: 用class key 解密 per-file key
+- secure enclave: 用开机时与aes engine协商的临时wrapping key 加密 per-file key，将密文传给aes engine
+- aes engine: 用开机时与secure enclave协商的临时Wrapping key 解密 per-file key
+- aes engine: 用per-file key解密文件内容
 
-所有文件的metadata由file system volume key加密，该key仅当ios初始化时生成，且由一个long-term的key wrapping key保护。
+file system volume key: 
+- 用于加密该volume下的所有文件的metadata
+- os首次安装、或者用户wipe device时，随机生成file system volume key
+- secure enclave里的一个long-term KEK 加密 file system volume key
+- 用户erase device时，随机生成long-term KEK 
+- file system volume 的密文: 用effaceable key再wrap一层，存储于effaceable storage；或者，用secure enclave的 media key-wrapping key 再wrap一层
+- 用户wipe device时，可以通过重置file system volume key快速处理
 
-key wrapping key仅当用户擦除device才会重置。
+class key:
+- 与UID关联
+- 部分class还与passcode关联
+- 更新file class只需要用新的class key加密per-file key
+- 更新passcode只需要用新的passcode + UID 加密 class key 
 
-A9 Soc的Secure Enclave需要防重放。
+### Data Protection classes
 
-每次启动生成一个临时的effaceable key加密data volume的metadata key
+Class A: Complete Protection
+- class key 由 passcode / password  + UID 派生
+- 用户lock device 10s 之后，aes engine 自动discard 缓存的decrypted class key
+- 用户下一次unlock device之后，再重新解密
 
-## Data Protection classes
+Class B: Protected Unless Open
+- 适用于设备锁定、或者用户logged out的条件下，仍需要在后台执行文件写入的业务场景。例如邮件附件下载。
+- 使用Curve25519
+- per-file key 用NIST SP 800-56A 中的One-Pass Diffie-Hellman Agreement 派生的key 保护；临时生成的x25519 public key，与per-file key的密文一起存储。
+- 派生算法为NIST SP 800-56A的 Concatenation Key Derivation Function
+- 文件close之后，aes engine 自动discard缓存的per-file key
+- 文件再次打开，使用class private key 与 临时的public key派生出wrap key，解密per-file key
+
+Class C: Protected Until First Authentication
+- 与Class A基本相同
+- 用户lock device、或者用户logged out的条件下，aes 仍然缓存 decrypted class key
+- 适用于磁盘加密的场景
+
+Class D: No Protection
+- class key 只由UID保护，在effaceable storage里存储。
+- 解密文件所需的所有内容都在device上。
+
+### Keybags for Data Protection
+
+按照用途，把file Data Protection classes key & keychain Data Protection key 打包到一个文件中。
+
+主要用途场景： user, device, backup, escrow, icloud backup
+
+todo...
 
 uid 保护 Media Key
 
@@ -434,27 +503,9 @@ class key 保护 volume key
 
 volume key 保护 volume metadata & content
 
-### Complete Protection 
+A7/S2/S3 Soc: AES-CBC, iv值用sha1(per-file key)加了个密
 
-class key由 uid & passcode保护
-
-### Protected Unless Open
-
-一般由后台ecdh over curve25519达成后台自动同步，有一个Protected Unless Open class private key。
-
-per-file key由a key derived using One-Pass Diffie-Hellman KeyAgreement as described in NIST SP800-56A保护。
-
-临时的public key与wrapped per-file key放一起。
-
-每次要用的时候，用class private key和临时的public key联合解密per-file key。
-
-### Protected Until First User Authentication
-
-与Complete Protection相同，但是decrypted class key在设备locked时不删。
-
-### No Protection
-
-class key用uid保护，放在effaceable storage里
+A9 Soc的Secure Enclave需要防重放。
 
 ## Keychain
 
@@ -471,10 +522,6 @@ keychain data也是分class有不同的保护力度：解锁/首次解锁/一直
 其他keychain class也支持this device only的选项，以UID保护。因此，仅能在同一台设备上备份或恢复，而不能跨设备恢复。
 
 P46 是不同类型数据的选择。
-
-## Encryption in macOS
-
-FileVault => AES-XTS
 
 # Authentication and digital signing
 
