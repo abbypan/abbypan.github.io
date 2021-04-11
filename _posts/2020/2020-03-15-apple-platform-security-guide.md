@@ -433,6 +433,8 @@ per-file / per-extent (分chunk，每个chunk的key不同)  => 256-bit key
 - A14, M1 devices: AES-256-XTS,  NIST SP 800-108, (256-bit tweak, 256-bit cipher key) = kdf(per-file key)
 - A13, S5, S6: AES-128-XTS, 256bit per-file key = 128 bit tweak + 128 bit cipher key
 
+A7/S2/S3 Soc: AES-CBC, iv值用sha1(per-file key)加了个密
+
 ### Data Protection in Apple device
 
 RFC3394 NIST AES Key Wrapping
@@ -487,93 +489,409 @@ Class D: No Protection
 - class key 只由UID保护，在effaceable storage里存储。
 - 解密文件所需的所有内容都在device上。
 
-### Keybags for Data Protection
+## Keybags for Data Protection
 
 按照用途，把file Data Protection classes key & keychain Data Protection key 打包到一个文件中。
 
 主要用途场景： user, device, backup, escrow, icloud backup
 
-todo...
+### user keybag
 
-uid 保护 Media Key
+device normal operation
 
-password + uid 保护 class key
+例如，用户输入passcode，从user keybag载入class A的内容，unwrapped。
 
-class key 保护 volume key
+keybag的.plist文件，以class D存储。
 
-volume key 保护 volume metadata & content
+A9之后的soc，.plist file中包含一个key，标识该keybag由一个secure enclave的locker保护，anti-replay nonce。
 
-A7/S2/S3 Soc: AES-CBC, iv值用sha1(per-file key)加了个密
+secure enclave管理user keybag，接收查询，仅当user keybag里的所有class key都可访问，且被成功unwrapped，认为device unlocked。
 
-A9 Soc的Secure Enclave需要防重放。
+keychain  使用 user keybag 里的class keys 保护 user keychain 里的内容。
 
-## Keychain
+### device keybag
 
-两个aes-256-gcm key： table key 加密 metadata，per-row key (secret-key) 加密具体内容
+应对一些用户未logged in的时候，需要的凭据。因此，device keybag 可以不由passcode保护。
 
-keychain item可以由相同开发者的apps共享
+system 使用 device keybag 里的class keys 保护 per-file key。
 
-keychain data也是分class有不同的保护力度：解锁/首次解锁/一直可用/需要Passcode。
+ios 场景，如果是single user，则 device keybag = user keybag，仅一个plist文件不作区分，以passcode保护。
 
-后端需要自动同步的场景可以用：首次解锁的模式。
+### backup keybag
 
-注意需要Passcode的那种，无法同步、无法备份、不在escrow keybags里面。
+执行 encrypted backup 时，会新建一些key，放到一个新的keybag里。这些新key，用于reencrypted backed-up data。
 
-其他keychain class也支持this device only的选项，以UID保护。因此，仅能在同一台设备上备份或恢复，而不能跨设备恢复。
+注意，nonmigratory keychain items 仍被 UID-derived key 保护，即，仅能在原设备恢复。
 
-P46 是不同类型数据的选择。
+由backup password，调用PBKDF2派生的key，保护keybag文件 => 暴力破解
 
-# Authentication and digital signing
+如果用户没有设置encrypted backup，备份文件就不会被加密，keychain items仍被UID-derived key保护。
 
-## smart cards
+即，keychain items 仅能在设置了backup password的条件下，导入新设备。
 
-personal identity verification  (PIV) cards
+用passcode保护backup中负责保护backup data class key的generated key（首次备份时临时生成）。
 
-PIN码解锁使用smart card对应的私钥。smart card里的证书指定了使用范围、场景、属性。
+### escrow keybag
 
-## disk image
+用于usb连接时itunes备份、或者remote clear passcode，无需用户输入passcode。
 
-aes 128/256 
+escrow keybag 可能需要访问所有class的data。
 
-## keybags
+当passcode-locked device首次连接itunes时，用户需要输入passcode，随即，device生成escrow keybag，包含了该device上各class keys，以一个随机key保护。
 
-keybags用于管理file key, class key
+escrow keybag 和 随机key 分别存储于 device 和 itunes主机，data 以 class C 保护。
 
-包含：user, device, backup, escrow, icloud backup几种类型
+因此，device 重启，必须输入passcode之后，itunes才能备份。
 
-user keybag: 与passcode关联
+#### OTA
 
-device keybag: 如果某设备只有一个账号使用，那么device keybag等同于user keybag。
+OTA的场景，用户需要输入passcode初始化update任务，同时生成一个one-timee unlock token。该token用于在update之后，unlock user keybag。
 
-backup keybag: 与backup password关联，PBKDF2。itunes可以选不加密。keychain必须加密，仅在设置了backup password的条件下备份。
+one-time unlock token 本身，由另一个key保护。该key由secure enclave的一个counter、keybag的UUID、secure enclave UID联合派生。
 
-escrow keybag: 用passcode保护backup中负责保护backup data class key的generated key（首次备份时临时生成）。用passcode授权生成ota场景的one time unlock token。
+attended software updates：one-time unlock token 的有效期为20 min。
 
-icloud backup keybag：class key是curve25519
+unattended software updates (automatic updates、install later): one-time unlock token的有效期为8 hour。如果在该8 hour时间周期内没有升级，则在每次lock的时候删掉token，每次unlock的时候生成新的token。
 
+### icloud backup keybag
+
+与backup keybag类似。
+
+所有keybag里的class key都是非对称的，类似class B。
+
+类似的keybag也用于icloud keychain的备份与重置。
+
+##  protecting keys in alternate boot modes
+
+alternate boot modes: Device Firmware Update (DFU) mode, Recovery mode, Apple Diagnostics, software update
+
+Recovery: Class A/B/C/D protected.
+
+Alternate boots of DFU/Recovery/software update : Class A/B/C data protected.
+
+Secure Enclave AES Engine 基于 UID 派生某个key时，根据key的用途，会设置一个passcode seed bit的标识位。如果该seed bit为true，则表示该key需要结合passcode派生（例如class A/B/C key）；如果为false，则表示该key无需结合passcode派生。
+
+Diagnostics 模式下，禁止访问user data。其实是另一个seed bit标识位，管控是否能够访问media key。media key是访问metadata必须的一个key，因此只须该标识位的控制效果。uid保护media key。
+
+DFU/Recovery 模式下，passcode seed bit被locked，禁止更改。也就避免了无passcode访问对应data。
+
+进入DFU模式后，可以刷入apple-signed的code。
+
+## Protecting user data in the face of attack
+
+Sealed Key Protection (SKP) : key materials不要随意被读取。
+
+apple-designed SoC 支持SKP。
+
+## Sealed Key Protection (SKP)
+
+Data Protection 的 KEK is protected (or sealed) with  "measurements of the software on the system" + UID
+
+FileVault keys = Class C
+
+Sealed Key Protection process:
+- Secure Enclave Boot Monitor 收集Secure Enclave OS 的measurement、LLB Image4 manifest的measurement、LocalPolicy的LLB measurement，派生得到的key保护long-term SKP system key
+- user password、long-term SKP system key、hardware key 1，派生key保护KEK
+- xART key、KEK、hardware key 2，派生key保护volume encryption key
+- volume encryption key进一步保护volume data
+
+### SMRK & SMDK
+
+SMRK: crypto-hardware-derived system measurement root key
+
+SMDK: system measurement device key
+
+注意，SMRK保护SMDK。
+
+与DICE类似，由于SMRK基于measurement派生，当Firmware更新时，SMRK也要更新。因此，SMDK要先以旧SMRK解密，再以新SMRK加密，才能确保更新后的下一次启动ok。
+
+## Role of Apple File System (APFS)
+
+macOS:
+- Preboot volume
+- vm volume: swap
+- recovery volume
+- system volume
+- data volume
+
+ios:
+- system volume
+- data volume
+
+## keychain data protection
+
+keychain保护: passwords, keys, login tokens
+
+同样，different keychain protection classes
+
+### overview
+
+SQLite database
+
+两个aes-256-gcm keys: table key (metadata), per-row key (secret key)
+
+keychain metadata 以 table key 加密，table key由secure enclave保护、缓存在Application Processor里，支持快速查询。
+
+secret value 以 per-row key加密，per-row key由secure enclave保护。
+
+访问控制：keychain-access-groups, application-identifier, application-group；设置谁可以访问该行keychain内容。
+
+例如同一个开发者账号下的不同app，可以设置共享keychain的对应item。
+
+keychain data protection:
+- Accessible When Unlocked ——对应Class A
+- Accessible after First Unlock ——对应Class C
+- Accesible Always ——对应Class D
+- Accessible When Passcode Set This Device Only  ——与Accessible When Unlock相同，但是要求device设置了passcode。这类keychain内容仅在system keybag出现，不同步到icloud keychain，不备份，不在escow keybags里。
+
+例如，app的后台刷新，可以用Accessible after First Unlock 的 keychain items。
+
+如果keychain item指定了"this device only"，则备份时还会加入UID的保护，也就是说，其他device无法恢复。
+
+如果keychain item指定了"nonmigratory"，则只在该device上蹲守。
+
+### keychain data class protection
+
+例如：
+- wifi passwords: after first unlock
+- itunes backup: when unlocked, nonmigratory
+- VPN certificates: always, nonmigratory
+- Find My token: always
+
+### keychain access control
+
+只有输入passcode/password，或者通过touchID/FaceID认证后，才能访问keychain。
+
+还可以进一步设置：如果touchID/FaceID发生变化，则禁止访问之前已有的keychain item —— 避免恶意添加指纹/面容信息。
+
+### macOS
+
+macOS user keychain: passwords, digital Identities, encryption keys, secure notes
+
+macOS system keychain: Root CA certificates, network credentials, ...
+
+## FileVault
+
+使用AES-XTS protect volume
+
+macOS 11以后
+- system volume : signed system volume (SSV) feature
+- data volume : encryption，需要password才能解密、挂载到其他mac无法暴力破解、删掉cryptographic material达成wipe content的效果
+- 修改password只需要reencrypted KEK
+
+internal volume encryption when FileVault = on
+- password + UID ： 保护KEK
+- KEK + xART key + UID : 保护 volume encryption key
+- volume encryption key : 保护 volume data
+
+internal volume encryption when FileVault = off
+- xART key + UID : 保护 volume encryption key
+- volume encryption key : 保护 volume data
+
+### deleting FileVault volumes
+
+删除 volume encryption key
+
+此外，还有一个"media key" wrap "all volume encryption key"
+
+erase media key 可以确保无法访问volume
+
+### Managing FileVault in macOS
+
+secure token:  a wrapped version of a KEK  protected by a user's password
+
+bootstrap token: administrator 的 secure token，可以建普通user
+
+## How Apple protects users' personal data
+
+### protecting app access to user data
+
+third-party apps: data protected in a Data Vault
+
+user signs in to icloud, apps are granted access by default to icloud drive
+
+### protecting access to user's health data
+
+data protected : class B
+
+device lock 10min 之后，无法访问对应data；下一次unlock之后才可以再访问
+
+Management data protected: class C
+
+health data 可以存储于icloud，要求end-to-end encryption, 且two-factor authentication.
+
+health data is stored `only if` the backup is `encrypted`.
+
+### clinical health records
+
+oauth2 client credential 下载 clinical health records
+
+tls 1.3
+
+下载之后，与health data一起安全存储
+
+### health data integrity
+
+optional metadata: digital signature, Cryptographic Message Syntax (CMS) RFC5652
+
+### health data access by third-party apps
+
+申请授权: separate access for reading and writing, separate access for each type of health data
+
+apps can't determine access granted to other apps
+
+### medical ID for user
+
+用户可以设置，是否允许Medical ID在device lock的条件下直接显示
+
+Medical ID 可以与其他health data一起安全存储，使用cloudkit备份
+
+## Digital signning and encryption
+
+### mail
+
+Personal Identification Verification (PIV) tokens : 含 digital signing and encryption certificate
+
+### per-message S/MIME
+
+SCEP: Simple Certificate Enrollment Protocol
+
+### smart cards
+
+smart cards include one or more digital Identities that have a pair of public and private keys and an associated certificate.
+
+使用personal identification number (PIN) unlock smart card
+
+### encrypted disk images
+
+the contents of a disk image are encrypted and decrypted in real time.
 
 # App Security
 
-code signature => develop certificate
+## app security in ios 
 
-动态加载的library同样需要签名校验。与develop certificate里的team id关联。
+code signature => verify ...  => Apple-issued certificate
 
-只能通过系统提供的api执行background process
+动态加载的library同样需要签名校验，与developer certificate里的team id关联。
+
+Apple Developer Enterprise Program (ADEP) with a D-U-N-S number，用于企业自签名。
 
 mobile device management(MDM)
 
-当MFI accessory要与ios设备通信时，ios设备要求其提供certificate，并发一个challenge。accessory返回一个签名的response。
+## security of runtime process in ios
 
-AirPlay/CarPlay 用 MFi-SAP(Secure Association Protocol)  通信，aes-128-ctr。会话协商用sts协议，其中ecdhe用curve25519，签名密钥用rsa-1024。
+sandbox 隔离
 
+entitlement: key-value pair, digitally signed，相当于给app颁发一些权限码。。。
 
-# Secure Notes
+app只能通过系统提供的api执行background process
 
-aes-gcm。
+address space layout randomization (ASLR)
 
-笔记可以有单独的passphrase。基于passphrase，使用pbkdf2, sha256生成16 byte的key。
+ARM's Execute Never (XN) feature
 
-# Service Security
+## support extensions 
+
+注意区分
+- the extensions that are embedded within the app ——继承该app获得的授权
+- the extensions that are activated by the app ——类似sandbox
+
+custom keyboards 同样sandbox
+
+## app protection and app groups in ios
+
+### data protection
+
+ios software development kit (SDK)
+
+adopting data protection in apps
+
+### joining an app group
+
+apple group IDs (GID)
+
+- shared on-volume container for storage
+- shared preferences
+- shared keychain items
+
+### verifying accessories 
+
+当MFI accessory要与ios设备通信时，ios device发一个challenge，accessory返回一个signed response。
+
+该signed response可以用apple-provided certificate校验。
+
+apple提供custom integrated circuit (IC), accessory manufacturer直接集成。
+
+audio例子：
+- 只有Authenticated accessory能granted full access to the device —— 钱啊。。。
+- 没有Authenticated的accessory，只能limit access
+
+AirPlay/CarPlay:
+- MFi-SAP(Secure Association Protocol)  通信，aes-128-ctr。
+- 会话协商用STS，其中ecdhe用curve25519，签名密钥用rsa-1024。
+
+## app security in macOS
+
+### code signing
+
+apple-issued developer ID ceritifcate
+
+### gatekeeper and runtime protection
+
+only trusted software runs on a user's mac
+
+gatekeeper ensure software signed by : App Store, or registered developer and notarized by apple
+
+MDM can override gatekeeper policy
+
+runtime protection: isolation, sandbox
+
+### protecting against malware in macOS
+
+3个层面：
+- prevent launch or excution malware: App Store, or Gatekeeper and Notarization
+- block malware from running on custom systems: Gatekeeper, Notarization, XProtect
+- Remediate malware that has executed: MRT
+
+Notarization: apple 检测 app，签发notarization ticket，标识着apple认可该app的安全性——该ticket可被撤销。Gatekeepera可以离线校验notarization ticket（数字签名）。
+
+XProtect: apple定期更新malware的签名数据。当app first launched/app has been changed/XProtect signatures are updated —— 扫瞄。。。
+
+### Malware Removal Tool (MRT)
+
+删。。。
+
+## Secure features in the Notes app
+
+### secure notes
+
+user's passphrase => end-to-end encrypted secure notes
+
+基于user's passphrase派生一个16-byte key，派生函数使用PBKDF2 + SHA256。aes-gcm
+
+user必须输入passphrase、或者经过Touch ID/Face ID认证后，才能查看secure note
+
+如果passphrase更新，需要重新加密existing notes的keys
+
+重置passphrase需要校验user's icloud account passphrase
+
+### shared notes
+
+notes aren't end-to-end encrypted with a passphrase can be shared with others.
+
+shared notes 仍然使用 CloudKit encrypted data type:
+- assets 使用一个DEK加密
+- DEK由KEK加密后，密文存在CKRecord Metadata中
+
+## secure features in the shortcuts app
+
+轻量级。。。
+
+shortcuts can be shared with other users through icloud
+
+# Services Security
+
+todo...
 
 ## apple id
 
