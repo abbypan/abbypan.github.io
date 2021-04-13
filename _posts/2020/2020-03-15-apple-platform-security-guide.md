@@ -891,25 +891,124 @@ shortcuts can be shared with other users through icloud
 
 # Services Security
 
-todo...
+## Apple ID
 
-## apple id
+账号安全(user & password)
 
-账号安全
+two-factor authentication  => 6-digit verification code: display on trusted device / sent to a trusted phone number
 
-双因子验证
+### account recovery
 
-密码重置
+reset password:
+- 在trusted device重置
+- 无trusted device，可以输入password + sms verification; 
+- previously used passcode + sms verification
+
+如果都不行，启动account recovery
+
+### managed Apple ID
+
+受控的，也就受限。
 
 ## icloud
 
-icloud file :  aes-128
+icloud 提供用户数据、第三方app数据的同步服务
 
-根据key与content结合sha256
+每个 icloud file 拆分成chunks，每个chunk 以aes-128加密
+- 加密chunk的key、file's metadata，由apple cloud存储
+- chunk的密文，由aws/google cloud等平台存储
 
-存储于apple自己的云空间、aws
+### icloud drive security
 
-file content key 受 record key 保护，record key存在icloud drive metadata中，由icloud device service key保护
+file content keys 被 record keys wrapped，密文存储于icloud drive metadata
+
+record keys 被 用户的icloud drive service key wrapped, 密文存储于用户的icloud account 数据区域中
+
+用户登录icloud，能够访问到metadata；用户提供icloud drive service key，才能读取明文
+
+#### icloud drive backup
+
+icloud backup 仅在device locked + 连接电源 + 有wifi连接 的条件下，自动同步。
+
+icloud backup 的文件加密传输、存储，使用secure tokens认证
+
+icloud backup 支持后台静默备份、增量备份
+
+对于device locked状态下，无法访问的files：per-file keys 用 icloud backup keybag 里的 class keys 加密，这些files是以与device上完全相同的密文状态上传到icloud。
+
+在icloud存储时，以account-based keys加密（如cloudkit所述）
+
+icloud backup keybag 中asymmetric (curve25519) keys 用于那些device locked状态下无法访问的files。
+
+backup set：
+- 存储在该user account名下
+- 包含user files的备份
+- 包含icloud backup keybag
+- icloud backup keybag 由一个随机key保护，该随机key与backup set关联存储
+- 用户的icloud password仅用于认证，不用于加密；因此，修改密码不会影响icloud备份
+
+keychain:
+- keychain database 备份到icloud时，仍由一个UID-tangled key保护。
+- 因此，keychain的备份，仅能由原始device载入。
+
+恢复时：
+- 从icloud获取 backup files, icloud backup keybag,  保护icloud backup keybag的随机key
+- 解密备份文件之后，按照文件所属的class，重新加密存储到本地device。
+
+#### security of icloud backup
+
+backup 付费内容的相关信息（但不是backup付费内容本身），等restore之后，付费内容会再次下载
+
+photos & videos 信息，存入用户的icloud空间，因此无需再以icloud backup的形式备份
+
+messages:
+- 如果用户在icloud开启了messages服务，那么icloud backup里存储的imessage/business chat/sms/mms等信息都会从icloud backup中移除
+- icloud使用CloudKit中为messages提供的end-to-end encryption container
+- icloud backup保留一个访问该messages container的icloud service key
+- 如果用户后续丢失所有trusted device，无法恢复keychain，还可以icloud backup保留的messages专用的icloud service key恢复备份
+- 如果用户关闭icloud backup，那么container就主动更新icloud service key => 此时，该key仅在icloud keychain内存储，即，icloud backup无法继续访问
+
+用于restore message的key
+- 存储于icloud keychain, 以及a backup in cloudkit
+- 如果icloud backup is enable, 这个backup in cloudkit的行为会强制自动关联备份；恢复的时候，也强制自动关联恢复。
+
+### cloudkit end-to-end encryption
+
+一些apple service使用cloudkit service key的end-to-end encryption, 各领一个cloudkit container
+
+cloudkit service key 本身随icloud keychain同步
+
+因此，这些cloudkit container data 仅在trusted device + 可访问icloud keychain data 的条件下，可访问。
+
+cloudkit end-to-end encryption data recovery，仅在trusted device上、或者icloud keychain recovery已成功、或者icloud backup同步开启的条件下，能够成功恢复
+
+## passcode and password management
+
+### sign in with apple
+
+用户可以向第三方网站网站隐藏真实的apple email地址，而是使用apple private email relay service，弄一个unique、anonymized email adress去注册
+
+同时 antifraud
+
+### automatic strong passwords
+
+自动为网站生成password，并通过keychain服务存取，autofill
+
+strong password: opt-out
+
+注意以下功能：
+- sharing passwords securely to a user's contacts
+- providing passwords to a nearby apple TV that's requesting credentials
+
+### app access to saved passwords
+
+app developer 必须在 app 里提供 entitlement，entitlement中列出app关联网站的FQDN
+
+app关联网站必须在server上放置一个文件，列出已被apple approved的app的unique identifier。
+
+即，FQDN的website上放置周知文件
+- apple-app-site-association
+- .well-known/apple-app-site-association
 
 ## keychain sync
 
