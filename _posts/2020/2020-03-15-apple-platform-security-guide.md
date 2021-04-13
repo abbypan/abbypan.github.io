@@ -1010,29 +1010,102 @@ app关联网站必须在server上放置一个文件，列出已被apple approved
 - apple-app-site-association
 - .well-known/apple-app-site-association
 
-## keychain sync
+### comparing users' password against a curated list
 
-初始化时，会生成一个sync identity的curve25519密钥对，其公钥会被签名2次：一次以其自身对应的私钥签名，另一次以icloud account password派生的p-256私钥签名。
+apple 把 1.5 billion pw，pw => hash => trunc 到前15 bit，即，分成2^15个bucket
 
-icloud account password派生p-256私钥时所用的salt、iteration参数，也一并存储。
+apple为每个bucket中的每个pw计算:
+    P_pw = a * H_swu(pw)  # a 是 apple 的secret random key, H_swu 是 hash_to_curve 里的函数
+
+假设用户的密码为 upw
+    device计算 upw => hash => trunc 到前15 bit，发给apple，找到对应的bucket
+    device -> apple :  P_c = b * H_swu(upw)
+    apple -> device : a * P_c = a * b * H_swu(upw)
+    apple -> device : upw对应的bucket里的所有P_pw
+    device : 对upw对应的bucket里的所有P_pw, 计算 b*P_pw
+    device : 检查是否存在一个 b*P_pw 的值与 a*P_c相等，如有，则认为是弱密码
+
+### sending passwords to other users or apple devices
+
+开启icloud，通过airdrop同步website-user-password
+
+iphone/ipad <-> apple TV 通过BLE互联，可能跨账号，autofill password
+- 同账号：无感互联
+- 跨账号：PIN code
+
+## icloud keychain
+
+端到端加密，不泄漏到apple (?)，易于recover。
+- keychain syncing
+- keychain recovery
+
+所以，即使icloud被入侵，第三方也难以获得user's password
+
+### secure keychain syncing
+
+keychain首次初始化:
+- device生成一个sync identity key pair(curve25519)
+- 公钥被放到一个circle
+- circle整体内容被签名2次：以sync identity private key签名，以icloud account password派生的p-256私钥签名(派生参数salt, iteration 与circle关联保存)
+
+signed syncing circle 存储于 icloud key-value storage area：
+- 只有知道icloud password才能访问
+- 只有circle member的sync identity private key才能更新circle
+
+同一用户的另一个device2同步keychain：
+- device2生成一个sync identity key pair(curve25519)
+- device2生成一个application ticket，请求加入circle
+- icloud要求校验icloud password，返回key-generation parameters
+- device2结合icloud password + key-generation parameters，派生一个private key => sign the application ticket
+- device2把application ticket提交icloud存储
+
+同一用户的其他device首次发现该application ticket:
+- 要求用户输入icloud password, 用相同的key-generation parameters派生private key
+- 使用派生的private key，确认application ticket的签名无误
+- 将device2的公钥加入circle
+- 对新circle进行双重签名
+
+所有device之间共享相同的circle，circle中包含其他device的公钥，确保keychain syncing的端到端安全性:
+- exchange individual keychain items through icloud key-value storage , or store them in cloudkit
+- 如果keychain item撞车，以最新的同步
+- 仅接收方device可解密
+
+当一个new device被加入circle，其余device都会与new device同步一次keychain，确保大家的keychain内容一致
 
 部分内容不同步，例如vpn连接配置信息；部分内容会同步，例如wifi密码等。由 kSecAttrSynchronizableattribute 区分。
 
-## keychain recovery
+默认情况下，由third-party app添加的keychain items不同步；除非third-party app developer明确设置 kSecAttrSynchronizableattribute要求同步。
 
-注意sync跟recovery不同。
+### secure keychain recovery
 
-如果设置了双因子认证，那么recovery要求输入passcode。
+apple 提供secondary authentication, 以及一个secure escrow service。
 
-如果没设置双因子认证，那么recovery要求输入之前设置的icloud security code。
+使用一个strong passcode对keychain内容加密，escrow service提供keychain的copy。
 
-托管的record，用asymmetric keybag加密。keybag用icloud security code保护，再用云端存储的hsm的公钥加密。
+- 如果开启two-factor authentication，则使用device passcode恢复escrowed keychain
+- 如果未开启two-factor authentication, 则使用icloud security code恢复escrow keychain
+
+device如何备份keychain：
+- 使用asymmetric keybag里的keys加密keychain copy，将密文置于icloud key-value storage area。
+- asymmetric keybag被icloud security passcode wrapped，并且由云端HSM cluster的public key再搞一个envelope，该envelope即为escrow record。
+- 对于HSA2 account: keychain 由intermediate key wrapped，密文存储于cloudkit；intermediate key 只能以escrow record的方式解密。
+- 也可以生成random key，然后使用icloud security code wrap random key，无需escrow record。
+
+可以sms message进行recovery的授权校验
+
+#### escrow security for icloud keychain
 
 云端要校验icloud account password、sms确保用户处于安全登录态，然后使用SRP协议校验用户已知icloud security code，注意icloud security code本身并不会传输。
 
-设备端使用icloud security code解出之前的keybag。
+云端hsm解密escrow record，将asymmetric keybag的密文传给device。
 
-# applepay
+device使用icloud security code解密asymmetric keybag。
+
+防暴力破解：10th failed attempt，云端就删掉escrow record。
+
+## applepay
+
+todo...
 
 full card number不会存在ios设备、apple pay server，而只会存unique device account number（每设备每张银行卡各不相同）
 
