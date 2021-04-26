@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tech
-title:  "Apple Platform Security"
+title:  "Note: Apple Platform Security"
 tagline: ""
 tags: [ "apple", "mobile" ] 
 ---
@@ -1080,7 +1080,7 @@ signed syncing circle 存储于 icloud key-value storage area：
 
 apple 提供secondary authentication, 以及一个secure escrow service。
 
-使用一个strong passcode对keychain内容加密，escrow service提供keychain的copy。
+使用一个strong passcode对keychain内容加密，escrow service为通过鉴权的用户提供keychain的copy。
 
 - 如果开启two-factor authentication，则使用device passcode恢复escrowed keychain
 - 如果未开启two-factor authentication, 则使用icloud security code恢复escrow keychain
@@ -1105,15 +1105,132 @@ device使用icloud security code解密asymmetric keybag。
 
 ## applepay
 
-todo...
+payment交易: user, merchant, card issuer
 
-full card number不会存在ios设备、apple pay server，而只会存unique device account number（每设备每张银行卡各不相同）
+secure element: 
+- java card platform
+- 存储Device Account Numbers
+- 包含payment network 或者 card issuer 认证的applet
+- 每个applet关联存储payment / card issuer 部署的密钥
 
-secure enclave与secure element之间的通信，用一个生产过程中共享的sharing pair key，基于secure enclave的uid与secure element的id共同生成，aes。
+nfc controller: 
+- 在application processor 与 secure element 之间，传递交易消息
+- 在secure element 与 point-of-sale终端 之间，传递交易消息
+- 当用户(cardholder) 通过passcode/touch ID/face ID鉴权成功，请求某个交易，secure element准备的信息会由nfc controller转发。近场NFC支付信息，会直接转给NFC对端；app/web支付信息，会转给Application Processor再转给apple pay server，前提是secure element <-> apple pay server 端到端。
 
-生产的时候，从secure enclave传给产线的hsm，hsm再注入secure element。
+secure enclave: 
+- touchID负责Authentication process，允许一个payment transaction to proceed.
+- apple watch: 设备必须解锁，用户双击side button。双击的信号被直接传递到secure element or secure enclave，不往application传
 
-applepay客户端传输payment相关信息到applepay server，server重新以目标的公钥加密并以自身的私钥签名，再传给商户或机构。
+apple pay server: 
+- manage Device Account Numbers
+- device <-> apple pay server
+- apple pay server <-> payment network
+- apple pay server <-> card issuer server
+- reencrypted payment credential for payment `within apps` or `on the web`
+
+### credit, debit, and prepaid cards
+
+card provision:
+- 用户在apple wallet添加card，apple将`card information, user's account information, device information`发给card issuer、或者card issuer授权的service provider。
+- card issuer决策是否允许绑卡
+- apple pay 与 card issuer / network 的通信分三个步骤： Require Fields、Check Card、Link and Provision。
+- user device、apple pay server 不会存储full card number。
+- user device 的 secure element 加密存储 unique Device Account Number，相当于标识该user在该device上的一张card
+- apple pay server无法获得Device Account Number的内容
+- apple watch 绑卡，需要在iphone侧通过apple pay、或者card issuer app操作，apple watch <-> iphone 近场蓝牙通信。
+
+### payment authorization with apple pay
+
+#### shared pairing key
+
+secure enclave与secure element之间的通信
+- 使用一个生产过程中共享的shared pair key，由secure enclave基于uid与secure element的id共同生成。
+- aes, 用nonce防重放
+
+生产的时候，shared pairing key从secure enclave传给产线的hsm，hsm再注入secure element。
+
+#### authorizing a secure transaction 
+
+业务authorize交易，secure enclave就sign { 交易内容, 交易类型(contactless、还是within apps), Authorization Random (AR) }
+
+AR 是 apple pay 首次 provision 某个credit card时，secure enclave生成的。只要apple pay还是enable，AR就一直存在，受secure enclave的anti-rollback保护。
+
+如果secure element收到一个新的AR值，secure element就把之前所有card标记为deleted。
+
+#### using a payment cryptogram for dynamic security
+
+添加card时，applet会provision一个key，该key与 payment network / card issuer 共享。
+
+同时维护一个transaction counter，递增。
+
+    one-time-code = some_func(key, transaction counter, transaction data, other data [optional])
+    other data 例如：
+    - NFC交易时，terminal unpredictable number
+    - within apps交易时，apple pay server nonce
+
+交易信息发送时： { Device Account Number, one-time-code, transaction data, other data [optional] }
+
+还可以把交易时间、位置传上去
+
+### paying with cards using apple pay
+
+#### paying with cards in stores
+
+注意，如果没有user authentication，任何交易都不能自动发送
+
+user authentication方式包括：touchID/faceID, passcode, double click side button
+
+#### paying with cards within apps
+
+在交易信息发送给developer/merchant之前，apple reencrypt the transaction with a developer-specific key, apple pay保留交易信息的概要，但不与用户/商品关联。
+
+当 device -> apple pay -> merchant 初始化一个transaction时，apple pay会使用一个merchant-specific key对device传过来的信息做reencryption.
+
+#### app payment authorization
+
+app 将 { transaction data, apple pay server nonce } 传给 secure element，
+
+secure element 计算一个payment credential，并使用apple key加密该credential
+
+该credential上传到apple pay server，由apple pay server解密、校验credential之后
+
+apple pay server使用merchant-specific key重新加密payment credential，并打apple pay server的签名之后，再发给merchant
+
+merchant使用自身私钥解密获得payment credential, 并校验apple pay server的签名。
+
+app可以把一些交易信息、或者用户标识信息，做hash，添加到encrypted payment data域里；merchant在接收到payment credential后，可以校验这个hash。
+
+### paying with cards at websites
+
+支持apple pay的website要找apple注册，由apple颁发一个tls client Certificate。
+
+使用该tls client certificate，与apple安全通信。
+
+merchant session data由apple签名。在merchant session被validated之后，所有操作与pays within apps相同。
+
+如果payment-related information从mac -> iphone/apple watch，apple pay使用的是apple identity service(IDS) protocol进行end-to-end的encrypted message handoff 
+
+当用户authorize payment之后，payment token使用website's merchant certificate加密，再从iphone/apple watch -> mac -> website
+
+注意proximity通过BLE advertisements发现近场同账号设备。
+
+### contactless passes in apple pay
+
+apple value added services (Apple VAS) protocol
+
+当device近场靠近某个NFC终端，NFC终端发一个pass request给device
+
+如果device发现调有该pass provider签发的pass，则启动user authentication(touchID/faceID/passcode)
+
+user authentication通过，则使用random ECDH P-256 key + pass provider's public key派生DEK，加密 passdata = { timestamp, pass information }
+
+将数字信封传给NFC终端
+
+pass provider可以配置用户选择pass之后，是否还需要authentication
+
+### rendering cards unusable with apple pay
+
 
 # imessage
 
