@@ -1160,7 +1160,7 @@ AR 是 apple pay 首次 provision 某个credit card时，secure enclave生成的
 
 #### using a payment cryptogram for dynamic security
 
-添加card时，applet会provision一个key，该key与 payment network / card issuer 共享。
+添加card时，secure element applet会provision一个key，该key的信息与 payment network / card issuer 共享。
 
 同时维护一个transaction counter，递增。
 
@@ -1231,35 +1231,102 @@ pass provider可以配置用户选择pass之后，是否还需要authentication
 
 ### rendering cards unusable with apple pay
 
+当card初始化时，secure element 保存pairing key & authorization random (AR)，用于后续认证
 
-# imessage
+secure enclave 在某些场景下自动把AR标识为disable，使得card失效：
+- passcode disable
+- password disable
+- sign out icloud
+- erase all content & setting
+- restore from recovery mode
+- unpairing
 
-rsa1024 加密，p-256 签名，与用户手机号/邮箱、设备APN关联。
+丢失模式下：
+- find my / icloud.com 远程冻结/移除card
+- 联系card issuer，冻结/移除 在 apple pay绑定的card
 
-Apple Identity Service(IDS) 保存对应的公钥。
+### apple cash security
 
-发送消息时：发送方随机生成88 bit value，再以88 bit为hmac-sha256的key，结合双方公钥+plain text，生成一个40 bit的值。
+可以在imessage里转账
 
-将两个值拼接为 128 bit 的 aes-ctr key。
+当user sends money with apple pay时，同样是nonce + transaction data签名，apple pay server校验payment signature。encrypted payment credential 也类似。
 
-40 bit的值可以用来校验plaintext。
+card issuer可以触发风控问题，内容同样encrypted（apple pay无法解密）。
 
-以rsa-oaep数字信封封装aes-ctr key。数字信封用 ecdsa-with-sha1 签名。
+### apple card security
+
+bank account information 存在keychain
+
+业务需要时，数字信封传到目标partner / 监管机构，apple表示无法解密
+
+### transit and student ID cards
+
+如果把一个physical card的余额转到apple wallet app的card上，user必须provide personal information for proof of card possession。
+
+如果可以直接provision from a physical card，在transit card issuer成功认证后，device就生成Device Account Number、转移balance、激活wallet card，与此同时，原物理卡片失效。
+
+balance 在 applet 里加密存储。
+
+如果user移除card时处于在线状态，后续card仍可恢复；如果是离线状态，可能找不回来。
+
+student ID cards 场景，Express Mode默认开启，即，不用反复Authentication
+
+## imessage
+
+imessage 基于 Apple Push Notification (APN) 进行应用扩展，内容端到端加密。
+
+三个key： 
+- rsa1280 加密，p-256 加密，p-256 签名
+- 私钥存储于keychain（only available after first unlock)
+- 公钥上传到Apple Identity Serive(IDS), 与用户手机号/邮箱、设备APN地址关联。phone通过sms校验、email通过confirm link校验。
+
+### sends and receives messages
+
+sender 找 IDS 查询 receiver 的 public key & apn address。sender指定的查询源：phone, email, 本地contacts里的phone/email。
+
+旧版：
+- sender随机生成88-bit value
+- 以88-bit value作为hmac-sha256的key，结合双方公钥+plain text，派生一个40-bit value。
+- 将88-bit value & 40-bit value拼接为 128-bit aes-ctr key。
+- 40-bit value可以用来校验plaintext。
+- 以rsa-oaep加密aes-ctr key。
+- { message密文+ key密文 } 使用 ecdsa-with-sha1 签名。
 
 ios 13之后，改用ecies加密数据，不用rsa。
 
-消息推送还是要经过icloud，公钥交换经过ids
+APN:
+- { message 密文, key密文, digital signature } 通过APN服务进行消息传递
+- APN的timestamp, apn address明文
+- device与APN server之间TLS
 
-## imessage name and photo sharing
+内容:
+- APN消息长度：4KB ~ 16KB
+- 传图片等附件：随机生成aes-ctr 256-bit key，附件密文上传icloud；aes key, 附件密文URL, 密文的sha1 作为imessage消息内容传输。
 
-首先随机生成128 bit key。再用hmac-sha256基于该key派生出key1, key2, key3。
+群聊场景，1 : N 发送。
 
-key1 用于 aes-ctr 数据加密。
+APN支持离线消息缓存，30 days。
 
-key2 用于计算field name + field iv + file ciphertext 的 mac
+### imessage name and photo sharing
 
-用key2计算的多个mac拼接，使用key3计算出一个hmac-sha256的总mac，头128 bit用作record id标记。
+data分成3个fields: name, photo, photo filename
 
+首先随机生成128 bit key, 再用hmac-sha256基于该key + nickname，派生出key1, key2, key3。
+
+每个data field: 
+- 随机生成96 bit IV，使用key1加密, aes-ctr。
+- key2 用于计算{ field name + field iv + file ciphertext } 的 mac, hmac-sha256
+- 用key2计算的多个mac拼接，使用key3计算出一个hmac-sha256的总mac。总mac的前128 bit用作record id标记。
+- record密文在cloudkit public database存储，以record id标识。record不会更新，如果user修改name/photo，会重新加密生成新的record。
+- nickname & record key & record id 作为imessage消息内容传输。
+
+### business chat
+
+business 不同步user's phone/email/icloud account information。
+
+而是由apple identity service (IDS)生成一个custom unique identifier (opaque ID) => 与 user apple ID + business ID 唯一关联。
+
+同一user apple ID 在不同business ID下，有不同的opaque ID。
 
 # facetime
 
