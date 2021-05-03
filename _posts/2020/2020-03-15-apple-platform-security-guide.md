@@ -1328,41 +1328,140 @@ business 不同步user's phone/email/icloud account information。
 
 同一user apple ID 在不同business ID下，有不同的opaque ID。
 
-# facetime
+## facetime
 
-设备连接：Session Traversal Utilities for NAT(STUN) messages
+初始化连接：APN message、Session Traversal Utilities for NAT (STUN) message。
 
-双方通信：校验双方的identity certificate，实时协商share secret。 share secret用于派生session key，SRTP协议，aes-256-ctr，hmac-sha1。
+密钥协商：校验device identity certificate, 派生shared secret。基于shared secret派生SRTP stream session key, aes-256-ctr, hmac-sha1。
 
-群组通信：IDS分发群组密钥。session key以aes-siv wrapped，使用ecies，结合临时的ecdh p-256 keys。如果有一个新参与者加入，则新起一个session key。
+安全通信：STUN、Internet Connectivity Establishment (ICE)。尽量E2E。
 
+群组通信(支持33人)：IDS分发群组密钥，支持前向安全。session key以aes-siv wrapped，使用ecies分发到各participants。如果有一个新参与者加入，则新起一个session key。
 
-# find my
+## find my
 
-连网的设备可以上报位置信息给icloud。
+在线设备（连wifi，或者连cellular）可以上报自身位置信息给icloud。
 
-无法连网的设备可以通过蓝牙连接，使用其他设备作为中转，上报位置信息给icloud。
+离线设备可以通过蓝牙连接，使用其他设备作为中转，上报位置信息给icloud。
 
-    P-224 密钥对: d, P。公钥P的长度正好能塞到一个蓝牙广播里。
-    256bit SK_0，一个counter_i。每隔x秒更新counter_i。
-    SK_i = KDF(SK_i-1, "update")
+    device 初始化一个 P-224 密钥对{ d, P }。初始化 256-bit SK_0，一个counter_i。
+    上述密钥信息不会传给apple，但是会通过keychain机制传给同一用户账号下的其他device。
+    P-224公钥长度正好能塞到一个蓝牙广播里。
 
-上述密钥信息不会传给apple，但是会通过keychain机制传给该用户账号下的其他设备。
-
+    每隔15分钟更新counter_i，更新 SK_i = KDF(SK_i-1, "update")
     (u_i, v_i) = KDF(SK_i, "diversify")
     d_i = u_i * d + v_i  
     P_i = u_i * P + v_i * G
-    使用ECIES加密传输location。使用P_i的hash值做为关联id。由于counter_i定期轮转，P_i也定期变换，避免追踪。
+    由于counter_i定期轮转，P_i也定期变换，避免追踪。
+    nearby device(finder)使用接收到的P_iECIES加密自身location，上报到apple server，使用P_i的sha256做为关联id。
 
-# Continuity
+    同一用户的其他设备可以通过keychain同步的信息，推算d_i & P_i，获取多个finder上报的位置信息，提高精度。
 
-device paired之后，会生成一个256 bit的key，放在keychain同步。用于aes-gcm通信。
+## Continuity
+
+通过icloud/bluetooth/wifi，设备接力。
+
+### handoff
+
+设备近场接力。
+
+如果两个设备都连icloud，则通过类似imessage的APN消息传递，同步out-of-band BLE pairing信息，无感配对。
+
+device paired之后，会生成一个256 bit的aes key，放在keychain同步。该key用于BLE advertisements的加密和认证，用于向接力的设备同步当前设备的活动状态、并防重放。
+
+当device接收到某个新advertisement，就与源device进行BLE连接、并交换advertisement encryption key。可以通过类似imessage的APN消息/BLE消息的方式，加密同步。
+
+#### handoff between native apps and websites
+
+native app 可以 resume user activity on a webpage in domain
+
+前提是native app developer 也能管控该 domain，系统要校验app是否被授权
+
+    sender:当用户浏览某个webpage时，system加密广播该webpage的domain，仅同一账号下的其他设备可以解密该广播
+    receiver: 系统解密收到的广播，通知app，app获得webpage的title & full url。
+
+#### handoff larger data
+
+初始化BLE连接，然后切换到WiFi p2p。
 
 device 之间 wifi tls通信，双向校验iCloud identity certificates，确认user's identity。
 
-## Instant Hotspot
+#### universal clipboard
 
-family sharing: 通过ids同步ed25519 public key，并使用该public key认证 ecdh 的临时 curve25519 公钥。
+同一用户的不同设备下的app之间，通过handoff共享clipboard data
+
+#### iphone cellular call relay
+
+条件：当同一用户的mac/ipad/homepod等设备与iphone处于同一wifi环境
+
+场景：iphone收到一个call，通过imessage的APN通知到其他设备，用户在某一个设备answer call，iphone与该设备建立e2e的信道传输通话信息。handoff BLE加密广播通知其他设备不要再响铃。
+
+场景：在其他设备上外播一个call，通过APN通知到iphone，iphone外播call，同样建立e2e的信道传输通话信息。
+
+在facetime上关闭iphone cellular call可以禁用phone call relay功能。
+
+#### iphone text message forwarding
+
+把iphone上收到的sms text传输到同一用户的其他ipad/mac/...
+
+通过imessage进行消息传递。
+
+reply的消息返回给iphone后，iphone再外发为imessage消息或者sms text。
+
+### Instant Hotspot
+
+设备连到某个其他ios/ipados设备的热点，必须是同一用户账号、或者是family sharing的账号。
+
+用户在某个设备设置热点，基于与用户关联的DSID( Destination Signaling Identifier)派生identifier（周期性更新identifier），广播该identifier。
+- 同账号（无感）：同一用户账号下的其他设备检测到该identifier，尝试连接热点。
+- 跨账号：如果用户 isn't part of family sharing ，则会发一个turn on personal Hotspot的请求，该请求通过BLE加密发送（加密方案类似imessage），响应消息同样加密发送、返回personal hotspot connection information。
+- 跨账号（无感）：如果用户 is part of family sharing，则personal hotspot connection information通过类似homekit device方案同步：设备之间已经预先通过IDS交换对方的device-specific ED25519 public key；通信时X25519-ED25519协商密钥。
+
+### car key
+
+car key 的增、删、挂失等，与apple pay card方案基本一致。
+
+从iphone、apple watch、vehicle hmi都可以删除car key。
+
+car key可以：lock/unlock, start engine, set the vehicle into drive mode。默认情况下mutual authentication。start engine强制mutual authentication。一些lock/unlock场景可以fast transaction。
+
+car key create:
+- eSE，ECC-OBKG(on-board key generation), p-256
+- iphone <-> vehicle 之间通过NFC通信。
+- key management, apple <-> automaker server 必须是mutually authenticated tls。
+- after a key is paired to an iphone, any apple watch paired to that iphone can also receive a key.
+- iphone/apple watch设备丢失/找回，key可以suspended/resumed
+- 新设备provision key必须发起new pairing / sharing
+
+#### owner pairing
+
+初始化配对，owner必须prove possession of the vehicle。
+
+automaker 发一个email link，或者 vehicle menu 显示：提供一个 one-time pairing password
+
+iphone基于该one-time pairing password，与vehicle建立一个SPAKE2+ P-256的安全连接。
+
+#### key sharing
+
+owner's paired iphone 发送一个 device-specific invitation imessage消息给到key share的目标对象（family member, friend, 同一账号的watch）
+
+通过IDS确保sharing command的e2e安全交互。
+
+被邀请的对象接受邀请，则建立一个ecc digital key，并把该key的 creation certificate chain返回给owner's paired iphone校验。
+
+owner's pair iphone对digital key对应的public key签名。
+
+#### key deletion
+
+device/vehicle端都可以进行key deletion，上报给key inventory server(KIS)
+
+如果vehicle删除该key，automarker server会发remote termination request到keyholder device。
+
+如果device删除该key，applet会签名一个termination attestation通知automaker，KTS会移除该key
+
+#### standard transaction
+
+
 
 # network security
 
