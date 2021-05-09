@@ -722,6 +722,10 @@ health data 可以存储于icloud，要求end-to-end encryption, 且two-factor a
 
 health data is stored `only if` the backup is `encrypted`.
 
+health data的完整性：rfc5652 cms digital signature
+
+medical id 仅backup，不sync
+
 ### clinical health records
 
 oauth2 client credential 下载 clinical health records
@@ -1461,13 +1465,87 @@ device/vehicle端都可以进行key deletion，上报给key inventory server(KIS
 
 #### standard transaction
 
+vehicle reader 以 long-term private key 签名 ephemeral public key
 
+iphone <-> vehicle reader: secure channel ... (DH, KDF)
+
+iphone -> vehicle reader:  public key identifier, { vehicle reader's challenge, app-specific data }, sig
+
+#### fast transaction
+
+standard transaction 时，shared a secret。
+
+可以 基于shared secret  + ephemeral key pair, 建立secure channel。
+
+#### privacy
+
+车厂server不存iphone device ID, SEID, APPLE ID，只存the instance CA identifier——相当于识别手机厂。
 
 # network security
 
-    ECDHE_ECDSA_AES and ECDHE_RSA_AES in GCM or CBC mode
+## tls
 
-证书：RFC5280, RFC6962
+没啥特别的
+
+## app transport 
+
+    ECDHE_ECDSA_AES and ECDHE_RSA_AES in GCM
+
+    CBC mode
+
+app可以为某个domain指定`RSA_AES`，禁掉FS。
+
+## certificate
+
+RFC5280, RFC6962
+
+## ipv6
+
+RFC3972 CGA (Cryptographically generated addresses)
+
+SLAAC (stateless address autoconfiguration)
+
+每24 hours更新地址
+
+private wifi address => unique link-local address is generated for every Wi-Fi network，避免关联分析
+
+ipv6 protection: RFC6980, RFC7112, RFC8021
+
+## vpn
+
+VPN on demand: use certificate-based authentication
+
+per app vpn
+
+always on vpn
+
+## wifi
+
+AES encryption: 128-bit, 256-bit
+
+WPA3 Enterprise aes 192-bit
+
+802.11w PMF(protected management frame) service, unicast/multicast management
+
+802.1x  radius authentication environment
+
+### Platform protection
+
+限制network processor访问application processor memory
+- USB/SDIO(secure digital input output): network processor can't initiate DMA transaction to AP
+- PCIe: each network processor is on its own PCIe bus. IOMMU to limit the network processor's DMA access to memory & resources.
+
+### privacy
+
+randomized MAC address => scan
+
+a unique random MAC address per network
+
+wifi frame seq number randomize
+
+mac换，seq number也同步换
+
+hidden service set identifier(ssid)
 
 ## bluetooth
 
@@ -1475,21 +1553,33 @@ pairing： p-256，aes-cmac
 
 bonding：安全存储
 
-Authentication： hmac-sha256 and aes-ctr，或者fips规定的算法
+Authentication： hmac-sha256 and aes-ctr, fips-approved algorithm
 
 encryption：aes-ccm
 
 message integrity：aes-ccm
 
-secure simple pairing: ecdhe
+secure simple pairing against eavesdropping: ecdhe
 
-secure simple pairing, 抵御mitm：passkey entry，或者其他用户参与的方式，避免自动初始化
+secure simple pairing against mitm ：passkey entry/numerical comparison，必须有用户参与，避免自动初始化
 
-address randomize
+version: >=Bluetooth 4.1/4.2
 
-# single sign-on
+### privacy
 
-sso , kerberos
+address randomize: rpa, identity resolving key(IRK)
+
+cross-transport key derivation: LTK <-> LK 互相derive
+
+## uwb (ultra wideband)
+
+mac address randomization
+
+wifi frame seq number randomization
+
+## sso(single sign-on)
+
+sso : kerberos, PKINIT
 
 spnego token, heimdal project
 
@@ -1498,82 +1588,233 @@ spnego token, heimdal project
     DES3-CBC-SHA1
     ARCFOUR-HMAC-MD5
 
-# airdrop
+### extensible sso
 
-用户登录icloud，rsa2048 identity certificate
+openid, oauth, saml2, kerberos
 
-airdrop，基于与用户appleid关联的phone number/email address的hash
+## airdrop
 
-选择共享时，需要校验identity certificate之后才安全传输
+BLE + WIFI P2P => 近场传输文件、信息
+
+不需要wifi ap。
+
+macOS: tls
+
+### operation
+
+用户登录icloud，device 存储一个 rsa2048 identity。
+
+用户启用airdrop时，基于与用户appleid关联的phone number/email address生成一个short identity hash。
+
+当用户选择airdrop 共享某文件，sending device 基于short identity hash发BLE广播，responding device监听到广播后回复自身的short identity information & WIFI P2P相关信息。
+
+sending device与receiving device初始化wifi p2p连接，然后发送sending device自身的long identity hash；如果responding device在contacts里找到对应的long identity hash，就把responding device对应的long identity hash发给sender device。
+
+long identity hash校验后，sending device显示备选的receiver device的name & photo，由用户选择。
+
+sending device <-> receiving device: TLS based on icloud identity certificate；校验certificate里的identity信息
+
+receiving device 侧应弹窗询问是否接受incoming transfer。
+
+### wifi password sharing
+
+ios devices 之间传递wifi password的方式与airdrop类似
+
+某个device要连接某个wifi时，发广播请求获得该wifi的password
+
+其他device要求requestor提供identity信息
+
+identity校验ok后，传输password信息
+
+### macos firewall
+
+block all incoming connections
+
+allow built-in software to receive incoming connections
+
+allow downloaded and signed software to receive incoming connections
+
+user-specified apps => user configure
+
+不回应扫瞄器的icmp/port扫瞄
 
 # Developer Kits
 
+提供给第三方developer的开发框架
+
 ## HomeKit
 
-生成 ed25519 keypair。
+ios设备生成 ed25519 keypair => homekit identity，存储于keychain。
 
-绑定：使用SRP 3072-bit 协议，在ios系统设备上输入 8 digit code，用hdkf-sha-512派生密钥，CHACHA20-POLY1305 加密，完成ed25519的key exchange。
+iphone使用IDS将keys同步给watch。
 
-会话：使用station to station protocol，使用curve25519协商的密钥hkdf-sha-512派生的key
+### communication between homekit accessories
 
-从密钥派生机制可见，HomeKit同步的数据仅在终端才能解密，传输过程中、icloud云端均无法解密。
+homekit accessories生成自身的ed25519 keypair。
 
-## apple tv & homekit
+绑定：使用SRP 3072-bit 协议，在ios系统设备上输入 8 digit code (accessory manufacturer提供)，用hdkf-sha-512派生密钥，CHACHA20-POLY1305 加密信道，最终完成ed25519的key exchange、accessory's MFi certification。
 
-首先必须是安全登录态(双因子认证)从icloud云端获取对方的临时ed25519 public key。
+会话：使用STS(station to station protocol)，使用ed25519 + curve25519协商的密钥hkdf-sha-512派生的key
 
-通过sts协议协商会话密钥。
+broadcast encryption key: HKDF-SHA-512 派生的key，CHACHA20-POLY1305。用于加密BLE advertisement。ios设备周期性更新该key，并通过icloud服务同步到其他设备。
 
-homekit device把与该用户关联的ed25519密钥对传输给apple tv。
+### data security
 
-## homekit secure video
+homekit identity + random nonce => derive keys => encrypt homekit data
 
-本地home hub与ip camera之间协商出hkdf-sha-512的session keypair，在home hub解密数据。aes-256-gcm。
+icloud & icloud keychain 远程同步
 
-上传到icloud时，包含了encryption key的metadata，而icloud本身无法解密。
+STS 近场同步—— X25519-ED25519
 
-## homekit router
+跨账号的控制，必须由owner's device 把跨账号的public key同步给accessory，accessory才能校验来自跨账号设备的指令。
 
-支持ppsk authentication，即，为设备指定专用密码。
+#### apple tv & homekit
 
-## remote access
+首先必须是icloud安全登录态(双因子认证)。
 
-homekit accessory 初始化时，Apple Authentication Coprocessor 需要响应一个来自ios设备的challenge
+device & tv 从icloud云端获取对方的temp ed25519 public key。
 
-然后，将临时生成的公钥、sign过的challenge、Apple Authentication Coprocessor的工厂初始化的x509证书 做为响应返回
+如果device & tv处于相同local network，双方使用temp ed25519 public key进行sts协议协商会话密钥。
 
-通过icloud的服务器，签发一张设备证书。
+使用该安全信道，owner's device 把 user's ed25519 public-private key pairs 传给tv。这些keys用于tv与homekit accessories、tv与ios devices的安全通信。
 
-accessory 与 icloud remote access server联系时，会提供证书、一个pass。pass是从其他icloud服务器获取，仅提供 manufacturer,model,andfirmware信息，多个accessory可能用相同的pass。
+#### home data and apps
 
-http/2，tls1.2，aes-128-gcm，sha-256
+用户授权apps访问home data数据
 
+homekit数据存储于ios设备，使用user's homekit identity keys + random nonce 派生keys 加密。数据保护等级为 class C。
 
-## health
+备份时必须加密。
 
-health data的完整性：rfc5652 cms digital signature
+### secure router
 
-medical id 仅backup，不sync
+homekit router 支持wifi ppsk，即，为每个accessory分配专用密码。
+
+### homekit camera 
+
+camera stream 端到端加密(近场&远程)，ios device侧的app可以看，不能存/不能截屏。
+
+### homekit secure video
+
+本地apple device (例如homepod, apple tv, ipad, 作为home hub)存储video。
+
+本地home hub与ip camera之间协商出hkdf-sha-512派生的session keypair，在home hub解密数据。aes-256-gcm。
+
+随机aes key加密video内容，上传到icloud。相关metadata（包含随机aes key），端到端上传到cloudkit。
+
+其他设备通过icloud同步获得metadata里的aes key，解密已下载的video内容。
+
+### use third-party remote accessories with apple tv
+
+apple tv <-> homekit remote accessory: per-session HKDF-SHA512 derived key-pair
+
+apple device <-> apple tv: secure session里，把token给到tv，用于同步跨账号的数据(between users of the home)。
+
+homekit accessories 与 home hub通信，home hub与icloud通信。
+
+homekit accessories <-> apple device: 双向认证，端到端安全通信。
+
+#### accessory setup process
+
+homekit accessory 初始化...
+
+用户signing in to icloud。
+
+accessory 生成 p-256 keypair。
+
+accessory 出厂built-in的 Apple Authentication Coprocessor 对一个来自ios设备的challenge计算签名。
+
+accessory : p-256 pubkey, challenge's sig, x.509 certificate of the Authentication Coprocessor  
+
+apple device 向 icloud provision server 请求为 accessory 签发一张certificate。除非accessory授权icloud remote access，否则该certificate不含任何identity information。
+
+#### accessory list of allowed users
+
+icloud server 为 user 分配一个 identifier，用于access 当前 accessory。注意，同一用户访问不同accessory，identifier可以不一样。
+
+icloud server 也为 accessory 分配 identifier。
+
+#### accessory connect to icloud remote access server
+
+accessory 与 icloud remote access server联系时，会提供certificate、一个pass。
+
+pass由accessory从其他icloud服务器获取，请求pass时，仅提供 manufacturer, model, and firmware信息，无身份认证。多个accessory可以共用相同的pass。
+
+accessory <-> icloud remote access server: http/2，tls1.2，aes-128-gcm，sha-256，同步信息
+
+icloud remote accessory server <-> ios device: 为accessory与ios device中转信息
 
 ## cloudkit
 
-app developer存储 k-v data，structured data，assets
+app developer存储 key-value data，structured data，assets
 
-cloudkit service key（与user icloud acccount 关联） -> cloudkit zone key -> cloudkit record key -> file metadata -> file chunklist  -> file chunk
+public databse: app的通用配置，不加密。
+
+private database: app的用户数据，加密。
+
+cloudkit service key -> cloudkit zonewide key -> cloudkit record key -> file metadata (包含per-file/per-chunk key) -> file chunklist  -> file chunk
+
+cloud kit service key 存储于 user's icloud account
+
+## sirikit
+
+app设定siri可访问的内容
+
+## driverkit
+
+apple device driver 开发
+
+## replaykit
+
+直播/录频
+
+recording and broadcast => camera & microphone 
+
+## arkit
+
+camera, photo, video 的 access control
 
 # Secure Device Management
 
+BYOD: bring your own device
+
+把Enterprise data单独存储于一个专用的volume。
+
 ## pairing model
 
-host (computer) <-> device 交换 rsa2048 公钥。随后device向host提供一个256bit的key，用于解密device上的escrow keybag。
+host computer <-> ios device: 输入passcode，交换 rsa2048 公钥。随后device向host提供一个256bit的key，用于解密device上的escrow keybag。
 
-注意有效期。
+要求30天内曾经用usb连接过，此后双方可以通过wifi无感连接，建立SSL session。
 
-## profile signing & encryption
+apple TV 也可以用 SRP 协议作无线pairing。
 
-cms rfc3892
+## Mobile device Management
 
-# certification
+MDM 提供服务： configuration profiles, OTA Enrollment, APNs (apple push Notification service), 远程锁机。。。
+
+### Enrollment types
+
+user Enrollment : 用户的apple id绑定
+
+device Enrollment :  设备初始化
+
+automated device Enrollment: 机构批量管理设备
+
+### device Restrictions
+
+限制可用的app
+
+管理员密码
+
+### Enrollment profiles
+
+Enrollment profile: XML
+
+profile signing & encryption: cms RFC5652
+
+可以用SFTP同步信息，用system for cross-domain identity management (scim) 或 active directory 生成账号。
+
+### certification
 
 ISO/IEC 27001  isms Information Security Management System
 
@@ -1583,3 +1824,53 @@ FIPS 140-X, ISO/IEC 19790, ISO/IEC 24759  cryptographic module validation
 
 Common Criteria Certifications (ISO/IEC 15408)
 
+## activation lock
+
+wifi 连接 -> 向apple server申请activation certificate
+
+如果device is activation locked，用户输入应提供icloud credential——账号密码，然后获取activation certificate。
+
+获得activation certificate后，默认打开activation lock。
+
+### mac with apple silicon
+
+启动时：LLB必须校验 LocalPolicy, 并确认LocalPolicy policy nonce 与 secure storage component 里存储的值相同。
+
+激活：
+- 获取activation certificate
+- activation certificate key 用于进一步获取 RemotePolicy certificate
+- LocalPolicy key  +  RemotePolicy certificate 构造LocalPolicy
+
+### intel-based mac
+
+启动时：校验activation certificate
+
+### lost mode, remote lock, and remote wipe
+
+丢失模式，远程锁定、擦除内容
+
+#### lost mode
+
+MDM administrator 可以远程打开lost mode。
+
+当lost mode开启后，当前user自动登出，设备无法解锁。屏幕显示机主设置的消息内容。
+
+#### remote lock & remote wipe
+
+MDM, microsof exchange activesync, icloud 都可以下发remote wipe command
+
+device也可以设置为，如果passcode尝试次数过多，自动wipe。
+
+## shared ipad
+
+multiuser mode
+
+两种 signing: 
+- identity provider's(IDP) sign, short live token, passcode 
+- managed apple ID  Authenticated with APPLE identity service (IDS)
+
+## screen time
+
+同账号设备通过cloudkit e2e 同步screen time control & usage data
+
+家长device <-> 孩子device : 通过IDS e2e 同步 usage data & configuration settings 
