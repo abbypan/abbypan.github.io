@@ -101,3 +101,18 @@ https://www.ietf.org/proceedings/91/slides/slides-91-homenet-4.pdf
 名称的自动生成方式其实也可以参考oid/ons/handle等协议
 
 远程控制家庭物联网设备，必然通过网关。因此，局域网地址/ipv6公网地址在该场景下，区别不会非常大（同样都要开放监听端口接收命令）
+
+# RFC8882:  DNS-Based Service Discovery (DNS-SD) Privacy and Security Requirements
+
+dnssd over mdns 不可避免的会泄漏某些信息。
+
+核心是：是否泄漏identity信息、与business/social关联的信息(linkable identifiers)，client interest 等等
+
+authenticity, integrity, freshness, confidentiality
+
+dicitionary attack, ddos, sender impersonation, sender deniability
+
+快稳省
+
+信息锚点：pki, tofu, pake
+

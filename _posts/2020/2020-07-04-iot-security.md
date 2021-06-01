@@ -34,3 +34,41 @@ tags: [ "iot", "security" ]
 
 [A Privacy-Enhancing Framework for Internet of Things Services](https://eprint.iacr.org/2019/1471.pdf)
 
+
+
+
+# paper
+
+## Evaluation of Out-of-Band Channels for IoT Security
+
+[Evaluation of Out-of-Band Channels for IoT Security](https://link.springer.com/article/10.1007/s42979-019-0018-8)
+
+secure bootstrapping in ad-hot IoT deployment
+
+Out-of-Band : NFC, QR Code, audio
+
+Extensible Authentication Protocol (EAP) 
+
+
+One-time password (OTP): SMS
+
+### group messaging
+
+telegram, whatsapp, signal, support e2e encryption with oob verification, require users to compare information shown on each other's devices.
+
+telegram: 生成一个图片展示已交换的keys
+
+whatsapp: 
+- 60-bit string = hash (user's public identity key) 到 30-bit + 30-bit (两个string)；用户比较60-bit string
+- 或者扫qr code
+
+
+### Nimble Out-of-Band Authentication for EAP (EAP-NOOB)
+
+dynamic OOB messages, refresh cycle 3600s
+
+secret nonce (Noob): first authentication, mutually authentication
+
+cryptographic fingerprint(Hoob): verify the integrity of the key exchange, detect impersonation and mitm on the in-band channel
+
+OOB mesage url example (60bytes): server domain name (60 characters base64),  PeerId (22 characters base64),  secret nonce (Noob) 16-byte, fingerprint (Hoob) 16-byte

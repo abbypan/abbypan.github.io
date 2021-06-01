@@ -3,9 +3,14 @@ layout: post
 category : tech
 title:  "draft: dns cookies"
 tagline: ""
-tags : [ "dns", "opt" ] 
+tags : [ "dns", "rfc" ] 
 ---
 {% include JB/setup %}
+
+* TOC
+{:toc}
+
+# dns cookie
 
 https://tools.ietf.org/html/draft-ietf-dnsop-cookies-01
 
@@ -35,7 +40,7 @@ DNS COOKIES需要client/server双向认证，实际生效需要权威、递归�
 
 趋势：在递归侧加强防御策略，总体上更为经济快速（存在误杀风险）。
 
-## draft 笔记
+# dnsext cookies
 
 [Domain Name System (DNS) Cookies](http://tools.ietf.org/html/draft-eastlake-dnsext-cookies-03)
 
@@ -52,3 +57,17 @@ ns更容易被ddos调戏，伪造源IP查就可以触发它算一堆cookie；不
 伪造源IP直接向一堆NS查，来做反射放大攻击，威胁变小，因为过不了握手，不过还是得大家都支持
 
 （个人觉得这个认证越搞越麻烦，不如直接全上TCP，唉！）
+
+# rfc9018: interoperable dns server cookies
+
+[RFC 9018 Interoperable Domain Name System (DNS) Server Cookies](https://www.rfc-editor.org/rfc/rfc9018.html)
+
+    client-cookie = 64 bits of entropy
+
+    hash = siphash-2-4(client cookie | version | reserved | timestamp | client-ip , server-secret)
+
+server可以定期更新secret
+
+server可以根据自身的策略set client-cookie
+
+还是迭代更新的套路

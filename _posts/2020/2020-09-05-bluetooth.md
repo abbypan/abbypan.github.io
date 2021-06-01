@@ -58,6 +58,18 @@ tags: [ "ble", "bluetooth", "Security" ]
 
 其根源在于向后兼容，允许降级
 
+## misbinding attack 
+
+[Misbinding Attacks on Secure Device Pairing and Bootstrapping](https://arxiv.org/pdf/1902.07550.pdf)
+
+ble pairing & eap-noob 的核心问题在于，pairing时并未对device identifier做认证。因此存在identity misbinding的风险。
+
+缓解：sts, sigma, ike
+
+device provsioning protocol (dpp)
+
+
+
 # nist sp 800-121
 
 [NIST SP 800-121 Guide to BluetoothSecurity](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-121r2.pdf)
