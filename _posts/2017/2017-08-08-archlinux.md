@@ -153,6 +153,15 @@ yaourt -S xfce4 xfce4-goodies xfce4-notifyd elementary-xfce-icons
 exec ck-launch-session dbus-launch startxfce4
 {% endhighlight %}
 
+## 登录管理器 slim
+
+    pacman -S slim archlinux-themes-slim
+
+修改 /etc/slim.conf，设置`default_user`
+
+    systemctl enable slim.service
+
+
 # 硬件驱动
 
 ## 声卡

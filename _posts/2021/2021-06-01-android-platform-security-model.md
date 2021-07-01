@@ -16,7 +16,11 @@ tags: [ "android" ]
 
 AOSP : Android Open Source Project
 
+CDD: Compatibility Definition Document
+
 CTS: compatibility test suite
+
+VTS: vendor test suite
 
 GMS: google mobile services
 
