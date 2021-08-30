@@ -30,9 +30,18 @@ tags: [ "iot", "security" ]
 
 [Hardware or Software Security: Which is right for my IoT Device?](https://www.iotcentral.io/blog/hardware-or-software-security-which-is-right-for-my-iot-device)
 
+[IoT Security Foundation Publications](https://www.iotsecurityfoundation.org/best-practice-guidelines/)
+
+# psa
+
+[The PSA Certified 10 Security Goals Explained](https://www.psacertified.org/blog/psa-certified-10-security-goals-explained/)
+
+[Entity Attestation Tokens](https://www.psacertified.org/blog/what-is-an-entity-attestation-token/)
+
 # privacy
 
 [A Privacy-Enhancing Framework for Internet of Things Services](https://eprint.iacr.org/2019/1471.pdf)
+
 
 
 
