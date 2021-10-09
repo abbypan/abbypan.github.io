@@ -78,3 +78,30 @@ AES-256-XTS, 4096-byte device block。
 如果CPU支持AES指令，例如ARMv8 Cryptography Extensions or an x86-based device with AES-NI，优先选取AES。
 
 其次选取Adiantum。
+
+#  Hardware-Wrapped Keys 
+
+需要底层硬件支持Hardware-Wrapped keys机制。通过key wrap，使得文件密钥系统不可见。用于inline storage，而非adoptable storage。
+
+    This hardware must be capable of generating and importing storage keys, wrapping storage keys in ephemeral and long-term forms, deriving subkeys, directly programming one subkey into an inline crypto engine, and returning a separate subkey to software.
+
+JEDEC规定了storage device的 inline crypto engine 标准，即，如何支持文件的硬件加解密。
+
+注意，由于keyslot有硬件槽数的限制，并且inline crypto engine主要支持block encryption，因此，应设计Hardware-Wrapped层级，通过unwrap key机制支持n个key；通过向software返回派生的subkey，由software进行其他信息解密。
+
+fbe class key 派生的下级内容主要包括: key identifier (16 byte), file content encryption key (64 byte aes-256-xts key), filename encryption key (32 byte aes-256-cts key)
+- fbe class key 派生 file content encryption key , sw secret (32-byte raw key)。kdf可以是aes-cmac。file content encryption key 即 inline encryption key，上层software不可见。
+- sw secret 再 HKDF-SHA512 派生 key identifier, filename encryption key。
+
+注意，fbe class key 是 wrapped 传给 inline crypto engine 处理，并实施下级派生。
+
+## key wrapping
+
+Ephemeral wrapping : 每次重启，生成的临时密钥，用于加密各种raw key。
+
+Long-term wrapping : 使用与硬件关联的长期密钥，加密各种raw key。
+
+    All keys passed to the Linux kernel to unlock the storage are ephemerally-wrapped.
+
+注意，除了上述key wrapping之外，android还加了一层wrap，关联PIN码、与verified boot state。
+

@@ -71,6 +71,8 @@ extension域里加一些attestation ID的关联信息。
 
 注意server要给challenge/nonce。
 
+注意在初始化时会算一个mac值，用于后续检查device info是否出现变化。如果变化，则表示id attestation不可信。
+
 # Version Binding
 
 `Tag::OS_VERSION`、`Tag::OS_PATCHLEVEL`
@@ -79,3 +81,10 @@ Devices with Android Verified Boot (AVB) can put all of the patch levels and the
 
 Keymaster TA 从bootloader 安全获取版本信息，在非安全系统启动之前处理。
 
+# Authorization Tags
+
+主要是访问控制的相关参数，例如`Tag::APPLICATION_ID`等。
+
+# Functions
+
+一些函数参数，比较简单。
