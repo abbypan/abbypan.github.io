@@ -777,6 +777,8 @@ U盘被挂载为/dev/sdb
 
 [制作BIOS和EFI多启动U盘](https://www.lainme.com/doku.php/blog/2017/07/%E5%88%B6%E4%BD%9Cbios%E5%92%8Cefi%E5%A4%9A%E5%90%AF%E5%8A%A8u%E7%9B%98)
 
+[Archboot](https://wiki.archlinux.org/title/Archboot)
+
     sudo mount /dev/sdb1 /mnt
     sudo grub-install --target=x86_64-efi --efi-directory=/mnt --boot-directory=/mnt/boot --removable --recheck
     
