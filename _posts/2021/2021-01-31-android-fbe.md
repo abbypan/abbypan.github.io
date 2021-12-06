@@ -30,7 +30,6 @@ synthetic password: 使用synthetic password保护FBE keys，再使用user crede
 
 如何保护我synthetic passwork: Gatekeeper (GK) and Keymaster(KM), Weaver
 
-
 KM: Device Unique Key 结合 Unique Context (例如User Credential, Escrow tokens) 派生一个key，该key用于加密synthetic password。
 
 GK: 在User Credential保护synthetic password的场景下，Gatekeeper 结合 Device Unique Key + User Credential派生一个Key，基于该Key与password handle计算一个Hmac值，做为Auth Token。KM校验该Auth Token，允许解密synthetic password。
