@@ -117,7 +117,7 @@ XferCommand = /usr/bin/aria2c -c -o %o %u
 ## ntp时间同步
 
 {% highlight bash %}
-yaourt -S ntp
+pacman -S ntp
 ntpdate asia.pool.ntp.org
 {% endhighlight %}
 
@@ -126,13 +126,13 @@ ntpdate asia.pool.ntp.org
 ## 安装X 
 
 {% highlight bash %}
-yaourt -S xorg xorg-xinit consolekit
+pacman -S xorg xorg-xinit consolekit
 {% endhighlight %}
 
 ## 安装lxde
 
 {% highlight bash %}
-yaourt -S lxde openbox
+pacman -S lxde openbox
 {% endhighlight %}
 
 编辑~/.xinitrc
@@ -144,7 +144,7 @@ exec lxsession
 ## 安装XFCE
 
 {% highlight bash %}
-yaourt -S xfce4 xfce4-goodies xfce4-notifyd elementary-xfce-icons
+pacman -S xfce4 xfce4-goodies xfce4-notifyd elementary-xfce-icons
 {% endhighlight %}
 
 进入X的配置，不然关机键老是灰的：编辑~/.xinitrc
@@ -263,8 +263,8 @@ thinkpad x1 carbon 2015  在 ~/.xbindkeysrc 中添加：
 ## 热插拔(xfce4)
 
 {% highlight bash %}
-yaourt -S ntfs-3g thunar-volman udisks
-yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
+pacman -S ntfs-3g thunar-volman udisks
+pacman -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 {% endhighlight %}
 
 配置 /etc/fstab，手动挂载磁盘
@@ -278,7 +278,7 @@ yaourt -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 [cue_splitting](https://wiki.archlinux.org/index.php/CUE_Splitting)
 
 {% highlight bash %}
-yaourt -S cuetools mp3info wavpack flac mac shntool bchunk
+pacman -S cuetools mp3info wavpack flac mac shntool bchunk
 {% endhighlight %}
 
 ## 关闭触摸板
@@ -291,7 +291,7 @@ sudo synclient TouchpadOff=1
 # 输入法
 
 {% highlight bash %}
-yaourt -S ibus-rime
+pacman -S ibus-rime
 {% endhighlight %}
 
 在``$HOME/.bashrc``中添加：
@@ -345,13 +345,13 @@ LOCALE=zh_CN.UTF-8
 # 常用软件
 
 {% highlight bash %}
-yaourt -S rsync curl lftp wget axel
-yaourt -S wqy-bitmapfont wqy-zenhei ttf-monaco
-yaourt -S smplayer ffmpeg flashplayer
-yaourt -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
-yaourt -S unzip unrar p7zip
-yaourt -S firefox firefox-i18n-zh-cn freshplayerplugin pepper-flash chromium
-yaourt -S dnsutils traceroute wireshark-gtk
+pacman -S rsync curl lftp wget axel
+pacman -S wqy-bitmapfont wqy-zenhei ttf-monaco
+pacman -S smplayer ffmpeg flashplayer
+pacman -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
+pacman -S zip unzip unrar p7zip thunar-archive-plugin xarchiver arj cpio lzop
+pacman -S firefox firefox-i18n-zh-cn freshplayerplugin pepper-flash chromium
+pacman -S dnsutils traceroute wireshark-gtk
 {% endhighlight %}
 
 # 网络
@@ -366,7 +366,7 @@ SUBSYSTEM=="net", ATTR{address}=="70:f1:a1:28:5a:ad", NAME="wlan0"
 {% endhighlight %}
 
 ## 无线(netctl)
-- 安装: ``yaourt -S net-tools wireless_tools wpa_supplicant netctl``
+- 安装: ``pacman -S net-tools wireless_tools wpa_supplicant netctl``
 - 配置: 参考/etc/netctl/examples/
 
 - 新建一个/etc/netctl/athome配置(wpa)
@@ -413,7 +413,7 @@ netctl start athome
 安装
 
 {% highlight bash %}
-yaourt -S net-tools wireless_tools wpa_supplicant
+pacman -S net-tools wireless_tools wpa_supplicant
 {% endhighlight %}
 
 假设配置ESSID为mywireless，密码为mypasswd的无线
@@ -515,7 +515,7 @@ netctl start somewireless
 ## NGINX+PHP
 
 {% highlight bash %}
-yaourt -S nginx spawn-fcgi php-cgi
+pacman -S nginx spawn-fcgi php-cgi
 {% endhighlight %}
 
 - 以http(用户):http(组)启动fastcgi : 
@@ -551,7 +551,7 @@ include        fastcgi_params;
 
 {% highlight bash %}
 mount /dev/sda1 /mnt
-yaourt -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
+pacman -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 {% endhighlight %}
 
 ## 禁用 wifi 键盘灯 LED 闪烁
