@@ -877,3 +877,13 @@ rootuuid通过`blkid /dev/sdb2`获取
     yay -S virtualbox-ext-oracle
     
     usermod -G vboxusers -a [username]
+
+# java
+
+查看支持的java版本：
+
+    archlinux-java status
+
+切换java的版本：
+
+    archlinux-java set <JAVA_ENV_NAME>
