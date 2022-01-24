@@ -28,7 +28,7 @@ archlinux下安装目录为 /opt/maven/。
 
 maven本地仓库的默认目录为`$HOME/.m2/repository`。在maven的安装目录中找到`conf/settings.xml`, 把`settings.xml`拷到`$HOME/.m2/`目录下。
 
-修改`$HOME/.m2/settings.xmls`，自行配置添加mirror url，例如：
+修改`$HOME/.m2/settings.xml`，自行配置添加mirror url，例如：
 
         <mirrors>
             <mirror>
