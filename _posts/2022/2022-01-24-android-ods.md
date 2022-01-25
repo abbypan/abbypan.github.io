@@ -20,9 +20,8 @@ on device signing 的核心是：采用本地签名，保障artifacts文件的�
 
 - 生成ods signing key。
 - 如果支持fsverity，则把ods signing key对应的自签名cert加入keyring，标识为`fsv_ods`。
-- 如果` useCompOs = kUseCompOs && supportsFsVerity && compOsPresent();`为true，则使用ods signing key对compos public key签名生成CompOS leaf cert，将CompOS leaf cert加入keyring，标识为`fsv_compos`。
-- 检查 checkCompOsPendingArtifacts ，确认是否有artifacts文件需要refresh。如果有，则compileArtifacts。
-- 如果odsrefresh返回ok，则校验` verifyArtifacts(*key, supportsFsVerity)`
+- 如果`useCompOs = kUseCompOs && supportsFsVerity && compOsPresent();`为true，则使用ods signing key对compos public key签名生成CompOS leaf cert，将CompOS leaf cert加入keyring，标识为`fsv_compos`。检查 checkCompOsPendingArtifacts ，确认是否有artifacts文件需要refresh，如果需要，则`odrefresh_status = compileArtifacts(kForceCompilation);`。
+- 如果odsrefresh返回ok，则` verifyArtifacts(*key, supportsFsVerity)`校验每个文件的digest是否与`trusted_digest`相符。
 - 如果odsrefresh返回compilationSuccess/compilationFailed，则
 
             if (supportsFsVerity) {
@@ -35,10 +34,21 @@ on device signing 的核心是：采用本地签名，保障artifacts文件的�
 
 - 使用ods signing key对计算得到的digests列表签名，存储签名结果，`persistStatus = persistDigests(*digests, *key);`
 
+`Result<OdsignInfo> getComposInfo(const std::vector<uint8_t>& compos_key)` 以compos public key校验artifacts文件的digests列表的签名，校验成功，则返回digests列表。
+
+`Result<OdsignInfo> getOdsignInfo(const SigningKey& key)` 以ods signing public key校验artifacts文件的digests列表的签名，校验成功，则返回digests列表。
+
+`art::odrefresh::ExitCode checkCompOsPendingArtifacts(const std::vector<uint8_t>& compos_key, const SigningKey& signing_key, bool* digests_verified) ` 以getComposInfo返回的digests信息为基准，调用verifyAllFilesUsingCompOs确保每一个文件开启fsverity。干完再checkArtifacts返回odsrefresh状态码，如果状态码为ok，则使用ods signing key对getComposInfo返回的digests信息签名，persistDigests。
+
+`Result<void> verifyArtifacts(const SigningKey& key, bool supportsFsVerity)` 以getOdsignInfo返回的`trusted_digests`信息为基准。如果supportsFsVerity，则调用`verifyIntegrityFsVerity(trusted_digests)`检查；否则，调用`verifyIntegrityNoFsVerity(trusted_digests);`检查。
+
+`verifyIntegrityFsVerity(trusted_digests)` 读取每一个artifacts文件的fsverity digest信息，与`trusted_digests`中的digest做比较。
+
+`verifyIntegrityNoFsVerity(trusted_digests)` 对每一个artifacts文件计算digest信息，与`trusted_digests`中的digest做比较。
+
 # VerityUtils
 
 [VerityUtils.cpp](https://cs.android.com/android/platform/superproject/+/master:system/security/ondevice-signing/VerityUtils.cpp)
-
 
 odsign的一些基础校验函数。
 
@@ -46,7 +56,7 @@ odsign的一些基础校验函数。
 
 `static Result<std::string> enableFsVerity(int fd, const SigningKey& key)` 使用SigningKey对文件的`merkle_tree digest`签名，并将signture结合SigningKey的公钥信息，转换为pkcs7格式，将pkcs7内容序列化，加入fd的fsverity指针内容。
 
-`Result<void> verifyAllFilesUsingCompOs(const std::string& directory_path, const std::map<std::string, std::string>& digests, const SigningKey& signing_key) ` 从compos digests列表中，一一取出`<file, digest>`检查。如果file已开启fsverity，检查digest是否与file对应的fs verity的digest一致；否则，为文件开启fsverity，即，使用SigningKey计算签名并转为pkcs7并序列化插入fd verity指针内容。
+`Result<void> verifyAllFilesUsingCompOs(const std::string& directory_path, const std::map<std::string, std::string>& digests, const SigningKey& signing_key) ` 从compos digests列表中，一一取出`<file, digest>`检查。如果file已开启fsverity，检查digest是否与file对应的fs verity的digest一致，如果不一致，返回错误；否则，为文件开启fsverity，即，使用SigningKey计算签名并转为pkcs7并序列化插入fd verity指针内容。相当于完成compos public key 到 ods signing key 的信任传递。这个主要好处在于后续节省校验路径，信任链问题不大。
 
 # KeystoreKey
 
