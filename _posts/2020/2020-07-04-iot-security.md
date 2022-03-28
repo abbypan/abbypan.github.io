@@ -162,3 +162,9 @@ secret nonce (Noob): first authentication, mutually authentication。
 cryptographic fingerprint(Hoob): verify the integrity of the key exchange, detect impersonation and mitm on the in-band channel。
 
 OOB mesage url example (60bytes): server domain name (60 characters base64),  PeerId (22 characters base64),  secret nonce (Noob) 16-byte, fingerprint (Hoob) 16-byte。
+
+# case
+
+## firmware
+
+[tlstorm](https://www.armis.com/research/tlstorm) : ups, firmware没签名

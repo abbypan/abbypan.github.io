@@ -25,8 +25,8 @@ pake，ibe, bls signature, verifiable random functions, verifiable random functi
 `clear_cofactor`: 将E上的一个point 映射为 `<G>`上的一个point，注意这里`<G>`是E的子群，`<G>`的阶r为质数
 
 encoding: 把变长的输入 映射为 指定的F上的一条曲线E的一个point
-- `nonuniform encodings (encode_to_curve)`: point的分布不完全随机
-- `random oracle encodings (hash_to_curve)`: point的分布随机性是proved的
+- NU: `nonuniform encodings (encode_to_curve)`: point的分布不完全随机
+- RO: `random oracle encodings (hash_to_curve)`: point的分布随机性是proved的
 
 encoding的关键是constant time，避免侧信道
 
@@ -65,9 +65,9 @@ Montgomery curve: Elligator 2
 
 twisted Edwards curve: twisted Edwards Elligator 2
 
-Weierstrass curve (AB == 0): Simplified SWU
+Weierstrass curve (A= 0 or B=0): Simplified SWU
 
-Weierstrass curve (any curve): Shallue-van de Woestijne
+Weierstrass curve (any curve): Shallue-van de Woestijne / Simplified Shallue-van de Woestijne-Ulas method (sswu) / sswu_optimized
 
 # `clear_cofactor`
 
