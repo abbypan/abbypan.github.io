@@ -7,9 +7,13 @@ tagline: "江畔何人初见月，江月何年初照人"
 
 # 日常
 
-| 类型 | 链接 |
-| ---- | ---- |
-| 交流 | [twitter](https://twitter.com/abbypan)，[linkedin](https://www.linkedin.com/in/panlanlan/)，[blogspot](https://abbypan.blogspot.com)
+[twitter](https://twitter.com/abbypan)
+
+[linkedin](https://www.linkedin.com/in/panlanlan/)
+
+[blogspot](https://abbypan.blogspot.com)
+
+[orcid](https://orcid.org/0000-0002-1771-2683)
 
 # 旧的回忆
 
