@@ -18,6 +18,8 @@ tags: [ "apple", "mobile" ]
 
 [Privacy](https://www.apple.com/privacy/features/)
 
+[APPLE Platform Security pdf](https://help.apple.com/pdf/security/en_US/apple-platform-security-guide.pdf)
+
 [data security](https://support.apple.com/en-us/HT202303)
 
 # intro
@@ -28,43 +30,86 @@ privacy is a fundamental human right
 
 # Hardware Security and Biometrics
 
-## soc security
+## overview
 
-Page Protection Layer (PPL): execute only signed and trusted code
+in-line  encryption and  decryption   as files are written or read
+
+## apple soc security
+
+System Security:
+- kernel Integrity Protection
+- fast permission restrictions
+- System Coprocessor Integrity Protection
+- Pointer Authentication Codes
+- Page Protection Layer (PPL): execute only signed and trusted code.  is not applicable in macOS.
+
+Data Protection:
+- Sealed Key Protection (SKP)
+- recoveryOS - all Data Protection class Protected
+- Alternate boots of DFU, Diagnostics, and Update - Class A, B, C Data Protected
 
 ## secure enclave
 
-独立的 boot rom & aes engine & protected memory
+### overview
 
-保护biometric data for touch ID and face ID
+dedicated secure subsystem
 
-NAND flash storage/DRAM 划出专门的区域
+keep sensitive user data secure even when the application Processor or kernel becomes compromised
+
+独立的 boot rom & trng & pka & secure enclave aes engine & memory protection engine
+
+访问独立的 secure nonvolatile storage
+
+### secure enclave Processor
+
+prevent side-channel attack
+
+lower clock speed, protect it against clock and power attacks
 
 ### memory protection engine
 
-device启动时，secure enclave boot rom随机生成一个临时的memory protection key，给到memory protection engine。
+dedicated region of DRAM  => 不与ap混用
 
-当secure enclave写内容到memory，engine就执行AES-XEX（xor-encrypt-xor）加密，并计算CMAC。
+device启动时，secure enclave boot rom生成一个random ephemeral memory protection key，给到memory protection engine。
 
-当secure enclave从memory读内容，engine就进行authtag校验，如果不匹配，就通知secure enclave停止。
+当secure enclave写内容到memory，engine就执行AES-XEX（xor-encrypt-xor）加密memory block，并计算CMAC authtag。最终存的是encrypted memory + authtag。
 
-防重放：nonce参与CMAC计算
+当secure enclave读取memory，engine就进行authtag校验，如果authtag匹配，就解密memory。
+
+replay protection：nonce参与CMAC计算，除了存储authtag，还存储nonce。
+
+nonce的完整性保护： nonces for all memory blocks are protected using an Integrity tree rooted in dedicated SRAM within the secure enclave。写memory时，更新nonce & Integrity tree。读memory时，校验nonce。
 
 A14之后有两个临时的memory protection key，一个用于secure enclave，另一个用于secure neural engine。
 
-对于secure enclave而言，memory protection engine提供的保护是透明的。
+对于secure enclave而言，memory protection engine提供的memory encryption/decryption是透明的。
 
 ### secure enclave boot rom
 
-secure enclave boot rom 是 secure enclave 的信任起点，初始化memory protection engine
+iBoot 为 secure enclave 分配 dedicated region of memory。
 
-Application Processor(AP) 把 sepOS image 传给secure enclave boot rom，把sepOS image的内容拷到secure enclave protected memory
+secure enclave boot rom 是 secure enclave 的信任起点，首先初始化memory protection engine。
 
-进行签名校验，确保image的合法性
+Application Processor(AP) 把 sepOS image 传给secure enclave boot rom，把sepOS image的内容拷到secure enclave protected memory。
 
-A10之后，把sepOS的hash锁到专门的register里，Public Key Accelerator(PKA)用这个hash搞os-bound keys。
+secure enclave boot rom对sepos image进行校验，校验通过，则sepOS接管运行。
 
-活主要是给secure monitor干
+A10之后，secure enclave boot rom把sepOS的hash锁到专用的register里，Public Key Accelerator(PKA)用这个hash派生os-bound keys。
+
+### secure enclave boot monitor
+
+保护the hash of booted sepOS
+
+secure enclave Processor's system Coprocessor integrity Protection (SCIP) configuration，用于确保secure enclave Processor仅执行secure enclave boot rom。
+
+secure monitor确保 secure enclave不能直接修改 SCIP configuration。
+
+secure enclave boot rom 向boot monitor 发一个request，带上loaded sepOS的address & size。
+boot monitor重置secure enclave processor，计算loaded sepOS的hash，更新SCIP configuration以便允许执行loaded sepOS，随后载入执行loaded sepOS。
+boot过程中，载入其他code的处理也类似。
+
+boot monitor维护一个running hash，当boot process更新时，同步更新running hash。当boot complete, boot monitor把running hash传给PKA，用于OS-bound keys派生。即使secure enclave boot rom出漏洞，该过程仍无法被绕过。
+
 
 ### TRNG
 
@@ -77,27 +122,32 @@ UID: unique to each individual device, fused into SoC, 256
 sepOS 使用 UID 保护 device-specific secrets，例如：
 - 在UID的保护下，internal SSD storage拆到别的机器上，数据仍然无法读取。
 - Touch ID data / Face ID data
+- mac下仅fully internal storage有类似的保护，u盘/移动硬盘不这样
 
-GID: device group ID, compiled
+GID: device group ID
 - 与SoC绑定
 
 UID/GID无法通过Joint Test Action Group(JTAG) 或者其他调试口读取
 
 ### secure enclave aes engine
 
+防范timing and static power analysis (SPA) and Dynamic Power Analysis (DPA)。
+
 secure enclave aes engine支持hardware key & software key
 
 hardware key通过secure enclave UID/GID派生，外部无法直接读取，但是可以请求加解密。
 
-注意，在Device Firmware Update(DFU)模式下，secure enclave AES engine禁止外部访问UID/GID保护的key——进而保护用户数据。
+A10之后，使用lockable seed bits区分派生UID/GID的不同用途的keys。在不同的device's mode下，对data access进行访问控制。例如Device Firmware Update(DFU)模式下，无法访问Passcode-protected data。
 
 ### aes engine
 
+aes256
+
 direct memory access(DMA) 路径下，在application  processor system memory 与 NAND flash storage之间
 
-device启动时，sepOS 生成临时的wrapping key，把这个key传给aes engine。
+device启动时，sepOS 生成random ephemeral wrapping key，secure enclave把这个key传给aes engine。
 
-sepOS用这个wrapping key，加密file-system需要用的file keys，把密文传给aes engine。
+sepOS用这个wrapping key，加密application Processor file-system所需要用的file keys，把wrapped key传给aes engine。
 
 aes engine使用wrapping key解密出file keys，可以支持file-system的解密。
 
@@ -107,17 +157,31 @@ aes engine使用wrapping key解密出file keys，可以支持file-system的解�
 
 RSA/ECC
 
+防范timing and side-channel attacks such as SPA & DPA
+
 PKA支持hardware key & software key
+
+A13 SoC之后，PKA的密码学实现，支持形式化证明
 
 hardware key通过secure enclave UID/GID派生，sepOS software也读不到
 
-A10之后，PKA支持OS-bound keys，又称为Sealed Key Protection(SKP):  基于 UID + hash(sepOS) 派生。版本绑定、防止无用户授权的变更，等等。
+A10之后，PKA支持OS-bound keys，又称为Sealed Key Protection(SKP):  基于 UID + secure monitor提供的hash(sepOS) 派生。sepos 版本绑定。
+
+如果出现无用户授权的system变更，则无法访问对应的key material，提升了Passcode-protected data的安全性。
 
 ### secure nonvolatile storage
 
-专门的secure nonvolatile storage只能由secure enclave访问。
+secure nonvolatile storage只能由secure enclave访问
 
-有counter，支持anti-replay
+存储user data encryption key
+
+secure enclave <-> secure storage component 配对，双方communication使用encrypted and authenticated protocol。
+
+secure storage component: immutable rom code, hardware RNG, per-device unique cryptographic key, cryptography engines, physical tamper detection
+
+counter lockbox，支持anti-replay，用于Passcode-protected user data的访问控制校验
+
+secure enclave访问counter lockbox也是通过encrypted and authenticated protocol
 
 每个 counter lockbox: 
 - 128-bit salt
@@ -125,17 +189,50 @@ A10之后，PKA支持OS-bound keys，又称为Sealed Key Protection(SKP):  基�
 - 8-bit counter
 - 8-bit maximum attempt value
 
-secure enclave访问counter lockbox也是要用encrypted and authenticated protocol
 
 passcode entropy: 基于passcode & UID派生
 
+初始化：
+
+    secure enclave -> secure storage component : passcode entropy value & maximum attempt value
+    secure storage component: 随机生成salt，结合passcode entropy value + secure storage component's unique cryptographic key，派生passcode verifier value + lockbox entropy value
+    secure storage component -> secure enclave: lockbox entropy value
+
+后续：
+    传输passcode entropy value
+    校验passcode verifier value，返回lockbox entropy value，重置counter
+
+访问Passcode-protected data的keys基于counter lockboxes关联的entropy派生。
+
 ### secure neural engine
 
-使用direct memory access (DMA)访问，使用input-output memory management unit(IOMMU)管控
+使用direct memory access (DMA)访问，使用sepos kernel control实施input-output memory management unit(IOMMU)管控
 
-## touch ID & face ID
+### power and clock monitors
 
-### touch ID
+limited voltage & frequency envelope
+
+使用monitoring circuits
+
+### secure enclave feature summary
+
+memory protection engine, secure storage, aes engine, pka
+
+## face ID and Touch ID
+
+### face ID and Touch ID security
+
+注意，touch ID & face ID 无法取代 passcode & password
+
+trigger Face/Touch ID的前提是校验过passcode/password。
+
+确保secure enclave与sensor的安全通信
+
+### face ID security
+
+关键是识别digital spoofing & physical spoofing
+
+### touch ID security
 
 touch ID sensor在工厂已经写入一个与secure enclave绑定的shared key。
 
@@ -145,21 +242,37 @@ touch ID sensor 与 secure enclave 的session key基于shared key协商(aes key 
 
 session 用 aes-ccm
 
-### face ID
+### magic keyboard with touch ID
 
-face ID 的通信安全与 touch ID类似
+magic keyboard上的touch ID，同样要与secure enclave安全配对。出厂前，或者出厂后。
 
-另一个关键是识别digital spoofing & physical spoofing
+在蓝牙信道的基础上。。。
 
-### passcode & password
+magic keyboard含hardware PKA，用于provide attestation，基于hardware-based keys，实现secure pairing。
 
-注意，touch ID & face ID 无法取代 passcode & password
+secure enclave <-> magic keyboard PKA block 互相交换trusted Apple CA信任链下的public keys，使用hardware-held attestation keys and ECDHE 进行identity attestation
 
-trigger Face/Touch ID的前提是校验过passcode/password。
+nist p-256
+
+安全配对之后，aes-gcm-256
+
+stored identities
+
+### secure intent to pair
+
+touch ID检验，输入macOS user passcode, 双击touch ID button
+
+### magic keyboard with touch id channel security
+
+magic keyboard's PKA <-> mac's secure enclave : secure pairing
+
+magic keyboard's touch ID sensor <-> magic keyboard's PKA block: secure comm, 还是基于shared key
+
+### face id & touch id & passcode & password
 
 安全敏感型的操作必须校验passcode/password：软件升级、设备重置、修改配置、解锁、重启、账号登出、多次解锁失败等。
 
-### unlocking a device or user account
+### uses for face id and touch id
 
 如果禁用touch ID/face ID：device/account lock状态， keys for the highest class of Data Protection —— 要discard；等下回使用passcode/password解锁，才能把对应的files/keychain items的key弄回来。
 
@@ -167,20 +280,29 @@ trigger Face/Touch ID的前提是校验过passcode/password。
 
 设备重启之后，touch ID/face ID用于解锁device/account的key已丢失，要输入password/passcode才能获取。
 
+apple pay: 双击确认+face ID, 或者 touch ID。
+
+apple store: Biometrics校验通过后，调用对应的ecc key为交易签名。
+
+### secure intent and connection to secure enclave
+
+物理连接，double click
+
+### hardware microphone disconnect
+
+硬件开关
+
+避免恶意监听
+
+### express cards with power reserve
+
+低电量，刷nfc交通卡
 
 ### developer
 
 指定touch ID/face ID作为secure-sensitive app的second factor
 
 生成touch ID/face ID保护的公私钥对
-
-## Hardware microphone disconnect
-
-硬件开关
-
-## express card
-
-系统低电量模式，仍可用
 
 # System Security
 
