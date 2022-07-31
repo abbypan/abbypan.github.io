@@ -903,7 +903,6 @@ health data 可以存储于icloud，要求end-to-end encryption, 且two-factor a
 
 health data is stored `only if` the backup is `encrypted`.
 
-
 #### clinical health records
 
 oauth2 client credential 下载 clinical health records
@@ -966,25 +965,31 @@ AES-128/256
 
 # App Security
 
+## app security overview
+
+sandboxed
+
 ## app security in ios 
 
 code signature => verify ...  => Apple-issued certificate
 
-动态加载的library同样需要签名校验，与developer certificate里的team id关联。
+dynamic library同样需要签名校验，与developer certificate里的team id关联。
 
-Apple Developer Enterprise Program (ADEP) with a D-U-N-S number，用于企业自签名。
+app source verified之后，进行secure measures，防范恶意code。
 
-mobile device management(MDM)
+### in-house apps
+
+Enterprise : Apple Developer Enterprise Program (ADEP) with a D-U-N-S number，用于企业自签名。
+
+通过 mobile device management(MDM) 安装的，implicitly trusted
 
 ## security of runtime process in ios
 
 sandbox 隔离
 
-entitlement: key-value pair, digitally signed，相当于给app颁发一些权限码。。。
+declared entitlements: key-value pair配置是developer digitally signed，相当于给app配置特权。。。并且，app只能通过system-provided api执行background process。
 
-app只能通过系统提供的api执行background process
-
-address space layout randomization (ASLR)
+address space layout randomization: (ASLR)
 
 ARM's Execute Never (XN) feature
 
@@ -998,7 +1003,7 @@ custom keyboards 同样sandbox
 
 ## app protection and app groups in ios
 
-### data protection
+### adopting data protection in apps
 
 ios software development kit (SDK)
 
@@ -1006,17 +1011,24 @@ adopting data protection in apps
 
 ### joining an app group
 
-apple group IDs (GID)
-
+apple group IDs (GIDs)
 - shared on-volume container for storage
 - shared preferences
 - shared keychain items
 
 ### verifying accessories 
 
-当MFI accessory要与ios设备通信时，ios device发一个challenge，accessory返回一个signed response。
+当MFI accessory要与ios设备通信时，ipod accessories protocol (iAP)
 
-该signed response可以用apple-provided certificate校验。
+ios deivce -> accessory: req
+
+accessory -> ios device: apple-provided accessory certificate
+
+ios device: 校验apple-provided accessory certificate
+
+ios device -> accessory: challenge
+
+accessory -> ios device: 返回apple-provided certificate的signed response
 
 apple提供custom integrated circuit (IC), accessory manufacturer直接集成。
 
@@ -1034,7 +1046,7 @@ AirPlay/CarPlay:
 
 apple-issued developer ID ceritifcate
 
-### gatekeeper and runtime protection
+### gatekeeper 
 
 only trusted software runs on a user's mac
 
@@ -1042,7 +1054,9 @@ gatekeeper ensure software signed by : App Store, or registered developer and no
 
 MDM can override gatekeeper policy
 
-runtime protection: isolation, sandbox
+### runtime protection
+
+runtime protection: isolation, sandbox,  system-provided api
 
 ### protecting against malware in macOS
 
@@ -1063,13 +1077,15 @@ XProtect: apple定期更新malware的签名数据。当app first launched/app ha
 
 ### secure notes
 
-user's passphrase => end-to-end encrypted secure notes
+user-provided passphrase => end-to-end encrypted secure notes, aes-gcm。
 
-基于user's passphrase派生一个16-byte key，派生函数使用PBKDF2 + SHA256。aes-gcm
+基于user's passphrase派生一个16-byte key，派生函数使用PBKDF2 + SHA256。
 
-user必须输入passphrase、或者经过Touch ID/Face ID认证后，才能查看secure note
+仅支持针对指定类型的attachments进行encrypt，其他类型的attachments不加密。CloudKit 存储 encrypted note, attachments, tag, iv。
 
-如果passphrase更新，需要重新加密existing notes的keys
+user必须输入passphrase、或者经过Touch ID/Face ID认证后，才能查看secure note。
+
+如果passphrase更新，需要重新wrap existing notes encryption keys
 
 重置passphrase需要校验user's icloud account passphrase
 
@@ -1083,30 +1099,34 @@ shared notes 仍然使用 CloudKit encrypted data type:
 
 ## secure features in the shortcuts app
 
-轻量级。。。
-
 shortcuts can be shared with other users through icloud
+
+本地加密存储，可通过icloud同步。
 
 # Services Security
 
-## Apple ID
+## Apple ID and managed apple ID
 
 账号安全(user & password)
 
-two-factor authentication  => 6-digit verification code: display on trusted device / sent to a trusted phone number
+two-factor authentication  => 6-digit verification code: display on trusted device / sent to a trusted phone number,  confirm trust new device
 
-### account recovery
+### password reset and account recovery
 
 reset password:
-- 在trusted device重置
-- 无trusted device，可以输入password + sms verification; 
-- previously used passcode + sms verification
+- trusted device：重置
+- 无trusted device：输入password + sms verification; 
+- 快速恢复：previously used passcode + sms verification
 
-如果都不行，启动account recovery
+如果都不行，启动account recovery过程。mark。
 
-### managed Apple ID
+### managed Apple ID security
 
-受控的，也就受限。
+按role-based给permission。
+
+受控的，服务也就受限，例如apple pay/icloud keychain/HomeKit/FindMy不能用。
+
+MDM场景下，inspector可以查看/修改账号下的内容。
 
 ## icloud
 
@@ -1122,24 +1142,24 @@ file content keys 被 record keys wrapped，密文存储于icloud drive metadata
 
 record keys 被 用户的icloud drive service key wrapped, 密文存储于用户的icloud account 数据区域中
 
-用户登录icloud，能够访问到metadata；用户提供icloud drive service key，才能读取明文
+用户登录icloud，能够访问到metadata；用户提供icloud drive service key，才能解密record keys，进而解密content keys，最终读取明文
 
-#### icloud drive backup
+### icloud backup
 
 icloud backup 仅在device locked + 连接电源 + 有wifi连接 的条件下，自动同步。
 
-icloud backup 的文件加密传输、存储，使用secure tokens认证
+icloud backup 的文件加密传输、存储, 使用secure tokens认证
 
 icloud backup 支持后台静默备份、增量备份
 
-对于device locked状态下，无法访问的files：per-file keys 用 icloud backup keybag 里的 class keys 加密，这些files是以与device上完全相同的密文状态上传到icloud。
+对于device locked状态下，受data protection class影响，无法访问的files：per-file keys 用 icloud backup keybag 里的 class keys 加密，这些files是以与device上完全相同的密文状态上传到icloud。
 
 在icloud存储时，以account-based keys加密（如cloudkit所述）
 
-icloud backup keybag 中asymmetric (curve25519) keys 用于那些device locked状态下无法访问的files。
+icloud backup keybag 中asymmetric (curve25519) keys ，用于那些device locked状态下无法访问的files。
 
 backup set：
-- 存储在该user account名下
+- 存储在该user icloud account名下
 - 包含user files的备份
 - 包含icloud backup keybag
 - icloud backup keybag 由一个随机key保护，该随机key与backup set关联存储
@@ -1147,27 +1167,27 @@ backup set：
 
 keychain:
 - keychain database 备份到icloud时，仍由一个UID-tangled key保护。
-- 因此，keychain的备份，仅能由原始device载入。
+- 因此，keychain的备份，仅能由原始device载入；apple无法读取。
 
-恢复时：
-- 从icloud获取 backup files, icloud backup keybag,  保护icloud backup keybag的随机key
-- 解密备份文件之后，按照文件所属的class，重新加密存储到本地device。
+restore时：
+- 从icloud获取 backup files, icloud backup keybag,  与icloud accout关联的、负责保护icloud backup keybag的随机key
+- 解密keybag，恢复per-file keys，解密backup set中的files
+- 解密备份文件之后，按照文件所属的class，重新加密，存储到本地device。
 
-#### security of icloud backup
+### security of icloud backup
 
 backup 付费内容的相关信息（但不是backup付费内容本身），等restore之后，付费内容会再次下载
 
 photos & videos 信息，存入用户的icloud空间，因此无需再以icloud backup的形式备份
 
 messages:
-- 如果用户在icloud开启了messages服务，那么icloud backup里存储的imessage/business chat/sms/mms等信息都会从icloud backup中移除
-- icloud使用CloudKit中为messages提供的end-to-end encryption container
-- icloud backup保留一个访问该messages container的icloud service key
+- 如果用户在icloud开启了messages服务，那么icloud backup里存储的imessage/business chat/sms/mms等信息都会从icloud backup中移除，而是使用CloudKit中为messages提供的end-to-end encryption container
+- icloud backup保留一个访问该messages container的icloud service key, 该key在icloud keychain内同步
+- 如果用户关闭icloud backup，那么该message container key随之更新 => 此时，icloud backup无法继续访问
 - 如果用户后续丢失所有trusted device，无法恢复keychain，还可以icloud backup保留的messages专用的icloud service key恢复备份
-- 如果用户关闭icloud backup，那么container就主动更新icloud service key => 此时，该key仅在icloud keychain内存储，即，icloud backup无法继续访问
 
-用于restore message的key
-- 存储于icloud keychain, 以及a backup in cloudkit
+restore message
+- icloud keychain, and  a backup in cloudkit
 - 如果icloud backup is enable, 这个backup in cloudkit的行为会强制自动关联备份；恢复的时候，也强制自动关联恢复。
 
 ### cloudkit end-to-end encryption
@@ -1180,9 +1200,43 @@ cloudkit service key 本身随icloud keychain同步
 
 cloudkit end-to-end encryption data recovery，仅在trusted device上、或者icloud keychain recovery已成功、或者icloud backup同步开启的条件下，能够成功恢复
 
+### icloud private relay
+
+代理服务，包揽了dns request。mark。
+
+### account recovery contact security
+
+可以添加5个好友(recovery contact)协助恢复icloud account and data
+
+使用一个random kek保护用于访问user's data的key，该random kek被split分发给recovery contact and apple
+
+与recovery contact建议一个end-to-end encrypted cloudkit container，同步splited kek portion。
+并且，给到apple & recovery contact相同的authorization secret，用于后续recovery。
+recovery contact收到的信息，存入keychain。
+
+好友协助恢复的邀请，通过IDS服务发送。
+
+恢复时：
+- Recovery Contact device提供一个spake2+ 的 recovery code，user在自身device输入该recovery code，用于向Recovery contact device证明身份。
+- Recovery Contact device校验通过后，Recovery contact device将此前获得的splited kek portion，authorization secret给到user device。
+- user device使用authorization secret，向apple server请求splited kek portion。注意，apple server基于authorization secret，也授权account password reset。
+- user device合并kek信息，解密并恢复icloud data
+
+恢复条件:
+- 避免在无用户确认的情况下，由recovery contact触发recovery：进行user account活跃检查。
+- 如果user是活跃的，那么还要输入recent device passcode, or icloud security code。
+
+### legacy contact security
+
+允许死后被人读取数据。。。
+
+与recovery contact机制类似，但没有kek拆分的处理。而是给到一个access key。
+
+Authorization secret的处理不变。
+
 ## passcode and password management
 
-### sign in with apple
+### sign in with apple security
 
 用户可以向第三方网站网站隐藏真实的apple email地址，而是使用apple private email relay service，弄一个unique、anonymized email adress去注册
 
@@ -1190,9 +1244,11 @@ cloudkit end-to-end encryption data recovery，仅在trusted device上、或者i
 
 ### automatic strong passwords
 
-自动为网站生成password，并通过keychain服务存取，autofill
+自动为网站生成strong password，并通过keychain服务存取，autofill
 
 strong password: opt-out
+
+### password autofill security
 
 注意以下功能：
 - sharing passwords securely to a user's contacts
@@ -1200,15 +1256,23 @@ strong password: opt-out
 
 ### app access to saved passwords
 
-app developer 必须在 app 里提供 entitlement，entitlement中列出app关联网站的FQDN
+app developer 必须在 app 里设置 entitlement，entitlement中列出app关联网站的FQDN
 
-app关联网站必须在server上放置一个文件，列出已被apple approved的app的unique identifier。
-
-即，FQDN的website上放置周知文件
+app关联网站必须在web server上放置一个周知文件，列出已被apple approved的app的unique identifier。
 - apple-app-site-association
 - .well-known/apple-app-site-association
 
-### comparing users' password against a curated list
+### password security recommendation
+
+多个网站用相同password
+
+弱密码
+
+被提示为leaked的密码
+
+### password monitoring
+
+private set intersection
 
 apple 把 1.5 billion pw，pw => hash => trunc 到前15 bit，即，分成2^15个bucket
 
@@ -1218,10 +1282,9 @@ apple为每个bucket中的每个pw计算:
 假设用户的密码为 upw
     device计算 upw => hash => trunc 到前15 bit，发给apple，找到对应的bucket
     device -> apple :  P_c = b * H_swu(upw)
-    apple -> device : a * P_c = a * b * H_swu(upw)
-    apple -> device : upw对应的bucket里的所有P_pw
+    apple -> device : a * P_c = a * b * H_swu(upw), 同时返回upw对应的bucket里的所有P_pw
     device : 对upw对应的bucket里的所有P_pw, 计算 b*P_pw
-    device : 检查是否存在一个 b*P_pw 的值与 a*P_c相等，如有，则认为是弱密码
+    device : 检查是否存在一个 b*P_pw 的值与 a*P_c相等，如有，则认为是leaked
 
 ### sending passwords to other users or apple devices
 
@@ -1229,7 +1292,7 @@ apple为每个bucket中的每个pw计算:
 
 iphone/ipad <-> apple TV 通过BLE互联，可能跨账号，autofill password
 - 同账号：无感互联
-- 跨账号：PIN code
+- 跨账号：输入PIN code
 
 ## icloud keychain
 
@@ -1241,27 +1304,30 @@ iphone/ipad <-> apple TV 通过BLE互联，可能跨账号，autofill password
 
 ### secure keychain syncing
 
-keychain首次初始化:
-- device生成一个sync identity key pair(curve25519)
-- 公钥被放到一个circle
-- circle整体内容被签名2次：以sync identity private key签名，以icloud account password派生的p-256私钥签名(派生参数salt, iteration 与circle关联保存)
+icloud keychain首次初始化:
+- device生成一个sync identity key pair(curve25519), keychain中存储
+- 公钥被放到一个circle中，circle整体内容被签名2次：以sync identity private key签名，以icloud account password派生的p-256私钥签名(派生参数salt, iteration 与circle关联保存)
+
+two-factor Authentication account, cloudkit 里也存了一个circle，机制类似。device identity含2个p-384的key pair，key chain中存储；每个device维护它信任的identity list，并以它的auth identity key签名。
+
+### icloud storage of the syncing circle
 
 signed syncing circle 存储于 icloud key-value storage area：
 - 只有知道icloud password才能访问
 - 只有circle member的sync identity private key才能更新circle
 
-同一用户的另一个device2同步keychain：
-- device2生成一个sync identity key pair(curve25519)
-- device2生成一个application ticket，请求加入circle
-- icloud要求校验icloud password，返回key-generation parameters
-- device2结合icloud password + key-generation parameters，派生一个private key => sign the application ticket
-- device2把application ticket提交icloud存储
+two-factor authorization account, syncing list在cloudkit存储。
 
-同一用户的其他device首次发现该application ticket:
-- 要求用户输入icloud password, 用相同的key-generation parameters派生private key
-- 使用派生的private key，确认application ticket的签名无误
-- 将device2的公钥加入circle
-- 对新circle进行双重签名
+### add other devices
+
+两种情况：与existing icloud keychain device进行pairing安全同步，或者使用icloud keychain recovery
+
+pairing, 同一用户的另一个applicant device新加入：
+- applicant device生成sync identity key pairs, 用于syncing circle & syncing lists (two-factor authentication accounts)
+- applicant device把sync identity public keys给到sponsor device
+- sponsor device使用自己的sync identity private key 和 icloud password 派生的private key，添加applicant public key到circle。
+- applicant device也会使用自己的sync identity private key 和 icloud password 派生的private key，对circle签名。
+- two-factor authentication accounts, sponsor device同时使用自身sync identity key为applicant device提供设备证明，确保对方可信；并添加applicant device到其syncing lists
 
 所有device之间共享相同的circle，circle中包含其他device的公钥，确保keychain syncing的端到端安全性:
 - exchange individual keychain items through icloud key-value storage , or store them in cloudkit
@@ -1269,6 +1335,8 @@ signed syncing circle 存储于 icloud key-value storage area：
 - 仅接收方device可解密
 
 当一个new device被加入circle，其余device都会与new device同步一次keychain，确保大家的keychain内容一致
+
+### certain items are synced
 
 部分内容不同步，例如vpn连接配置信息；部分内容会同步，例如wifi密码等。由 kSecAttrSynchronizableattribute 区分。
 
@@ -1280,16 +1348,21 @@ apple 提供secondary authentication, 以及一个secure escrow service。
 
 使用一个strong passcode对keychain内容加密，escrow service为通过鉴权的用户提供keychain的copy。
 
+#### use of secondary authentication
+
 - 如果开启two-factor authentication，则使用device passcode恢复escrowed keychain
 - 如果未开启two-factor authentication, 则使用icloud security code恢复escrow keychain
 
+#### keychain escrow process
+
 device如何备份keychain：
+- 导出keychain的copy
 - 使用asymmetric keybag里的keys加密keychain copy，将密文置于icloud key-value storage area。
 - asymmetric keybag被icloud security passcode wrapped，并且由云端HSM cluster的public key再搞一个envelope，该envelope即为escrow record。
-- 对于HSA2 account: keychain 由intermediate key wrapped，密文存储于cloudkit；intermediate key 只能以escrow record的方式解密。
+- 对于two-factor authentication account: keychain 由intermediate key wrapped，密文存储于cloudkit；intermediate key 只能通过escrow record解密。
 - 也可以生成random key，然后使用icloud security code wrap random key，无需escrow record。
 
-可以sms message进行recovery的授权校验
+用户以sms message，进行recovery的启动授权。
 
 #### escrow security for icloud keychain
 
@@ -1297,7 +1370,7 @@ device如何备份keychain：
 
 云端hsm解密escrow record，将asymmetric keybag的密文传给device。
 
-device使用icloud security code解密asymmetric keybag。
+device使用icloud security code解密random keys, 这些random keys用于解密asymmetric keybag，恢复user's keychain。
 
 防暴力破解：10th failed attempt，云端就删掉escrow record。
 
@@ -1306,6 +1379,7 @@ device使用icloud security code解密asymmetric keybag。
 payment交易: user, merchant, card issuer
 
 secure element: 
+- EMVCo certificated
 - java card platform
 - 存储Device Account Numbers
 - 包含payment network 或者 card issuer 认证的applet
@@ -1344,7 +1418,8 @@ card provision:
 
 secure enclave与secure element之间的通信
 - 使用一个生产过程中共享的shared pair key，由secure enclave基于uid与secure element的id共同生成。
-- aes, 用nonce防重放
+-  用双向nonce防重放, 协商session key
+- aes
 
 生产的时候，shared pairing key从secure enclave传给产线的hsm，hsm再注入secure element。
 
@@ -1362,7 +1437,7 @@ AR 是 apple pay 首次 provision 某个credit card时，secure enclave生成的
 
 同时维护一个transaction counter，递增。
 
-    one-time-code = some_func(key, transaction counter, transaction data, other data [optional])
+    one-time-code = cryptogram_func(key, transaction counter, transaction data, other data [optional])
     other data 例如：
     - NFC交易时，terminal unpredictable number
     - within apps交易时，apple pay server nonce
@@ -1443,6 +1518,12 @@ secure enclave 在某些场景下自动把AR标识为disable，使得card失效�
 - find my / icloud.com 远程冻结/移除card
 - 联系card issuer，冻结/移除 在 apple pay绑定的card
 
+### apple card security
+
+bank account information 存在keychain
+
+业务需要时，数字信封传到目标partner / 监管机构，apple表示无法解密
+
 ### apple cash security
 
 可以在imessage里转账
@@ -1451,13 +1532,16 @@ secure enclave 在某些场景下自动把AR标识为disable，使得card失效�
 
 card issuer可以触发风控问题，内容同样encrypted（apple pay无法解密）。
 
-### apple card security
+### tap to pay 
 
-bank account information 存在keychain
+nfc闪付
 
-业务需要时，数字信封传到目标partner / 监管机构，apple表示无法解密
+### using apple wallet
 
-### transit and student ID cards
+基于secure element + nfc controller，支持各种业务，例如钥匙、卡片、证照、票据等。
+
+student ID cards 场景，Express Mode默认开启，即，不用反复Authentication
+
 
 如果把一个physical card的余额转到apple wallet app的card上，user必须provide personal information for proof of card possession。
 
@@ -1467,155 +1551,9 @@ balance 在 applet 里加密存储。
 
 如果user移除card时处于在线状态，后续card仍可恢复；如果是离线状态，可能找不回来。
 
-student ID cards 场景，Express Mode默认开启，即，不用反复Authentication
-
-## imessage
-
-imessage 基于 Apple Push Notification (APN) 进行应用扩展，内容端到端加密。
-
-三个key： 
-- rsa1280 加密，p-256 加密，p-256 签名
-- 私钥存储于keychain（only available after first unlock)
-- 公钥上传到Apple Identity Serive(IDS), 与用户手机号/邮箱、设备APN地址关联。phone通过sms校验、email通过confirm link校验。
-
-### sends and receives messages
-
-sender 找 IDS 查询 receiver 的 public key & apn address。sender指定的查询源：phone, email, 本地contacts里的phone/email。
-
-旧版：
-- sender随机生成88-bit value
-- 以88-bit value作为hmac-sha256的key，结合双方公钥+plain text，派生一个40-bit value。
-- 将88-bit value & 40-bit value拼接为 128-bit aes-ctr key。
-- 40-bit value可以用来校验plaintext。
-- 以rsa-oaep加密aes-ctr key。
-- { message密文+ key密文 } 使用 ecdsa-with-sha1 签名。
-
-ios 13之后，改用ecies加密数据，不用rsa。
-
-APN:
-- { message 密文, key密文, digital signature } 通过APN服务进行消息传递
-- APN的timestamp, apn address明文
-- device与APN server之间TLS
-
-内容:
-- APN消息长度：4KB ~ 16KB
-- 传图片等附件：随机生成aes-ctr 256-bit key，附件密文上传icloud；aes key, 附件密文URL, 密文的sha1 作为imessage消息内容传输。
-
-群聊场景，1 : N 发送。
-
-APN支持离线消息缓存，30 days。
-
-### imessage name and photo sharing
-
-data分成3个fields: name, photo, photo filename
-
-首先随机生成128 bit key, 再用hmac-sha256基于该key + nickname，派生出key1, key2, key3。
-
-每个data field: 
-- 随机生成96 bit IV，使用key1加密, aes-ctr。
-- key2 用于计算{ field name + field iv + file ciphertext } 的 mac, hmac-sha256
-- 用key2计算的多个mac拼接，使用key3计算出一个hmac-sha256的总mac。总mac的前128 bit用作record id标记。
-- record密文在cloudkit public database存储，以record id标识。record不会更新，如果user修改name/photo，会重新加密生成新的record。
-- nickname & record key & record id 作为imessage消息内容传输。
-
-### business chat
-
-business 不同步user's phone/email/icloud account information。
-
-而是由apple identity service (IDS)生成一个custom unique identifier (opaque ID) => 与 user apple ID + business ID 唯一关联。
-
-同一user apple ID 在不同business ID下，有不同的opaque ID。
-
-## facetime
-
-初始化连接：APN message、Session Traversal Utilities for NAT (STUN) message。
-
-密钥协商：校验device identity certificate, 派生shared secret。基于shared secret派生SRTP stream session key, aes-256-ctr, hmac-sha1。
-
-安全通信：STUN、Internet Connectivity Establishment (ICE)。尽量E2E。
-
-群组通信(支持33人)：IDS分发群组密钥，支持前向安全。session key以aes-siv wrapped，使用ecies分发到各participants。如果有一个新参与者加入，则新起一个session key。
-
-## find my
-
-在线设备（连wifi，或者连cellular）可以上报自身位置信息给icloud。
-
-离线设备可以通过蓝牙连接，使用其他设备作为中转，上报位置信息给icloud。
-
-    device 初始化一个 P-224 密钥对{ d, P }。初始化 256-bit SK_0，一个counter_i。
-    上述密钥信息不会传给apple，但是会通过keychain机制传给同一用户账号下的其他device。
-    P-224公钥长度正好能塞到一个蓝牙广播里。
-
-    每隔15分钟更新counter_i，更新 SK_i = KDF(SK_i-1, "update")
-    (u_i, v_i) = KDF(SK_i, "diversify")
-    d_i = u_i * d + v_i  
-    P_i = u_i * P + v_i * G
-    由于counter_i定期轮转，P_i也定期变换，避免追踪。
-    nearby device(finder)使用接收到的P_iECIES加密自身location，上报到apple server，使用P_i的sha256做为关联id。
-
-    同一用户的其他设备可以通过keychain同步的信息，推算d_i & P_i，获取多个finder上报的位置信息，提高精度。
-
-## Continuity
-
-通过icloud/bluetooth/wifi，设备接力。
-
-### handoff
-
-设备近场接力。
-
-如果两个设备都连icloud，则通过类似imessage的APN消息传递，同步out-of-band BLE pairing信息，无感配对。
-
-device paired之后，会生成一个256 bit的aes key，放在keychain同步。该key用于BLE advertisements的加密和认证，用于向接力的设备同步当前设备的活动状态、并防重放。
-
-当device接收到某个新advertisement，就与源device进行BLE连接、并交换advertisement encryption key。可以通过类似imessage的APN消息/BLE消息的方式，加密同步。
-
-#### handoff between native apps and websites
-
-native app 可以 resume user activity on a webpage in domain
-
-前提是native app developer 也能管控该 domain，系统要校验app是否被授权
-
-    sender:当用户浏览某个webpage时，system加密广播该webpage的domain，仅同一账号下的其他设备可以解密该广播
-    receiver: 系统解密收到的广播，通知app，app获得webpage的title & full url。
-
-#### handoff larger data
-
-初始化BLE连接，然后切换到WiFi p2p。
-
-device 之间 wifi tls通信，双向校验iCloud identity certificates，确认user's identity。
-
-#### universal clipboard
-
-同一用户的不同设备下的app之间，通过handoff共享clipboard data
-
-#### iphone cellular call relay
-
-条件：当同一用户的mac/ipad/homepod等设备与iphone处于同一wifi环境
-
-场景：iphone收到一个call，通过imessage的APN通知到其他设备，用户在某一个设备answer call，iphone与该设备建立e2e的信道传输通话信息。handoff BLE加密广播通知其他设备不要再响铃。
-
-场景：在其他设备上外播一个call，通过APN通知到iphone，iphone外播call，同样建立e2e的信道传输通话信息。
-
-在facetime上关闭iphone cellular call可以禁用phone call relay功能。
-
-#### iphone text message forwarding
-
-把iphone上收到的sms text传输到同一用户的其他ipad/mac/...
-
-通过imessage进行消息传递。
-
-reply的消息返回给iphone后，iphone再外发为imessage消息或者sms text。
-
-### Instant Hotspot
-
-设备连到某个其他ios/ipados设备的热点，必须是同一用户账号、或者是family sharing的账号。
-
-用户在某个设备设置热点，基于与用户关联的DSID( Destination Signaling Identifier)派生identifier（周期性更新identifier），广播该identifier。
-- 同账号（无感）：同一用户账号下的其他设备检测到该identifier，尝试连接热点。
-- 跨账号：如果用户 isn't part of family sharing ，则会发一个turn on personal Hotspot的请求，该请求通过BLE加密发送（加密方案类似imessage），响应消息同样加密发送、返回personal hotspot connection information。
-- 跨账号（无感）：如果用户 is part of family sharing，则personal hotspot connection information通过类似homekit device方案同步：设备之间已经预先通过IDS交换对方的device-specific ED25519 public key；通信时X25519-ED25519协商密钥。
-
 ### car key
+
+车钥匙follow CCC标准，钥匙分享通过imessage & IDS。
 
 car key 的增、删、挂失等，与apple pay card方案基本一致。
 
@@ -1675,11 +1613,167 @@ standard transaction 时，shared a secret。
 
 车厂server不存iphone device ID, SEID, APPLE ID，只存the instance CA identifier——相当于识别手机厂。
 
+### user data confidentiality over radio links
+
+session encryption => personally identifiable information (PII)
+
+encryption is performed by the application layer
+
+## imessage
+
+imessage 基于 Apple Push Notification (APN) 进行应用扩展，内容端到端加密。
+
+三个key： 
+- rsa1280 加密，p-256 加密，p-256 签名
+- 私钥存储于keychain（only available after first unlock)
+- 公钥上传到Apple Identity Serive(IDS), 与用户手机号/邮箱、设备APN地址关联。phone通过sms校验、email通过confirm link校验。
+
+### sends and receives messages securely
+
+sender 找 IDS 查询 receiver 的 public keys & apn addresses。sender指定的查询源：phone, email, 本地contacts里的phone/email。
+
+旧版：
+- sender随机生成88-bit value
+- 以88-bit value作为hmac-sha256的key，结合双方公钥+plain text，派生一个40-bit value。
+- 将88-bit value & 40-bit value拼接为 128-bit aes-ctr key。
+- 40-bit value可以用来校验plaintext。
+- 以rsa-oaep加密aes-ctr key。
+- { message密文+ key密文 } 使用 sender device's private signing key 签名, ecdsa-with-sha1。
+
+ios 13之后，改用ecies加密数据，不用rsa。
+
+APN:
+- { message 密文, key密文, digital signature } 通过APN服务进行消息传递
+- APN的timestamp, apn address明文
+- device与APN server之间TLS
+
+内容限制:
+- APN转发的消息长度：4KB ~ 16KB
+- 传图片等大的附件：随机生成aes-ctr 256-bit key加密附件，密文上传icloud；aes key, 附件密文URL, 密文的sha1 作为imessage消息内容传输。
+
+群聊场景，1 : N 发送。
+
+APN支持离线消息缓存，30 days。
+
+### secure imessage name and photo sharing
+
+data分成3个fields: name, photo, photo filename
+
+首先随机生成128 bit record key, 再用hmac-sha256基于该record key + nickname，派生出key1, key2, key3。
+
+每个data field: 
+- 随机生成96 bit IV，使用key1加密, aes-ctr。
+- key2 用于计算{ field name + field iv + file ciphertext } 的 mac, hmac-sha256
+- 用key2计算的多个mac拼接，使用key3计算出一个hmac-sha256的总mac。总mac的前128 bit用作record id标记。
+- record密文在cloudkit public database存储，以record id标识。record不会更新，如果user修改name/photo，会重新加密生成新的record。
+- 用户分享photo：nickname & record key & record id 作为imessage消息内容传输。
+
+### secure apple messages for business
+
+business 不同步user's phone/email/icloud account information。
+
+而是由apple identity service (IDS)生成一个custom unique identifier (opaque ID) => 与 user apple ID + business ID 唯一关联。
+
+同一user apple ID 在不同business ID下，有不同的opaque ID。
+
+### facetime security
+
+初始化连接：APN message、Session Traversal Utilities for NAT (STUN) message。
+
+密钥协商：校验device identity certificate, 派生shared secret。基于shared secret派生SRTP stream session key, aes-256-ctr, hmac-sha1。
+
+安全通信：STUN、Internet Connectivity Establishment (ICE)。尽量E2E。
+
+群组通信(支持33人)：基于IDS的点对点认证，分发群组密钥，支持前向安全。session key以aes-siv wrapped，使用p-256 ecies分发到各participants。如果有一个新参与者加入，则新起一个session key。
+
+## find my
+
+在线设备（连wifi，或者连cellular）可以上报自身位置信息给icloud。
+
+离线设备可以通过蓝牙连接，使用其他设备作为中转，上报位置信息给icloud。
+
+    device 初始化: P-224 密钥对{ d, P }，  256-bit SK_0，一个counter_i = 0。
+    上述密钥信息不会传给apple，但是会通过keychain机制传给同一用户账号下的其他device。
+    P-224公钥长度正好能塞到一个蓝牙广播里。
+
+    每隔15分钟更新counter_i，更新 SK_i = KDF(SK_i-1, "update")
+    (u_i, v_i) = KDF(SK_i, "diversify")
+    d_i = u_i * d + v_i  
+    P_i = u_i * P + v_i * G
+    由于counter_i定期轮转，P_i也定期变换，避免追踪。
+    nearby device(finder)使用接收到的P_i，ECIES加密自身location，上报到apple server，使用P_i的sha256做为关联id。
+
+    同一用户的其他设备可以通过keychain同步的信息，推算d_i & P_i，获取多个finder上报的位置信息，提高精度。
+
+## Continuity
+
+通过icloud/bluetooth/wifi，设备接力干一些事情。
+
+### handoff
+
+设备近场接力。
+
+如果两个设备都连icloud，则通过类似imessage的APN消息传递，同步out-of-band BLE pairing信息，无感配对。
+
+device paired之后，每个device会生成一个256 bit的aes key，放在keychain同步。该key用于BLE advertisements的加密和认证，用于向接力的设备同步当前设备的活动状态、并防重放。
+
+当device接收到某个新key保护的advertisement，就在与源device的BLE连接下、执行advertisement encryption key exchange。可以通过类似imessage的APN消息/BLE消息的方式，加密同步。
+
+#### handoff between native apps and websites
+
+native app 可以 resume user activity on a webpage in domain
+
+前提是native app developer 也能管控该 domain，系统要校验app是否被授权
+
+    sender:当用户浏览某个webpage时，system BLE加密广播该webpage的domain，仅同一账号下的其他设备可以解密该广播
+    receiver: 系统解密收到的广播，通知app，app获得webpage的title & full url。
+
+#### handoff larger data
+
+初始化BLE连接，然后切换到WiFi p2p。
+
+device 之间 wifi tls通信，双向校验iCloud identity certificates，确认user's identity。
+
+#### universal clipboard
+
+同一用户的不同设备下的app之间，通过handoff共享clipboard data
+
+#### iphone cellular call relay
+
+条件：当同一用户的mac/ipad/homepod等设备与iphone处于同一wifi环境
+
+场景：iphone收到一个call，通过imessage的APN通知到其他设备，用户在某一个设备answer call，iphone与该设备建立e2e的信道传输通话信息。handoff BLE加密广播通知其他设备不要再响铃。
+
+场景：在其他设备上外播一个call，通过APN通知到iphone，iphone外播call，同样建立e2e的信道传输通话信息。
+
+在facetime上关闭iphone cellular call可以禁用phone call relay功能。
+
+#### iphone text message forwarding
+
+把iphone上收到的sms text传输到同一用户的其他ipad/mac/...
+
+通过imessage进行消息传递。
+
+reply的消息返回给iphone后，iphone再外发为imessage消息或者sms text。
+
+### Instant Hotspot
+
+设备连到某个其他ios/ipados设备的热点，必须是同一用户账号、或者是family sharing的账号。
+
+用户在某个设备设置热点，基于与用户关联的DSID( Destination Signaling Identifier)派生identifier（周期性更新identifier），广播该identifier。
+- 同账号（无感）：同一用户账号下的其他设备检测到该identifier，尝试连接热点。
+- 跨账号：如果用户 isn't part of family sharing ，则会发一个turn on personal Hotspot的请求，该请求通过BLE加密发送（加密方案类似imessage），响应消息同样加密发送、返回personal hotspot connection information。
+- 跨账号（无感）：如果用户 is part of family sharing，则personal hotspot connection information通过类似homekit device方案同步：设备之间已经预先通过IDS交换对方的device-specific ED25519 public key；通信时X25519-ED25519协商密钥。
+
 # network security
 
 ## tls
 
 没啥特别的
+
+SHA-1 certificate 默认不给用了
+
+RSA2048 / RC4 等拒绝
 
 ## app transport 
 
@@ -1699,6 +1793,8 @@ RFC3972 CGA (Cryptographically generated addresses)
 
 SLAAC (stateless address autoconfiguration)
 
+RFC7217
+
 每24 hours更新地址
 
 private wifi address => unique link-local address is generated for every Wi-Fi network，避免关联分析
@@ -1707,11 +1803,13 @@ ipv6 protection: RFC6980, RFC7112, RFC8021
 
 ## vpn
 
+protocol: IKEv2/IPsec, SSL-VPN, L2TP/IPsec, ...
+
 VPN on demand: use certificate-based authentication
 
-per app vpn
+per app vpn: 指定app才连接特定vpn
 
-always on vpn
+always on vpn: 所有
 
 ## wifi
 
@@ -1772,6 +1870,8 @@ mac address randomization
 wifi frame seq number randomization
 
 ## sso(single sign-on)
+
+Enterprise network
 
 sso : kerberos, PKINIT
 
@@ -1834,11 +1934,13 @@ user-specified apps => user configure
 
 # Developer Kits
 
-提供给第三方developer的开发框架
+提供给第三方developer的开发框架: HomeKit, CloudKit, SiriKit, DriverKit, ReplayKit, ARKit
 
 ## HomeKit
 
 ios设备生成 ed25519 keypair => homekit identity，存储于keychain。
+
+homepod & apple tv 通过 tap-to-setup 等方式同步
 
 iphone使用IDS将keys同步给watch。
 
@@ -2060,7 +2162,7 @@ device也可以设置为，如果passcode尝试次数过多，自动wipe。
 multiuser mode
 
 两种 signing: 
-- identity provider's(IDP) sign, short live token, passcode 
+- identity provider's(IDP) sign, SRP, short live token, passcode 
 - managed apple ID  Authenticated with APPLE identity service (IDS)
 
 ## screen time
