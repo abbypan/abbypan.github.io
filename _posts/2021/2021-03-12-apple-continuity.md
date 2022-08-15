@@ -144,3 +144,9 @@ security by obscurity does not work.
 
 even companies with extended resources ad dedicated security/privacy teams can not only rely on internal scrutiny of their systems to avoid such issues.
 
+
+# airdrop
+
+[PrivateDrop: Practical Privacy-Preserving Authentication for Apple AirDrop](https://www.usenix.org/conference/usenixsecurity21/presentation/heinrich)
+
+把private set intersection (PSI) 用到airdrop连接发现上，近场ddos有点问题

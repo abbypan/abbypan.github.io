@@ -163,8 +163,12 @@ cryptographic fingerprint(Hoob): verify the integrity of the key exchange, detec
 
 OOB mesage url example (60bytes): server domain name (60 characters base64),  PeerId (22 characters base64),  secret nonce (Noob) 16-byte, fingerprint (Hoob) 16-byte。
 
-# case
+# attack
 
 ## firmware
 
 [tlstorm](https://www.armis.com/research/tlstorm) : ups, firmware没签名
+
+## misbinding 
+
+[Misbinding Attacks on Secure Device Pairing and Bootstrapping](https://dl.acm.org/doi/pdf/10.1145/3321705.3329813) :  标识的脆弱性

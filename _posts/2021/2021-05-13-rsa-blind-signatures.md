@@ -22,6 +22,8 @@ RSABSSA 核心是:
 - 基于rsassa-pss的扩展, privte key 仅做token issuance
 - 不像privacy pass，server 不用调private key校验token
 
+untracable payment
+
 # RSABSSA
 
     client -> server :  blinded_msg, inv = blind(pkS, msg)
@@ -30,7 +32,7 @@ RSABSSA 核心是:
 
 ## blind
 
-假设message为原始消息，根据EMSA-PSS-ENCODE(msg, kBits - 1) -> OS2IP 转换为m
+假设message为原始消息，根据`EMSA-PSS-ENCODE(msg, kBits - 1) -> OS2IP`转换为m
 
 随机生成mod n的r，求解`r_inv`
 
