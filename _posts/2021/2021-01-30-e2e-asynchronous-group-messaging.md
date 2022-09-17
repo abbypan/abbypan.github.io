@@ -16,6 +16,8 @@ tags: [ "security" ]
 
 Asynchronous Ratcheting Trees (ART) : tree-based DH key exchange, derive a shared symmetric key
 
+IETF MLS group
+
 ## signal protocol
 
 FS: forward secrecy
@@ -51,11 +53,11 @@ OTR-style: Multi-Party Off the Record Messaging (mpOTR), 主要是实时key exch
 
 Assuming an authentic network: 分布式系统，一些信息交互，支持异步，不支持PCS
 
-Sender Keys: 当前节点加密自身“broadcast” keys，传给每一个group member。需要定期切换sender key，以防sender key泄漏的场景。WhatsApp在群聊的member有变动时更新sender keys。
+Sender Keys: 当前节点加密自身“broadcast” keys，传给每一个group member。需要定期切换sender key，以防sender key泄漏的场景。WhatsApp在群聊的member有变动时更新sender keys，否则无法防范PCS。
 
-n-party DH
+n-party DH: joux protocol, with problem
 
-Tree-based group DH
+Tree-based group DH, 每个叶子节点是一个group member的公钥，构造一个二叉树
 
 # objectives
 
