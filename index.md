@@ -47,6 +47,7 @@ orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 | IEEE APNOMS 2016 | [Mitigating DDoS Attacks towards Top Level Domain Name Service](https://ieeexplore.ieee.org/document/7737252/) | Corresponding Author |
 | 计算机应用研究 2016 |  [一种评估DNS根镜像服务的方法](http://www.arocmag.com/) | Corresponding Author |
 | 计算机应用研究 2015 | [一种快速评估DDOS攻击对DNS权威服务影响的方法](http://www.arocmag.com/article/01-2015-11-060.html) | Corresponding Author |
+| Masters Dissertation 2009 | [协作式垃圾邮件过滤技术研究](https://t.cnki.net/kcms/detail?v=IAiCDjVhe6dsElFisRqkySpL_U3iOAgn7XA87f-fHLoh0cA1ngrxmA0ebS6wZ_LiCilvljWwpihvYyjupk1o_hTowrAu2cvI7kPoEwlHlUarWHpnAHl6bg==&uniplatform=NZKPT&language=gb) |
 
 # Patent
 
