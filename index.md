@@ -74,7 +74,7 @@ orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 | Organization |
 | ------------ |
 | [SECURWARE Technical Program Committee](https://www.iaria.org/conferences2021/ComSECURWARE21.html) |
-| [https://www.icann.org/groups/rssac-caucus](https://www.icann.org/groups/rssac-caucus) |
+| [ICANN RSSAC Caucus](https://www.icann.org/groups/rssac-caucus) |
 
 
 ![Mail](assets/img/mail.png) 
