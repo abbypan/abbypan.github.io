@@ -43,7 +43,7 @@ orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 | QShine 2018 | [Improving Privacy for GeoIP DNS Traffic](https://eudl.eu/doi/10.1007/978-3-030-14413-5_1) |
 | IEEE TrustCom 2018 | [A Public Key based EDNS Privacy Tunnel for DNS](https://ieeexplore.ieee.org/document/8456128/) |
 | IEEE PST 2018 | [Mitigating Client Subnet Leakage in DNS Queries](https://ieeexplore.ieee.org/document/8514164/) |
-| NDSS DNS Privacy Workshop 2017 | [EIL: Dealing with the Privacy Problem of ECS](https://portal.sinodun.com/wiki/display/TDNS/DNS+Privacy+Workshop+@+NDSS+2017) |
+| NDSS DNS Privacy Workshop 2017 | [EIL: Dealing with the Privacy Problem of ECS](https://dnsprivacy.org/ndss_dns_privacy_workshop/2017_ndss_dns_privacy_workshop/) |
 | IEEE APNOMS 2016 | [Mitigating DDoS Attacks towards Top Level Domain Name Service](https://ieeexplore.ieee.org/document/7737252/) |
 | 计算机应用研究 2016 |  [一种评估DNS根镜像服务的方法](http://www.arocmag.com/) |
 | 计算机应用研究 2015 | [一种快速评估DDOS攻击对DNS权威服务影响的方法](http://www.arocmag.com/article/01-2015-11-060.html) |
