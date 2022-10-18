@@ -45,6 +45,7 @@ orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 | IEEE PST 2018 | [Mitigating Client Subnet Leakage in DNS Queries](https://ieeexplore.ieee.org/document/8514164/) | Corresponding Author |
 | NDSS DNS Privacy Workshop 2017 | [EIL: Dealing with the Privacy Problem of ECS](https://dnsprivacy.org/ndss_dns_privacy_workshop/2017_ndss_dns_privacy_workshop/) | Corresponding Author |
 | IEEE APNOMS 2016 | [Mitigating DDoS Attacks towards Top Level Domain Name Service](https://ieeexplore.ieee.org/document/7737252/) | Corresponding Author |
+| IEEE ISCC 2016 | [Dealing with temporary domain name issues in the DNS](https://ieeexplore.ieee.org/document/7543831/) | 
 | 计算机应用研究 2016 |  [一种评估DNS根镜像服务的方法](http://www.arocmag.com/) | Corresponding Author |
 | 计算机应用研究 2015 | [一种快速评估DDOS攻击对DNS权威服务影响的方法](http://www.arocmag.com/article/01-2015-11-060.html) | Corresponding Author |
 | 通信技术 2010 | [基于兴趣相似度的协作式垃圾邮件过滤方案](https://r.cnki.net/kcms/detail/detail.aspx?filename=TXJS201002043&dbcode=CRJT_CJFD&dbname=CJFD2010&v=) | Corresponding Author |
