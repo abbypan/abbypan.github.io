@@ -9,13 +9,9 @@ tagline: "对孤峰绝顶，云烟竞秀；悬崖峭壁，瀑布争流"
 
 潘蓝兰 (Pan Lanlan)
 
-Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/panlanlan/)
-
-orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
-
 Mail: abbypan@gmail.com
 
-![Mail](assets/img/mail.png) 
+Github: [https://github.com/abbypan](https://github.com/abbypan)
 
 # Education
 
@@ -26,6 +22,8 @@ Mail: abbypan@gmail.com
 
 # Working Experience
 
+Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/panlanlan/)
+
 | Year | Company | Position | Experience |
 | ---- | ------ | ------ | ---- |
 | 2019 - now | OPPO | Security Architect | Mobile Terminal Security |
@@ -35,6 +33,8 @@ Mail: abbypan@gmail.com
 
 
 # Paper
+
+orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
 
 | Year | Paper |
 | ---- | ---- |
@@ -68,5 +68,7 @@ Mail: abbypan@gmail.com
 | 2017 IETF draft-pan-dnsop-edns-isp-location | [ISP Location in DNS Queries](https://datatracker.ietf.org/doc/draft-pan-dnsop-edns-isp-location/) |
 | 2017 IETF draft-pan-dnsop-swild-rr-type | [SWILD RR Type (Wildcard on Intermediate Nameservers)](https://datatracker.ietf.org/doc/draft-pan-dnsop-swild-rr-type) |
 | 2015 CCSA YD/T 3008-2016 | [域名服务安全状态检测要求](http://www.ccsa.org.cn/standardDetail?title=%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%AE%89%E5%85%A8%E7%8A%B6%E6%80%81%E6%A3%80%E6%B5%8B%E8%A6%81%E6%B1%82&standardNum=YD%2FT%203008-2016) |
+
+![Mail](assets/img/mail.png) 
 
 ![create with vim](assets/img/vim.png)
