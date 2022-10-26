@@ -10,9 +10,11 @@ tags: [ "connectivity", "security", "privacy" ]
 * TOC
 {:toc}
 
-# Continuity Privacy
+# Continuity
 
 [Discontinued Privacy: Personal Data Leaks in AppleBluetooth-Low-Energy Continuity Protocols](https://hal.inria.fr/hal-02394619/document)
+
+[Disrupting Continuity of Apple’s Wireless Ecosystem Security: New Tracking, DoS, and MitM Attacks on iOS and macOS Through Bluetooth Low Energy, AWDL, and Wi-Fi](https://www.usenix.org/system/files/sec21-stute.pdf)
 
 Continuity: apple设备近场通信，基于Bluetooth/BLE/WiFi
 

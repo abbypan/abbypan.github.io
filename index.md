@@ -15,6 +15,8 @@ Github: [https://github.com/abbypan](https://github.com/abbypan)
 
 # Education
 
+Infonet: [http://if.ustc.edu.cn](http://if.ustc.edu.cn)
+
 | Year | School | Degree |
 | ---- | ------ | ------ |
 | 2006.9 - 2009.7 | USTC (University of Science and Technology of China) | Information Security  Master |
@@ -34,7 +36,7 @@ Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/p
 
 # Paper
 
-orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
+Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
 
 | Year | Paper | Role |
 | ---- | ---- | ---- |
@@ -53,13 +55,15 @@ orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 
 # Patent
 
+Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0)
+
 | Year | Patent | Role |
 | ---- | ------ | ---- |
-| 2022 CN111432373B | [一种安全认证方法、装置及电子设备](https://patents.google.com/patent/CN111432373B) | First Named Inventor |
-| 2022 CN109862099B | [一种升级校验方法、装置、终端及系统](https://patents.google.com/patent/CN109862099B) | First Named Inventor |
-| 2021 CN109831779B | [一种升级包下载方法、装置、服务器、终端及系统](https://patents.google.com/patent/CN109831779B) | First Named Inventor |
-| 2021 CN111055808B | [售前车辆控制方法及服务器](https://patents.google.com/patent/CN111055808B) | First Named Inventor |
-| 2021 CN109787774B | [基于数字签名校验的升级下载方法、装置、服务器及终端](https://patents.google.com/patent/CN109787774B) | First Named Inventor |
+| 2022 CN111432373B | [一种安全认证方法、装置及电子设备](https://patents.google.com/patent/CN111432373B) | Corresponding Author |
+| 2022 CN109862099B | [一种升级校验方法、装置、终端及系统](https://patents.google.com/patent/CN109862099B) | Corresponding Author | 
+| 2021 CN109831779B | [一种升级包下载方法、装置、服务器、终端及系统](https://patents.google.com/patent/CN109831779B) | Corresponding Author | 
+| 2021 CN111055808B | [售前车辆控制方法及服务器](https://patents.google.com/patent/CN111055808B) | Corresponding Author | 
+| 2021 CN109787774B | [基于数字签名校验的升级下载方法、装置、服务器及终端](https://patents.google.com/patent/CN109787774B) |  Corresponding Author |
 | 2020 CN106210165B | [基于NS记录分层授权缓解域名权威记录劫持影响的方法](https://patents.google.com/patent/CN106210165B) | Corresponding Author |
 | 2019 CN105704259B | [一种域名权威服务来源ip识别方法和系统](https://patents.google.com/patent/CN105704259B) | Corresponding Author |
 
