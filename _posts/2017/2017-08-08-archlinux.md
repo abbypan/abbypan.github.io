@@ -56,6 +56,11 @@ Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 {% endhighlight %}
 
+### 调整分区大小
+
+    e2fsck -f /dev/sda1
+    resize2fs /dev/sda1
+
 ## 连接无线网絡
 
 ``wifi-menu``
@@ -90,12 +95,24 @@ reboot
 
 {% highlight bash %}
 pacman -Syu
-pacman -S yaourt aria2
 {% endhighlight %}
+
+## 数据包更新失败
+
+{% highlight bash %}
+sudo pacman -S archlinux-keyring  
+sudo pacman-key --refresh-keys
+sudo pacman-key --populate archlinux
+sudo pacman -Scc
+sudo pacman -Syu
+{% endhighlight %}
+
 
 ## pacman/yaourt调用aria2多线程下载文件
 
 假设同时开8个连接
+
+    pacman -S aria2
 
 在/etc/pacman.conf中指定
 
@@ -126,7 +143,7 @@ ntpdate asia.pool.ntp.org
 pacman -S xorg xorg-xinit consolekit
 {% endhighlight %}
 
-## 安装lxde
+### 安装lxde
 
 {% highlight bash %}
 pacman -S lxde openbox
@@ -138,7 +155,7 @@ pacman -S lxde openbox
 exec lxsession
 {% endhighlight %}
 
-## 安装XFCE
+### 安装XFCE
 
 {% highlight bash %}
 pacman -S xfce4 xfce4-goodies xfce4-notifyd elementary-xfce-icons
@@ -150,7 +167,9 @@ pacman -S xfce4 xfce4-goodies xfce4-notifyd elementary-xfce-icons
 exec ck-launch-session dbus-launch startxfce4
 {% endhighlight %}
 
-## 登录管理器 slim
+## 登录管理器
+
+### 登录管理器 slim
 
     pacman -S slim archlinux-themes-slim
 
@@ -158,6 +177,10 @@ exec ck-launch-session dbus-launch startxfce4
 
     systemctl enable slim.service
 
+### 登录管理器 lightdm
+
+    pacman -S lightdm lightdm-gtk-greeter
+    systemctl enable lightdm.service
 
 # 硬件驱动
 
@@ -270,13 +293,6 @@ pacman -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 /dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
 {% endhighlight %}
 
-## 音乐处理
-
-[cue_splitting](https://wiki.archlinux.org/index.php/CUE_Splitting)
-
-{% highlight bash %}
-pacman -S cuetools mp3info wavpack flac mac shntool bchunk
-{% endhighlight %}
 
 ## 关闭触摸板
 
@@ -338,18 +354,21 @@ LC_MESSAGES=zh_CN.UTF-8
 LOCALE=zh_CN.UTF-8
 {% endhighlight %}
 
+## locale-gen时找不到character map file
 
-# 常用软件
+``pacman -Syu``升级的时候出的问题
 
-{% highlight bash %}
-pacman -S rsync curl lftp wget axel
-pacman -S wqy-bitmapfont wqy-zenhei ttf-monaco
-pacman -S smplayer ffmpeg flashplayer
-pacman -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
-pacman -S zip unzip unrar p7zip thunar-archive-plugin xarchiver arj cpio lzop
-pacman -S firefox firefox-i18n-zh-cn freshplayerplugin pepper-flash chromium
-pacman -S dnsutils traceroute wireshark-gtk
-{% endhighlight %}
+执行locale-gen提示：``character map file "en_US" not found``
+
+结果locale就变成"C"
+
+``pacman -S glibc``重装一遍，还是出错，不过提示空间不足
+
+``pacman -Scc`` 清理空间
+
+``pacman -S glibc -f``
+
+
 
 # 网络
 
@@ -507,9 +526,31 @@ ip link set wlan0 down
 netctl start somewireless
 {% endhighlight %}
 
-# 其它
+## 无线速度慢 wireless slow
 
-## NGINX+PHP
+参考[Slow Wireless Intel 6235 (iwlwifi module)](https://bbs.archlinux.org/viewtopic.php?id=146518)
+
+{% highlight bash %}
+echo options iwlwifi 11n_disable=1 | sudo tee /etc/modprobe.d/51-disable-6235-11n.conf 
+{% endhighlight %}
+
+## 禁用 wifi 键盘灯 LED 闪烁
+
+见：[wireless led blink](https://wiki.archlinux.org/index.php/Wireless_Setup_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#.E7.A6.81.E7.94.A8_LED_.E9.97.AA.E7.83.81)
+
+{% highlight bash %}
+# echo 'options iwlwifi led_mode=1' >> /etc/modprobe.d/wlan.conf
+# modprobe -r iwlwifi && modprobe iwlwifi
+{% endhighlight %}
+或者
+{% highlight bash %}
+# echo 'w /sys/class/leds/phy0-led/trigger - - - - phy0radio' > /etc/tmpfiles.d/phy0-led.conf
+# systemd-tmpfiles --create phy0-led.conf
+{% endhighlight %}
+
+# 服务搭建
+
+## Web: NGINX+PHP
 
 {% highlight bash %}
 pacman -S nginx spawn-fcgi php-cgi
@@ -540,6 +581,61 @@ include        fastcgi_params;
 
 - 启动nginx: /etc/rc.d/nginx start
 
+# 常用软件
+
+{% highlight bash %}
+pacman -S rsync curl lftp wget axel
+pacman -S wqy-bitmapfont wqy-zenhei ttf-monaco
+pacman -S smplayer ffmpeg flashplayer
+pacman -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
+pacman -S zip unzip unrar p7zip thunar-archive-plugin xarchiver arj cpio lzop
+pacman -S firefox firefox-i18n-zh-cn freshplayerplugin pepper-flash chromium
+pacman -S dnsutils traceroute wireshark-gtk
+{% endhighlight %}
+
+## 音乐
+
+[cue_splitting](https://wiki.archlinux.org/index.php/CUE_Splitting)
+
+{% highlight bash %}
+pacman -S cuetools mp3info wavpack flac mac shntool bchunk
+{% endhighlight %}
+
+## firefox 安装 flash 插件
+
+- 在 adobe 网站下载 flash player
+- 将其中的libflashplayer.so 复制到 ~/.mozilla/plugins/目录下
+- 执行 ldd ~/.mozilla/plugins/libflashplayer.so 
+
+## virtualbox
+
+参考： [Install VirtualBox on Arch Linux](https://linuxhint.com/install-virtualbox-arch-linux/)
+
+    bios -> cpu 设置 -> 打开 amd-v
+
+    pacman -S virtualbox  选择 virtualbox-host-modules-arch
+
+    pacman -S linux linux-headers
+
+    reboot
+
+    modprobe vboxdrv
+
+    yay -S virtualbox-ext-oracle
+    
+    usermod -G vboxusers -a [username]
+
+## java
+
+查看支持的java版本：
+
+    archlinux-java status
+
+切换java的版本：
+
+    archlinux-java set <JAVA_ENV_NAME>
+
+# 故障处理
 
 ## KERNEL PANIC 恢复
 
@@ -551,51 +647,94 @@ mount /dev/sda1 /mnt
 pacman -U glibc-2.16.0-1-x86_64.pkg.tar.xz -r /mnt
 {% endhighlight %}
 
-## 禁用 wifi 键盘灯 LED 闪烁
-
-见：[wireless led blink](https://wiki.archlinux.org/index.php/Wireless_Setup_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#.E7.A6.81.E7.94.A8_LED_.E9.97.AA.E7.83.81)
-
-{% highlight bash %}
-# echo 'options iwlwifi led_mode=1' >> /etc/modprobe.d/wlan.conf
-# modprobe -r iwlwifi && modprobe iwlwifi
-{% endhighlight %}
-或者
-{% highlight bash %}
-# echo 'w /sys/class/leds/phy0-led/trigger - - - - phy0radio' > /etc/tmpfiles.d/phy0-led.conf
-# systemd-tmpfiles --create phy0-led.conf
-{% endhighlight %}
-
-
-## firefox 安装 flash 插件
-
-- 在 adobe 网站下载 flash player
-- 将其中的libflashplayer.so 复制到 ~/.mozilla/plugins/目录下
-- 执行 ldd ~/.mozilla/plugins/libflashplayer.so 
 
 ## /bin/plymouth: No such file or directory
+
 archlinux , thinkpad x61t，开机出错
 
 journalctl -xn显示 /bin/plymouth: No such file or directory 
 
 删掉 /etc/fstab 中不存在的介质就行了
 
-## locale-gen时找不到character map file
+# UEFI/GRUB 引导
 
-``pacman -Syu``升级的时候出的问题
+## 配置 uefi Systemd-boot
 
-执行locale-gen提示：``character map file "en_US" not found``
+[用Systemd-boot取代GRUB作為Linux的bootloader](https://ivonblog.com/posts/replace-grub-with-systemd-boot/)
 
-结果locale就变成"C"
+### 准备活动
 
-``pacman -S glibc``重装一遍，还是出错，不过提示空间不足
+    pacman -S efibootmgr
 
-``pacman -Scc`` 清理空间
+### 将磁盘旧的msdos分区表切换为gpt
 
-``pacman -S glibc -f``
+    sgdisk -g /dev/sda
+
+### efi分区 
+
+磁盘新建一个efi分区（假设为 /dev/sda5），类型为vfat，标识为`boot, esp`
+
+    mount /dev/sda5 /boot
+
+### 修改fstab
+
+    /dev/sda5      	/boot         	vfat      	defaults 0 2
+
+### 安装EFI引导
+
+    bootctl install
+
+### 设置archlinux的EFI引导
+
+blkid 查看 archlinux 根分区的PARTUUID。
+
+编辑 /boot/loader/entries/arch.conf
+
+    title Arch Linux
+    linux	/vmlinuz-linux 
+    initrd	/initramfs-linux.img
+    options root=PARTUUID=xxxxxxxxxx rw quiet splash
+
+
+### 添加windows的EFI引导
+
+把windows系统分区下的EFI/Microsoft目录直接拷贝到/boot/EFI/目录下。
+
+###  设置默认引导
+
+编辑 /boot/loader/loader.conf
+
+    default arch
+    timeout 3
+    console-mode max
+
+### boot目录示例
+
+    $ tree /boot -L 3
+    /boot
+    ├── EFI
+    │   ├── Microsoft
+    │   │   ├── Boot
+    │   │   └── Recovery
+    │   └── systemd
+    │       └── systemd-bootx64.efi
+    ├── initramfs-linux-fallback.img
+    ├── initramfs-linux.img
+    ├── loader
+    │   ├── entries
+    │   │   └── arch.conf
+    │   ├── entries.srel
+    │   ├── loader.conf
+    │   └── random-seed
+    └── vmlinuz-linux
 
 ## 手动设置grub2引导 windows 双系统
 
-见：[Archlinux grub2 windows8 (windows7) win8 (win7) 引导设置](http://hi.baidu.com/flashgive/item/b05697120fbf84fc9d778a26)
+[Archlinux安装UEFI Grub](https://blog.csdn.net/puppylpg/article/details/77618180)
+
+[Archlinux grub2 windows8 (windows7) win8 (win7) 引导设置](http://hi.baidu.com/flashgive/item/b05697120fbf84fc9d778a26)
+
+实在不行就把uefi里面的csm选项打开
 
     pacman -S grub-bios 
     grub-install --target i386-pc /dev/sda
@@ -632,32 +771,9 @@ menuentry 'Windows 7' {
 }
 {% endhighlight %}
 
-## 无线速度慢 wireless slow
+## archlinux/windows10 双系统迁移   
 
-参考[Slow Wireless Intel 6235 (iwlwifi module)](https://bbs.archlinux.org/viewtopic.php?id=146518)
-
-{% highlight bash %}
-echo options iwlwifi 11n_disable=1 | sudo tee /etc/modprobe.d/51-disable-6235-11n.conf 
-{% endhighlight %}
-
-## 数据包更新失败
-
-{% highlight bash %}
-sudo pacman -S archlinux-keyring  
-sudo pacman-key --refresh-keys
-sudo pacman-key --populate archlinux
-sudo pacman -Scc
-sudo pacman -Syu
-{% endhighlight %}
-
-## 调整分区大小
-
-    e2fsck -f /dev/sda1
-    resize2fs /dev/sda1
-
-# archlinux/windows10 双系统迁移   
-
-## 背景
+### 背景
 
 不拆机，不直接对拷硬盘。
 
@@ -665,7 +781,7 @@ sudo pacman -Syu
 
 刻录3个启动u盘：clonezilla，archlinux，winpe。
 
-## 步骤
+### 步骤
 
 用clonezilla备份旧机器上的archlinux系统。用winpe的ghost备份旧机器上的window10系统。备份的数据存放在外接移动硬盘。
 
@@ -683,9 +799,9 @@ sudo pacman -Syu
 
 重启新机器进入windows10。
     
-# 用 clonezilla 迁移 archlinux 系统 
+## 用 clonezilla 迁移 archlinux 系统 
 
-## 环境
+### 环境
 
 假设旧机器为A，archlinux 装在A机器的 /dev/sda1 上
 
@@ -693,13 +809,13 @@ sudo pacman -Syu
 
 假设想要将 机器A上的archlinux 迁移到 机器B上硬盘X的第2分区
 
-## 制作一个启动U盘
+### 制作一个启动U盘
 
 下载：[clonezilla-live-zip](http://drbl.nchc.org.tw/clonezilla/clonezilla-live/download/)
 
 例如windows下可以在解压zip文件的目录中找到 utils\win32\ 的bat，双击即可自动制作U盘
 
-##  复制分区
+###  复制分区
 
 将启动U盘插入机器A，bios设置从U盘启动，重启机器A进入clonezilla-live
 
@@ -713,7 +829,7 @@ U盘被挂载为/dev/sdb
 
 等待clonezilla完成分区复制
 
-## 安装grub
+### 安装grub
 
 分区复制完成之后，回到clonezilla命令行
 
@@ -723,81 +839,13 @@ U盘被挂载为/dev/sdb
 
 安装grub到/dev/sdc：``grub-install --root-directory=/mnt /dev/sdc``
 
-## 完成迁移
+### 完成迁移
 
 将硬盘X重新插入机器B，启动机器B，即可进入archlinux
 
 如果硬盘X上还有其他操作系统，可编辑/boot/grub/grub.cfg，增加其他启动项
 
-
-# 安装uefi grub
-
-[用Systemd-boot取代GRUB作為Linux的bootloader](https://ivonblog.com/posts/replace-grub-with-systemd-boot/)
-
-[Archlinux安装UEFI Grub](https://blog.csdn.net/puppylpg/article/details/77618180)
-
-实在不行就把uefi里面的csm选项打开
-
-## 准备活动
-
-    pacman -S efibootmgr
-
-## 将磁盘旧的msdos分区表切换为gpt
-
-    sgdisk -g /dev/sda
-
-## efi分区 
-
-磁盘新建一个efi分区（假设为 /dev/sda5），类型为vfat，标识为`boot, esp`
-
-    mount /dev/sda5 /boot
-
-## 修改fstab
-
-    /dev/sda5      	/boot         	vfat      	defaults 0 2
-
-## 设置archlinux引导
-
-blkid 查看 archlinux 根分区的PARTUUID。
-
-编辑 /boot/loader/entries/arch.conf
-
-    title Arch Linux
-    linux	/vmlinuz-linux 
-    initrd	/initramfs-linux.img
-    options root=PARTUUID=xxxxxxxxxx rw quiet splash
-
-编辑 /boot/loader/loader.conf
-
-    default arch
-    timeout 3
-    console-mode max
-
-## 添加windows引导
-
-把windows系统分区下的EFI/Microsoft目录直接拷贝到/boot/EFI/目录下。
-
-## boot目录示例
-
-    $ tree /boot -L 3
-    /boot
-    ├── EFI
-    │   ├── Microsoft
-    │   │   ├── Boot
-    │   │   └── Recovery
-    │   └── systemd
-    │       └── systemd-bootx64.efi
-    ├── initramfs-linux-fallback.img
-    ├── initramfs-linux.img
-    ├── loader
-    │   ├── entries
-    │   │   └── arch.conf
-    │   ├── entries.srel
-    │   ├── loader.conf
-    │   └── random-seed
-    └── vmlinuz-linux
-
-# partclone 分区克隆
+## partclone 分区克隆
 
 [Partclone](https://wiki.archlinux.org/index.php/Partclone_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
 
@@ -809,7 +857,7 @@ blkid 查看 archlinux 根分区的PARTUUID。
     partclone.ext4 -d -r -s sda1_backup.pcl -o /dev/sda1
 
 
-# u盘grub2 + gpt + efi 启动多个live iso
+## U盘: grub2 + gpt + efi 启动多个live iso
 
 [制作BIOS和EFI多启动U盘](https://www.lainme.com/doku.php/blog/2017/07/%E5%88%B6%E4%BD%9Cbios%E5%92%8Cefi%E5%A4%9A%E5%90%AF%E5%8A%A8u%E7%9B%98)
 
@@ -818,7 +866,7 @@ blkid 查看 archlinux 根分区的PARTUUID。
     sudo mount /dev/sdb1 /mnt
     sudo grub-install --target=x86_64-efi --efi-directory=/mnt --boot-directory=/mnt/boot --removable --recheck
     
-## linux live iso
+### linux live iso
 
 将 /dev/sdb2 格式化为ntfs，在其根目录下新建一个image文件夹放live iso，假设有：archlinux.iso, clonezilla.iso，gparted.iso
 
@@ -896,30 +944,3 @@ rootuuid通过`blkid /dev/sdb2`获取
             chainloader (${root})/efi/boot/bootx64.efi 
     }
 
-# virtualbox
-
-参考： [Install VirtualBox on Arch Linux](https://linuxhint.com/install-virtualbox-arch-linux/)
-
-    bios -> cpu 设置 -> 打开 amd-v
-
-    pacman -S virtualbox  选择 virtualbox-host-modules-arch
-
-    pacman -S linux linux-headers
-
-    reboot
-
-    modprobe vboxdrv
-
-    yay -S virtualbox-ext-oracle
-    
-    usermod -G vboxusers -a [username]
-
-# java
-
-查看支持的java版本：
-
-    archlinux-java status
-
-切换java的版本：
-
-    archlinux-java set <JAVA_ENV_NAME>
