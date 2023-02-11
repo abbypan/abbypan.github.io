@@ -70,7 +70,6 @@ mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 {% highlight bash %}
 mount /dev/sda1 /mnt
 pacstrap /mnt base base-devel
-pacstrap /mnt grub-bios
 genfstab -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 {% endhighlight %}
@@ -80,8 +79,6 @@ arch-chroot /mnt
 {% highlight bash %}
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 mkinitcpio -p linux
-grub-install --target i386-pc /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
 exit
 reboot
@@ -600,6 +597,10 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
 
 见：[Archlinux grub2 windows8 (windows7) win8 (win7) 引导设置](http://hi.baidu.com/flashgive/item/b05697120fbf84fc9d778a26)
 
+    pacman -S grub-bios 
+    grub-install --target i386-pc /dev/sda
+    grub-mkconfig -o /boot/grub/grub.cfg
+
 查看windows系统所在分区，假设是 /dev/sda1，即``(hd0,msdos0)``
 
 找出/dev/sda1的uuid：``sudo blkid /dev/sda1``，假设是xxxxxxxxxxxx
@@ -731,11 +732,15 @@ U盘被挂载为/dev/sdb
 
 # 安装uefi grub
 
+[用Systemd-boot取代GRUB作為Linux的bootloader](https://ivonblog.com/posts/replace-grub-with-systemd-boot/)
+
 [Archlinux安装UEFI Grub](https://blog.csdn.net/puppylpg/article/details/77618180)
+
+实在不行就把uefi里面的csm选项打开
 
 ## 准备活动
 
-    pacman -S grub efibootmgr
+    pacman -S efibootmgr
 
 ## 将磁盘旧的msdos分区表切换为gpt
 
@@ -745,21 +750,46 @@ U盘被挂载为/dev/sdb
 
 磁盘新建一个efi分区（假设为 /dev/sda5），类型为vfat，标识为`boot, esp`
 
-假设启动标识为`arch`
-
-    mkdir /boot/efi
-    mount /dev/sda5 /boot/efi
-    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch
-    grub-mkconfig -o /boot/grub/grub.cfg
-    cp /boot/grub/grub.cfg  /boot/efi/EFI/arch/grub/
+    mount /dev/sda5 /boot
 
 ## 修改fstab
 
-    /dev/sda5      	/boot/efi         	vfat      	defaults 0 2
+    /dev/sda5      	/boot         	vfat      	defaults 0 2
 
-## 其他
+## 设置archlinux引导
 
-实在不行就把uefi里面的csm选项打开
+blkid 查看 archlinux 根分区的PARTUUID。
+
+编辑 /boot/loader/entries/arch.conf
+
+    title Arch Linux
+    linux	/vmlinuz-linux 
+    initrd	/initramfs-linux.img
+    options root=PARTUUID=xxxxxxxxxx rw quiet splash
+
+## 添加windows引导
+
+把windows系统分区下的EFI/Microsoft目录直接拷贝到/boot/EFI/目录下。
+
+## boot目录示例
+
+    $ tree /boot -L 3
+    /boot
+    ├── EFI
+    │   ├── Microsoft
+    │   │   ├── Boot
+    │   │   └── Recovery
+    │   └── systemd
+    │       └── systemd-bootx64.efi
+    ├── initramfs-linux-fallback.img
+    ├── initramfs-linux.img
+    ├── loader
+    │   ├── entries
+    │   │   └── arch.conf
+    │   ├── entries.srel
+    │   ├── loader.conf
+    │   └── random-seed
+    └── vmlinuz-linux
 
 # partclone 分区克隆
 
