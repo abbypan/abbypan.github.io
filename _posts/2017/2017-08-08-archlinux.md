@@ -767,6 +767,12 @@ blkid 查看 archlinux 根分区的PARTUUID。
     initrd	/initramfs-linux.img
     options root=PARTUUID=xxxxxxxxxx rw quiet splash
 
+编辑 /boot/loader/loader.conf
+
+    default arch
+    timeout 3
+    console-mode max
+
 ## 添加windows引导
 
 把windows系统分区下的EFI/Microsoft目录直接拷贝到/boot/EFI/目录下。
