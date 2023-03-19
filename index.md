@@ -33,58 +33,67 @@ Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/p
 
 ## OPPO
 
-Responsible:
-- Design/Review Mobile/Wearable/IoT/Chip Device Business Security/Data Security Solution
-- Design Mariana SOC/IoT Chip Security Feature Requirement
-- Design Terminal Cryptography Infrastructure & PKI Security Project
-- Design/Review Connectivity (Mobile/Wearable/IoT) Cybersecurity & Privacy Solution
-- Design Cryptography Compliance Solution for EU GDPR (privacy) and Operator Customized Machine (security)
-- Automotive Cybersecurity Research (Telemetics Connectivity & CCC 3.0 Vehicle Digital Key——BLE/NFC/UWB)
+| Responsible |
+| ----------- |
+| Design/Review Mobile/Wearable/IoT/Chip Device Business Security/Data Security Solution |
+| Design Mariana SOC/IoT Chip Security Feature Requirement |
+| Design Terminal Cryptography Infrastructure & PKI Security Project |
+| Design/Review Connectivity (Mobile/Wearable/IoT) Cybersecurity & Privacy Solution |
+| Design Cryptography Compliance Solution for EU GDPR (privacy) and Operator Customized Machine (security) |
+| Automotive Cybersecurity Research (Telemetics Connectivity & CCC 3.0 Vehicle Digital Key——BLE/NFC/UWB) |
 
-Take part in:
-- Build up Terminal Security Development Lifecycle with Microsoft, DevSecOps
-- Build up OPPO Terminal Cybersecurity Technical Standard/Specification/Guide
-- Cybersecurity Communication with Google
+| Take part in |
+| ------------ |
+| Build up Terminal Security Development Lifecycle with Microsoft, DevSecOps |
+| Build up OPPO Terminal Cybersecurity Technical Standard/Specification/Guide |
+| Cybersecurity Communication with Google |
 
 ## Geely
 
-Responsible for Geely China ( GEEA2.0 Platform ) Cybersecurity Solution Design:
-- Telematics Cloud Platform
-- OTA (Over The Air)
-- Bluetooth DigitalKey (Mobile Phone, Watch)
-- NFC DigitalKey (Card, Mobile Phone, Watch)
-- PKI/OCSP system
-- ECU software signature backend system
-- Pre-sales Key Management Proposal
+| Responsible |
+| ----------- |
+| Geely China ( GEEA2.0 Platform ) Cybersecurity Solution Design |
+| Telematics Cloud Platform Security |
+| OTA (Over The Air)  Security |
+| Bluetooth DigitalKey (Mobile Phone, Watch) Security |
+| NFC DigitalKey (Card, Mobile Phone, Watch) Security |
+| PKI, ECU Cryptography Solution |
+| ECU software signature backend system security |
+| Pre|sales Key Management Proposal |
 
-Take part in:
-- Geely ECU Cybersecurity Statement of Work & Compliance Matrix develop
-- Geely ECU cryptography algorithm clarify
-- GDPR compliance
+| Take part in |
+| ------------ |
+| Geely ECU Cybersecurity Statement of Work & Compliance Matrix develop |
+| Geely ECU cryptography algorithm clarify |
+| GDPR compliance |
 
 ## CNNIC (China Internet Network Information Center)
 
-Responsible:
-- Cybersecurity research on Root, global TLD, .CN and important authority service.
-- Secure analysis on China ISP DNS(telecom, unicom, mobile) , public DNS(like Google 8.8.8.8)service.
-- Security analysis on large DNS accidents in China (2013.08.25 DDoS attack, 2014.01.21 Root Hijack).
-- Cybersecurity protocol research (DNS/BGP/PKI/TLS/Cryptography).
+| Responsible |
+| ----------- |
+| Cybersecurity research on Root, global TLD, .CN and important authority service. |
+| Secure analysis on China ISP DNS(telecom, unicom, mobile) , public DNS(like Google 8.8.8.8)service. |
+| Security analysis on large DNS accidents in China (2013.08.25 DDoS attack, 2014.01.21 Root Hijack). |
+| Cybersecurity protocol research (DNS/BGP/PKI/TLS/Cryptography). |
 
-Take part in:
-- Cyber security inspections on Chinese network critical information infrastructure(CII), Cyber Security Coordinating Bureau under office of the Central Leading Group for Cyberspace Affairs.
-- Propose security evaluation requirements for the DNS on network communications standards association (CCSA, IETF).
-- Member of DNS-OARC, ICANN RSSAC (Root Server System Advisory Committee), ICANN RSSAC Anycast Group.
+| Take part in |
+| ------------ |
+| Cyber security inspections on Chinese network critical information infrastructure(CII), Cyber Security Coordinating Bureau under office of the Central Leading Group for Cyberspace Affairs. |
+| Propose security evaluation requirements for the DNS on network communications standards association (CCSA, IETF). |
+| Member of DNS|OARC, ICANN RSSAC (Root Server System Advisory Committee), ICANN RSSAC Anycast Group. |
 
 ## Tencent
 
-Responsible:
-- Security analysis on Tencent internet service hijack, HTTP In-Flow risk data evaluation (WAF).
-- Security design on Tencent domain hijack detect, alarm strategy design.
+| Responsible |
+| ----------- |
+| Security analysis on Tencent internet service hijack, HTTP In|Flow risk data evaluation (WAF). |
+| Security design on Tencent domain hijack detect, alarm strategy design. |
 
-Take part in:
-- Tencent Security Response Center(TSRC), detect and fix the open source 0day exploits in Tencent.
-- Tencent DDoS defender platform, DNS Attack defend strategy design.
-- Tencent HIDS platform, inner network abnormal flow risk alarm.
+| Take part in |
+| ------------ |
+| Tencent Security Response Center(TSRC), detect and fix the open source 0day exploits in Tencent. |
+| Tencent DDoS defender platform, DNS Attack defend strategy design. |
+| Tencent HIDS platform, inner network abnormal flow risk alarm. |
 
 # Participate
 
