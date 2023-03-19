@@ -149,9 +149,9 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | Skill |
 | ----- |
 | Automotive Security |
-| BGP |
-| BLE |
-| CHIP |
+| BGP Security |
+| BLE Security|
+| Chip Security |
 | Connectivity Digital Car Key |
 | Cryptography |
 | Cybersecurity |
@@ -162,10 +162,10 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | Data Security |
 | Domain Names |
 | Hijack |
-| IP |
+| IP Security |
 | Information Security |
-| IoT |
-| NFC |
+| IoT Security |
+| NFC Security |
 | Network Protocol |
 | Network Security |
 | PKI |
@@ -173,7 +173,7 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | Security Protocol |
 | TLS |
 | Vehicle Security |
-| WIFI |
+| WIFI Security |
 
 ![Mail](assets/img/mail.png) 
 
