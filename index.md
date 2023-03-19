@@ -59,7 +59,7 @@ Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/p
 | NFC DigitalKey (Card, Mobile Phone, Watch) Security |
 | PKI, ECU Cryptography Solution |
 | ECU software signature backend system security |
-| Pre|sales Key Management Proposal |
+| Pre-sales Key Management Proposal |
 
 | Take part in |
 | ------------ |
@@ -80,13 +80,13 @@ Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/p
 | ------------ |
 | Cyber security inspections on Chinese network critical information infrastructure(CII), Cyber Security Coordinating Bureau under office of the Central Leading Group for Cyberspace Affairs. |
 | Propose security evaluation requirements for the DNS on network communications standards association (CCSA, IETF). |
-| Member of DNS|OARC, ICANN RSSAC (Root Server System Advisory Committee), ICANN RSSAC Anycast Group. |
+| Member of DNS-OARC, ICANN RSSAC (Root Server System Advisory Committee), ICANN RSSAC Anycast Group. |
 
 ## Tencent
 
 | Responsible |
 | ----------- |
-| Security analysis on Tencent internet service hijack, HTTP In|Flow risk data evaluation (WAF). |
+| Security analysis on Tencent internet service hijack, HTTP In-Flow risk data evaluation (WAF). |
 | Security design on Tencent domain hijack detect, alarm strategy design. |
 
 | Take part in |
