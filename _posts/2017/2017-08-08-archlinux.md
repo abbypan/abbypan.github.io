@@ -74,7 +74,8 @@ mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 
 {% highlight bash %}
 mount /dev/sda1 /mnt
-pacstrap /mnt base base-devel
+pacstrap /mnt base base-devel dialog vim
+pacstrap /mnt linux linux-headers linux-firmware
 genfstab -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 {% endhighlight %}
@@ -84,7 +85,7 @@ arch-chroot /mnt
 {% highlight bash %}
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 mkinitcpio -p linux
-pacman -S net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog
+pacman -S netctl net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog dhclient dhcpcd dhcpd 
 exit
 reboot
 {% endhighlight %}
@@ -182,6 +183,8 @@ exec ck-launch-session dbus-launch startxfce4
     pacman -S lightdm lightdm-gtk-greeter
     systemctl enable lightdm.service
 
+编辑`~/.xprofile`，内容参考`~/.xinitrc`。
+
 # 硬件驱动
 
 ## 声卡
@@ -278,7 +281,7 @@ thinkpad x1 carbon 2015  在 ~/.xbindkeysrc 中添加：
     XF86WakeUp + F4
 {% endhighlight %}
 
-在.xinitrc中添加：``xbindkeys``
+在~/.xinitrc中添加：``xbindkeys``
 
 ## 热插拔(xfce4)
 
@@ -615,7 +618,6 @@ pacman -S cuetools mp3info wavpack flac mac shntool bchunk
 
     pacman -S virtualbox  选择 virtualbox-host-modules-arch
 
-    pacman -S linux linux-headers
 
     reboot
 
@@ -929,7 +931,7 @@ rootuuid通过`blkid /dev/sdb2`获取
         initrd (loop)/live/initrd.img
     }
 
-## winpe iso
+### winpe iso
 
 直接解压 winpe iso的内容到/dev/sdb2分区的根目录
 
