@@ -17,8 +17,8 @@ Github: [https://github.com/abbypan](https://github.com/abbypan)
 
 | Year | School | Degree | Info |
 | ---- | ------ | ------ | ---- |
-| 2006.9 - 2009.7 | USTC (University of Science and Technology of China) | Information Security  Master | Infonet: [http://if.ustc.edu.cn](http://if.ustc.edu.cn) |
-| 2002.9 - 2006.7 | USTC (University of Science and Technology of China) | Information Security  Bachelor | Cybersec: [http://cybersec.ustc.edu.cn/main.htm](http://cybersec.ustc.edu.cn/main.htm) |
+| 2006 - 2009 | USTC (University of Science and Technology of China) | Information Security  Master | Infonet: [http://if.ustc.edu.cn](http://if.ustc.edu.cn) |
+| 2002 - 2006 | USTC (University of Science and Technology of China) | Information Security  Bachelor | Cybersec: [http://cybersec.ustc.edu.cn/main.htm](http://cybersec.ustc.edu.cn/main.htm) |
 
 # Working Experience
 
