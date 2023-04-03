@@ -3,7 +3,7 @@ layout: post
 category: pastime
 title:  "王安石《游褒禅山记》"
 tagline: ""
-tags: [ "王安石" ] 
+tags: [ "王安石", "语文" ] 
 ---
 {% include JB/setup %}
 

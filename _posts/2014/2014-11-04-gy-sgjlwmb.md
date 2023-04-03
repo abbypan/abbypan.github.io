@@ -1,9 +1,9 @@
 ---
 layout: post
 category : pastime 
-title:  "国语-周语上《召公谏厉王弭谤》"
+title:  "国语: 周语上《召公谏厉王弭谤》"
 tagline: ""
-tags : [ "国语" ] 
+tags : [ "语文" ] 
 ---
 {% include JB/setup %}
 
