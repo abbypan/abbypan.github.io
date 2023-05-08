@@ -44,6 +44,7 @@ Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 
 | Year | Paper | Role |
 | ---- | ---- | ---- |
+| CRIS 2023 | [Enhance Calling Definition Security for Android Custom Permission](https://cosit2023.org/cris/papers)
 | Computing 2022 | [Measuring the Resolution Resiliency of Second-Level Domain Name](https://link.springer.com/chapter/10.1007/978-3-031-10467-1_45) | First Author |
 | Spaccs 2019 | [EPT: EDNS Privacy Tunnel for DNS](https://link.springer.com/chapter/10.1007/978-3-030-24907-6_5) | First Author |
 | QShine 2018 | [Improving Privacy for GeoIP DNS Traffic](https://eudl.eu/doi/10.1007/978-3-030-14413-5_1) | First Author |
@@ -66,7 +67,7 @@ Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 | 2017 IETF draft-pan-dnsop-swild-rr-type | [SWILD RR Type (Wildcard on Intermediate Nameservers)](https://datatracker.ietf.org/doc/draft-pan-dnsop-swild-rr-type) | First Author |
 | 2015 CCSA YD/T 3008-2016 | [域名服务安全状态检测要求](http://www.ccsa.org.cn/standardDetail?title=%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%AE%89%E5%85%A8%E7%8A%B6%E6%80%81%E6%A3%80%E6%B5%8B%E8%A6%81%E6%B1%82&standardNum=YD%2FT%203008-2016) |
 
-# Patent
+# Granted Patent
 
 Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0)
 
@@ -78,8 +79,8 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | CN109831779B | [一种升级包下载方法、装置、服务器、终端及系统 (Upgrade package downloading method, device, server, terminal and system)](https://patents.google.com/patent/CN109831779B) | First Author | 
 | CN111055808B | [售前车辆控制方法及服务器 (Pre-sale vehicle control method and server)](https://patents.google.com/patent/CN111055808B) | First Author | 
 | CN109787774B | [基于数字签名校验的升级下载方法、装置、服务器及终端 (Upgrade downloading method and device based on digital signature verification, server and terminal)](https://patents.google.com/patent/CN109787774B) |  First Author |
-| CN106210165B | [基于NS记录分层授权缓解域名权威记录劫持影响的方法 (Method for relieving domain name authority record hijacking influence based on NS record hierarchical authorization)](https://patents.google.com/patent/CN106210165B) | First Author |
-| CN105704259B | [一种域名权威服务来源ip识别方法和系统 (A kind of domain name authority services source IP recognition methods and system)](https://patents.google.com/patent/CN105704259B) | First Author |
+| CN106210165B | [基于NS记录分层授权缓解域名权威记录劫持影响的方法 (Method for relieving domain name authority record hijacking influence based on NS record hierarchical authorization)](https://patents.google.com/patent/CN106210165B) | Corresponding Author |
+| CN105704259B | [一种域名权威服务来源ip识别方法和系统 (A kind of domain name authority services source IP recognition methods and system)](https://patents.google.com/patent/CN105704259B) | Corresponding Author |
 
 # Skill
 
