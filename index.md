@@ -17,8 +17,8 @@ Github: [https://github.com/abbypan](https://github.com/abbypan)
 
 | Year | School | Degree | Info |
 | ---- | ------ | ------ | ---- |
-| 2006 - 2009 | USTC (University of Science and Technology of China) | Information Security  Master | Infonet: [http://if.ustc.edu.cn](http://if.ustc.edu.cn) |
-| 2002 - 2006 | USTC (University of Science and Technology of China) | Information Security  Bachelor | Cybersec: [http://cybersec.ustc.edu.cn/main.htm](http://cybersec.ustc.edu.cn/main.htm) |
+| 2006 - 2009 | USTC (University of Science and Technology of China) | Master of Information Security | Infonet: [http://if.ustc.edu.cn](http://if.ustc.edu.cn) |
+| 2002 - 2006 | USTC (University of Science and Technology of China) | Bachelor of Information Security | Cybersec: [http://cybersec.ustc.edu.cn/main.htm](http://cybersec.ustc.edu.cn/main.htm) |
 
 # Working Experience
 
@@ -41,6 +41,8 @@ Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/p
 # Paper
 
 Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
+
+ResearchGate: [https://www.researchgate.net/profile/Lanlan-Pan/research](https://www.researchgate.net/profile/Lanlan-Pan/research)
 
 | Year | Paper | Role |
 | ---- | ---- | ---- |
