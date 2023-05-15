@@ -42,8 +42,6 @@ Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/p
 
 Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
 
-ResearchGate: [https://www.researchgate.net/profile/Lanlan-Pan/research](https://www.researchgate.net/profile/Lanlan-Pan/research)
-
 | Year | Paper | Role |
 | ---- | ---- | ---- |
 | CRIS 2023 | [Enhance Calling Definition Security for Android Custom Permission](https://cosit2023.org/cris/papers) | First Author |

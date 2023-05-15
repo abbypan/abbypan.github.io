@@ -76,6 +76,7 @@ mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 mount /dev/sda1 /mnt
 pacstrap /mnt base base-devel dialog vim
 pacstrap /mnt linux linux-headers linux-firmware
+pacstrap /mnt glibc lib32-glibc
 genfstab -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 {% endhighlight %}
