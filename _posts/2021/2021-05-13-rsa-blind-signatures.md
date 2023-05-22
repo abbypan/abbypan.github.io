@@ -12,7 +12,7 @@ tags: [ "rsa", "privacy" ]
 
 # doc 
 
-[rsa blind signature](https://github.com/chris-wood/draft-wood-cfrg-blind-signatures)
+[rsa blind signature](https://datatracker.ietf.org/doc/draft-irtf-cfrg-rsa-blind-signatures/)
 
 [Crypt::RSA::Blind](https://metacpan.org/pod/Crypt::RSA::Blind)
 
@@ -32,19 +32,23 @@ untracable payment
 
 ## blind
 
-假设message为原始消息，根据`EMSA-PSS-ENCODE(msg, kBits - 1) -> OS2IP`转换为m
+假设message为原始消息，加随机prefix变成`input_msg`，根据`EMSA-PSS-ENCODE(input_msg, kBits - 1) -> OS2IP`转换为m。
 
-随机生成mod n的r，求解`r_inv`
+注意m、n应互质。
+
+随机生成mod n的r，求解`r_inv = inverse_mod(r, n)`
 
     x = RSAVP1(pkS, r) = r^e mod n 
     z = m * x mod n
     blinded_msg = I2OSP(z, kLen)
     inv = I2OSP(r_inv, kLen)
 
-## `blind_sign`
+## blindSign
 
     z = OS2IP(blinded_msg)
     blind_s = RSASP1(skS, z) = z^d mod n = (m^d) * (r^e)^d mod n = (m^d) * r mod n
+    z' = RSAVP1(pkS, blind_s)
+    z' == z
     blind_sig = I2OSP(blind_s, kLen)
 
 ## Finalize
