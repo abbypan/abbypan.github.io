@@ -3,7 +3,7 @@ layout: post
 category: tech
 title:  "PQC: hash based signature"
 tagline: ""
-tags: [ "crypto", "hash", "signature" ] 
+tags: [ "crypto", "hash", "signature", "rfc" ] 
 ---
 {% include JB/setup %}
 
@@ -17,6 +17,10 @@ tags: [ "crypto", "hash", "signature" ]
 [Hash-Based Signatures Part I: One-Time Signatures (OTS)](https://cryptoservices.github.io/quantum/2015/12/04/one-time-signatures.html)
 
 [Merkle Signature Schemes, Merkle Trees and Their Cryptanalysis](https://www.emsec.ruhr-uni-bochum.de/media/crypto/attachments/files/2011/04/becker_1.pdf)
+
+[RFC8391: XMSS: eXtended Merkle Signature Scheme](https://datatracker.ietf.org/doc/rfc8391/)
+
+[RFC8554: Leighton-Micali Hash-Based Signatures](https://datatracker.ietf.org/doc/rfc8554/)
 
 # Lamport
 
@@ -93,12 +97,9 @@ sig’ 是此次选用(Xi, Yi)执行单次签名的结果。
 
 # xmss
 
-RFC8391
-
 [Hash-Based Signatures Part IV: XMSS and SPHINCS](https://cryptoservices.github.io/quantum/2015/12/08/XMSS-and-SPHINCS.html)
 
 [XMSS – A Practical Forward Secure Signature Scheme based on Minimal Security Assumptions](https://eprint.iacr.org/2011/484.pdf)
-
 
 [XMSS - A Practical Forward Secure Signature Scheme](https://slideplayer.com/slide/6080497/)
 
