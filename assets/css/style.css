@@ -1,3 +1,10 @@
+/*main.css*/
+li { 
+line-height: 1.4;
+/*margin-bottom: 20px;*/
+/*margin-top: 20px;*/
+}
+
 /*pygments.css*/
 .highlight code,.highlight pre{color:#fdce93;background-color:#3f3f3f}
 .highlight .hll{background-color:#222}
