@@ -9,9 +9,11 @@ tagline: "对孤峰绝顶，云烟竞秀；悬崖峭壁，瀑布争流"
 
 潘蓝兰 (Pan Lanlan)
 
-Mail: abbypan@gmail.com
-
-Github: [https://github.com/abbypan](https://github.com/abbypan)
+| Type | URL |
+| ---- | --- |
+| Mail | abbypan@gmail.com
+| Blog | [https://abbypan.github.io/archive](https://abbypan.github.io/archive)
+| Github | [https://github.com/abbypan](https://github.com/abbypan)
 
 # Education
 
@@ -82,36 +84,14 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | CN106210165B | [基于NS记录分层授权缓解域名权威记录劫持影响的方法 (Method for relieving domain name authority record hijacking influence based on NS record hierarchical authorization)](https://patents.google.com/patent/CN106210165B) | Corresponding Author |
 | CN105704259B | [一种域名权威服务来源ip识别方法和系统 (A kind of domain name authority services source IP recognition methods and system)](https://patents.google.com/patent/CN105704259B) | Corresponding Author |
 
-# Skill
+# Keywords
 
-| Skill |
-| ----- |
-| Automotive Security |
-| BGP Security |
-| BLE Security|
-| Chip Security |
-| Connectivity Digital Car Key |
-| Cryptography |
-| Cybersecurity |
-| Cyberspace Security |
-| DDoS |
-| DNS |
-| Data Privacy |
-| Data Security |
-| Domain Names |
-| Hijack |
-| IP Security |
-| Information Security |
-| IoT Security |
-| NFC Security |
-| Network Protocol |
-| Network Security |
-| PKI |
-| Privacy |
-| Security Protocol |
-| TLS |
-| Vehicle Security |
-| WIFI Security |
+| Experience | Keywords |
+| ---------- | -------- |
+| Terminal Security | Chip, Cryptography, Connectivity, Android, TEE, SecureBoot, IoT, BLE, WiFi, Privacy, Data Security 
+| Automotive Security | Digital Car Key, OTA, Telemetics, TSP, ECU
+| Cyberspace Security | Protocol, DNS, BGP, PKI, Cryptography
+| Cybersecurity | Information Security, DNS, Hijack, DDoS, Network Security, TLS, CDN
 
 ![Mail](assets/img/mail.png) 
 

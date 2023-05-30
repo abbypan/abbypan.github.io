@@ -20,7 +20,7 @@ lsi: false
 title : Home
 tagline : 求福不回，求用不匮
 author :
-  name : 潘蓝兰(Pan Lanlan)
+  name : 潘蓝兰(Pan Lanlan, abbypan@gmail.com)
   email : abbypan@gmail.com
   github : abbypan
   twitter : abbypan
@@ -88,10 +88,10 @@ JB :
   # Set 'provider' to the comment provider you want to use.
   # Set 'provider' to false to turn commenting off globally.
   #
-  comments :
-    provider : disqus
-    disqus :
-      short_name : abbypan
+  #comments :
+    #provider : disqus
+    #disqus :
+      #short_name : abbypan
     #livefyre :
       #site_id : 123
     #intensedebate :
