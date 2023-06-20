@@ -30,9 +30,11 @@ Pixel4 已解bootloader。
 
 线刷在 [Factory Images for Nexus and Pixel Devices](https://developers.google.com/android/images) 下载 Pixel4 的full ota image，例如 flame-tp1a.221005.002-factory-f91d46b5.zip 。
 
-解压已下载的zip文件，执行 flash-all
+解压已下载的zip文件，执行 flash-all, 刷入官方固件。
 
-刷入官方固件。
+[Pixel4-lineageos](https://wiki.lineageos.org/devices/flame/)
+
+[Pixel4-GrapheneOS](https://grapheneos.org/releases#flame-stable)
 
 # 安装Magisk
 
