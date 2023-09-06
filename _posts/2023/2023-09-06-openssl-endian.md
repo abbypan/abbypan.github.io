@@ -24,6 +24,13 @@ openssl v3 之后的 [OSSL_PARAM](https://www.openssl.org/docs/man3.0/man3/OSSL_
 int OSSL_PARAM_set_BN(OSSL_PARAM *p, const BIGNUM *val)
 {% endhighlight %}
 
+[EVP_PKEY_set_bn_param](https://github.com/openssl/openssl/blob/master/crypto/evp/p_lib.c)内部也有类似处理
+
+{% highlight c %}
+int EVP_PKEY_set_bn_param(EVP_PKEY *pkey, const char *key_name,
+                          const BIGNUM *bn)
+{% endhighlight %}
+
 
 # problem 
 
@@ -55,3 +62,5 @@ params[2] = OSSL_PARAM_construct_end();
 
 EVP_PKEY_fromdata(pctx, &pkey, EVP_PKEY_KEYPAIR, params);
 {% endhighlight %}
+
+因此，直接调用`EVP_PKEY_set_bn_param`更简单。
