@@ -16,9 +16,9 @@ openssl v3 之后的 [OSSL_PARAM](https://www.openssl.org/docs/man3.0/man3/OSSL_
 
 处理 OSSL_PARAM_INTEGER, OSSL_PARAM_UNSIGNED_INTEGER
 
-是按native form的，也就是遵守system本身的big endian, little endian
+是按native form的，也就是遵守system本身的big endian, little endian。
 
-因此，[OSSL_PARAM_set_BN](https://github.com/openssl/openssl/blob/master/crypto/params.c) 内部使用`BN_bn2native`将Bignum按转成符合system endian form的raw binary，避免在little endian系统出现大小端兼容问题
+因此，[OSSL_PARAM_set_BN](https://github.com/openssl/openssl/blob/master/crypto/params.c) 内部使用`BN_bn2native`将Bignum按转成符合system endian form的raw binary，避免在little endian系统出现大小端兼容问题。
 
 {% highlight c %}
 int OSSL_PARAM_set_BN(OSSL_PARAM *p, const BIGNUM *val)
