@@ -10,7 +10,11 @@ tags: [ "git" ]
 * TOC
 {:toc}
 
-参考: [How do I delete a commit from a branch?](https://stackoverflow.com/a/46049102)
+# doc
+
+[How do I delete a commit from a branch?](https://stackoverflow.com/a/46049102)
+
+[git rebase](https://www.jianshu.com/p/4a8f4af4e803)
 
 假设branch为patch-1，准备删除commit 1
 
@@ -29,3 +33,5 @@ git指令如下
     git reset --hard b16a1aa
     git merge repair 
     git push -f origin patch-1
+
+或者用 git rebase 处理
