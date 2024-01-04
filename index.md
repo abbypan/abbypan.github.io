@@ -46,7 +46,7 @@ Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 
 | Year | Paper | Role |
 | ---- | ---- | ---- |
-| CRIS 2023 | [Enhance Calling Definition Security for Android Custom Permission](https://aircconline.com/csit/abstract/v13n8/csit130808.html) | First Author |
+| CRIS 2023 | [Enhance Calling Definition Security for Android Custom Permission](https://www.semanticscholar.org/paper/Enhance-Calling-Definition-Security-for-Android-Pan-Qiu/bda0c6f6b79ed591d8c8c36706f53b655f87876c) | First Author |
 | Computing 2022 | [Measuring the Resolution Resiliency of Second-Level Domain Name](https://link.springer.com/chapter/10.1007/978-3-031-10467-1_45) | First Author |
 | Spaccs 2019 | [EPT: EDNS Privacy Tunnel for DNS](https://link.springer.com/chapter/10.1007/978-3-030-24907-6_5) | First Author |
 | QShine 2018 | [Improving Privacy for GeoIP DNS Traffic](https://eudl.eu/doi/10.1007/978-3-030-14413-5_1) | First Author |
@@ -75,6 +75,7 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 
 | Grant No. | Patent | Role |
 | ---- | ------ | ---- |
+| CN111726782B | [一种安全认证方法及系统](https://patents.google.com/patent/CN111726782B) | First Author |
 | CN111194033B | [车内安全通信方法、系统及计算机存储介质(In-vehicle secure communication method, system and computer storage medium)](https://patents.google.com/patent/CN111194033B) | First Author |
 | CN111432373B | [一种安全认证方法、装置及电子设备(Security authentication method and device and electronic equipment)](https://patents.google.com/patent/CN111432373B) | First Author |
 | CN109862099B | [一种升级校验方法、装置、终端及系统(Upgrade checking method, device, terminal and system)](https://patents.google.com/patent/CN109862099B) | First Author | 

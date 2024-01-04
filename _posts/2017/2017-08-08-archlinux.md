@@ -10,35 +10,43 @@ tags: [ "archlinux", "clonezilla" ]
 * toc
 {:toc}
 
+# 制作启动u盘
+
+下载archlinux最新iso文件：http://www.archlinux.org/download/
+
+## ventoy
+
+下载ventoy：https://www.ventoy.net/
+    
+刻录ventoy后，将ventoy分区格式化为ntfs。
+
+直接将archlinux iso文件拷贝到ventoy分区。
+    
+还可以放入 [clonezilla iso](http://drbl.nchc.org.tw/clonezilla/clonezilla-live/download/), [gparted iso](https://gparted.org/livecd.php), [winpe iso](https://www.ibmnb.com/51pe/) 等其他iso。
+
+## dd
+
+linux 环境直接刻录u盘:
+
+    dd bs=4M if=archlinux.iso of=/dev/sdx status=progress && sync
+
+## windows
+
+windows环境直接刻录u盘:
+
+    下载LinuxLive USB Creator：http://www.linuxliveusb.com/
+
 # 初始安装
 
 [How to Install Arch Linux](https://itsfoss.com/install-arch-linux/)
 
 [Arch Linux and Windows 10 (UEFI + Encrypted) Install Guide](https://octetz.com/docs/2020/2020-2-16-arch-windows-install/)
 
-## U盘启动
+## u盘启动
 
-下载archlinux最新iso文件：http://www.archlinux.org/download/
-
-linux 环境刻录u盘:
-
-    dd bs=4M if=archlinux.iso of=/dev/sdx status=progress && sync
-
-windows环境刻录u盘:
-
-    下载LinuxLive USB Creator：http://www.linuxliveusb.com/
-
-修改BIOS，从U盘启动，进入archlinux live
+进入BIOS，从U盘启动，进入archlinux live
 
 ## 设置arch源
-
-编辑/etc/pacman.conf
-
-{% highlight bash %}
-[archlinuxfr]
-SigLevel = Optional TrustAll
-Server = http://repo.archlinux.fr/$arch
-{% endhighlight %}
 
 编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
 
@@ -48,7 +56,7 @@ Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 
 ## 硬盘分区
 
-假设系统硬盘为/dev/sda，这边是SSD
+假设系统硬盘为/dev/sda
 
 执行fdisk /dev/sda进行分区，假设新建的系统分区为/dev/sda1
 
@@ -74,7 +82,7 @@ mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 
 {% highlight bash %}
 mount /dev/sda1 /mnt
-pacstrap /mnt base base-devel dialog vim
+pacstrap /mnt base base-devel dialog vim iwd
 pacstrap /mnt linux linux-headers linux-firmware
 pacstrap /mnt glibc lib32-glibc
 genfstab -p /mnt >> /mnt/etc/fstab
@@ -86,7 +94,7 @@ arch-chroot /mnt
 {% highlight bash %}
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 mkinitcpio -p linux
-pacman -S netctl net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog dhclient dhcpcd dhcpd 
+pacman -S netctl net-tools wpa_actiond wireless_tools wpa_supplicant ifplugd dialog dhclient dhcpcd
 exit
 reboot
 {% endhighlight %}
@@ -145,18 +153,6 @@ ntpdate asia.pool.ntp.org
 pacman -S xorg xorg-xinit consolekit
 {% endhighlight %}
 
-### 安装lxde
-
-{% highlight bash %}
-pacman -S lxde openbox
-{% endhighlight %}
-
-编辑~/.xinitrc
-    
-{% highlight bash %}
-exec lxsession
-{% endhighlight %}
-
 ### 安装XFCE
 
 {% highlight bash %}
@@ -168,23 +164,6 @@ pacman -S xfce4 xfce4-goodies xfce4-notifyd elementary-xfce-icons
 {% highlight bash %}
 exec ck-launch-session dbus-launch startxfce4
 {% endhighlight %}
-
-## 登录管理器
-
-### 登录管理器 slim
-
-    pacman -S slim archlinux-themes-slim
-
-修改 /etc/slim.conf，设置`default_user`
-
-    systemctl enable slim.service
-
-### 登录管理器 lightdm
-
-    pacman -S lightdm lightdm-gtk-greeter
-    systemctl enable lightdm.service
-
-编辑`~/.xprofile`，内容参考`~/.xinitrc`。
 
 # 硬件驱动
 
@@ -287,7 +266,7 @@ thinkpad x1 carbon 2015  在 ~/.xbindkeysrc 中添加：
 ## 热插拔(xfce4)
 
 {% highlight bash %}
-pacman -S ntfs-3g thunar-volman udisks
+pacman -S ntfs-3g thunar-volman udisks2
 pacman -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 {% endhighlight %}
 
@@ -296,6 +275,10 @@ pacman -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 {% highlight bash %}
 /dev/sdb1 /mnt/usb ntfs-3g noauto,users,permissions 0 0
 {% endhighlight %}
+
+挂载示例： 
+
+    $ udisksctl mount -b /dev/sdc1
 
 
 ## 关闭触摸板
@@ -668,6 +651,8 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
 ### 准备活动
 
     pacman -S efibootmgr
+    
+删除某个boot项: efibootmgr -b i -B
 
 ### 将磁盘旧的msdos分区表切换为gpt
 
@@ -776,15 +761,9 @@ menuentry 'Windows 7' {
 
 ## archlinux/windows10 双系统迁移   
 
-### 背景
-
 不拆机，不直接对拷硬盘。
 
 以archlinux, windows10为例。
-
-刻录3个启动u盘：clonezilla，archlinux，winpe。
-
-### 步骤
 
 用clonezilla备份旧机器上的archlinux系统。用winpe的ghost备份旧机器上的window10系统。备份的数据存放在外接移动硬盘。
 
@@ -804,23 +783,13 @@ menuentry 'Windows 7' {
     
 ## 用 clonezilla 迁移 archlinux 系统 
 
-### 环境
-
 假设旧机器为A，archlinux 装在A机器的 /dev/sda1 上
 
 假设新机器为B，B上的硬盘为X
 
 假设想要将 机器A上的archlinux 迁移到 机器B上硬盘X的第2分区
 
-### 制作一个启动U盘
-
-下载：[clonezilla-live-zip](http://drbl.nchc.org.tw/clonezilla/clonezilla-live/download/)
-
-例如windows下可以在解压zip文件的目录中找到 utils\win32\ 的bat，双击即可自动制作U盘
-
-###  复制分区
-
-将启动U盘插入机器A，bios设置从U盘启动，重启机器A进入clonezilla-live
+将clonezilla启动U盘插入机器A，bios设置从U盘启动，重启机器A进入clonezilla-live
 
 A机器的硬盘被挂载为/dev/sda
 
@@ -854,13 +823,12 @@ U盘被挂载为/dev/sdb
 
 [Partclone中的功能](https://linux.cn/article-9426-1.html)
 
-[gparted-live](https://gparted.org/livecd.php)
-
     partclone.ext4 -d -c -s /dev/sda1 -o sda1_backup.pcl
     partclone.ext4 -d -r -s sda1_backup.pcl -o /dev/sda1
 
-
 ## U盘: grub2 + gpt + efi 启动多个live iso
+
+这个比ventoy麻烦
 
 [制作BIOS和EFI多启动U盘](https://www.lainme.com/doku.php/blog/2017/07/%E5%88%B6%E4%BD%9Cbios%E5%92%8Cefi%E5%A4%9A%E5%90%AF%E5%8A%A8u%E7%9B%98)
 
@@ -904,9 +872,10 @@ rootuuid通过`blkid /dev/sdb2`获取
 
     menuentry 'Archlinux' {
         set isopath=/image/archlinux.iso
-        loopback loop ($rootpart)$isopath
-        linux (loop)/arch/boot/x86_64/vmlinuz-linux archisodevice=/dev/loop0 img_dev=$rootpath img_loop=$isopath
-        initrd (loop)/arch/boot/x86_64/archiso.img
+            loopback loop ($rootpart)$isopath
+            set gfxpayload=keep
+            linux (loop)/arch/boot/x86_64/vmlinuz-linux archisodevice=/dev/loop0 findiso=$isopath img_dev=$rootpath img_loop=$isopath
+            initrd (loop)/arch/boot/intel-ucode.img (loop)/arch/boot/amd-ucode.img (loop)/arch/boot/x86_64/initramfs-linux.img 
     }
 
     menuentry 'clonezilla' {
