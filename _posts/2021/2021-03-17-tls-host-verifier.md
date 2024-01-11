@@ -3,14 +3,14 @@ layout: post
 category: tech
 title:  "TLS: host verifier"
 tagline: ""
-tags: [ "tls", "android" ] 
+tags: [ "tls", "android", "rfc" ] 
 ---
 {% include JB/setup %}
 
 * TOC
 {:toc}
 
-# tls verifier
+# android: tls verifier
 
 [AbstractVerifier.java](https://android.googlesource.com/platform/frameworks/base.git/+/master/core/java/org/apache/http/conn/ssl/AbstractVerifier.java)
 
@@ -24,3 +24,9 @@ verify host 与 cert中的域名是否匹配
 
 劫持风险尽出于此。
 
+
+# RFC9525: Service Identity in TLS
+
+为一些周知服务保留相关label关键字，在subjectAltName比较。
+
+例如只有sip服务能叫voice.example.com，不服reject。

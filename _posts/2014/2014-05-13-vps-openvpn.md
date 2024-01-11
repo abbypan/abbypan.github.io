@@ -1,24 +1,14 @@
 ---
 layout: post
 category : "freedom"
-title:  "访问互联网：搭建 openvpn 服务"
+title:  "openvpn"
 tagline: ""
-tags : [ "great.w",  "openvpn" ] 
+tags : [ "proxy",  "openvpn" ] 
 ---
 {% include JB/setup %}
 
 * TOC
 {:toc}
-
-# 说明
-
-配置windows/android/iphone连接openvpn，访问互联网
-
-优点：配置简单，支持多终端一键连接
-
-缺点：连接速度一般都比ssh tunnel慢，有时卡死要重新关掉重连
-
-建议：ios下使用
 
 # server端
 

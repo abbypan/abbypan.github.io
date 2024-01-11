@@ -1,9 +1,9 @@
 ---
 layout: post
 category : "freedom"
-title:  "访问互联网：ssh 远程登陆配置，ssh tunnel配置"
+title:  "ssh tunnel"
 tagline: "socks5 + http proxy"
-tags : [ "great.w", "ssh" ]
+tags : [ "proxy", "ssh" ]
 ---
 {% include JB/setup %}
 
@@ -12,29 +12,21 @@ tags : [ "great.w", "ssh" ]
 
 # 说明
 
-- 安装ssh/plink/putty，本地提供ssh tunnel。本机浏览器、Dropbox等客户端直接使用tunnel。
-- 安装polipo/privoxy，本地提供http proxy，再转发到ssh tunnel。android / ios 手机配置wlan连接使用该http proxy。比openvpn速度快很多。
+安装ssh/plink/putty，本地提供socks tunnel。本机浏览器、Dropbox等客户端直接使用socks tunnel。
 
-优点：稳定，连接比较快
+安装polipo/privoxy，本地提供http proxy，再转发到socks tunnel。android / ios 手机配置wlan连接使用该http proxy。
 
-缺点：配置比较麻烦
-
-建议：android / linux / windows 下使用
+假设远程vps为remote，ip地址为xxx.xxx.xxx.xxx，用户名为someusr，密码为somepasswd
 
 # windows 
 
-## 购买VPS
-
-假设购买的远程vps叫remote，ip地址为xxx.xxx.xxx.xxx，用户名为someusr，密码为somepasswd
-
-## 开启 ssh tunnel
+## socks
 
 下载 [plink](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
 根据用户名、密码登录： ``plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -pw somepasswd``
 
 根据用户名、私钥登录： ``plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -i private.ppk``
-
 
 或者本地新建一个 p.bat 文件，其内容为
 
@@ -44,21 +36,8 @@ tags : [ "great.w", "ssh" ]
 
 双击p.bat，运行，遇到提示信息选择 y (yes)，此时本地端口为8888，不要关闭窗口。
 
-## 浏览器使用ssh tunnel
 
-以firefox为例，下载并安装：[firefox-portable-install](http://portableapps.com/apps/internet/firefox_portable)
-
-打开firefox portable，下载并安装扩展 [foxyproxy](https://addons.mozilla.org/zh-CN/firefox/addon/foxyproxy-standard/)
-
-foxyproxy配置如下：
-
-![firefox-socks](/assets/posts/firefox_socks.png)
-
-![firefox-socks](/assets/posts/firefox_socks2.png)
-
-配置完毕后直接测试访问google。
-
-## 开启 http proxy
+## http proxy
 
 安装 [privoxy](https://www.privoxy.org/)
 
@@ -68,23 +47,22 @@ listen-address 0.0.0.0:9999
 forward-socks5 / 127.0.0.1:8888 .
 {% endhighlight %}
 
-## 使用 http proxy
+## 将文本形式的私钥文件 remote_rsa.key 转换成 putty可用的ppk文件
 
-假设本地开启http proxy的机器内网ip为 192.168.1.111
+打开 PuTTYgen
 
-android 无线配置：在wlan ssid名称处长按，选择“高级选项”，填入本地http proxy地址 192.168.1.111 、端口 9999。
+选择conversions -> import key，载入 remote_rsa
 
-android 指定某些app使用proxy：可安装 [ProxyDroid](https://play.google.com/store/apps/details?id=org.proxydroid)，需要root权限
+选择save private key，生成 private.ppk
 
-ios配置与android类似。
+![puttygen](/assets/posts/puttygen.jpg)
+
 
 # linux
 
-## ssh tunnel
+## socks
 
 ``ssh someusr@remote -N -D 127.0.0.1:8888 -F ~/.ssh/config``
-
-android 安装 sshtunnel app，配置host相关信息即可
 
 ## http proxy
 
@@ -104,15 +82,39 @@ socksProxyType = socks5
 
 直接执行``sudo polipo``即可成功开启本地http proxy
 
-## 使用 http proxy
+# android
+
+安装 sshtunnel app，配置host相关信息
 
 假设本地开启http proxy的机器内网ip为 192.168.1.111
+
+android 无线配置：在wlan ssid名称处长按，选择“高级选项”，填入本地http proxy地址 192.168.1.111 、端口 9999。
+
+android 指定某些app使用proxy：可安装 [ProxyDroid](https://play.google.com/store/apps/details?id=org.proxydroid)，需要root权限
+
+ios配置与android类似。
+
+# curl
+
+假设本地开启proxy的机器内网ip为 192.168.1.111
 
 ``curl -x http://192.168.1.111:9999  https://ipinfo.io``
 
 ``curl -x socks5://192.168.1.111:8888  https://ipinfo.io``
 
-# PAC代理配置文件
+# 浏览器
+
+以firefox为例。
+
+打开firefox，下载并安装扩展 [foxyproxy](https://addons.mozilla.org/zh-CN/firefox/addon/foxyproxy-standard/)
+
+foxyproxy配置如下：
+
+![firefox-socks](/assets/posts/firefox_socks.png)
+
+![firefox-socks](/assets/posts/firefox_socks2.png)
+
+配置完毕后直接测试访问google。
 
 ## 浏览器pac文件示例（黑名单），默认直连
 
@@ -190,13 +192,11 @@ function FindProxyForURL(url, host) {
 
 # 使用ssh进行远程登录
 
-## 输密码
-
-### 每次手动输密码
+## 每次手动输密码
 
 ssh xxx.xxx.xxx.xxx -l someusr
 
-### 直接命令行传密码
+## 直接命令行传密码
 
 需要预先安装 sshpass
 
@@ -204,36 +204,34 @@ sshpass -p somepasswd ssh someusr@xxx.xxx.xxx.xxx
 
 ## 不输密码（公钥认证）
 
-在本地用ssh-keygen -t rsa生成 remote_rsa/remote_rsa.pub的密钥对，要求输passphrase时可以置空，不然登录的时候虽然不用输密码，passphrase又逃不掉了。
+本地用ssh-keygen -t rsa生成 remote_rsa/remote_rsa.pub的密钥对，要求输passphrase时可以置空。
 
 把本地生成的remote_rsa.pub传到remote上的/home/someusr/.ssh/目录下，并改名为authorized_keys。
 
-在本地用``ssh -i remote_rsa someusr@xxx.xxx.xxx.xxx``命令进行远程登录。 
+本地使用``ssh -i remote_rsa someusr@xxx.xxx.xxx.xxx``命令进行远程登录。
 
-### 存入配置文件
-
-也可以写入本地``~/.ssh/config``文件，后续可以用 ssh someusr@remote 直接登陆
+本地``~/.ssh/config``配置私钥，后续可以用 ssh someusr@remote 直接登陆
 
 注意remote_rsa是私钥
 
-    Host remote
+        Host remote
         HostName xxx.xxx.xxx.xxx
         Port 22
         User someusr
         IdentityFile ~/.ssh/remote_rsa
 
 
-### 批量免登陆
+## 批量免登陆
 
 批量指定多台机器免登陆
 
 ```
 Host *.xxx.com
-    IdentityFile ~/.ssh/remote_rsa
-    User someusr
+IdentityFile ~/.ssh/remote_rsa
+User someusr
 ```
 
-### 多层ssh
+## 多层ssh
 
 参考：[transparent multi hop](http://sshmenu.sourceforge.net/articles/transparent-mulithop.html)
 
@@ -272,7 +270,6 @@ ansible需要配置 /etc/ansible/hosts，例如
     [multihop:vars]
     ansible_ssh_common_args = -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=300s -o ServerAliveInterval=60 -o ProxyCommand="ssh -q middle.xxx.com nc -q0 %h 23456"
 
-
 ## ssh 保持连接
 
 参考 [Keep Your Linux SSH Session From Disconnecting](http://www.howtogeek.com/howto/linux/keep-your-linux-ssh-session-from-disconnecting/)，在``~/.ssh/config``中添加
@@ -286,14 +283,4 @@ Host *
     rsync --progress -avzu --delete remote_usr@remote.xxx.com:/var/remote/ /var/local
 
     sshpass -p "remote_passwd" rsync --progress -avzu --delete -e ssh remote_usr@remote.xxx.com:/var/remote/ /var/local
-
-## 将文本形式的私钥文件 remote_rsa.key 转换成 putty可用的ppk文件
-
-打开 PuTTYgen
-
-选择conversions -> import key，载入 remote_rsa
-
-选择save private key，生成 private.ppk
-
-![puttygen](/assets/posts/puttygen.jpg)
 

@@ -81,6 +81,24 @@ BCP38，近源处置
 
 没有DNSSEC, DNSCrypt, DNSCurve，又或Registrar失守，递归被骗，如何处治？
 
+the logic of hijack location
+
+resolution path : user PC -> ISP recursive / Public recursive -> authoritative ( root, TLD, SLD )
+
+client : PC host file
+
+recursive : the geolocation distribution of influnence clients
+
+recursive : the type distribution of influnence recursive servers, public/isp/company
+
+SLD : the influnence domain type distribution
+
+TLD : the truncate difference of TLD, com/net/cn/...
+
+important business domain authoritative server : same NS, different domain's resolution
+
+recursive log of important business domain : in NS TTL expiration, same hot business domain resolution
+
 ## 2010.01 百度NS事件
 
 主动监测，Glue变更锁定，设法延长未过期NS的递归针对热点域名的有效时长

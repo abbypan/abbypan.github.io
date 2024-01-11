@@ -151,3 +151,9 @@ dig testxxx.com -t ns +trace 从根开始问到底，中间在com.处返回ns.ne
 ## RFC2845: tsig
 
 tsig 对dns消息做认证：http://backreference.org/2010/01/24/dns-security-tsig/
+
+## RFC9471: DNS Glue Requirements in Referral Responses
+
+权威注意返回所有glue，防cycle。
+
+message size太大就TC=1。
