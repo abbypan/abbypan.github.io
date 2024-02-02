@@ -580,7 +580,21 @@ pacman -S firefox firefox-i18n-zh-cn freshplayerplugin pepper-flash chromium
 pacman -S dnsutils traceroute wireshark-gtk
 {% endhighlight %}
 
-## 音乐
+## yay
+
+    cd /tmp
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin
+    makepkg -si
+
+## deb
+
+    yay -S debtap
+    sudo debtap -u
+    debtap xxx.deb
+    sudo pacman -U xxx.zst
+
+## music
 
 [cue_splitting](https://wiki.archlinux.org/index.php/CUE_Splitting)
 
