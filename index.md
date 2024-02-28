@@ -64,17 +64,18 @@ Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 
 Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0)
 
-| Grant No. | Patent | Role |
-| ---- | ------ | ---- |
-| CN111726782B | [一种安全认证方法及系统](https://patents.google.com/patent/CN111726782B) | First Author |
-| CN111194033B | [车内安全通信方法、系统及计算机存储介质(In-vehicle secure communication method, system and computer storage medium)](https://patents.google.com/patent/CN111194033B) | First Author |
-| CN111432373B | [一种安全认证方法、装置及电子设备(Security authentication method and device and electronic equipment)](https://patents.google.com/patent/CN111432373B) | First Author |
-| CN109862099B | [一种升级校验方法、装置、终端及系统(Upgrade checking method, device, terminal and system)](https://patents.google.com/patent/CN109862099B) | First Author | 
-| CN109831779B | [一种升级包下载方法、装置、服务器、终端及系统 (Upgrade package downloading method, device, server, terminal and system)](https://patents.google.com/patent/CN109831779B) | First Author | 
-| CN111055808B | [售前车辆控制方法及服务器 (Pre-sale vehicle control method and server)](https://patents.google.com/patent/CN111055808B) | First Author | 
-| CN109787774B | [基于数字签名校验的升级下载方法、装置、服务器及终端 (Upgrade downloading method and device based on digital signature verification, server and terminal)](https://patents.google.com/patent/CN109787774B) |  First Author |
-| CN106210165B | [基于NS记录分层授权缓解域名权威记录劫持影响的方法 (Method for relieving domain name authority record hijacking influence based on NS record hierarchical authorization)](https://patents.google.com/patent/CN106210165B) | Corresponding Author |
-| CN105704259B | [一种域名权威服务来源ip识别方法和系统 (A kind of domain name authority services source IP recognition methods and system)](https://patents.google.com/patent/CN105704259B) | Corresponding Author |
+| Granted Year | Grant No. | Patent | Role |
+| ------------ | --------- | ------ | ---- |
+| 2024 | CN111970115B | [一种数字钥匙的校验方法、装置、系统及终端](https://patents.google.com/patent/CN111970115B) | First Author |
+| 2023 | CN111726782B | [一种安全认证方法及系统](https://patents.google.com/patent/CN111726782B) | First Author |
+| 2023 | CN111194033B | [车内安全通信方法、系统及计算机存储介质(In-vehicle secure communication method, system and computer storage medium)](https://patents.google.com/patent/CN111194033B) | First Author |
+| 2022 | CN111432373B | [一种安全认证方法、装置及电子设备(Security authentication method and device and electronic equipment)](https://patents.google.com/patent/CN111432373B) | First Author |
+| 2022 | CN109862099B | [一种升级校验方法、装置、终端及系统(Upgrade checking method, device, terminal and system)](https://patents.google.com/patent/CN109862099B) | First Author | 
+| 2021 | CN109831779B | [一种升级包下载方法、装置、服务器、终端及系统 (Upgrade package downloading method, device, server, terminal and system)](https://patents.google.com/patent/CN109831779B) | First Author | 
+| 2021 | CN111055808B | [售前车辆控制方法及服务器 (Pre-sale vehicle control method and server)](https://patents.google.com/patent/CN111055808B) | First Author | 
+| 2021 | CN109787774B | [基于数字签名校验的升级下载方法、装置、服务器及终端 (Upgrade downloading method and device based on digital signature verification, server and terminal)](https://patents.google.com/patent/CN109787774B) |  First Author |
+| 2020 | CN106210165B | [基于NS记录分层授权缓解域名权威记录劫持影响的方法 (Method for relieving domain name authority record hijacking influence based on NS record hierarchical authorization)](https://patents.google.com/patent/CN106210165B) | Corresponding Author |
+| 2019 | CN105704259B | [一种域名权威服务来源ip识别方法和系统 (A kind of domain name authority services source IP recognition methods and system)](https://patents.google.com/patent/CN105704259B) | Corresponding Author |
 
 # Standard
 
