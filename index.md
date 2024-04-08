@@ -55,10 +55,10 @@ Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 | NDSS DNS Privacy Workshop 2017 | [EIL: Dealing with the Privacy Problem of ECS](https://dnsprivacy.org/ndss_dns_privacy_workshop/2017_ndss_dns_privacy_workshop/) |
 | IEEE APNOMS 2016 | [Mitigating DDoS Attacks towards Top Level Domain Name Service](https://ieeexplore.ieee.org/document/7737252/) |
 | IEEE ISCC 2016 | [Dealing with temporary domain name issues in the DNS](https://ieeexplore.ieee.org/document/7543831/) |
-| 计算机应用研究 2016 |  [一种评估DNS根镜像服务的方法](http://www.arocmag.com/) |
-| 计算机应用研究 2015 | [一种快速评估DDOS攻击对DNS权威服务影响的方法](https://coaa.istic.ac.cn/openJournal/periodicalArticle/0120160104856710) |
-| 通信技术 2010 | [基于兴趣相似度的协作式垃圾邮件过滤方案](https://r.cnki.net/kcms/detail/detail.aspx?filename=TXJS201002043&dbcode=CRJT_CJFD&dbname=CJFD2010&v=) |
-| Masters Dissertation 2009 | [协作式垃圾邮件过滤技术研究](https://t.cnki.net/kcms/detail?v=IAiCDjVhe6dsElFisRqkySpL_U3iOAgn7XA87f-fHLoh0cA1ngrxmA0ebS6wZ_LiCilvljWwpihvYyjupk1o_hTowrAu2cvI7kPoEwlHlUarWHpnAHl6bg==&uniplatform=NZKPT&language=gb) |
+| 计算机应用研究 2016 |  [一种评估DNS根镜像服务的方法](https://www.researchgate.net/publication/370353433_An_Evaluation_Method_for_DNS_Root_Service_Quality_yizhongpingguDNSgenfuwuzhiliangdefangfa) |
+| 计算机应用研究 2015 | [一种快速评估DDOS攻击对DNS权威服务影响的方法](https://www.nstl.gov.cn/paper_detail.html?id=1c1ad8061cf831041024b20411140f2b) |
+| 通信技术 2010 | [基于兴趣相似度的协作式垃圾邮件过滤方案](https://www.nstl.gov.cn/paper_detail.html?id=bb55d46f48b9563963e96e6d88bef130) |
+| Masters Dissertation 2009 | [协作式垃圾邮件过滤技术研究](https://www.nstl.gov.cn/paper_detail.html?id=7d50c4e269f1b6a5635b33dc913945f4) |
 
 # Granted Patent
 
@@ -66,6 +66,7 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 
 | Granted Year | Grant No. | Patent |
 | ------------ | --------- | ------ |
+| 2024 | US11924635B2 | [Security authentication method and apparatus thereof, and electronic device](https://patents.google.com/patent/US11924635B2/) |
 | 2024 | CN114979071B | [动态域名配置方法、装置、电子设备及存储介质 (Dynamic domain name configuration method, device, electronic equipment and storage medium)](https://patents.google.com/patent/CN114979071B) |
 | 2024 | CN111970115B | [一种数字钥匙的校验方法、装置、系统及终端 (Digital key verification method, device, system and terminal)](https://patents.google.com/patent/CN111970115B) |
 | 2023 | CN111726782B | [一种安全认证方法及系统 (Security authentication method and system)](https://patents.google.com/patent/CN111726782B) |
