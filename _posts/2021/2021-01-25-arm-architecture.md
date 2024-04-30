@@ -1,6 +1,6 @@
 ---
 layout: post
-category: arm
+category: chip
 title:  "Arm: Introducing the Arm architecture"
 tagline: ""
 tags: [ "arm" ] 

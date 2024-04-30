@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "Linux : 用 sendemail 指定 发件人，并发送带附件的邮件"
 tagline: "sendEmail"
 tags : [ "sendemail", "mail", "smtp" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: program
 title:  "Eclipse + Maven 新建 java project，导出可执行的jar"
 tagline: ""
 tags: [ "java", "eclipse", "maven", "jar" ] 

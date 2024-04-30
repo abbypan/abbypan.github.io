@@ -1,6 +1,6 @@
 ---
 layout: post
-category: arm
+category: chip
 title:  "ARM: PAC, BTI, MTE"
 tagline: ""
 tags: [ "arm" ] 

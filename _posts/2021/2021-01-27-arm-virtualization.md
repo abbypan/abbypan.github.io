@@ -1,6 +1,6 @@
 ---
 layout: post
-category: arm
+category: chip
 title:  "Arm: virtualization"
 tagline: ""
 tags: [ "arm" ] 

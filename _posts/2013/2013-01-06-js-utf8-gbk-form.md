@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "javascript ：从utf8页面选取内容提交到只接收gbk编码的表单乱码的问题"
 tagline: ""
 tags : [ "utf8", "gbk", "form", "js", "firefox", "chrome" ] 

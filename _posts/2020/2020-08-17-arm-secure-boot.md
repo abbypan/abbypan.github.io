@@ -1,6 +1,6 @@
 ---
 layout: post
-category: arm
+category: chip
 title:  "Arm: Trusted Board Boot Requirements CLIENT (TBBR-CLIENT) Armv8-A"
 tagline: ""
 tags: [ "arm", "chip" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: arm
+category: chip
 title:  "arm aarch64交叉编译，支持openssl"
 tagline: ""
 tags: [ "openssl", "arm" ] 

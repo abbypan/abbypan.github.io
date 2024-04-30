@@ -1,6 +1,6 @@
 ---
 layout: post
-category: arm
+category: chip
 title:  "Arm: Exception Model"
 tagline: ""
 tags: [ "arm" ] 

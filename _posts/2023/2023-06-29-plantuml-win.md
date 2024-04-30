@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: program
 title:  "windows下安装plantuml"
 tagline: ""
 tags: [ "plantuml", "java", "graphviz" ] 
