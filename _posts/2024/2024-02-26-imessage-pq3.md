@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "imessage pq3"
 tagline: ""
 tags: [ "crypto", "apple" ] 

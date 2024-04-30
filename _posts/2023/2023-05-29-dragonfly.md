@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "RFC7664: Dragonfly Key Exchange"
 tagline: ""
 tags: [ "dragonfly", "pake", "cfrg", "rfc" ] 

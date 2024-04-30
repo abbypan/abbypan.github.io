@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "hash to curve"
 tagline: ""
 tags: [ "crypto" ] 

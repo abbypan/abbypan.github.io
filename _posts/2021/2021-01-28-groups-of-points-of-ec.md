@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "Groups of Points of Elliptic Curves"
 tagline: ""
 tags: [ "crypto" ] 

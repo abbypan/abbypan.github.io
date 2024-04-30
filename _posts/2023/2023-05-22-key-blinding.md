@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "Key Blinding for Signature Schemes"
 tagline: ""
 tags: [ "ietf", "signature", "crypto" ] 

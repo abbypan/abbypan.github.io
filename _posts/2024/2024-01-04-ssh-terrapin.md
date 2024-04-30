@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "SSH: TerrapinAttack"
 tagline: ""
 tags: [ "ssh", "attack" ] 
