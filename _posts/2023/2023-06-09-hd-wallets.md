@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "HD Wallets"
 tagline: ""
 tags: [ "bitcoin", "wallet" ] 
