@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "crypto key"
 tagline: ""
 tags: [ "key" ] 

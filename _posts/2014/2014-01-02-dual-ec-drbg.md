@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: crypto
 title:  "Dual_EC_DRBG 随机数生成算法 NSA后门"
 tagline: "crypt"
 tags : ["crypt", "security", "ecc", "nist", "nsa", "backdoor" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "openssl OSSL_PARAM 的 endian 处理"
 tagline: ""
 tags: [ "openssl" ] 

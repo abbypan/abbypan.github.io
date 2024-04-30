@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "RFC8235: Schnorr Non-interactive Zero-Knowledge Proof"
 tagline: ""
 tags: [ "rfc", "zkp" ] 

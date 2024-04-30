@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "google chart 画图"
 tagline: "解析文本"
 tags : [ "chart" ] 
