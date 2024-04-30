@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: program
 title:  "ggplot2 : scale axis 调整坐标轴"
 tagline: ""
 tags: [ "r", "ggplot2", "axis" ] 

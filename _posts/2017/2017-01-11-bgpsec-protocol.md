@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: network
 title:  "RFC: RPKI & BGPsec"
 tagline: ""
 tags: [ "security", "bgp", "rpki", "ietf" ]
