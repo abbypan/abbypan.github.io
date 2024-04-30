@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "TLS Raccoon Attack"
 tagline: ""
 tags: [ "tls", "attack" ] 

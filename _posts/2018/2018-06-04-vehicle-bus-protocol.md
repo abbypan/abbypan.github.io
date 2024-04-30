@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: automotive
 title:  "Vehicle Bus Protocol: CAN, LIN, FlexRay, MOST"
 tagline: ""
 tags: [ "vehicle", "can", "lin", "flexray", "most" ] 

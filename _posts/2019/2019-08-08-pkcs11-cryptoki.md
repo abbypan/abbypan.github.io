@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "PKCS#11 Cryptographic Token Interface"
 tagline: ""
 tags: [ "pkcs", "cryptoki" ] 

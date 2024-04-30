@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "PKCS #15 v1.1: Cryptographic Token Information Syntax"
 tagline: ""
 tags: [ "pkcs" ] 

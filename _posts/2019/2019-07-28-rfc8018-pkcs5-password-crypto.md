@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "RFC8018 PKCS#5 Password-Based Cryptography Specification"
 tagline: ""
 tags: [ "rfc", "pkcs", "password" ] 

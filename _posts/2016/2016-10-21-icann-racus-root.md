@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "dns root: ICANN RSSAC Root Scheme Analysis"
 tagline: ""
 tags: [ "root", "icann", "dns" ] 

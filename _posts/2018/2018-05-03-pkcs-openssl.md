@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "ASN.1, Certificate, PKCS, openssl"
 tagline: ""
 tags: [ "pki", "certificate", "x509v3", "openssl", "pkcs", "rsa" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "RFC6408: Diameter S-NAPTR"
 tagline: ""
 tags: [ "dns", "ietf", "rr" ] 

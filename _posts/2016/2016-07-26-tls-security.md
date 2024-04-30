@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "TLS token binding 安全扩展"
 tagline: ""
 tags: [ "tls", "security" ] 

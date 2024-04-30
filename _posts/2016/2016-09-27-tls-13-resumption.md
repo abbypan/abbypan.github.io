@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "笔记 ：TLS 1.3 & TLS 1.2 Handshake & Resumption "
 tagline: ""
 tags: [ "tls", "crypt", ] 

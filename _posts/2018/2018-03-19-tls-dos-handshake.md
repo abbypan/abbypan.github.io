@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "Extension for protecting (D)TLS handshakes against Denial of Service"
 tagline: ""
 tags: [ "tls", "security" ] 

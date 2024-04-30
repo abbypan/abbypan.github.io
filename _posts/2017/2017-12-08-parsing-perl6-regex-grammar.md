@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: program
 title:  "Parsing with Perl 6 Regexes and Grammars"
 tagline: "Moritz Lenz"
 tags: [ "perl6" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "TLS record layer 与 handshake layer 的 protocol version mismatch"
 tagline: ""
 tags: [ "tls" ] 

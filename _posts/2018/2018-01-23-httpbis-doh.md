@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "httpbis ORIGIN & Secondary Certificate Authentication ; DNS DOH"
 tagline: ""
 tags: [ "dns", "http" ] 

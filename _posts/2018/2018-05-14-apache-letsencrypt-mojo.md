@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: program
 title:  "apache环境下perl Mojolicious站点letsencrypt证书renew失败的问题"
 tagline: ""
 tags: [ "letsencrypt", "tls", "apache", "perl" ] 

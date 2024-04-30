@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: automotive
 title:  "Automotive Security"
 tagline: ""
 tags: [ "automotive", "vehicle" ] 

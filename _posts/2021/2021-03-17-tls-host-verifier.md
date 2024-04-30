@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "TLS: host verifier"
 tagline: ""
 tags: [ "tls", "android", "rfc" ] 

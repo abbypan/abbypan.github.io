@@ -3,7 +3,7 @@ layout: post
 category : tech
 title:  "hash : 构造冲突串使hash退化为链表"
 tagline: ""
-tags : [ "hash" , "perl", "security" ] 
+tags : [ "hash" , "perl", "security", "attack" ] 
 ---
 {% include JB/setup %}
 
