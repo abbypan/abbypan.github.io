@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "一些 dns draft 笔记"
 tagline: "note"
 tags : [ "dns", "ietf", "ietf" ] 

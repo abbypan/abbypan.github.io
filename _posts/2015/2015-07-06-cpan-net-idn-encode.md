@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "cpan : Net::IDN::Encode 中文域名punycode转换"
 tagline: ""
 tags : [ "domain", "cpan", "perl", "idn", "punycode" ] 

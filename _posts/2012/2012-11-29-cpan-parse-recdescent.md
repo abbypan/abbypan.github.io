@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "perl Parse::RecDescent 递归下降解析文本"
 tagline: "parser"
 tags : ["perl", "cpan", "parse" ] 

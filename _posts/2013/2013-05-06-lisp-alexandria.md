@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "Lisp 库 Alexandria Manual"
 tagline: "笔记"
 tags : [ "lisp", "alexandria" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "draft: IPSECA"
 tagline: ""
 tags : [ "dns", "rr" ] 

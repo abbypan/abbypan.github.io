@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "recursive resolver: 递归DNS"
 tagline: ""
 tags : [ "dns", "recursive" ] 

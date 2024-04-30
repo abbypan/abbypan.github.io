@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "rebol tips"
 tagline: "笔记"
 tags : [ "rebol" ] 

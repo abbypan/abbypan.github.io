@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "draft: confidential dns"
 tagline: ""
 tags : [ "dns", "rr" ] 

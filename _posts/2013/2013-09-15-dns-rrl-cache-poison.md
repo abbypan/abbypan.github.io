@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "DNS Security: RRL <=> CACHE POISON"
 tagline: "dns"
 tags : ["dns", "security"] 

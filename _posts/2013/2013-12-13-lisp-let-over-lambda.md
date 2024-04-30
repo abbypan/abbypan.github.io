@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "Let Over Lambda"
 tagline: "笔记"
 tags : ["lisp" ] 

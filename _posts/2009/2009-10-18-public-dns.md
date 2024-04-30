@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "public recursive resolver: 公共递归DNS服务器"
 tagline: ""
 tags : [ "recursive", "dns"]

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "DNS : disposable domain query 临时域名查询"
 tagline: "note"
 tags : [ "dns", "recursive" ] 

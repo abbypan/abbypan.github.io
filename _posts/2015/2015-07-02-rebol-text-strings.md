@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "rebol 笔记: 字符串处理函数"
 tagline: ""
 tags : [ "rebol" ] 

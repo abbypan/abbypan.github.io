@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "draft: pmta 基于DANE的安全支付方案"
 tagline: ""
 tags : [ "security", "dns", "bitcoin" ] 

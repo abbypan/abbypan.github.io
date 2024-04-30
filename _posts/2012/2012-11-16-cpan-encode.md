@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "perl Encode 字符集编码解码"
 tagline: "charset"
 tags : ["perl", "cpan", "encode", "unicode", "mysql", "json", "cp936", "utf8", "gbk", "gb2312" ] 

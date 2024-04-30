@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "DNS Security : DDoS, Hijack, Configure Error, Management 安全事件" 
 tagline: ""
 tags : ["dns", "security"]

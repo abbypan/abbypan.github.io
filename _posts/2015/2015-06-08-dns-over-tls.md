@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "draft: TLS for DNS"
 tagline: ""
 tags : [ "dns", "encrypt", "ietf" ] 

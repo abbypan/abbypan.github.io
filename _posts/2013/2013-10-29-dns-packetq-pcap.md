@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "dns software: pcap 拆包"
 tagline: ""
 tags : [ "dns", "software" ] 

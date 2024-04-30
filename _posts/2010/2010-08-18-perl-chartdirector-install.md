@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "ChartDirector 安装 （Perl版）"
 tagline: "解析文本"
 tags : ["perl", "chart", "ChartDirector", "pie" ] 

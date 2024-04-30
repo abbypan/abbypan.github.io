@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "Book: Pro DNS and BIND"
 tagline: "笔记"
 tags : [ "dns", "bind" ] 

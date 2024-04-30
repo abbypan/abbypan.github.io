@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "Wireshark 解析 DNS 数据包的细节"
 tagline: "dns"
 tags : ["wireshark", "dns", "drill", "dig" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title: "authoritative server: 权威DNS"
 tagline: ""
 tags: [ "dns", "authoritative" ] 

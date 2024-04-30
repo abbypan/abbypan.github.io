@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "语法解析相关：REGEX 正则，BNF，RPN"
 tagline: "解析文本"
 tags : ["perl", "regex", "bnf", "rebol", "rpn", "parse" ] 

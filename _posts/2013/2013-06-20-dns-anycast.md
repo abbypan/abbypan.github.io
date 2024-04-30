@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "DNS Root & Anycast"
 tagline: ""
 tags : [ "dns", "root", "anycast" ] 

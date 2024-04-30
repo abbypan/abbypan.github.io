@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "Perl : RTF::Writer 生成rtf文件"
 tagline: ""
 tags : [ "perl", "cpan", "rtf" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "RFC 6891 : DNS  EDNS0"
 tagline: "笔记"
 tags : ["ietf", "dns", "edns0"] 

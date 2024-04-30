@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "rebol 笔记: 嵌套函数 nesting function"
 tagline: "指针"
 tags : [ "rebol" ] 

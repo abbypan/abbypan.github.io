@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "Perl Web::Scraper 结构化提取网页内容"
 tagline: "crawler"
 tags : [ "perl", "cpan", "web", "crawler" ] 

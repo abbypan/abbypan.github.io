@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "draft: dns cookies"
 tagline: ""
 tags : [ "dns", "rfc" ] 

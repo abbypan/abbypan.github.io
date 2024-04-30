@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "common lisp 的正则库 cl-ppcre"
 tagline: ""
 tags : [ "lisp", "regex" ] 

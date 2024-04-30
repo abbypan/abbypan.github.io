@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: dns
 title:  "dns : dnssec, nsec(3),  nxdomain"
 tagline: "note"
 tags : [ "dns", "nsec", "nxdomain", "dnssec" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category: program
 title:  "Perl : Gearman 分发任务"
 tagline: "distribute job"
 tags : [ "cpan", "perl", "gearman", "job", "task" ] 
