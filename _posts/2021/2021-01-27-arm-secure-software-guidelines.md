@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: arm
 title:  "Arm: Secure software guidelines"
 tagline: ""
 tags: [ "arm" ] 

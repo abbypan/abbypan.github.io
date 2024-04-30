@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "BLS Signatures"
 tagline: ""
 tags: [ "ietf", "bls", "crypto", "blockchain" ] 

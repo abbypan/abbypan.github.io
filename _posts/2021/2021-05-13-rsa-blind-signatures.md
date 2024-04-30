@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "RSA Blind Signature"
 tagline: ""
 tags: [ "rsa", "privacy" ] 

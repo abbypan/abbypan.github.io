@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "PQC: code based"
 tagline: ""
 tags: [ "crypto", "pqc", "goppa", "mceliece" ] 

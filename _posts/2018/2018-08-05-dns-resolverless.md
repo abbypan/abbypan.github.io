@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "笔记：Resolverless DNS"
 tagline: ""
 tags: [ "dns" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "falcon"
 tagline: ""
 tags: [ "pqc" ] 

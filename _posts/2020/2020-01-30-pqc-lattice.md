@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "PQC: Lattice-based"
 tagline: ""
 tags: [ "crypto", "lattice" ] 

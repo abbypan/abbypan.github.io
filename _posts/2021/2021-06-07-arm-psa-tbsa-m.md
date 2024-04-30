@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: arm
 title:  "PSA TBSA-M: Arm Platform Security Architecture Trusted Base System Architecture"
 tagline: ""
 tags: [ "arm", "psa", "iot" ] 

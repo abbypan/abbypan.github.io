@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "dnssec keytrap"
 tagline: ""
 tags: [ "dnssec", "dns", "cve" ] 

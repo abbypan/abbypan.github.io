@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "PQC: Multivariate Cryptography"
 tagline: ""
 tags: [ "pqc", "crypto", "polynomials" ] 

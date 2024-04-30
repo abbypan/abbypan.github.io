@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: android
 title:  "ios/android 程序签名校验"
 tagline: ""
 tags: [ "ios", "android" ] 

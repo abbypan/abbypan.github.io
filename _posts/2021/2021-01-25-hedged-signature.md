@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "Hedged Fiat-Shamir Signature"
 tagline: ""
 tags: [ "crypto", "signature" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "DNS解析性能影响参数"
 tagline: ""
 tags: [ "dns", "resolve" ] 

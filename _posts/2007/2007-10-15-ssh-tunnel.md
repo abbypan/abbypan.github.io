@@ -1,6 +1,6 @@
 ---
 layout: post
-category : "freedom"
+category : "tech"
 title:  "ssh tunnel"
 tagline: "socks5 + http proxy"
 tags : [ "proxy", "ssh" ]

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "SRV & MDNS & DNS-SD & Multicast Discovery Proxy"
 tagline: ""
 tags: [ "dns", "srv", "mdns", "dns-sd" ] 

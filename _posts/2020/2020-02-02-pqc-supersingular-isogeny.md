@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "PQC: supersingular isogeny"
 tagline: ""
 tags: [ "" ] 

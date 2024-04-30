@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: arm
 title:  "Arm: Exception Model"
 tagline: ""
 tags: [ "arm" ] 

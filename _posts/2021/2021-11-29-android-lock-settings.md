@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: android
 title:  "Android: LockSettings"
 tagline: ""
 tags: [ "android" ] 

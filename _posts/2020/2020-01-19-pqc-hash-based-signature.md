@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "PQC: hash based signature"
 tagline: ""
 tags: [ "crypto", "hash", "signature", "rfc" ] 

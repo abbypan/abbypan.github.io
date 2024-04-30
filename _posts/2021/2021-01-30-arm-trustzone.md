@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: arm
 title:  "Arm: Trustzone"
 tagline: ""
 tags: [ "arm" ] 

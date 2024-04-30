@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: arm
 title:  "Arm: Generic Timer"
 tagline: ""
 tags: [ "arm" ] 

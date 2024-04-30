@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "debug: Perl Net::DNS 1.06 响应包不带EDNS OPT的问题处理"
 tagline: ""
 tags: [ "edns", "dns" ] 

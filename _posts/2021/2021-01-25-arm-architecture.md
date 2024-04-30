@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: arm
 title:  "Arm: Introducing the Arm architecture"
 tagline: ""
 tags: [ "arm" ] 

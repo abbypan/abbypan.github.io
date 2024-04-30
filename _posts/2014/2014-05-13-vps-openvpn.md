@@ -1,6 +1,6 @@
 ---
 layout: post
-category : "freedom"
+category : "tech"
 title:  "openvpn"
 tagline: ""
 tags : [ "proxy",  "openvpn" ] 

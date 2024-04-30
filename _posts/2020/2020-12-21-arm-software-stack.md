@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: arm
 title:  "ARM: PAC, BTI, MTE"
 tagline: ""
 tags: [ "arm" ] 

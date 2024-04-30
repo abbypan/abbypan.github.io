@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "dns multiple question drafts 对比分析"
 tagline: ""
 tags: [ "dns" ] 

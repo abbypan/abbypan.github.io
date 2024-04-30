@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "NSEC + wildcard 的实现缺陷"
 tagline: ""
 tags: [ "dns", "nsec", "wildcard" ] 

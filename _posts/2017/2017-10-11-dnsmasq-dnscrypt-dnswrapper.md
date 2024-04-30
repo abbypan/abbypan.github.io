@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "搭建 dnsmasq + dnscrypt 解析组合"
 tagline: ""
 tags: [ "dns", "hijack", "privacy", "dnsmasq", "dnswrapper", "dnscrypt" ] 

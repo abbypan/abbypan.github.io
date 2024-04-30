@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: android
 title:  "The Android Platform Security Model"
 tagline: ""
 tags: [ "android" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "draft: Split DNS Configuration for IKEv2"
 tagline: ""
 tags: [ "dns", "ietf" ] 

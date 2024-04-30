@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "Android: bionic dns 分析"
 tagline: ""
 

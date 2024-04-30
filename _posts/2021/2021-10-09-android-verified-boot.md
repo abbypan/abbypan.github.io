@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: android
 title:  "Android: Verified Boot"
 tagline: ""
 tags: [ "android" ] 

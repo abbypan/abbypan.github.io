@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "DNSSD Privacy"
 tagline: ""
 tags: [ "dns", "dnssd", "privacy" ] 

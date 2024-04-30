@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "The BBS Signature Scheme"
 tagline: ""
 tags: [ "bbs", "zkp", "privacy", "cfrg", "zcash" ] 

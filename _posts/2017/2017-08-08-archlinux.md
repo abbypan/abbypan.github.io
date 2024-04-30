@@ -167,13 +167,18 @@ exec ck-launch-session dbus-launch startxfce4
 
 # 硬件驱动
 
+## nvdia
+
+    pacman -S nvdia
+
 ## 声卡
 
 - [ArchWiki:设置ALSA](https://wiki.archlinux.org/index.php/ALSA_%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29)
 - [archlinux音量太小的问题解决](https://bbs.archlinux.org/viewtopic.php?pid=1090109)
 
 {% highlight bash %}
-# pacman -Sy pavucontrol pulseaudio alsa-lib alsa-utils alsa-oss
+# pacman -Sy pavucontrol pulseaudio pulseaudio-alsa alsa-lib alsa-utils alsa-oss
+# gpasswd -a USERNAME wheel
 # gpasswd -a USERNAME audio
 # alsaconf
 # alsamixer
@@ -280,6 +285,9 @@ pacman -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 
     $ udisksctl mount -b /dev/sdc1
 
+## 显卡
+
+    $ sudo pacman -S nvidia  nvidia-utils
 
 ## 关闭触摸板
 
@@ -312,8 +320,6 @@ export XIM=ibus
 
 ## 郑码
 
-安装郑码:
-
     $ git clone https://github.com/rime/plum
     $ cd plum 
     $ bash rime-install lotem/rime-zhengma
@@ -326,6 +332,7 @@ export XIM=ibus
         - schema: terra_pinyin
 
 # 中文环境
+
 - ``vim /etc/locale.gen``，指定zh_CN.UTF-8
 - ``vim /etc/local.conf``
 
