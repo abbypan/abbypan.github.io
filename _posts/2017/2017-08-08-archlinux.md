@@ -12,11 +12,9 @@ tags: [ "archlinux", "clonezilla" ]
 
 # 制作启动u盘
 
-下载archlinux最新iso文件：http://www.archlinux.org/download/
+下载[archlinux iso](http://www.archlinux.org/download/)
 
-## ventoy
-
-下载ventoy：https://www.ventoy.net/
+下载[ventoy](https://www.ventoy.net/)
     
 刻录ventoy后，将ventoy分区格式化为ntfs。
 
@@ -48,7 +46,7 @@ windows环境直接刻录u盘:
 
 ## 设置arch源
 
-编辑/etc/pacman.d/mirrorlist，选择合适的server，比如163.com的源就比较快
+编辑/etc/pacman.d/mirrorlist，选择合适的server
 
 {% highlight bash %}
 Server = http://mirrors.163.com/archlinux/$repo/os/$arch
@@ -542,7 +540,32 @@ echo options iwlwifi 11n_disable=1 | sudo tee /etc/modprobe.d/51-disable-6235-11
 # systemd-tmpfiles --create phy0-led.conf
 {% endhighlight %}
 
-# 服务搭建
+
+# 软件安装
+
+{% highlight bash %}
+pacman -S rsync curl lftp wget axel
+pacman -S wqy-bitmapfont wqy-zenhei ttf-monaco
+pacman -S smplayer ffmpeg flashplayer
+pacman -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
+pacman -S zip unzip unrar p7zip thunar-archive-plugin xarchiver arj cpio lzop
+pacman -S firefox firefox-i18n-zh-cn freshplayerplugin pepper-flash chromium
+pacman -S dnsutils traceroute wireshark-gtk
+{% endhighlight %}
+
+## yay
+
+    cd /tmp
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin
+    makepkg -si
+
+## deb
+
+    yay -S debtap
+    sudo debtap -u
+    debtap xxx.deb
+    sudo pacman -U xxx.zst
 
 ## Web: NGINX+PHP
 
@@ -574,32 +597,6 @@ include        fastcgi_params;
 {% endhighlight %}
 
 - 启动nginx: /etc/rc.d/nginx start
-
-# 常用软件
-
-{% highlight bash %}
-pacman -S rsync curl lftp wget axel
-pacman -S wqy-bitmapfont wqy-zenhei ttf-monaco
-pacman -S smplayer ffmpeg flashplayer
-pacman -S libreoffice-zh-CN libreoffice-impress libreoffice-writer libreoffice-calc 
-pacman -S zip unzip unrar p7zip thunar-archive-plugin xarchiver arj cpio lzop
-pacman -S firefox firefox-i18n-zh-cn freshplayerplugin pepper-flash chromium
-pacman -S dnsutils traceroute wireshark-gtk
-{% endhighlight %}
-
-## yay
-
-    cd /tmp
-    git clone https://aur.archlinux.org/yay-bin.git
-    cd yay-bin
-    makepkg -si
-
-## deb
-
-    yay -S debtap
-    sudo debtap -u
-    debtap xxx.deb
-    sudo pacman -U xxx.zst
 
 ## music
 
@@ -647,7 +644,7 @@ pacman -S cuetools mp3info wavpack flac mac shntool bchunk
 ## KERNEL PANIC 恢复
 
 - 系统升级失败，重启提示kernel panic，switch_root : fail to ...
-- 从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复之
+- 从live cd启动，将原来系统的根分区挂载到/mnt下，再用旧版glibc恢复
 
 {% highlight bash %}
 mount /dev/sda1 /mnt
@@ -661,27 +658,25 @@ archlinux , thinkpad x61t，开机出错
 
 journalctl -xn显示 /bin/plymouth: No such file or directory 
 
-删掉 /etc/fstab 中不存在的介质就行了
+删掉 /etc/fstab 中不存在的介质
 
-# UEFI/GRUB 引导
+# UEFI 引导
 
 ## 配置 uefi Systemd-boot
 
 [用Systemd-boot取代GRUB作為Linux的bootloader](https://ivonblog.com/posts/replace-grub-with-systemd-boot/)
 
-### 准备活动
+### 安装
 
     pacman -S efibootmgr
-    
-删除某个boot项: efibootmgr -b i -B
 
 ### 将磁盘旧的msdos分区表切换为gpt
 
     sgdisk -g /dev/sda
 
-### efi分区 
+### 新建efi分区 
 
-磁盘新建一个efi分区（假设为 /dev/sda5），类型为vfat，标识为`boot, esp`
+磁盘新建一个efi分区（假设为 /dev/sda5），类型为vfat，标识为`boot, esp`，大小例如1GB
 
     mount /dev/sda5 /boot
 
@@ -693,7 +688,7 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
 
     bootctl install
 
-### 设置archlinux的EFI引导
+## 设置archlinux的EFI引导
 
 blkid 查看 archlinux 根分区的PARTUUID。
 
@@ -705,11 +700,11 @@ blkid 查看 archlinux 根分区的PARTUUID。
     options root=PARTUUID=xxxxxxxxxx rw quiet splash
 
 
-### 添加windows的EFI引导
+## 添加windows的EFI引导
 
 把windows系统分区下的EFI/Microsoft目录直接拷贝到/boot/EFI/目录下。
 
-###  设置默认引导
+##  设置默认引导
 
 编辑 /boot/loader/loader.conf
 
@@ -717,7 +712,7 @@ blkid 查看 archlinux 根分区的PARTUUID。
     timeout 3
     console-mode max
 
-### boot目录示例
+## boot目录示例
 
     $ tree /boot -L 3
     /boot
@@ -737,203 +732,13 @@ blkid 查看 archlinux 根分区的PARTUUID。
     │   └── random-seed
     └── vmlinuz-linux
 
-## 手动设置grub2引导 windows 双系统
+## 调整efi boot项
 
-[Archlinux安装UEFI Grub](https://blog.csdn.net/puppylpg/article/details/77618180)
+设置boot优先顺序，例如先1再0：efibootmgr -o 1,0
 
-[Archlinux grub2 windows8 (windows7) win8 (win7) 引导设置](http://hi.baidu.com/flashgive/item/b05697120fbf84fc9d778a26)
+删除某个boot项，例如3: efibootmgr -b 3 -B
 
-实在不行就把uefi里面的csm选项打开
+# 分区克隆
 
-    pacman -S grub-bios 
-    grub-install --target i386-pc /dev/sda
-    grub-mkconfig -o /boot/grub/grub.cfg
-
-查看windows系统所在分区，假设是 /dev/sda1，即``(hd0,msdos0)``
-
-找出/dev/sda1的uuid：``sudo blkid /dev/sda1``，假设是xxxxxxxxxxxx
-
-在/boot/grub/grub.cfg中添加
-
-{% highlight bash %}
-menuentry "Windows 10" {
-    insmod part_gpt
-    insmod fat
-    insmod search_fs_uuid
-    insmod chain
-    search --fs-uuid --no-floppy --set=root xxxxxxxxxxxx
-    chainloader (${root})/efi/Microsoft/Boot/bootmgfw.efi
-}
-{% endhighlight %}
-
-或
-
-{% highlight bash %}
-menuentry 'Windows 7' {
-        load_video
-        insmod gzio
-        insmod part_msdos
-        insmod ntfs
-        set root='(hd0,msdos0)'
-        search --no-floppy --fs-uuid --set=root xxxxxxxxxxxx
-        chainloader +1
-}
-{% endhighlight %}
-
-## archlinux/windows10 双系统迁移   
-
-不拆机，不直接对拷硬盘。
-
-以archlinux, windows10为例。
-
-用clonezilla备份旧机器上的archlinux系统。用winpe的ghost备份旧机器上的window10系统。备份的数据存放在外接移动硬盘。
-
-用clonezilla进入新机器，fsck硬盘分区，注意n是新建分区，t是改分区类型(例如ntfs是86)。
-
-新机器外接备份数据所在的移动硬盘。
-
-用clonezilla在新机器上恢复archlinux系统。
-
-用archlinux的启动u盘在新机器上chroot，然后grub-install /dev/sda 写入，可能需要编辑/etc/fstab，/boot/grub/grub.cfg。
-
-用winpe在新机器上ghost恢复windows10系统。
-
-重启新机器，进入archlinux，用os-prober检测windows10系统，更新grub.cfg。
-
-重启新机器进入windows10。
-    
-## 用 clonezilla 迁移 archlinux 系统 
-
-假设旧机器为A，archlinux 装在A机器的 /dev/sda1 上
-
-假设新机器为B，B上的硬盘为X
-
-假设想要将 机器A上的archlinux 迁移到 机器B上硬盘X的第2分区
-
-将clonezilla启动U盘插入机器A，bios设置从U盘启动，重启机器A进入clonezilla-live
-
-A机器的硬盘被挂载为/dev/sda
-
-U盘被挂载为/dev/sdb
-
-把硬盘X从机器B取出，当作移动硬盘插到机器A，假设被挂载为 /dev/sdc
-
-按clonezilla提示，选择从``本机分区``复制到``本机分区``，源分区为/dev/sda1，目标分区为/dev/sdc2
-
-等待clonezilla完成分区复制
-
-### 安装grub
-
-分区复制完成之后，回到clonezilla命令行
-
-获取root权限：``su root -``
-
-挂载/dev/sdc2： ``mount /dev/sdc2 /mnt``
-
-安装grub到/dev/sdc：``grub-install --root-directory=/mnt /dev/sdc``
-
-### 完成迁移
-
-将硬盘X重新插入机器B，启动机器B，即可进入archlinux
-
-如果硬盘X上还有其他操作系统，可编辑/boot/grub/grub.cfg，增加其他启动项
-
-## partclone 分区克隆
-
-[Partclone](https://wiki.archlinux.org/index.php/Partclone_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
-
-[Partclone中的功能](https://linux.cn/article-9426-1.html)
-
-    partclone.ext4 -d -c -s /dev/sda1 -o sda1_backup.pcl
-    partclone.ext4 -d -r -s sda1_backup.pcl -o /dev/sda1
-
-## U盘: grub2 + gpt + efi 启动多个live iso
-
-这个比ventoy麻烦
-
-[制作BIOS和EFI多启动U盘](https://www.lainme.com/doku.php/blog/2017/07/%E5%88%B6%E4%BD%9Cbios%E5%92%8Cefi%E5%A4%9A%E5%90%AF%E5%8A%A8u%E7%9B%98)
-
-[Archboot](https://wiki.archlinux.org/title/Archboot)
-
-    sudo mount /dev/sdb1 /mnt
-    sudo grub-install --target=x86_64-efi --efi-directory=/mnt --boot-directory=/mnt/boot --removable --recheck
-    
-### linux live iso
-
-将 /dev/sdb2 格式化为ntfs，在其根目录下新建一个image文件夹放live iso，假设有：archlinux.iso, clonezilla.iso，gparted.iso
-
-注意，各iso：
-
-- /boot/grub/grub.cfg里抄一下menuentry
-- 使用loopback载入iso
-- /live目录下为引导的镜像信息
-- /live/filesystem.squashfs为待载入内存的文件(linux指令行添加toram, findiso)
-
-rootuuid通过`blkid /dev/sdb2`获取
-
-示例如下：
-
-    insmod search_fs_uuid
-    set rootuuid=741263DC21F00000
-    set rootpath=/dev/disk/by-uuid/$rootuuid
-    search --no-floppy --set=rootpart --fs-uuid $rootuuid
-
-    insmod vbe
-    insmod efi_gop
-    insmod efi_uga
-    insmod font
-    if loadfont ${prefix}/fonts/unicode.pf2
-    then
-        insmod gfxterm
-        set gfxmode=auto
-        set gfxpayload=keep
-        terminal_output gfxterm
-    fi
-
-
-    menuentry 'Archlinux' {
-        set isopath=/image/archlinux.iso
-            loopback loop ($rootpart)$isopath
-            set gfxpayload=keep
-            linux (loop)/arch/boot/x86_64/vmlinuz-linux archisodevice=/dev/loop0 findiso=$isopath img_dev=$rootpath img_loop=$isopath
-            initrd (loop)/arch/boot/intel-ucode.img (loop)/arch/boot/amd-ucode.img (loop)/arch/boot/x86_64/initramfs-linux.img 
-    }
-
-    menuentry 'clonezilla' {
-        insmod efi_gop
-        insmod efi_uga
-        set gfxmode=auto
-        insmod gfxterm
-        terminal_output gfxterm
-        insmod play
-        play 960 440 1 0 4 440 1
-
-        set isopath=/image/clonezilla.iso
-        loopback loop ($rootpart)$isopath
-        linux (loop)/live/vmlinuz boot=live union=overlay username=user config components quiet noswap edd=on nomodeset locales= keyboard-layouts= ocs_live_run="ocs-live-general" ocs_live_extra_param="" ocs_live_batch="no" vga=788 ip= net.ifnames=0  nosplash i915.blacklist=yes radeonhd.blacklist=yes nouveau.blacklist=yes vmwgfx.enable_fbdev=1 toram=filesystem.squashfs findiso=$isopath
-        initrd (loop)/live/initrd.img
-    }
-
-
-    menuentry "GParted Live (Default settings)" --id live-default {
-        set isopath=/image/gparted.iso
-        loopback loop ($rootpart)$isopath
-        linux (loop)/live/vmlinuz boot=live union=overlay username=user config components quiet noswap  ip= net.ifnames=0  nosplash  toram=filesystem.squashfs findiso=$isopath
-        initrd (loop)/live/initrd.img
-    }
-
-### winpe iso
-
-直接解压 winpe iso的内容到/dev/sdb2分区的根目录
-
-在grub.cfg添加:
-
-    menuentry "WinPE"{ 
-        insmod part_gpt
-            insmod fat
-            insmod search_fs_uuid
-            insmod chain
-            search --fs-uuid --no-floppy --set=root 741263DC21F00000
-            chainloader (${root})/efi/boot/bootx64.efi 
-    }
+使用 [clonezilla iso](http://drbl.nchc.org.tw/clonezilla/clonezilla-live/download/)
 
