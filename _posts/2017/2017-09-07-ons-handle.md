@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: protocol
 title:  "OID-ORS & EPC-ONS & DOI-Handle"
 tagline: ""
 tags: [ "oid", "ors", "epc", "ons", "doi", "handle", "uuid", "ecode", "ucode", "mcode", "cid", "uid" ]
