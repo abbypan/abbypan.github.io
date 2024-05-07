@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: protocol
 title:  "Time Protocol"
 tagline: ""
 tags: [ "time", "ntp", "rfc", "nts"  ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: android
+category: device
 title:  "Android: Identity Credential"
 tagline: ""
 tags: [ "android" ] 

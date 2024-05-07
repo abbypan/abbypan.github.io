@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: util
 title:  "git删除部分commit"
 tagline: ""
 tags: [ "git" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: android
+category: device
 title:  "android: encryption"
 tagline: ""
 tags: [ "android" ] 

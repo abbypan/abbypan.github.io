@@ -1,6 +1,6 @@
 ---
 layout: post
-category: android
+category: device
 title:  "Android: Remote Key Provision (RKP)"
 tagline: ""
 tags: [ "rkp", "dice", "android" ] 

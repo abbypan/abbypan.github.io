@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: device
 title:  "Google Nearby"
 tagline: ""
 tags: [ "security", "connectivity" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: android
+category: device
 title:  "android: apk signing"
 tagline: ""
 tags: [ "android" ] 

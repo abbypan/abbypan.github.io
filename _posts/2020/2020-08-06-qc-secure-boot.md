@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: chip
 title:  "Qualcomm Secure Boot and Image Authentication"
 tagline: ""
 tags: [ "chip" ] 

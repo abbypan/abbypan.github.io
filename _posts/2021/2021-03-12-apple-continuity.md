@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: device
 title:  "Apple Continuity"
 tagline: ""
 tags: [ "connectivity", "security", "privacy" ] 

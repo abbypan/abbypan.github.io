@@ -1,6 +1,6 @@
 ---
 layout: post
-category: android
+category: device
 title:  "Android: FBE"
 tagline: ""
 tags: [ "android", "qualcomm", "fbe", "xts", "aes", "essiv" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: device
 title:  "RFC9019: A Firmware Update Architecture for Internet of Things"
 tagline: ""
 tags: [ "rfc", "iot", "ota" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: device
 title:  "Note: Apple Platform Security"
 tagline: ""
 tags: [ "apple", "mobile" ] 

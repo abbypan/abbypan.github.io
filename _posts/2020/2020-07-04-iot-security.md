@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: device
 title:  "iot security"
 tagline: ""
 tags: [ "iot", "security" ] 

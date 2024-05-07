@@ -1,6 +1,6 @@
 ---
 layout: post
-category: android
+category: device
 title:  "Android: on device signing"
 tagline: ""
 tags: [ "android", "security", "ods" ] 

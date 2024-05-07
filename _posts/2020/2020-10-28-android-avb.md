@@ -1,6 +1,6 @@
 ---
 layout: post
-category: android
+category: device
 title:  "android avb"
 tagline: ""
 tags: [ "android" ] 
