@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: dns
 title:  "DNS: NXNSAttack"
 tagline: ""
 tags: [ "ddos", "glue" ] 

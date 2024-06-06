@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: standard
 title:  "NISTIR 8344: Ontology for Authentication"
 tagline: ""
 tags: [ "nist", "security" ] 

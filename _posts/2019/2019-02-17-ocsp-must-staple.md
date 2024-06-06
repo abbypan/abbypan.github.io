@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "ocsp must staple"
 tagline: ""
 tags: [ "ocsp" ] 

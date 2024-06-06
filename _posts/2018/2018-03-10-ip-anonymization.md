@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: privacy
 title:  "IP Anonymization 匿名化处理"
 tagline: ""
 tags: [ "ip", "privacy" ] 

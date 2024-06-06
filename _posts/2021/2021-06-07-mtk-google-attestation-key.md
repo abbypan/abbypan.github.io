@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: device
 title:  "MTK: Google Attestation Key Tool User Guide"
 tagline: ""
 tags: [ "android", "google", "mtk" ] 

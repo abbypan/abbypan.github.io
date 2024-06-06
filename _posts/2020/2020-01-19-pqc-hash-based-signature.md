@@ -3,14 +3,14 @@ layout: post
 category: crypto
 title:  "PQC: hash based signature"
 tagline: ""
-tags: [ "crypto", "hash", "signature", "rfc" ] 
+tags: [ "crypto", "hash", "signature", "rfc", "pqc" ] 
 ---
 {% include JB/setup %}
 
 * TOC
 {:toc}
 
-# 参考
+# doc
 
 [Hash-based Signatures](http://www.pqsignatures.org/index/hbs.html)
 
@@ -21,6 +21,8 @@ tags: [ "crypto", "hash", "signature", "rfc" ]
 [RFC8391: XMSS: eXtended Merkle Signature Scheme](https://datatracker.ietf.org/doc/rfc8391/)
 
 [RFC8554: Leighton-Micali Hash-Based Signatures](https://datatracker.ietf.org/doc/rfc8554/)
+
+[SPHINCS+](https://csrc.nist.gov/CSRC/media/Presentations/SPHINCS/images-media/SPHINCS-Plus-April2018.pdf)
 
 # Lamport
 

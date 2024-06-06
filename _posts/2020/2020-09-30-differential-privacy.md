@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: privacy
 title:  "differential privacy"
 tagline: ""
 tags: [ "dp" ] 

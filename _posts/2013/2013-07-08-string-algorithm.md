@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: program
 title: "几个字符串比对算法 KMP, Horspool , Boyer-Moore, Sunday"
 tagline: ""
 tags: [ "algorithm" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "CBC: Padding Oracle Attack"
 tagline: ""
 tags: [ "cbc", "attack" ] 

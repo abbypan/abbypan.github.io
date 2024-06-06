@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: privacy
 title:  "Privacy Pass Protocol Specification"
 tagline: ""
 tags: [ "privacy", "security" ] 

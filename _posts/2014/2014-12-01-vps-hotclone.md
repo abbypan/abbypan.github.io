@@ -57,7 +57,7 @@ if [[ -n $f ]]; then
     echo "backup"
 else
     echo "hotclone"
-    /usr/bin/rsync -e ssh -avz --exclude-from=/root/backup/hotclone_exclude.txt --delete root@idouzi.tk:/ /
+    /usr/bin/rsync -e ssh -avz --exclude-from=/root/backup/hotclone_exclude.txt --delete root@main.xxx.com:/ /
     /usr/bin/crontab /root/backup/hotclone.crontab
 fi
 {% endhighlight %}

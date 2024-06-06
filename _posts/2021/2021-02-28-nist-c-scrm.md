@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: standard
 title:  "NISTIR 8276: Key Practices in Cyber Supply Chain Risk Management: Observations from Industry"
 tagline: ""
 tags: [ "nist", "security" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: privacy
 title:  "Mozilla: 安全、平等、隐私、自由"
 tagline: ""
 tags: [ "privacy" ] 
