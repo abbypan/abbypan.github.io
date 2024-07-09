@@ -47,7 +47,7 @@ Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 | Year | Paper | 
 | ---- | ---- |
 | IEEE CSR 2024 | Building a Secure Cross-Device Communication Channel for Smart Devices based on App Accounts |
-| IEEE SmartNets 2024 | ASDWL: Mitigating DNS Random Subdomain Attacks for Second Level Domain |
+| IEEE SmartNets 2024 | [ASDWL: Mitigating DNS Random Subdomain Attacks for Second Level Domain](https://ieeexplore.ieee.org/document/10577677) |
 | CRIS 2023 | [Enhance Calling Definition Security for Android Custom Permission](https://www.semanticscholar.org/paper/Enhance-Calling-Definition-Security-for-Android-Pan-Qiu/bda0c6f6b79ed591d8c8c36706f53b655f87876c) |
 | Computing 2022 | [Measuring the Resolution Resiliency of Second-Level Domain Name](https://link.springer.com/chapter/10.1007/978-3-031-10467-1_45) |
 | Spaccs 2019 | [EPT: EDNS Privacy Tunnel for DNS](https://link.springer.com/chapter/10.1007/978-3-030-24907-6_5) |
