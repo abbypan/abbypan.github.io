@@ -56,16 +56,33 @@ Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 
 假设系统硬盘为/dev/sda
 
-执行fdisk /dev/sda进行分区，假设新建的系统分区为/dev/sda1
+### 全新分区
+
+    fdisk /dev/sda
+
+### 将磁盘旧的msdos分区表切换为gpt
+
+    sgdisk -g /dev/sda
+
+### 新建系统分区
 
 {% highlight bash %}
 mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 {% endhighlight %}
 
-### 调整分区大小
+### 调整系统分区大小
 
     e2fsck -f /dev/sda1
     resize2fs /dev/sda1
+
+### 新建efi分区 
+
+磁盘新建一个efi分区（假设为 /dev/sda5），类型为vfat，标识为`boot, esp`，大小例如1GB
+
+### /etc/fstab 示例
+
+    /dev/sda1         	/	ext4      	rw,relatime,stripe=128	0 1
+    /dev/sda5      	/boot         	vfat      	defaults 0 2
 
 ## 连接无线网絡
 
@@ -77,13 +94,12 @@ mkfs -t ext4 -b 4096 -E stride=128,stripe-width=128 /dev/sda1
 
 ## 安装系统
 
-
 {% highlight bash %}
 mount /dev/sda1 /mnt
+mount /dev/sda5 /mnt/boot
 pacstrap /mnt base base-devel dialog vim iwd
 pacstrap /mnt linux linux-headers linux-firmware
 pacstrap /mnt glibc lib32-glibc
-genfstab -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 {% endhighlight %}
 
@@ -143,6 +159,70 @@ pacman -S ntp
 ntpdate asia.pool.ntp.org
 {% endhighlight %}
 
+# UEFI 引导
+
+## 配置 uefi Systemd-boot
+
+[用Systemd-boot取代GRUB作為Linux的bootloader](https://ivonblog.com/posts/replace-grub-with-systemd-boot/)
+
+### 安装
+
+    pacman -S efibootmgr
+
+### 安装/修复 EFI引导
+
+    bootctl install
+
+## 设置archlinux的EFI引导
+
+blkid 查看 archlinux 根分区的PARTUUID。
+
+编辑 /boot/loader/entries/arch.conf
+
+    title Arch Linux
+    linux	/vmlinuz-linux 
+    initrd	/initramfs-linux.img
+    options root=PARTUUID=xxxxxxxxxx rw quiet splash
+
+
+## 添加windows的EFI引导
+
+把windows系统分区下的EFI/Microsoft目录直接拷贝到/boot/EFI/目录下。
+
+##  设置默认引导
+
+编辑 /boot/loader/loader.conf
+
+    default arch
+    timeout 3
+    console-mode max
+
+## boot目录示例
+
+    $ tree /boot -L 3
+    /boot
+    ├── EFI
+    │   ├── Microsoft
+    │   │   ├── Boot
+    │   │   └── Recovery
+    │   └── systemd
+    │       └── systemd-bootx64.efi
+    ├── initramfs-linux-fallback.img
+    ├── initramfs-linux.img
+    ├── loader
+    │   ├── entries
+    │   │   └── arch.conf
+    │   ├── entries.srel
+    │   ├── loader.conf
+    │   └── random-seed
+    └── vmlinuz-linux
+
+## 调整efi boot项
+
+设置boot优先顺序，例如先1再0：efibootmgr -o 1,0
+
+删除某个boot项，例如3: efibootmgr -b 3 -B
+
 # 图形界面
 
 ## 安装X 
@@ -164,10 +244,6 @@ exec ck-launch-session dbus-launch startxfce4
 {% endhighlight %}
 
 # 硬件驱动
-
-## nvdia
-
-    pacman -S nvdia
 
 ## 声卡
 
@@ -286,6 +362,10 @@ pacman -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 ## 显卡
 
     $ sudo pacman -S nvidia  nvidia-utils
+    
+## 触摸屏
+
+    $ sudo pacman -S xf86-input-wacom
 
 ## 关闭触摸板
 
@@ -361,7 +441,6 @@ LOCALE=zh_CN.UTF-8
 ``pacman -S glibc -f``
 
 
-
 # 网络
 
 ## 根据MAC地址固定网卡名称
@@ -407,6 +486,13 @@ KEY="s:myatworkpasswd"
 - 开机启动
 
 {% highlight bash %}
+netctl enable athome
+{% endhighlight %}
+
+- 移除开机启动
+
+{% highlight bash %}
+ls /etc/systemd/system/multi-user.target.wants/
 netctl enable athome
 {% endhighlight %}
 
@@ -541,7 +627,7 @@ echo options iwlwifi 11n_disable=1 | sudo tee /etc/modprobe.d/51-disable-6235-11
 {% endhighlight %}
 
 
-# 软件安装
+# 常用软件
 
 {% highlight bash %}
 pacman -S rsync curl lftp wget axel
@@ -560,7 +646,7 @@ pacman -S dnsutils traceroute wireshark-gtk
     cd yay-bin
     makepkg -si
 
-## deb
+## 安装deb包
 
     yay -S debtap
     sudo debtap -u
@@ -620,7 +706,6 @@ pacman -S cuetools mp3info wavpack flac mac shntool bchunk
 
     pacman -S virtualbox  选择 virtualbox-host-modules-arch
 
-
     reboot
 
     modprobe vboxdrv
@@ -638,6 +723,10 @@ pacman -S cuetools mp3info wavpack flac mac shntool bchunk
 切换java的版本：
 
     archlinux-java set <JAVA_ENV_NAME>
+
+## 系统备份
+
+使用 [clonezilla](http://drbl.nchc.org.tw/clonezilla/clonezilla-live/download/) 备份/恢复 磁盘或分区
 
 # 故障处理
 
@@ -660,85 +749,10 @@ journalctl -xn显示 /bin/plymouth: No such file or directory
 
 删掉 /etc/fstab 中不存在的介质
 
-# UEFI 引导
+## 闪屏 
 
-## 配置 uefi Systemd-boot
+thinkpad x12 detachable, intel cpu, 闪屏
 
-[用Systemd-boot取代GRUB作為Linux的bootloader](https://ivonblog.com/posts/replace-grub-with-systemd-boot/)
+[Screen_flickering](https://wiki.archlinux.org/title/Intel_graphics#Screen_flickering)
 
-### 安装
-
-    pacman -S efibootmgr
-
-### 将磁盘旧的msdos分区表切换为gpt
-
-    sgdisk -g /dev/sda
-
-### 新建efi分区 
-
-磁盘新建一个efi分区（假设为 /dev/sda5），类型为vfat，标识为`boot, esp`，大小例如1GB
-
-    mount /dev/sda5 /boot
-
-### 修改fstab
-
-    /dev/sda5      	/boot         	vfat      	defaults 0 2
-
-### 安装EFI引导
-
-    bootctl install
-
-## 设置archlinux的EFI引导
-
-blkid 查看 archlinux 根分区的PARTUUID。
-
-编辑 /boot/loader/entries/arch.conf
-
-    title Arch Linux
-    linux	/vmlinuz-linux 
-    initrd	/initramfs-linux.img
-    options root=PARTUUID=xxxxxxxxxx rw quiet splash
-
-
-## 添加windows的EFI引导
-
-把windows系统分区下的EFI/Microsoft目录直接拷贝到/boot/EFI/目录下。
-
-##  设置默认引导
-
-编辑 /boot/loader/loader.conf
-
-    default arch
-    timeout 3
-    console-mode max
-
-## boot目录示例
-
-    $ tree /boot -L 3
-    /boot
-    ├── EFI
-    │   ├── Microsoft
-    │   │   ├── Boot
-    │   │   └── Recovery
-    │   └── systemd
-    │       └── systemd-bootx64.efi
-    ├── initramfs-linux-fallback.img
-    ├── initramfs-linux.img
-    ├── loader
-    │   ├── entries
-    │   │   └── arch.conf
-    │   ├── entries.srel
-    │   ├── loader.conf
-    │   └── random-seed
-    └── vmlinuz-linux
-
-## 调整efi boot项
-
-设置boot优先顺序，例如先1再0：efibootmgr -o 1,0
-
-删除某个boot项，例如3: efibootmgr -b 3 -B
-
-# 分区克隆
-
-使用 [clonezilla iso](http://drbl.nchc.org.tw/clonezilla/clonezilla-live/download/)
-
+arch.conf开机引导的options项中添加`i915.enable_psr=0`
