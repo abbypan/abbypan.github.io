@@ -251,7 +251,8 @@ exec ck-launch-session dbus-launch startxfce4
 - [archlinux音量太小的问题解决](https://bbs.archlinux.org/viewtopic.php?pid=1090109)
 
 {% highlight bash %}
-# pacman -Sy pavucontrol pulseaudio pulseaudio-alsa alsa-lib alsa-utils alsa-oss
+# pacman -Sy pavucontrol pulseaudio pulseaudio-alsa 
+# pacman -S alsa-lib alsa-utils alsa-oss sof-firmware
 # gpasswd -a USERNAME wheel
 # gpasswd -a USERNAME audio
 # alsaconf
@@ -756,3 +757,12 @@ thinkpad x12 detachable, intel cpu, 闪屏
 [Screen_flickering](https://wiki.archlinux.org/title/Intel_graphics#Screen_flickering)
 
 arch.conf开机引导的options项中添加`i915.enable_psr=0`
+
+## no sound card
+
+thinkpad x12 detachable, intel tiger cpu, 没有声音
+
+    lspci -knn | grep -A2 audio
+
+arch.conf开机引导的options项中添加`snd_hda_intel.dmic_detect=0`
+
