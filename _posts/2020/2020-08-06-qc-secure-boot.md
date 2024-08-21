@@ -1,9 +1,9 @@
 ---
 layout: post
 category: chip
-title:  "Qualcomm Secure Boot and Image Authentication"
+title:  "Secure Boot: Qualcomm Secure Boot and Image Authentication"
 tagline: ""
-tags: [ "chip" ] 
+tags: [ "chip", "secureboot" ] 
 ---
 {% include JB/setup %}
 

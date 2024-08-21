@@ -60,6 +60,7 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 
 | Granted Year | Grant No. | Patent |
 | ------------ | --------- | ------ |
+| 2024 | CN114726625B | [检测方法及装置、服务器及存储介质](https://patents.google.com/patent/CN114726625B/) |
 | 2024 | EP4099733B1 | [Security authentication method and apparatus, and electronic device](https://patents.google.com/patent/EP4099733B1/) |
 | 2024 | US11924635B2 | [Security authentication method and apparatus thereof, and electronic device](https://patents.google.com/patent/US11924635B2/) |
 | 2024 | CN114979071B | [动态域名配置方法、装置、电子设备及存储介质 (Dynamic domain name configuration method, device, electronic equipment and storage medium)](https://patents.google.com/patent/CN114979071B) |

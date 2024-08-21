@@ -152,11 +152,16 @@ XferCommand = /usr/bin/aria2c -c -o %o %u
 'ftp::/usr/bin/aria2c -c -o %o %u'
 {% endhighlight %}
 
-## ntp时间同步
+## 时间
+
+设置rtc避免windows/archlinux重启后时间乱跳
 
 {% highlight bash %}
 pacman -S ntp
 ntpdate asia.pool.ntp.org
+
+timedatectl set-local-rtc 1
+timedatectl status
 {% endhighlight %}
 
 # UEFI 引导
@@ -766,3 +771,10 @@ thinkpad x12 detachable, intel tiger cpu, 没有声音
 
 arch.conf开机引导的options项中添加`snd_hda_intel.dmic_detect=0`
 
+## pacman segment fault
+
+将 /etc/pacman.conf 中的 XferCommand 注释掉
+
+## yay 提示 libalpm.so.13 库文件丢失`
+
+    sudo ln -sf /usr/lib/libalpm.so.14 /usr/lib/libalpm.so.13

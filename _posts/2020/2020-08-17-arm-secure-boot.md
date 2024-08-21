@@ -1,9 +1,9 @@
 ---
 layout: post
 category: chip
-title:  "Arm: Trusted Board Boot Requirements CLIENT (TBBR-CLIENT) Armv8-A"
+title:  "Arm Secure Boot: Trusted Board Boot Requirements CLIENT (TBBR-CLIENT) Armv8-A"
 tagline: ""
-tags: [ "arm", "chip" ] 
+tags: [ "arm", "chip", "secureboot" ] 
 ---
 {% include JB/setup %}
 
