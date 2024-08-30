@@ -730,6 +730,61 @@ pacman -S cuetools mp3info wavpack flac mac shntool bchunk
 
     archlinux-java set <JAVA_ENV_NAME>
 
+
+## steam
+
+### install
+
+[How to Play Games on Arch Linux Using Steam: A Complete Guide](https://linuxiac.com/how-to-play-games-on-arch-linux-using-steam/)
+
+在 /etc/pacman.conf 开启 multilib
+
+    pacman -S steam
+
+
+### overlay
+
+[SteamDeck上SteamOS+Windows双系统共用原神游戏文件的方法](https://www.bilibili.com/read/cv20278885/)
+
+双系统环境，linux下复用windows已下已安装的游戏文件，避免重复下载，同时避免修改原windows下的游戏文件。
+
+windows下steamapps路径已挂载为 `/mnt/d/game/Steam/steamapps`
+
+linux下steamapps路径为 `/home/xxx/.local/share/Steam/steamapps`
+
+linux下steamapps的overlay upperdir路径为 `/home/xxx/game/steamapps_upper`
+
+linux下steamapps的overlay workdir路径为 `/home/xxx/game/steamapps_work`
+
+在/etc/fstab中添加配置：
+
+    overlay    /home/xxx/.local/share/Steam/steamapps overlay    defaults,nofail,index=off,lowerdir=/mnt/d/game/Steam/steamapps,upperdir=/home/xxx/game/steamapps_upper,workdir=/home/xxx/game/steamapps_work    0   2
+
+挂载目录
+
+    sudo mount /home/xxx/.local/share/Steam/steamapps
+
+### play
+
+启动steam，在设置项的兼容性中选择proton版本，一般可默认为proton experimental。
+
+直接游玩相关游戏。
+
+### witcher 3
+
+[steam witcher3](https://steamcommunity.com/app/221410/discussions/0/3731827719870175864/?ctp=2)
+
+Witcher 3需要特殊配置proton版本选8.0左右，右键属性中设置启动选项：
+
+    WINEDLLOVERRIDES="winmm,version=n,b" %command% --launcher-skip 
+
+效果一般，容易僵住
+
+也可以尝试使用第三方的GE-Proton：
+
+    yay -S protonup-qt
+
+
 ## 系统备份
 
 使用 [clonezilla](http://drbl.nchc.org.tw/clonezilla/clonezilla-live/download/) 备份/恢复 磁盘或分区
