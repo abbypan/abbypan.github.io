@@ -367,7 +367,7 @@ pacman -S gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp
 
 ## 显卡
 
-    $ sudo pacman -S nvidia  nvidia-utils
+    $ sudo pacman -S nvidia-dkms  nvidia-utils  lib32-nvidia-utils nvidia-prime
     
 ## 触摸屏
 
