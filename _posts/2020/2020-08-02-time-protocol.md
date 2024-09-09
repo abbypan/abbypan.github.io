@@ -1,6 +1,6 @@
 ---
 layout: post
-category: protocol
+category: security
 title:  "Time Protocol"
 tagline: ""
 tags: [ "time", "ntp", "rfc", "nts"  ] 

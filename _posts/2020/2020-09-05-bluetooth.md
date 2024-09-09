@@ -1,6 +1,6 @@
 ---
 layout: post
-category: protocol
+category: security
 title:  "Bluetooth Security"
 tagline: ""
 tags: [ "ble", "bluetooth", "Security" ] 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: util
+category: tech
 title:  "Google Pixel4 支持电信"
 tagline: ""
 tags: [ "pixel" ] 

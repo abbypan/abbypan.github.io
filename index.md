@@ -35,7 +35,9 @@ Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/p
 
 # Paper
 
-Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
+Orcid: [0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
+
+ResearchGate: [Lanlan Pan](https://www.researchgate.net/profile/Lanlan-Pan/research)
 
 | Year | Paper | 
 | ---- | ---- |
@@ -51,7 +53,7 @@ Orcid: [https://orcid.org/0000-0002-1771-2683](https://orcid.org/0000-0002-1771-
 | IEEE APNOMS 2016 | [Mitigating DDoS Attacks towards Top Level Domain Name Service](https://ieeexplore.ieee.org/document/7737252/) |
 | 计算机应用研究 2016 |  [一种评估DNS根镜像服务的方法](https://www.researchgate.net/publication/370353433_An_Evaluation_Method_for_DNS_Root_Service_Quality_yizhongpingguDNSgenfuwuzhiliangdefangfa) |
 | 计算机应用研究 2015 | [一种快速评估DDOS攻击对DNS权威服务影响的方法](https://www.nstl.gov.cn/paper_detail.html?id=1c1ad8061cf831041024b20411140f2b) |
-| 通信技术 2010 | [基于兴趣相似度的协作式垃圾邮件过滤方案](https://www.nstl.gov.cn/paper_detail.html?id=bb55d46f48b9563963e96e6d88bef130) |
+| 通信技术 2010 | [基于兴趣相似度的协作式垃圾邮件过滤方案](https://www.nstl.gov.cn/paper_detail.html?id=95a214b420c3f56b3d176c70621bd620) |
 | Masters Dissertation 2009 | [协作式垃圾邮件过滤技术研究](https://www.nstl.gov.cn/paper_detail.html?id=7d50c4e269f1b6a5635b33dc913945f4) |
 
 # Granted Patent

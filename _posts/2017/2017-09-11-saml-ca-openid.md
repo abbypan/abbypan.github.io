@@ -1,6 +1,6 @@
 ---
 layout: post
-category: protocol
+category: security
 title:  "SAML & CA SSO (SiteMinder) & OAuth2 & OpenID & FIDO & Kerberos & JWT & OIDC(OpenID Connect)"
 tagline: "身份认证协议"
 tags: [ "saml", "ca", "oauth2", "openid", "fido", "kerberos", "jwt", "oidc" ] 

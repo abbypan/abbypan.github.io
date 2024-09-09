@@ -12,30 +12,23 @@ tags : [ "proxy", "ssh" ]
 
 # 说明
 
-安装ssh/plink/putty，本地提供socks tunnel。本机浏览器、Dropbox等客户端直接使用socks tunnel。
+假设远程vps为remote，ip地址为xxx.xxx.xxx.xxx，用户名为someusr，密码为somepasswd。
 
-安装polipo/privoxy，本地提供http proxy，再转发到socks tunnel。android / ios 手机配置wlan连接使用该http proxy。
+本地提供socks tunnel，假设socks proxy port 8888。
 
-假设远程vps为remote，ip地址为xxx.xxx.xxx.xxx，用户名为someusr，密码为somepasswd
+本地提供http proxy，再转发到socks tunnel，假设http proxy port 9999。
+
+本机浏览器、Dropbox等客户端直接使用socks tunnel。
+
+android / ios 手机配置wlan连接使用该http proxy。
 
 # windows 
 
-## socks
+## socks tunnel
 
-下载 [plink](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+下载 [plink](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
 根据用户名、密码登录： ``plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -pw somepasswd``
-
-根据用户名、私钥登录： ``plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -i private.ppk``
-
-或者本地新建一个 p.bat 文件，其内容为
-
-    plink -C -D 8888 -N someusr@xxx.xxx.xxx.xxx -pw somepasswd
-
-将p.bat保存在与plink.exe相同目录下。
-
-双击p.bat，运行，遇到提示信息选择 y (yes)，此时本地端口为8888，不要关闭窗口。
-
 
 ## http proxy
 
@@ -46,17 +39,6 @@ tags : [ "proxy", "ssh" ]
 listen-address 0.0.0.0:9999
 forward-socks5 / 127.0.0.1:8888 .
 {% endhighlight %}
-
-## 将文本形式的私钥文件 remote_rsa.key 转换成 putty可用的ppk文件
-
-打开 PuTTYgen
-
-选择conversions -> import key，载入 remote_rsa
-
-选择save private key，生成 private.ppk
-
-![puttygen](/assets/posts/puttygen.jpg)
-
 
 # linux
 
@@ -82,39 +64,17 @@ socksProxyType = socks5
 
 直接执行``sudo polipo``即可成功开启本地http proxy
 
-# android
-
-安装 sshtunnel app，配置host相关信息
-
-假设本地开启http proxy的机器内网ip为 192.168.1.111
-
-android 无线配置：在wlan ssid名称处长按，选择“高级选项”，填入本地http proxy地址 192.168.1.111 、端口 9999。
-
-android 指定某些app使用proxy：可安装 [ProxyDroid](https://play.google.com/store/apps/details?id=org.proxydroid)，需要root权限
-
-ios配置与android类似。
-
 # curl
 
 假设本地开启proxy的机器内网ip为 192.168.1.111
 
 ``curl -x http://192.168.1.111:9999  https://ipinfo.io``
 
-``curl -x socks5://192.168.1.111:8888  https://ipinfo.io``
+``curl -x socks5h://192.168.1.111:8888  https://ipinfo.io``
 
 # 浏览器
 
-以firefox为例。
-
-打开firefox，下载并安装扩展 [foxyproxy](https://addons.mozilla.org/zh-CN/firefox/addon/foxyproxy-standard/)
-
-foxyproxy配置如下：
-
-![firefox-socks](/assets/posts/firefox_socks.png)
-
-![firefox-socks](/assets/posts/firefox_socks2.png)
-
-配置完毕后直接测试访问google。
+firefox扩展 [foxyproxy](https://addons.mozilla.org/zh-CN/firefox/addon/foxyproxy-standard/)
 
 ## 浏览器pac文件示例（黑名单），默认直连
 
@@ -202,9 +162,9 @@ ssh xxx.xxx.xxx.xxx -l someusr
 
 sshpass -p somepasswd ssh someusr@xxx.xxx.xxx.xxx
 
-## 不输密码（公钥认证）
+## 公钥认证
 
-本地用ssh-keygen -t rsa生成 remote_rsa/remote_rsa.pub的密钥对，要求输passphrase时可以置空。
+本地用ssh-keygen -t rsa生成 remote_rsa/remote_rsa.pub的密钥对。
 
 把本地生成的remote_rsa.pub传到remote上的/home/someusr/.ssh/目录下，并改名为authorized_keys。
 

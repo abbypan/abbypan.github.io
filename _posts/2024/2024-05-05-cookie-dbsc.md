@@ -1,6 +1,6 @@
 ---
 layout: post
-category: protocol
+category: security
 title:  "dbsc"
 tagline: ""
 tags: [ "cookie", "security", "token" ] 

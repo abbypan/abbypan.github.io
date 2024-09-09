@@ -1,6 +1,6 @@
 ---
 layout: post
-category: util
+category: tech
 title:  "手动升级windows10/windows11"
 tagline: ""
 tags: [ "windows", "grub" ] 
