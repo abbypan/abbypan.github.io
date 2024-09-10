@@ -3,7 +3,7 @@ layout: post
 category: crypto
 title:  "PQC: Lattice-based"
 tagline: ""
-tags: [ "crypto", "lattice" ] 
+tags: [ "crypto", "lattice", "pqc" ] 
 ---
 {% include JB/setup %}
 
@@ -138,3 +138,13 @@ message digest μ
     z = y + (−1)^b*S*c
 
 校验 c = H( A*z + q*c mod 2q, μ) = H( A*y + (-1)^b*A*S*c + q*c mod 2q, μ)  
+
+## NTRU 
+
+[ntru prime](https://ntruprime.cr.yp.to/nist/ntruprime-20190330.pdf)
+
+[Quantum technology and its impact on security in mobile networks](https://www.ericsson.com/en/reports-and-papers/ericsson-technology-review/articles/ensuring-security-in-mobile-networks-post-quantum)
+
+## falcon
+
+[falcon](https://csrc.nist.gov/CSRC/media/Presentations/Falcon/images-media/Falcon-April2018.pdf)

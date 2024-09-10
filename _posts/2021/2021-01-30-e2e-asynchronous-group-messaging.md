@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: crypto
 title:  "On Ends-to-Ends Encryption:Asynchronous Group Messaging with Strong Security Guarantees"
 tagline: ""
 tags: [ "security" ] 

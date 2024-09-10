@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: security
 title:  "RFC7435: Opportunistic Security: Some Protection Most of the Time"
 tagline: ""
 tags: [ "security", "rfc" ] 

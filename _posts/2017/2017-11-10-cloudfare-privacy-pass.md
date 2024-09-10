@@ -1,9 +1,9 @@
 ---
 layout: post
-category: tech
+category: privacy
 title:  "Privacy Pass"
 tagline: ""
-tags: [ "CAPTCHA" ] 
+tags: [ "CAPTCHA", "privacy", "crypto" ] 
 ---
 {% include JB/setup %}
 

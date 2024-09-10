@@ -24,6 +24,10 @@ tags: [ "crypto", "hash", "signature", "rfc", "pqc" ]
 
 [SPHINCS+](https://csrc.nist.gov/CSRC/media/Presentations/SPHINCS/images-media/SPHINCS-Plus-April2018.pdf)
 
+[WOTS](https://www.di-mgt.com.au/pqc-03-winternitz.html)
+
+[SPHINCS+ Example](https://www.di-mgt.com.au/pqc-08-sphincs-example.html)
+
 # Lamport
 
 准备：私钥->HASH->公钥； 

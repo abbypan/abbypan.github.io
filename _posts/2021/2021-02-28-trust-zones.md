@@ -1,9 +1,9 @@
 ---
 layout: post
-category: tech
+category: chip
 title:  "Trust Zones:  A Path to a More Secure Internet Infrastructure"
 tagline: ""
-tags: [ "security" ] 
+tags: [ "security", "chip" ] 
 ---
 {% include JB/setup %}
 

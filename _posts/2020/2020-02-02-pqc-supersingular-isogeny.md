@@ -3,7 +3,7 @@ layout: post
 category: crypto
 title:  "PQC: supersingular isogeny"
 tagline: ""
-tags: [ "" ] 
+tags: [ "pqc" ] 
 ---
 {% include JB/setup %}
 

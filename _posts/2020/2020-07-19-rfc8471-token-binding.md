@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tech
+category: security
 title:  "RFC8471: The Token Binding Protocol"
 tagline: ""
 tags: [ "rfc" ] 
