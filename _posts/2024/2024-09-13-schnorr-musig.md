@@ -108,17 +108,17 @@ $$
 &host~key: U_{i} = u_{i}G\\
 &for~NIZK~proof: k_i \\
 \\
-&K = { (X_i, U_i) | 1 \leq i \leq n } \\
+&K = \{ (X_i, U_i) | 1 \leq i \leq n \} \\
 &V = H(K, m)\\
 \\
 &r_i = f(u_{i}V)\\
 &R_i = r_{i}G\\
-&R = ∑R_i\\
+&R = ΣR_i\\
 \\
 &c = H(X, R, m)\\
 \\
 &s_i = r_i + ca_{i}x_{i}\\
-&s = ∑s_i\\
+&s = Σs_i\\
 \\
 &NIZK~proof: (Bulletproofs)\\
 &ρ_i = RandDer(k_i, (K, m))\\
