@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category : security
 title:  "路由识别 route"
 tagline: ""
 tags : [ "route", "traceroute" ] 

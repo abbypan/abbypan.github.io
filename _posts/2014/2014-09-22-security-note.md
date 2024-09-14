@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category : security
 title:  "杂感，安全"
 tagline: ""
 tags : [ "security" ] 

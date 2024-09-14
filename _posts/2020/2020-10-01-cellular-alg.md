@@ -1,9 +1,9 @@
 ---
 layout: post
-category: tech
+category: security
 title:  "cellular algorithm"
 tagline: ""
-tags: [ "" ] 
+tags: [ "celluar" ] 
 ---
 {% include JB/setup %}
 

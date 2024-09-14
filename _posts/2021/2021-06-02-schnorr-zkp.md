@@ -3,7 +3,7 @@ layout: post
 category: crypto
 title:  "RFC8235: Schnorr Non-interactive Zero-Knowledge Proof"
 tagline: ""
-tags: [ "rfc", "zkp" ] 
+tags: [ "rfc", "zkp", "schnorr" ] 
 ---
 {% include JB/setup %}
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : tech
+category : program
 title:  "用 sendEmail 发送带中文名的邮件附件，下载时附件文件名乱码的问题"
 tagline: "chinese"
 tags : [ "sendEmail", "chinese" ] 

@@ -34,6 +34,8 @@ tags: [ "crypto", "lattice", "pqc" ]
 
 [2019 Status Report on the First Round of the NIST Post-Quantum Cryptography Standardization Process](https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8240.pdf)
 
+[Post-quantum cryptography: Lattice-based cryptography](https://www.redhat.com/en/blog/post-quantum-cryptography-lattice-based-cryptography)
+
 # RLWE (Ring Learning With Errors) Problem
 
 [Introduction to post-quantum cryptographyand learning with errors](https://summerschool-croatia.cs.ru.nl/2018/slides/Introduction%20to%20post-quantum%20cryptography%20and%20learning%20with%20errors.pdf)
@@ -139,12 +141,16 @@ message digest μ
 
 校验 c = H( A*z + q*c mod 2q, μ) = H( A*y + (-1)^b*A*S*c + q*c mod 2q, μ)  
 
-## NTRU 
+# NTRU 
 
 [ntru prime](https://ntruprime.cr.yp.to/nist/ntruprime-20190330.pdf)
 
 [Quantum technology and its impact on security in mobile networks](https://www.ericsson.com/en/reports-and-papers/ericsson-technology-review/articles/ensuring-security-in-mobile-networks-post-quantum)
 
-## falcon
+# falcon
 
 [falcon](https://csrc.nist.gov/CSRC/media/Presentations/Falcon/images-media/Falcon-April2018.pdf)
+
+# dilithium
+
+[dilithium](https://slideplayer.com/slide/14252214/)

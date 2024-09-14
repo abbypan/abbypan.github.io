@@ -14,6 +14,8 @@ tags: [ "bitcoin", "wallet" ]
 
 [bip-0032](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
 
+[slip-0010](https://slips.readthedocs.io/en/latest/slip-0010/)
+
 hierarchical deterministic wallets，通过单个CSPRNG，来回调用hmac-sha256，结合ec point的加法、乘法，层次化派生公私钥对，用于bitcoin wallet。
 
 通过`i>=2^31`区分派生的hardened / normal

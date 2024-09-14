@@ -1,9 +1,9 @@
 ---
 layout: post
-category: tech
+category: security
 title:  "Cyber-physical system"
 tagline: ""
-tags: [ "" ] 
+tags: [ "security" ] 
 ---
 {% include JB/setup %}
 

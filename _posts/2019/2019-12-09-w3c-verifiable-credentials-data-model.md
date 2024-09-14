@@ -1,9 +1,9 @@
 ---
 layout: post
-category: tech
+category: security
 title:  "w3c: Verifiable Credentials Data Model"
 tagline: ""
-tags: [ "credentials" ] 
+tags: [ "credential", "standard" ] 
 ---
 {% include JB/setup %}
 
