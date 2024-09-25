@@ -30,6 +30,8 @@ tags: [ "ble", "bluetooth", "Security" ]
 
 [BLE Pairing and Bonding](https://www.kynetics.com/docs/2018/BLE_Pairing_and_bonding/)
 
+[Cryptographic Analysis of the Bluetooth Secure Connection Protocol Suite](https://eprint.iacr.org/2021/1597.pdf)
+
 # privacy
 
 [Protecting Privacy of BLE Device Users](https://www.semanticscholar.org/paper/Protecting-Privacy-of-BLE-Device-Users-Fawaz-Kim/558380e0cba2c5bcda7d4d94e23f215ede0e910f?p2df)

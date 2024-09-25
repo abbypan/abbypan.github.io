@@ -26,6 +26,7 @@ $$
 \end{align*}
 $$ 
 
+参考BIP340
 
 # MuSig
 
@@ -48,10 +49,9 @@ $$
 &R_{i} = r_{i}G \\
 &R = ΣR_{i} \\
  \\
-&s_{i} = r_{i} + H(X,R,m)a_{i}x_{i} \\
+&c = H(X, R, m)\\
+&s_{i} = r_{i} + ca_{i}x_{i} \\
 &s = Σs_{i} \\
- \\
-&sig = (R, s) \\
  \\
 &round 1: H(R_{i}) \\
 &round 2: R_{i} \\
@@ -59,6 +59,7 @@ $$
 \end{align*}
 $$ 
 
+参考BIP327
 
 # MuSig2
 
@@ -82,10 +83,9 @@ $$
 &b=H(X, R', R'', m)\\
 &r_{i}=r'_{i}+br''_{i}\\
 \\
-&s_{i}=r_{i}+H(X, R, m)a_{i}x_{i}\\
+&c = H(X, R, m)\\
+&s_{i}=r_{i}+ca_{i}x_{i}\\
 &s = Σs_{i}\\
-\\
-&sig = (R, s)\\
 \\
 &round 1: R_{i}', R_{i}''\\
 &round 2: s_{i}\\

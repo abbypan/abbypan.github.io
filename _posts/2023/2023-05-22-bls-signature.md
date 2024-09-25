@@ -14,6 +14,8 @@ tags: [ "ietf", "bls", "crypto", "blockchain" ]
 
 [BLS Signatures: draft-irtf-cfrg-bls-signature](https://datatracker.ietf.org/doc/draft-irtf-cfrg-bls-signature/)
 
+[Pairing-Friendly Curves](https://datatracker.ietf.org/doc/draft-irtf-cfrg-pairing-friendly-curves/)
+
 [BLS Multi-Signatures With Public-Key Aggregation](https://crypto.stanford.edu/~dabo/pubs/papers/BLSmultisig.html)
 
 [BLS Signatures](https://2π.com/22/bls-signatures/)
