@@ -14,6 +14,9 @@ tagline: "对孤峰绝顶，云烟竞秀；悬崖峭壁，瀑布争流"
 | Mail | abbypan@gmail.com
 | Blog | [https://abbypan.github.io/archive](https://abbypan.github.io/archive)
 | Github | [https://github.com/abbypan](https://github.com/abbypan)
+| Linkedin | [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/panlanlan/)
+| ResearchGate | [https://www.researchgate.net/profile/Lanlan-Pan/research](https://www.researchgate.net/profile/Lanlan-Pan/research)
+| Orcid | [0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
 
 # Education
 
@@ -24,8 +27,6 @@ tagline: "对孤峰绝顶，云烟竞秀；悬崖峭壁，瀑布争流"
 
 # Working Experience
 
-Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/panlanlan/)
-
 | Year | Company | Position | Experience |
 | ---- | ------ | ------ | ---- |
 | 2019 - 2023 | OPPO | Security Architect | Terminal Security |
@@ -33,11 +34,7 @@ Linkedin: [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/p
 | 2013 - 2017 | CNNIC (China Internet Network Information Center) | Primary Security Technology Researcher | Cyberspace Security |
 | 2009 - 2013 | Tencent | Network Security Engineer | Cybersecurity |
 
-# Paper
-
-ResearchGate: [Lanlan Pan](https://www.researchgate.net/profile/Lanlan-Pan/research)
-
-Orcid: [0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
+# Paper (First Author)
 
 | Year | Paper | 
 | ---- | ---- |
@@ -57,7 +54,7 @@ Orcid: [0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
 | 通信技术 2010 | [基于兴趣相似度的协作式垃圾邮件过滤方案](https://www.nstl.gov.cn/paper_detail.html?id=95a214b420c3f56b3d176c70621bd620) |
 | Masters Dissertation 2009 | [协作式垃圾邮件过滤技术研究](https://www.nstl.gov.cn/paper_detail.html?id=7d50c4e269f1b6a5635b33dc913945f4) |
 
-# Granted Patent
+# Granted Patent (First Author)
 
 Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0)
 
