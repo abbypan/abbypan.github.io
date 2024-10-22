@@ -38,6 +38,7 @@ tagline: "对孤峰绝顶，云烟竞秀；悬崖峭壁，瀑布争流"
 
 | Year | Paper | 
 | ---- | ---- |
+| IEEE CSNet 2024 | CTCA: Increasing Trustworthiness of TLS via Client-trusted Certificate Attestation |
 | IEEE SIN 2024 | A Lightweight Hybrid Signcryption Scheme for Smart Devices |
 | IEEE CSR 2024 | [Building a Secure Cross-Device Communication Channel for Smart Devices based on App Accounts](https://ieeexplore.ieee.org/document/10679353) |
 | IEEE SmartNets 2024 | [ASDWL: Mitigating DNS Random Subdomain Attacks for Second Level Domain](https://ieeexplore.ieee.org/document/10577677) |
