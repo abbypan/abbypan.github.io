@@ -1,9 +1,9 @@
 ---
 layout: post
 category: device
-title:  "android avb"
+title:  "android: avb"
 tagline: ""
-tags: [ "android" ] 
+tags: [ "android", "avb" ] 
 ---
 {% include JB/setup %}
 

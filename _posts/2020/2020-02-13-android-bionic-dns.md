@@ -3,7 +3,7 @@ layout: post
 category: dns
 title:  "Android: bionic dns 分析"
 tagline: ""
-
+tags: [ "android" ] 
 ---
 {% include JB/setup %}
 

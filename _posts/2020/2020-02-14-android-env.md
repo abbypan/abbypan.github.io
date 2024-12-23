@@ -1,7 +1,7 @@
 ---
 layout: post
 category: device
-title:  "Android Dev"
+title:  "Android: Develop Env"
 tagline: ""
 tags: [ "android" ] 
 ---
