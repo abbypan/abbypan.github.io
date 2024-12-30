@@ -1,13 +1,13 @@
 ---
 layout: page
 title: "江天一色"
-tagline: "对孤峰绝顶，云烟竞秀；悬崖峭壁，瀑布争流"
+tagline: "潘蓝兰 (Pan Lanlan)"
 ---
 {% include JB/setup %}
 
 # About Me
 
-潘蓝兰 (Pan Lanlan)
+潘蓝兰 (Pan Lanlan): 
 
 | Type | URL |
 | ---- | --- |
@@ -18,12 +18,14 @@ tagline: "对孤峰绝顶，云烟竞秀；悬崖峭壁，瀑布争流"
 | ResearchGate | [https://www.researchgate.net/profile/Lanlan-Pan/research](https://www.researchgate.net/profile/Lanlan-Pan/research)
 | Orcid | [0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
 
+
 # Education
 
 | Year | School | Degree | Info |
 | ---- | ------ | ------ | ---- |
 | 2006 - 2009 | USTC (University of Science and Technology of China) | Master of Information Security | Infonet: [http://if.ustc.edu.cn](http://if.ustc.edu.cn) |
 | 2002 - 2006 | USTC (University of Science and Technology of China) | Bachelor of Information Security | Cybersec: [http://cybersec.ustc.edu.cn/main.htm](http://cybersec.ustc.edu.cn/main.htm) |
+
 
 # Working Experience
 
@@ -33,6 +35,7 @@ tagline: "对孤峰绝顶，云烟竞秀；悬崖峭壁，瀑布争流"
 | 2018 - 2019 | Geely | Cybersecurity Technical Manager | Automotive Security |
 | 2013 - 2017 | CNNIC (China Internet Network Information Center) | Primary Security Technology Researcher | Cyberspace Security |
 | 2009 - 2013 | Tencent | Network Security Engineer | Cybersecurity |
+
 
 # Paper (First Author)
 
@@ -54,13 +57,14 @@ tagline: "对孤峰绝顶，云烟竞秀；悬崖峭壁，瀑布争流"
 | 通信技术 2010 | [基于兴趣相似度的协作式垃圾邮件过滤方案](https://www.nstl.gov.cn/paper_detail.html?id=95a214b420c3f56b3d176c70621bd620) |
 | Masters Dissertation 2009 | [协作式垃圾邮件过滤技术研究](https://www.nstl.gov.cn/paper_detail.html?id=7d50c4e269f1b6a5635b33dc913945f4) |
 
+
 # Granted Patent (First Author)
 
 Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0)
 
 | Granted Year | Grant No. | Patent |
 | ------------ | --------- | ------ |
-| 2024 | CN114726625B | [检测方法及装置、服务器及存储介质](https://patents.google.com/patent/CN114726625B/) |
+| 2024 | CN114726625B | [检测方法及装置、服务器及存储介质 (Detection method and device, server and storage medium)](https://patents.google.com/patent/CN114726625B/) |
 | 2024 | EP4099733B1 | [Security authentication method and apparatus, and electronic device](https://patents.google.com/patent/EP4099733B1/) |
 | 2024 | US11924635B2 | [Security authentication method and apparatus thereof, and electronic device](https://patents.google.com/patent/US11924635B2/) |
 | 2024 | CN114979071B | [动态域名配置方法、装置、电子设备及存储介质 (Dynamic domain name configuration method, device, electronic equipment and storage medium)](https://patents.google.com/patent/CN114979071B) |
@@ -74,6 +78,7 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | 2021 | CN109787774B | [基于数字签名校验的升级下载方法、装置、服务器及终端 (Upgrade downloading method and device based on digital signature verification, server and terminal)](https://patents.google.com/patent/CN109787774B) |
 | 2020 | CN106210165B | [基于NS记录分层授权缓解域名权威记录劫持影响的方法 (Method for relieving domain name authority record hijacking influence based on NS record hierarchical authorization)](https://patents.google.com/patent/CN106210165B) |
 | 2019 | CN105704259B | [一种域名权威服务来源ip识别方法和系统 (A kind of domain name authority services source IP recognition methods and system)](https://patents.google.com/patent/CN105704259B) |
+
 
 # Standard
 
@@ -89,12 +94,23 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | IETF draft-pan-dnsop-edns-isp-location | [ISP Location in DNS Queries](https://datatracker.ietf.org/doc/draft-pan-dnsop-edns-isp-location/) |
 | IETF draft-pan-dnsop-swild-rr-type | [SWILD RR Type (Wildcard on Intermediate Nameservers)](https://datatracker.ietf.org/doc/draft-pan-dnsop-swild-rr-type) |
 
+
 # Participate
 
 | Organization |
 | ------------ |
-| [SECURWARE Technical Program Committee](https://www.iaria.org/conferences2021/ComSECURWARE21.html) |
 | [ICANN RSSAC Caucus](https://www.icann.org/groups/rssac-caucus) |
+| [SECURWARE Technical Program Committee](https://www.iaria.org/conferences2021/ComSECURWARE21.html) |
+
+
+# Technical Notes
+
+| Notes |
+| ----- |
+| [密码应用合规笔记(Crypto Compliance Notes)](https://crypto-compliance-notes.readthedocs.io/) |
+| [DNS安全笔记(DNS Security Notes)](https://dns-security-notes.readthedocs.io/) |
+| [Android安全笔记(Android Security Notes)](https://android-security-notes.readthedocs.io/) |
+
 
 # Keywords
 
@@ -105,6 +121,5 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | Cyberspace Security | Protocol, DNS, BGP, PKI, Cryptography, TLD
 | Cybersecurity | Information Security, DNS, Hijack, DDoS, Network Security, TLS, CDN, HTTP
 
-![Mail](assets/img/mail.png) 
 
 ![create with vim](assets/img/vim.png)
