@@ -95,6 +95,18 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | IETF draft-pan-dnsop-swild-rr-type | [SWILD RR Type (Wildcard on Intermediate Nameservers)](https://datatracker.ietf.org/doc/draft-pan-dnsop-swild-rr-type) |
 
 
+# Technical Notes
+
+| Notes |
+| ----- |
+| [密码应用合规笔记(Crypto Compliance Notes)](https://crypto-compliance-notes.readthedocs.io/) |
+| [芯片安全笔记(Chip Security Notes)](https://chip-security-notes.readthedocs.io/) |
+| [Android安全笔记(Android Security Notes)](https://android-security-notes.readthedocs.io/) |
+| [密码应用笔记(Crypto Application Notes)](https://crypto-app-notes.readthedocs.io/) |
+| [DNS安全笔记(DNS Security Notes)](https://dns-security-notes.readthedocs.io/) |
+| [网络安全笔记(cybersecurity Notes)](https://cybersecurity-notes.readthedocs.io/) |
+
+
 # Participate
 
 | Organization |
@@ -103,27 +115,14 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | [SECURWARE Technical Program Committee](https://www.iaria.org/conferences2021/ComSECURWARE21.html) |
 
 
-# Technical Notes
-
-| Notes |
-| ----- |
-| [密码应用合规笔记(Crypto Compliance Notes)](https://crypto-compliance-notes.readthedocs.io/) |
-| [DNS安全笔记(DNS Security Notes)](https://dns-security-notes.readthedocs.io/) |
-| [芯片安全笔记(Chip Security Notes)](https://chip-security-notes.readthedocs.io/) |
-| [密码应用笔记(Crypto Application Notes)](https://crypto-application-notes.readthedocs.io/) |
-| [网络安全笔记(cybersecurity Notes)](https://cybersecurity-notes.readthedocs.io/) |
-| [Android安全笔记(Android Security Notes)](https://android-security-notes.readthedocs.io/) |
-
-
-
 # Keywords
 
 | Experience | Keywords |
 | ---------- | -------- |
-| Terminal Security | Chip, Cryptography, Connectivity, Android, TEE, SecureBoot, IoT, Privacy, Data Security
-| Automotive Security | Digital Car Key, OTA, Telemetics, TSP, ECU, HSM, BLE, WiFi, NFC, UWB, GDPR
-| Cyberspace Security | Protocol, DNS, BGP, PKI, Cryptography, TLD
-| Cybersecurity | Information Security, DNS, Hijack, DDoS, Network Security, TLS, CDN, HTTP
+| Terminal Security | Chip, Cryptography, Device, Connectivity, Android, TEE, IoT, Privacy, Data Security, GDPR
+| Automotive Security | Digital Car Key, CCC, OTA, Telemetics, TSP, ECU, HSM, BLE, NFC, UWB
+| Cyberspace Security | DNS, BGP, PKI
+| Cybersecurity | DNS, Hijack, DDoS, Network, TLS, CDN, HTTP
 
 
 ![create with vim](assets/img/vim.png)
