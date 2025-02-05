@@ -39,7 +39,7 @@ tagline: "潘蓝兰 (Pan Lanlan)"
 
 # Paper (First Author)
 
-| Year | Paper | Note |
+| Year | Paper | Index |
 | ---- | ----- | ---- |
 | IEEE SIN 2024 | A Lightweight Hybrid Signcryption Scheme for Smart Devices | 
 | IEEE CSR 2024 | [Building a Secure Cross-Device Communication Channel for Smart Devices based on App Accounts](https://doi.org/10.1109/CSR61664.2024.10679353) | WOS:001327167900054
