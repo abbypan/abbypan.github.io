@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "江天一色"
-tagline: "潘蓝兰 (Pan Lanlan)"
+tagline: "惟陈言之务去"
 ---
 {% include JB/setup %}
 
