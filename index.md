@@ -101,11 +101,11 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | Technical Notes |
 | --------------- |
 | [密码应用合规笔记(Crypto Compliance Notes)](https://crypto-compliance-notes.readthedocs.io/) |
+| [密码应用笔记(Crypto Application Notes)](https://crypto-app-notes.readthedocs.io/) |
 | [芯片安全笔记(Chip Security Notes)](https://chip-security-notes.readthedocs.io/) |
 | [Android安全笔记(Android Security Notes)](https://android-security-notes.readthedocs.io/) |
-| [密码应用笔记(Crypto Application Notes)](https://crypto-app-notes.readthedocs.io/) |
+| [网络安全笔记(Cybersecurity Notes)](https://cybersecurity-notes.readthedocs.io/) |
 | [DNS安全笔记(DNS Security Notes)](https://dns-security-notes.readthedocs.io/) |
-| [网络安全笔记(cybersecurity Notes)](https://cybersecurity-notes.readthedocs.io/) |
 
 
 # Participate

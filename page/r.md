@@ -1,9 +1,6 @@
 ---
-layout: post
-category: program
-title:  "R 语言 资料"
-tagline: ""
-tags : [ "r" ] 
+layout: page
+title:  "R语言"
 ---
 {% include JB/setup %}
 
