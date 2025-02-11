@@ -12,8 +12,9 @@ tagline: "惟陈言之务去"
 | Type | URL |
 | ---- | --- |
 | Mail | abbypan@gmail.com
-| Blog | [https://abbypan.github.io/archive](https://abbypan.github.io/archive)
 | Github | [https://github.com/abbypan](https://github.com/abbypan)
+| Technical Notes | [https://abbypan.github.io/page/notes](https://abbypan.github.io/page/notes)
+| Blog | [https://abbypan.github.io/archive](https://abbypan.github.io/archive)
 | Linkedin | [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/panlanlan/)
 | ResearchGate | [https://www.researchgate.net/profile/Lanlan-Pan/research](https://www.researchgate.net/profile/Lanlan-Pan/research)
 | Orcid | [0000-0002-1771-2683](https://orcid.org/0000-0002-1771-2683)
@@ -97,8 +98,8 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 
 # Technical Notes
 
-| Notes |
-| ----- |
+| Technical Notes |
+| --------------- |
 | [密码应用合规笔记(Crypto Compliance Notes)](https://crypto-compliance-notes.readthedocs.io/) |
 | [芯片安全笔记(Chip Security Notes)](https://chip-security-notes.readthedocs.io/) |
 | [Android安全笔记(Android Security Notes)](https://android-security-notes.readthedocs.io/) |
