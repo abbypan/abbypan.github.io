@@ -1,9 +1,6 @@
 ---
-layout: post
-category: tech
+layout: page
 title: "Vim"
-tagline: "编辑器"
-tags: [ "vim" ] 
 ---
 {% include JB/setup %}
 

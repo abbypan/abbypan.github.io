@@ -1,9 +1,6 @@
 ---
-layout: post
+layout: page
 title: "Lisp"
-tagline: "列表处理语言"
-category: program
-tags : [ "lisp" ] 
 ---
 {% include JB/setup %}
 

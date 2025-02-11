@@ -1,9 +1,6 @@
 ---
-layout: post
-category: tech
+layout: page
 title: "archlinux"
-tagline: "kiss"
-tags: [ "archlinux", "clonezilla" ] 
 ---
 {% include JB/setup %}
 

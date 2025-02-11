@@ -1,9 +1,6 @@
 ---
-layout: post
-category: program
+layout: page
 title: "Perl"
-tagline: "TMTOWTDI"
-tags: [ "perl" ] 
 ---
 {% include JB/setup %}
 

@@ -1,9 +1,6 @@
 ---
-layout: post
-category: tech
+layout: page
 title: "debian"
-tagline: "flexible"
-tags: [ "linux" ] 
 ---
 {% include JB/setup %}
 

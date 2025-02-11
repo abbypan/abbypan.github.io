@@ -1,9 +1,6 @@
 ---
-layout: post
-category: dns
+layout: page
 title: "DNS"
-tagline: "Domain Name System"
-tags: [ "dns", "rfc" ] 
 ---
 {% include JB/setup %}
 
