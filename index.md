@@ -13,7 +13,6 @@ tagline: "惟陈言之务去"
 | ---- | --- |
 | Mail | abbypan@gmail.com
 | Github | [https://github.com/abbypan](https://github.com/abbypan)
-| Technical Notes | [https://abbypan.github.io/page/notes](https://abbypan.github.io/page/notes)
 | Blog | [https://abbypan.github.io/archive](https://abbypan.github.io/archive)
 | Linkedin | [https://www.linkedin.com/in/panlanlan/](https://www.linkedin.com/in/panlanlan/)
 | ResearchGate | [https://www.researchgate.net/profile/Lanlan-Pan/research](https://www.researchgate.net/profile/Lanlan-Pan/research)
@@ -42,7 +41,7 @@ tagline: "惟陈言之务去"
 
 | Year | Paper | Index |
 | ---- | ----- | ---- |
-| IEEE SIN 2024 | A Lightweight Hybrid Signcryption Scheme for Smart Devices | 
+| IEEE SIN 2024 | [A Lightweight Hybrid Signcryption Scheme for Smart Devices](https://doi.org/10.1109/SIN63213.2024.10871686) | 
 | IEEE CSR 2024 | [Building a Secure Cross-Device Communication Channel for Smart Devices based on App Accounts](https://doi.org/10.1109/CSR61664.2024.10679353) | WOS:001327167900054
 | IEEE SmartNets 2024 | [ASDWL: Mitigating DNS Random Subdomain Attacks for Second Level Domain](https://doi.org/10.1109/SmartNets61466.2024.10577677) | WOS:001267026900020
 | CRIS 2023 | [Enhance Calling Definition Security for Android Custom Permission](https://www.semanticscholar.org/paper/Enhance-Calling-Definition-Security-for-Android-Pan-Qiu/bda0c6f6b79ed591d8c8c36706f53b655f87876c) |

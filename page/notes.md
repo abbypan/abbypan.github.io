@@ -2,7 +2,6 @@
 layout: page
 title : Notes
 header : Notes
-group: navigation
 ---
 {% include JB/setup %}
 
