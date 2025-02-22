@@ -1,0 +1,21 @@
+---
+layout: page
+title : Archive
+header : Post Archive
+group: navigation
+---
+{% include JB/setup %}
+
+<h2>Technical Notes</h2>
+<p></p>
+  <ul>
+      <li><a href="https://crypto-compliance-notes.readthedocs.io/">密码应用合规笔记(Crypto Compliance Notes)</a></li>
+      <li><a href="https://crypto-app-notes.readthedocs.io/">密码应用笔记(Crypto Application Notes)</a></li>
+      <li><a href="https://chip-security-notes.readthedocs.io/">芯片安全笔记(Chip Security Notes)</a></li>
+      <li><a href="https://android-security-notes.readthedocs.io/">Android安全笔记(Android Security Notes)</a></li>
+      <li><a href="https://cybersecurity-notes.readthedocs.io/">网络安全笔记(Cybersecurity Notes)</a></li>
+      <li><a href="https://dns-security-notes.readthedocs.io/">DNS安全笔记(DNS Security Notes)</a></li>
+  </ul>
+
+{% assign posts_collate = site.posts %}
+{% include JB/posts_collate %}
