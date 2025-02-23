@@ -41,6 +41,7 @@ tagline: "惟陈言之务去"
 
 | Year | Paper | Index |
 | ---- | ----- | ---- |
+| ICISSP 2025 | Using Compact DNSSEC and Self-signed Certificate to Improve Security and Privacy for Second-Level Domain Resolution |
 | IEEE SIN 2024 | [A Lightweight Hybrid Signcryption Scheme for Smart Devices](https://doi.org/10.1109/SIN63213.2024.10871686) | 
 | IEEE CSR 2024 | [Building a Secure Cross-Device Communication Channel for Smart Devices based on App Accounts](https://doi.org/10.1109/CSR61664.2024.10679353) | WOS:001327167900054
 | IEEE SmartNets 2024 | [ASDWL: Mitigating DNS Random Subdomain Attacks for Second Level Domain](https://doi.org/10.1109/SmartNets61466.2024.10577677) | WOS:001267026900020
