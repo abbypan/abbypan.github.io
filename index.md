@@ -91,9 +91,10 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 
 | Year | Draft |
 | ---- | ----- |
+| IETF draft-pan-dnsop-authenticated-subdomain-whitelist | [Authenticated subdomain whitelist (ASDWL) for second-level domain (SLD)](https://datatracker.ietf.org/doc/draft-pan-dnsop-authenticated-subdomain-whitelist/) |
+| IETF draft-pan-dnsop-compact-dnssec | [Compact DNSSEC](https://datatracker.ietf.org/doc/draft-pan-dnsop-compact-dnssec/) |
 | IETF draft-pan-dnsop-explicit-forged-answer-signal | [Explicit Forged Answer Signal](https://datatracker.ietf.org/doc/draft-pan-dnsop-explicit-forged-answer-signal/) |
 | IETF draft-pan-dnsop-edns-isp-location | [ISP Location in DNS Queries](https://datatracker.ietf.org/doc/draft-pan-dnsop-edns-isp-location/) |
-| IETF draft-pan-dnsop-swild-rr-type | [SWILD RR Type (Wildcard on Intermediate Nameservers)](https://datatracker.ietf.org/doc/draft-pan-dnsop-swild-rr-type) |
 
 
 # Technical Notes
