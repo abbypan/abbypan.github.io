@@ -41,7 +41,7 @@ tagline: "惟陈言之务去"
 
 | Year | Paper | Index |
 | ---- | ----- | ---- |
-| ICISSP 2025 | Using Compact DNSSEC and Self-signed Certificate to Improve Security and Privacy for Second-Level Domain Resolution |
+| ICISSP 2025 | [Using Compact DNSSEC and Self-signed Certificate to Improve Security and Privacy for Second-Level Domain Resolution](https://dx.doi.org/10.5220/0013275700003899) |
 | IEEE SIN 2024 | [A Lightweight Hybrid Signcryption Scheme for Smart Devices](https://doi.org/10.1109/SIN63213.2024.10871686) | 
 | IEEE CSR 2024 | [Building a Secure Cross-Device Communication Channel for Smart Devices based on App Accounts](https://doi.org/10.1109/CSR61664.2024.10679353) | WOS:001327167900054
 | IEEE SmartNets 2024 | [ASDWL: Mitigating DNS Random Subdomain Attacks for Second Level Domain](https://doi.org/10.1109/SmartNets61466.2024.10577677) | WOS:001267026900020
@@ -95,18 +95,6 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 | IETF draft-pan-dnsop-compact-dnssec | [Compact DNSSEC](https://datatracker.ietf.org/doc/draft-pan-dnsop-compact-dnssec/) |
 | IETF draft-pan-dnsop-explicit-forged-answer-signal | [Explicit Forged Answer Signal](https://datatracker.ietf.org/doc/draft-pan-dnsop-explicit-forged-answer-signal/) |
 | IETF draft-pan-dnsop-edns-isp-location | [ISP Location in DNS Queries](https://datatracker.ietf.org/doc/draft-pan-dnsop-edns-isp-location/) |
-
-
-# Technical Notes
-
-| Technical Notes |
-| --------------- |
-| [密码应用合规笔记(Crypto Compliance Notes)](https://crypto-compliance-notes.readthedocs.io/) |
-| [密码应用笔记(Crypto Application Notes)](https://crypto-app-notes.readthedocs.io/) |
-| [芯片安全笔记(Chip Security Notes)](https://chip-security-notes.readthedocs.io/) |
-| [Android安全笔记(Android Security Notes)](https://android-security-notes.readthedocs.io/) |
-| [网络安全笔记(Cybersecurity Notes)](https://cybersecurity-notes.readthedocs.io/) |
-| [DNS安全笔记(DNS Security Notes)](https://dns-security-notes.readthedocs.io/) |
 
 
 # Participate
