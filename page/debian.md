@@ -241,10 +241,16 @@ route add -net 211.86.0.0/16 gw $gateway dev eth0
 
 {% highlight bash %}
 sudo apt-get install apache2 libapache2-mod-perl2
-sudo apt-get install libapache2-mod-php php php-pear php-curl
+sudo apt-get install libapache2-mod-php php php-fpm php-cli php-pear php-curl php-common
 sudo apt-get install bsdutils mariadb-server php-mysql
 sudo apt-get install imagemagick php-imagick php-gd
 {% endhighlight %}
+
+查看php版本后，enable模块
+
+    php --version
+    a2enconf php8.2-fpm
+    a2enmod php8.2
 
 修改配置后重启apache2：``sudo apache2ctl graceful``
 

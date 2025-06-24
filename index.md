@@ -101,7 +101,6 @@ Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https
 
 | Organization |
 | ------------ |
-| [ICANN RSSAC Caucus](https://www.icann.org/groups/rssac-caucus) |
 | [SECURWARE Technical Program Committee](https://www.iaria.org/conferences2021/ComSECURWARE21.html) |
 
 
