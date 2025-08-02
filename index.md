@@ -39,29 +39,25 @@ tagline: "惟陈言之务去"
 
 # Paper (First Author)
 
-| Year | Paper | Index |
-| ---- | ----- | ---- |
-| ICISSP 2025 | [Using Compact DNSSEC and Self-signed Certificate to Improve Security and Privacy for Second-Level Domain Resolution](https://dx.doi.org/10.5220/0013275700003899) |
-| IEEE SIN 2024 | [A Lightweight Hybrid Signcryption Scheme for Smart Devices](https://doi.org/10.1109/SIN63213.2024.10871686) | 
-| IEEE CSR 2024 | [Building a Secure Cross-Device Communication Channel for Smart Devices based on App Accounts](https://doi.org/10.1109/CSR61664.2024.10679353) | WOS:001327167900054
-| IEEE SmartNets 2024 | [ASDWL: Mitigating DNS Random Subdomain Attacks for Second Level Domain](https://doi.org/10.1109/SmartNets61466.2024.10577677) | WOS:001267026900020
-| CRIS 2023 | [Enhance Calling Definition Security for Android Custom Permission](https://www.semanticscholar.org/paper/Enhance-Calling-Definition-Security-for-Android-Pan-Qiu/bda0c6f6b79ed591d8c8c36706f53b655f87876c) |
-| Computing 2022 | [Measuring the Resolution Resiliency of Second-Level Domain Name](https://doi.org/10.1007/978-3-031-10467-1_45) | WOS:000889463000045
-| Spaccs 2019 | [EPT: EDNS Privacy Tunnel for DNS](https://doi.org/10.1007/978-3-030-24907-6_5) | 
-| QShine 2018 | [Improving Privacy for GeoIP DNS Traffic](http://dx.doi.org/10.1007/978-3-030-14413-5_1) |
-| IEEE TrustCom 2018 | [A Public Key based EDNS Privacy Tunnel for DNS](https://doi.org/10.1109/TrustCom/BigDataSE.2018.00260) | WOS:000495072100250
-| IEEE PST 2018 | [Mitigating Client Subnet Leakage in DNS Queries](https://doi.org/10.1109/PST.2018.8514164) | WOS:000454683600016
-| NDSS DNS Privacy Workshop 2017 | [EIL: Dealing with the Privacy Problem of ECS](https://dnsprivacy.org/ndss_dns_privacy_workshop/2017_ndss_dns_privacy_workshop/) |
-| IEEE APNOMS 2016 | [Mitigating DDoS Attacks towards Top Level Domain Name Service](https://doi.org/10.1109/APNOMS.2016.7737252) | WOS:000392160000059
-| 计算机应用研究 2016 |  [一种评估DNS根镜像服务的方法](https://www.researchgate.net/publication/370353433_An_Evaluation_Method_for_DNS_Root_Service_Quality_yizhongpingguDNSgenfuwuzhiliangdefangfa) |
-| 计算机应用研究 2015 | [一种快速评估DDOS攻击对DNS权威服务影响的方法](https://www.nstl.gov.cn/paper_detail.html?id=1c1ad8061cf831041024b20411140f2b) |
-| 通信技术 2010 | [基于兴趣相似度的协作式垃圾邮件过滤方案](https://www.nstl.gov.cn/paper_detail.html?id=95a214b420c3f56b3d176c70621bd620) |
-| Masters Dissertation 2009 | [协作式垃圾邮件过滤技术研究](https://www.nstl.gov.cn/paper_detail.html?id=7d50c4e269f1b6a5635b33dc913945f4) |
+- Pan, Lanlan et al. "[Using Compact DNSSEC and Self-signed Certificate to Improve Security and Privacy for Second-Level Domain Resolution](https://dx.doi.org/10.5220/0013275700003899)",ICISSP (2) (2025): 615-623.
+- Pan, Lanlan et al. "[Building a Secure Cross-Device Communication Channel for Smart Devices based on App Accounts](https://doi.org/10.1109/CSR61664.2024.10679353)",2024 IEEE INTERNATIONAL CONFERENCE ON CYBER SECURITY AND RESILIENCE, CSR (2024): 360-366. 【WOS:001327167900054】
+- Pan, Lanlan et al. "[ASDWL: Mitigating DNS Random Subdomain Attacks for Second Level Domain](https://doi.org/10.1109/SmartNets61466.2024.10577677)",2024 INTERNATIONAL CONFERENCE ON SMART APPLICATIONS, COMMUNICATIONS AND NETWORKING, SMARTNETS-2024 (2024)【WOS:001267026900020】
+- Pan, Lanlan et al. "[A Lightweight Hybrid Signcryption Scheme for Smart Devices](https://doi.org/10.1109/SIN63213.2024.10871686)",International Conference on Security of Information and Networks (2024): 1-8.
+- Pan, Lanlan, et al. "[Enhance Calling Definition Security for Android Custom Permission](https://www.semanticscholar.org/paper/Enhance-Calling-Definition-Security-for-Android-Pan-Qiu/bda0c6f6b79ed591d8c8c36706f53b655f87876c)" CS & IT Conference Proceedings. Vol. 13. No. 8. CS & IT Conference Proceedings, 2023.
+- Lanlan, Pan et al. "[Measuring the Resolution Resiliency of Second-Level Domain Name](https://doi.org/10.1007/978-3-031-10467-1_45)",Intelligent Computing (2022): 742-755.【WOS:000889463000045】
+- Pan, Lanlan et al. "[EPT: EDNS Privacy Tunnel for DNS](https://doi.org/10.1007/978-3-030-24907-6_5)",Security, Privacy, and Anonymity in Computation, Communication, and Storage (2019): 50-62.
+- Pan, Lanlan et al. "[Improving Privacy for GeoIP DNS Traffic](http://dx.doi.org/10.1007/978-3-030-14413-5_1)",Quality of Service in Heterogeneous Wired/Wireless Networks (2018): 1-13.
+- Pan, Lanlan et al. "[Mitigating Client Subnet Leakage in DNS Queries](https://doi.org/10.1109/PST.2018.8514164)",Conference on Privacy, Security and Trust (2018)【WOS:000454683600016】
+- Pan, Lanlan et al. "[A Public Key based EDNS Privacy Tunnel for DNS](https://doi.org/10.1109/TrustCom/BigDataSE.2018.00260)",International Conference on Trust, Security and Privacy in Computing and Communications (2018)【CCF-C】【WOS:000495072100250】
+- NDSS DNS Privacy Workshop 2017《[EIL: Dealing with the Privacy Problem of ECS](https://www.ndss-symposium.org/ndss2017/dns-privacy-workshop-2017-programme/)》【CCF-A】
+- Pan, Lanlan et al. "[Mitigating DDoS Attacks towards Top Level Domain Name Service](https://doi.org/10.1109/APNOMS.2016.7737252)",Asia-Pacific Network Operations and Management Symposium (2016) 【CCF-C】【WOS:000392160000059】
+- 计算机应用研究 2016 [一种评估DNS根镜像服务的方法](https://www.researchgate.net/publication/370353433_An_Evaluation_Method_for_DNS_Root_Service_Quality_yizhongpingguDNSgenfuwuzhiliangdefangfa)
+- 潘蓝兰, 尉迟学彪, and 胡安磊. "[一种快速评估DDOS攻击对DNS权威服务影响的方法](https://www.nstl.gov.cn/paper_detail.html?id=1c1ad8061cf831041024b20411140f2b)" 计算机应用研究 32.11 (2015): 3456-3459.
+- 潘蓝兰, 薛开平, and 洪佩琳. "[基于兴趣相似度的协作式垃圾邮件过滤方案](https://www.nstl.gov.cn/paper_detail.html?id=95a214b420c3f56b3d176c70621bd620)" 通信技术 2 (2010): 122-124.
+- Masters Dissertation 2009 [协作式垃圾邮件过滤技术研究](https://www.nstl.gov.cn/paper_detail.html?id=7d50c4e269f1b6a5635b33dc913945f4)
 
 
 # Granted Patent (First Author)
-
-Patent: [https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0](https://patents.google.com/?inventor=%E6%BD%98%E8%93%9D%E5%85%B0)
 
 | Granted Year | Grant No. | Patent |
 | ------------ | --------- | ------ |
