@@ -61,6 +61,7 @@ tagline: "惟陈言之务去"
 
 | Granted Year | Grant No. | Patent |
 | ------------ | --------- | ------ |
+| 2025 | CN114363888B | [数据传输方法、装置、存储介质及电子设备](https://patents.google.com/patent/CN114363888B/) |
 | 2024 | CN114726625B | [检测方法及装置、服务器及存储介质 (Detection method and device, server and storage medium)](https://patents.google.com/patent/CN114726625B/) |
 | 2024 | EP4099733B1 | [Security authentication method and apparatus, and electronic device](https://patents.google.com/patent/EP4099733B1/) |
 | 2024 | US11924635B2 | [Security authentication method and apparatus thereof, and electronic device](https://patents.google.com/patent/US11924635B2/) |
