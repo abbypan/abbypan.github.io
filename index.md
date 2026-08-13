@@ -48,9 +48,9 @@ tagline: "惟陈言之务去"
 - Pan, Lanlan et al. "[EPT: EDNS Privacy Tunnel for DNS](https://doi.org/10.1007/978-3-030-24907-6_5)",Security, Privacy, and Anonymity in Computation, Communication, and Storage (2019): 50-62.
 - Pan, Lanlan et al. "[Improving Privacy for GeoIP DNS Traffic](http://dx.doi.org/10.1007/978-3-030-14413-5_1)",Quality of Service in Heterogeneous Wired/Wireless Networks (2018): 1-13.
 - Pan, Lanlan et al. "[Mitigating Client Subnet Leakage in DNS Queries](https://doi.org/10.1109/PST.2018.8514164)",Conference on Privacy, Security and Trust (2018)【WOS:000454683600016】
-- Pan, Lanlan et al. "[A Public Key based EDNS Privacy Tunnel for DNS](https://doi.org/10.1109/TrustCom/BigDataSE.2018.00260)",International Conference on Trust, Security and Privacy in Computing and Communications (2018)【CCF-C】【WOS:000495072100250】
+- Pan, Lanlan et al. "[A Public Key based EDNS Privacy Tunnel for DNS](https://doi.org/10.1109/TrustCom/BigDataSE.2018.00260)",International Conference on Trust, Security and Privacy in Computing and Communications (2018)【WOS:000495072100250】
 - NDSS DNS Privacy Workshop 2017《[EIL: Dealing with the Privacy Problem of ECS](https://www.ndss-symposium.org/ndss2017/dns-privacy-workshop-2017-programme/)》
-- Pan, Lanlan et al. "[Mitigating DDoS Attacks towards Top Level Domain Name Service](https://doi.org/10.1109/APNOMS.2016.7737252)",Asia-Pacific Network Operations and Management Symposium (2016) 【CCF-C】【WOS:000392160000059】
+- Pan, Lanlan et al. "[Mitigating DDoS Attacks towards Top Level Domain Name Service](https://doi.org/10.1109/APNOMS.2016.7737252)",Asia-Pacific Network Operations and Management Symposium (2016)【WOS:000392160000059】
 - 计算机应用研究 2016 [一种评估DNS根镜像服务的方法](https://www.researchgate.net/publication/370353433_An_Evaluation_Method_for_DNS_Root_Service_Quality_yizhongpingguDNSgenfuwuzhiliangdefangfa)
 - 潘蓝兰, 尉迟学彪, and 胡安磊. "[一种快速评估DDOS攻击对DNS权威服务影响的方法](https://www.nstl.gov.cn/paper_detail.html?id=1c1ad8061cf831041024b20411140f2b)" 计算机应用研究 32.11 (2015): 3456-3459.
 - 潘蓝兰, 薛开平, and 洪佩琳. "[基于兴趣相似度的协作式垃圾邮件过滤方案](https://www.nstl.gov.cn/paper_detail.html?id=95a214b420c3f56b3d176c70621bd620)" 通信技术 2 (2010): 122-124.
@@ -94,22 +94,6 @@ tagline: "惟陈言之务去"
 | IETF draft-pan-dnsop-explicit-forged-answer-signal | [Explicit Forged Answer Signal](https://datatracker.ietf.org/doc/draft-pan-dnsop-explicit-forged-answer-signal/) |
 | IETF draft-pan-dnsop-edns-isp-location | [ISP Location in DNS Queries](https://datatracker.ietf.org/doc/draft-pan-dnsop-edns-isp-location/) |
 
-
-# Participate
-
-| Organization |
-| ------------ |
-| [SECURWARE Technical Program Committee](https://www.iaria.org/conferences2021/ComSECURWARE21.html) |
-
-
-# Keywords
-
-| Experience | Keywords |
-| ---------- | -------- |
-| Terminal Security | Chip, Cryptography, Device, Connectivity, Android, TEE, IoT, Privacy, Data Security, GDPR
-| Automotive Security | Digital Car Key, CCC, OTA, Telemetics, TSP, ECU, HSM, BLE, NFC, UWB
-| Cyberspace Security | DNS, BGP, PKI
-| Cybersecurity | DNS, Hijack, DDoS, Network, TLS, CDN, HTTP
 
 
 ![create with vim](assets/img/vim.png)
