@@ -1,4 +1,4 @@
----
+
 layout: page
 title: "江天一色"
 tagline: "惟陈言之务去"
@@ -49,7 +49,7 @@ tagline: "惟陈言之务去"
 - Pan, Lanlan et al. "[Improving Privacy for GeoIP DNS Traffic](http://dx.doi.org/10.1007/978-3-030-14413-5_1)",Quality of Service in Heterogeneous Wired/Wireless Networks (2018): 1-13.
 - Pan, Lanlan et al. "[Mitigating Client Subnet Leakage in DNS Queries](https://doi.org/10.1109/PST.2018.8514164)",Conference on Privacy, Security and Trust (2018)【WOS:000454683600016】
 - Pan, Lanlan et al. "[A Public Key based EDNS Privacy Tunnel for DNS](https://doi.org/10.1109/TrustCom/BigDataSE.2018.00260)",International Conference on Trust, Security and Privacy in Computing and Communications (2018)【CCF-C】【WOS:000495072100250】
-- NDSS DNS Privacy Workshop 2017《[EIL: Dealing with the Privacy Problem of ECS](https://www.ndss-symposium.org/ndss2017/dns-privacy-workshop-2017-programme/)》【CCF-A】
+- NDSS DNS Privacy Workshop 2017《[EIL: Dealing with the Privacy Problem of ECS](https://www.ndss-symposium.org/ndss2017/dns-privacy-workshop-2017-programme/)》
 - Pan, Lanlan et al. "[Mitigating DDoS Attacks towards Top Level Domain Name Service](https://doi.org/10.1109/APNOMS.2016.7737252)",Asia-Pacific Network Operations and Management Symposium (2016) 【CCF-C】【WOS:000392160000059】
 - 计算机应用研究 2016 [一种评估DNS根镜像服务的方法](https://www.researchgate.net/publication/370353433_An_Evaluation_Method_for_DNS_Root_Service_Quality_yizhongpingguDNSgenfuwuzhiliangdefangfa)
 - 潘蓝兰, 尉迟学彪, and 胡安磊. "[一种快速评估DDOS攻击对DNS权威服务影响的方法](https://www.nstl.gov.cn/paper_detail.html?id=1c1ad8061cf831041024b20411140f2b)" 计算机应用研究 32.11 (2015): 3456-3459.
@@ -61,6 +61,7 @@ tagline: "惟陈言之务去"
 
 | Granted Year | Grant No. | Patent |
 | ------------ | --------- | ------ |
+| 2026 | CN118277683B | [链接跳转方法、系统、链接生成方法、设备及存储介质](https://patents.google.com/patent/CN118277683B/) |
 | 2025 | CN114363888B | [数据传输方法、装置、存储介质及电子设备 (Data transmission method, device, storage medium and electronic device)](https://patents.google.com/patent/CN114363888B/) |
 | 2024 | CN114726625B | [检测方法及装置、服务器及存储介质 (Detection method and device, server and storage medium)](https://patents.google.com/patent/CN114726625B/) |
 | 2024 | EP4099733B1 | [Security authentication method and apparatus, and electronic device](https://patents.google.com/patent/EP4099733B1/) |
